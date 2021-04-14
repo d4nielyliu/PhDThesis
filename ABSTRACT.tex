@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{amsmath}
+\usepackage{chicago}
+\usepackage{lipsum} % Because this comes with a demo
+%\usepackage[hang, flushmargin, symbol]{footmisc}
+\usepackage[hyperfootnotes=false, hidelinks=true]{hyperref}  % for workin links and bookmarks (alexsalo)
+\usepackage[capitalise,nameinlink]{cleveref}  % used to format references to ranges of references.
+\usepackage{bookmark}  % faster bookmarks manegment (alexsalo)
+\usepackage{ifthen}
+\usepackage[binary-units]{siunitx} %Easier use of scientific notation (Check also CMS defined units)
+\usepackage{topcapt} %This lets us put the table caption at the top using \topcaption
+\usepackage{amssymb}
+\usepackage{acronym} %This is used to create the List of acronyms
+\usepackage[nobreak]{cite}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{slashed}
+\usepackage{pdfpages}
+\usepackage[textsize=footnotesize,textwidth=2.7cm]{todonotes}
+\usepackage{footnotebackref}
+\usepackage{adjustbox}
+\usepackage{rotating}
+\usepackage{axodraw2}
+\usepackage{braket}
+
+\begin{document}
+\title{Precision Theory for LHC/FCC: New Results for the Five Point Function and Interface between KKMC-hh and MG5\textunderscore aMC@NLO}
+\author{Yang Liu, Ph.D.\\advisor: B. F. L. Ward, Ph.D.}
+\maketitle
+\begin{abstract}
+	The development of large colliders provides us with the opportunity to discover the fundamental particles in nature and explore the interactions among them. The Standard Model (SM) of particle physics reflects our best knowledge of elementary particles and their interactions at present, which is formulated by a gauge quantum field theory with gauge symmetry $SU(3)_C \otimes SU(2)_L \otimes U(1)_Y$. With the discovery of the Higgs boson, the era of the sub-1\% precision on processes such as $Z$ and
+	$W$ production is approaching us. In order to achieve the 1\% theoretical precision tag, we have to take radiative corrections into account and develop more precise Monte Carlo generators.
+	
+	In this dissertation, we first developed the computer realization of the magic spinor product method in loop integrals proposed by B. F. L. Ward to evaluate the general five-point function
+	numerically. The result from magic spinor product method agrees with that from LoopTools overall. Additionally, we also developed an approach to achieve the next-to-the-leading order QCD and the electroweak (EW) exact $O(\alpha_s\otimes\alpha^2L)$ corrections, interfacing MG5\textunderscore aMC@NLO with KKMC-hh by merging their LHE files. By comparing the results of the Drell-Yan process obtained by KKMC-hh, MG5\textunderscore aMC@NLO and KKMC-hh interfaced with MG5\textunderscore aMC@NLO , at $\sqrt{s}=13\text{ TeV}$ with the ATLAS cuts on the $Z/\gamma^\ast$ production and decay to lepton pairs, respectively, we find that the results derived from KKMC-hh interfaced with MG5\textunderscore aMC@NLO would generate enhancements from those derived from MG5\textunderscore aMC@NLO, which is due to the EW corrections provided by KKMC-hh.
+\end{abstract}
+
+
+\end{document}

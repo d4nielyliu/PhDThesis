@@ -1,0 +1,350 @@
+% Baylor University Thesis LaTeX template
+% - Template created by Jonathan Drake (2013)
+% - Template updated by Kenneth Call, Kenichi Hatakeyama (2019)
+% - Template updated by Chris Madrid, Caleb Smith (2020)
+
+% Thesis class, based on report
+\documentclass
+[
+	%short,	% omit front matter
+	%draft, % draft heading, don't load graphics, etc.
+]
+{thesis}
+
+% Optional additional packages
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{amsmath}
+\usepackage{chicago}
+\usepackage{lipsum} % Because this comes with a demo
+%\usepackage[hang, flushmargin, symbol]{footmisc}
+\usepackage[hyperfootnotes=false, hidelinks=true]{hyperref}  % for workin links and bookmarks (alexsalo)
+\usepackage[capitalise,nameinlink]{cleveref}  % used to format references to ranges of references.
+\usepackage{bookmark}  % faster bookmarks manegment (alexsalo)
+\usepackage{ifthen}
+\usepackage[binary-units]{siunitx} %Easier use of scientific notation (Check also CMS defined units)
+\usepackage{topcapt} %This lets us put the table caption at the top using \topcaption
+\usepackage{amssymb}
+\usepackage{acronym} %This is used to create the List of acronyms
+\usepackage[nobreak]{cite}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{slashed}
+\usepackage{pdfpages}
+\usepackage[textsize=footnotesize,textwidth=2.7cm]{todonotes}
+\usepackage{footnotebackref}
+\usepackage{adjustbox}
+\usepackage{rotating}
+\usepackage{axodraw2}
+\usepackage{braket}
+
+%KC: Graduate school asks that references to chapters use words for the numbers. the fmtcount package translates number to words. This is really rather hacky. If the formated label is an integer according to xstring, then we set the hackyCounter to have that label's value, then print it using \Numberstring
+\usepackage{fmtcount, xstring}
+
+\newcount\hackyCounter
+\newcounter{hackyCounter}
+
+\creflabelformat{chapter}{#2\IfInteger{#1}{\setcounter{hackyCounter}{#1}\Numberstring{hackyCounter}}{#1}#3}
+
+
+%special commands
+%\setlength{\marginparwidth}{4cm}
+\newcommand{\tinytodo}[2][]
+{\todo[caption={#2}, #1]{\renewcommand{\baselinestretch}{0.8}\selectfont#2\par}}
+\newcommand{\fxnote}[1]{\tinytodo{#1}}
+%\renewcommand{\footnote}[2][3]{\footnotemark[#1]\footnotetext[#1]{#2}}
+\renewcommand{\chapterautorefname}{\mbox{Chapter}}
+\renewcommand{\sectionautorefname}{\mbox{Section}}
+\renewcommand{\subsectionautorefname}{\mbox{Section}}
+%\renewcommand{\todo}[1]{}
+%\newcommand{\chapquote}[2]{\begin{quotation} \textit{#1} \end{quotation} \begin{flushright} - #2\end{flushright} }
+%\let\oldincludegraphics\includegraphics
+%\renewcommand{\includegraphics}[2][1]{{\setlength\fboxsep{0pt}\fbox{\oldincludegraphics[#1]{#2}}}}
+
+% Thesis parameters
+\title{Precision Theory for LHC/FCC: New Results for the Five Point Function and Interface between KKMC-hh and MG5\textunderscore aMC@NLO}
+\author{Yang Liu}
+\holding{B.S., M.A., M.S.,}
+\seeking{Ph.D.}
+\degree{Doctor of Philosophy}
+\project{A Dissertation}
+\date{November 2020}
+
+% Administration
+\graduateDean{J. Larry Lyon, Ph.D.}
+\department{Department of Physics}
+\departmentChair{Dwight P. Russell, Ph.D.}
+\departmentChairTitle{Interim Chairperson}
+
+% Supervisor (advisor / mentor)
+\supervisor{B. F. L. Ward, Ph.D.}
+\supervisorRole{Advisor}
+%\cosupervisor{Kenichi Hatakeyama, Ph.D.}
+%\cosupervisorRole{Co-Advisor}
+
+%  Readers (committee members)
+\committee{Dissertation Committee}
+\readerOne{Bennie F. L. Ward, Ph.D., Chairperson}
+\readerTwo{Gerald B. Cleaver, Ph.D.}
+\readerThree{Kenichi Hatakeyama, Ph.D.}
+\readerFour{Mark Sepanski, Ph.D.}
+\readerFive{Anzhong Wang, Ph.D.}
+
+% CMS specific commands
+\input{ptdr-definitions}
+\newcommand{\nbjets}{\ensuremath{N_{\PQb}}\xspace}
+\newcommand{\njets}{\ensuremath{N_{\text{j}}}\xspace}
+\newcommand{\ntops}{\ensuremath{N_{\PQt}}\xspace}
+\newcommand{\MTTwo}{\ensuremath{m_{\text{T2}}}\xspace}
+\newcommand{\mt}{\ensuremath{m_{\text{T}}}\xspace}
+\newcommand{\htmiss}{\ensuremath{H_{\text{T}}^{\text{miss}}}\xspace}
+\newcommand{\mbl}{\ensuremath{M(l,b)}\xspace}
+\newcommand{\met}{\ptmiss}
+\newcommand{\metv}{\ptvecmiss}
+\newcommand{\znunu}{\ensuremath{\cPZ\to\PGn\PAGn}\xspace}
+\newcommand{\znunujets}{\ensuremath{\cPZ(\PGn\PAGn)}\text{+jets}\xspace}
+\newcommand{\Znunujets}{\znunujets}
+\newcommand{\zll}{\ensuremath{\cPZ\to\ell\ell}}
+\newcommand{\zjets}{{{\cPZ}\text{+jets}}\xspace}
+\newcommand{\wjets}{{{\PW}\text{+jets}}\xspace}
+\newcommand{\stopq}{\PSQt}
+\newcommand{\mstop}{\ensuremath{m_{\stopq}}\xspace}
+\newcommand{\gluino}{\PSg}
+\newcommand{\topq}{\cPqt}
+\newcommand{\lsp}{\PSGczDo}
+\newcommand{\mlsp}{\ensuremath{m_{\lsp}}\xspace}
+\newcommand{\qqprimebar}{\ensuremath{\PQq\PAQq^\prime}\xspace}
+\newcommand{\ttbarW}{\ensuremath{\ttbar\PW}\xspace}
+\newcommand{\ttbarZ}{\ensuremath{\ttbar\cPZ}\xspace}
+\newcommand{\njetsisr}{\ensuremath{N_{\text{jet}}^{\text{ISR}}}\xspace}
+\newcommand{\PW}{\ensuremath{\cmsSymbolFace{W}}\xspace} % use prime like pennames2
+\newcommand{\GenMET}{\ensuremath{\mbox{gen-}\ptmiss}\xspace}
+\newcommand{\RecoMET}{\ensuremath{\mbox{reco-}\ptmiss}\xspace}
+\newcommand{\orderof}{\ensuremath{\mathcal{O}}}
+\newcommand{\W}{\ensuremath{\cmsSymbolFace{W}}\xspace}
+
+
+
+
+% Abstract
+\abstract{\input{abstract}}
+
+% Acknowledgments (optional)
+\acknowledgements{\input{acknowledgments}}
+
+% Dedication (optional)
+\dedication{\centering \it To my loving wife Natalie Rose Cowan-Liu}
+
+% List of Acronyms (optional)
+% To alphabetize acronyms, use "NSIO method": abbreviations should be alphabetized exactly as written, NOT as spelled out.
+% See https://english.stackexchange.com/questions/103348/alphabetizing-list-of-mixed-words-and-acronyms
+%\makeListOfAcronyms
+
+% List of figures (optional)
+\makeListOfFigures
+
+% List of tables (optional)
+\makeListOfTables
+
+% Document body
+\begin{document}
+\pdfbookmark[-1]{CONTENT}{bookmark:Content}  % Top level bookmark to hold all chapters
+
+% Help format to graduate school requirements.
+\setlength{\belowdisplayskip}{1ex} \setlength{\belowdisplayshortskip}{1ex}
+\setlength{\abovedisplayskip}{1ex} \setlength{\abovedisplayshortskip}{1ex}
+
+% WARNING: \include adds the file extension ".tex" by default; do not put ".tex" extension on file names when using \include
+
+% Chapters
+\include{Standard-Model-of-Electroweak-Interactions}
+\include{Techniques-for-the-Calculation-of-Electroweak-Radiative-Corrections-at-the-One-Loop-Level}
+\include{Spinor-Techniques}
+\include{Numerical-Computations-for-the-Five-Point-Function}
+\include{Quantum-Chromodynamics}
+\include{Yennie-Frautschi-Suura-Resummation}
+\include{CEEX-and-KKMC-hh}
+\include{Interface-between-KKMC-hh-and-MG5-aMC@NLO}
+\include{Overall-Summary}
+
+% Appendices (optional)
+\multipleappendices % Change to \multipleappendices if you have more than one!
+\begin{appendices}
+	\include{appendixA}
+	\include{appendixB}   %note comment just above this!
+	\include{appendixC}
+	\include{appendixD}
+	\include{appendixE}
+\end{appendices}
+
+% Bibliography
+% Use IEEEtranBaylorPhys; based on IEEEtran, modified by Kenichi Hatakeyama
+%\bibliographystyle{IEEEtranBaylorPhys}
+%\bibliography{thesis}
+\begin{thebibliography}{widestlabel}
+	\bibitem{Glashow1961} S. Glashow, ``Partial-symmetries of weak interactions", Nucl. Phys. 22 (1961) 579.
+	\bibitem{Weinberg} S. Weinberg, ``A Model of Leptons", Phys. Rev. Lett. 19 (1967) 1264.
+	\bibitem{Salam} A. Salam, ``Elementary Particle Theory", edited by N. Svartholm (Almqvist and Wiksell, Stockholm, 1968), p.367.
+	\bibitem{GIM} S. Glashow, J. Iliopoulos, and L. Maiani, ``Weak Interactions with Lepton-Hadron Symmetry", Phys. Rev. D 2 (1970) 1285.
+	\bibitem{GG} H. Georgi and S. Glashow, ``Unified Weak and Electromagnetic Interactions without Neutral Currents", Phys. Rev. Lett. 28 (1972) 1494.
+	\bibitem{Pol} H. D. Politzer, ``Reliable Perturbative Results for Strong Interactions?", Phys. Rev. Lett. 30 (1973) 1346.
+	\bibitem{Pol1} H. D. Politzer, ``Asymptotic freedom: An approach to strong interactions", Phys. Rep. 14 (1974) 129	
+	\bibitem{GrossWil} D. J. Gross and F. Wilczek, ``Ultraviolet Behavior of Non-Abelian Gauge Theories", Phys. Rev. Lett. 30 (1973) 1343.
+	\bibitem{GrossWil1} D. J. Gross and F. Wilczek, ``Asymptotically Free Gauge Theories. I", Phys. Rev. D 8 (1973) 3633.
+	\bibitem{SWQCD} S. Weinberg, ``Non-Abelian Gauge Theories of the Strong Interactions", Phys. Rev. Lett. 31 (1973) 494.
+	\bibitem{SWQCD1} S. Weinberg, ``Current Algebra and Gauge Theories. II. Non-Abelian Gluons", Phys. Rev. D 8 (1973) 4482.
+	\bibitem{SW} S. Weinberg, ``The making of the Standard Model", Eur. Phys. J. C34 (2004) 5.
+	\bibitem{thooft1} G. 't Hooft, ``Renormalizable Lagrangians for massive Yang-Mills fields", Nucl. Phys. B 33 (1971) 167.
+	\bibitem{thooft2} G. 't Hooft, ``Renormalization of massless Yang-Mills fields", Nucl. Phys. B 33 (1971) 173.
+	\bibitem{tHooftVeltman} G. 't Hooft and M. Veltman, ``Regularization and renormalization of gauge fields", Nucl. Phys. B 44 (1972) 189.
+	\bibitem{tHV}  G. 't Hooft and M. Veltman, ``Combinatorics of gauge fields", Nucl. Phys. B 50 (1972) 318.
+	
+	\bibitem{H.P.PhyRep} H. Fritzsch and P. Minowski, ``Flavordynamics of quarks and leptons", Phys. Rep. 73 (1981) 67.	
+	\bibitem{BFLWQFT2} B. F. L. Ward, Lecture for Quantum Field Theory 2.
+	\bibitem{CQ} Chris Quigg, ``Gauge Theories of the Strong, Weak , and Electromagnetic Interactions, Frontiers in Physics", The Benjamin-Cummings Publishing Company, Inc., 1983.
+	\bibitem{YM1954} C. N. Yang and R. Mills, ``Conservation of Isotopic Spin and Isotopic Gauge Invariance", Phys. Rev. 96 (1954) 191.
+	\bibitem{Nambu} Y. Nambu, ``Axial Vector Current Conservation in Weak Interactions", Phys. Rev. Lett. 4 (1960) 380.
+	\bibitem{NambuLasinio1} Y. Nambu and G. Jona-Lasinio, ``Dynamical Model of Elementary Particles Based on an Analogy with Superconductivity. I", Phys. Rev. 122 (1961) 345.
+	\bibitem{NambuLasinio2} Y. Nambu and G. Jona-Lasinio, ``Dynamical Model of Elementary Particles Based on an Analogy with Superconductivity. II", Phys. Rev. 124 (1961) 246.
+	\bibitem{Goldstone} J. Goldstone, A. Salam and S. Weinberg, ``Broken Symmetries", Phys. Rev. 127 (1962) 965.
+	\bibitem{Bludman} S. Bludman and A. Klein, ``Broken Symmetries and Massless Particles", Phys. Rev. 131 (1962) 2363.
+	\bibitem{AbersLee} E. S. Abers and B. W. Lee, ``Gauge Theories", Phys. Rep. 9 C (1973) 1.
+	\bibitem{Higgs1} F. Englert and R. Route, ``Broken Symmetry and the Mass of Gauge Vector Mesons", Phys. Rev. Lett. 13 (1964) 9.
+	\bibitem{Higgs2} P. W. Higgs, ``Broken Symmetries and the Masses of Gauge Bosons", Phys. Rev. Lett. 13 (1964) 16.
+	\bibitem{Higgs3} G. S. Guralnik, C. R. Hagen and T. B. Kibble, ``Global Conservation Laws and Massless Particles", Phys. Rev. Lett. 13 (1964) 20.
+	\bibitem{Denner} A. Denner, ``Techniques for the calculation of electroweak radiative corrections at the one-loop level and results for W-physics at LEP200", Fortschr. Phys. 41 (1993) 4.
+	\bibitem{PV} G. Passarino and M. Veltman, ``One-loop corrections for $e^+e^-$ annihilation into $\mu^+\mu^-$ in the Weinberg model", Nucl. Phys. B 160 (1979) 151.
+	\bibitem{DG} D. Bardin and G. Passarino, ``The Standard Model in the Making", Oxford University Press, 1999.
+	\bibitem{Consoli} M. Consoli, ``One-loop corrections to $e^+e^-\to e^+e^-$ in the weinberg model", Nucl. Phys. B 160 (1979) 208.
+	\bibitem{MV} M. Veltman, ``Radiative corrections to vector boson masses", Phys. Lett. B 91 (1980) 95.
+	\bibitem{GV} M. Green and M. Veltman, ``Weak and E.M. radiative corrections to low-energy processes", Nucl. Phys. B 169 (1980) 137; E: Nucl. Phys. B 175 (1980) 547.
+	\bibitem{BRJ} F. A. Berends, R. Kleiss and S. Jadach, ``Radiative corrections to muon pair and quark pair production in electron-positron collisions in the $Z_0$ region", Nucl. Phys. B 202 (1982) 63.
+	\bibitem{SovJ} I. B. Khriplovich, ``Charge asymmetry of muon angular distribution in $e^+e^-\to\mu^+\mu^-$ process", Sov. J. Nucl. Phys. 17 (1973) 576.
+	\bibitem{PF}V. N. Popov and L.D. Faddeev, ``Perturbation theory for gauge invariant fields", Kiev Inst. Theor. Phys. Acad. Sci. preprint ITP (1967) 67-36. 
+	\bibitem{PF1} L. D. Faddeev and V. N. Popov, ``Feynman diagrams for the Yang-Mills field", Phys. Lett. B 25 (1967) 29.
+	\bibitem{Sirlin} A. Sirlin, ``Radiative corrections in the $SU(2)_L\times U(1)$ theory: A simple renormalization framework", Phys. Rev. D 22 (1980) 971.
+	\bibitem{Marcianosirlin} W. J. Marciano and A. Sirlin, ``Radiative corrections to neutrino-induced neutral-current phenomena in the $SU(2)_L\times U(1)$ theory", Phys. Rev. D 22 (1980) 2695.
+	\bibitem{SirlinMaciano} A. Sirlin and W. J. Marciano, ``Radiative corrections to $\nu_\mu+N\to\mu^-+X$  and their effect on the determination of $\rho^2$ and $\sin^2\theta_W$", Nucl. Phys. B 189 (1981) 442.
+	\bibitem{tHscarlar} G. 't Hooft and M. Veltman, `` Scalar one-loop integrals", Nucl. Phys. B 153 (1979) 365.
+	\bibitem{s4pt} A. Denner, U. Nierste and R. Scharf, ``A compact expression for the scalar one-loop four-point function", Nucl. Phys. B 367 (1991) 637.
+	
+	
+	
+	\bibitem{caklul} F. A. Berends, R. Kleiss, P. De Causmaecker and R. Gastmans,`Single bremsstrahlung processes in gauge theories", Phys. Lett. B 103 (1981) 124;
+	\bibitem{calkul1} P. De Causmaecker, R. Gastmans, W. Troost and T. T. Wu, ''Helicity amplitudes for massless QED",Phys. Lett. B 105 (1981) 215.
+	\bibitem{calkul3} D. Dankaert, P. De. Causmaecker, R. Gastmans, W. Troost and T. T. Wu, ``Four-jet production in $e^+e^-$ annihilation", Phys. Lett. B 114 (1982) 203.
+	\bibitem{calkul2} P. De Causmaecker, R. Gastmans, W. Troost and T. T. Wu, ``Multiple bremsstrahlung in gauge theories at high energies (I). General formalism for quantum electrodynamics", Nucl. Phys. B 206 (1982) 53.
+	
+	\bibitem{calkul4} F. A. Berends, R. Kleiss, P. De Causmaecker, R. Gastmans, W. Troost and T. T. Wu, ``Multiple bremsstrahlung in gauge theories at high energies (II). Single bremsstrahlung", Nucl. Phys. B 206 (1982) 61.
+	\bibitem{CALKUL} F. A. Berends, P. De Causmaecker, R. Gastmans,  R. Kleiss, W. Troost and T. T. Wu, (CALKUL Collaboration), ``Multiple bremsstrahlung in gauge theories at high energies: (III). Finite mass effects in collinear photon bremsstrahlung", Nucl. Phys. B 239 (1984) 382.
+	\bibitem{ChnMag} Z. Xu, D.-H. Zhang, and L. Change, ``Helicity amplitudes for multiple bremsstrahlung in massless non-abelian gauge theories", Nucl. Phys. B 291 (1987) 392.
+	\bibitem{KS} R. Kleiss, and W. J. Stirling, ``Spinor techniques for calculating $pp\to W^\pm/Z^0+\text{jets}$", Nucl. Phys. B 262 (1985) 235.
+	
+	\bibitem{ZZL} Z. Xu, D.-H. Zhang and L. Change, Tsinghua University preprints TUTP-84/3, 84/4, and 84/5, Unpublished.
+	
+	\bibitem{GPS} S. Jadach, B. F. L. Ward and Z. Was, ``Global positioning of spin GPS scheme for half-spin massive spinors", Eur. Phys. J. C 22 (2001) 423.
+	
+	
+	\bibitem{MagicSpinor} B. F. L. Ward, ``Magic spinor product methods in loop integrals", Phys. Rev. D 83 (2011) 113014.
+	\bibitem{LT} Thomas Hahn, ``LoopTools 2.15 User's Guide".
+	\bibitem{vOV90} G. J. van Oldenborgh and J. A. M. Vermaseren, ``New algorithms for one-loop integrals", Z. Phys. C 46 (1990) 425.
+	\bibitem{JWZ2001prd} S. Jadach, B. F. L. Ward and Z. Was, ``Coherent exclusive exponentiation for precision Monte Carlo calculations", Phys. Rev. D 63 (2001) 113009.
+	
+	\bibitem{WJ} W. L. van Neerven and J. A. M. Vermaseren, ``Large loop integrals", Phys. Lett. B 137 (1984) 241.
+	\bibitem{DD} A. Denner and S. Dittmaier, ``Reduction of one-loop tensor 5-point integrals", Nucl. Phys. B 658 (2003) 175.
+	\bibitem{DD1} A. Denner and S. Dittmaier, ``Reduction schemes for one-loop tensor integrals" Nucl. Phys. B 734 (2006) 62.
+	
+	\bibitem{Tay71} J. C. Taylor, ``Ward identities and charge renormalization of the Yang-Mills field", Nucl. Phys. B 33 (1971) 436.
+	\bibitem{Sla73} A. A. Slanov, ``Ward identities in gauge theories", Theor. Math. Phys. 10 (1973) 99.
+	\bibitem{Muta} T. Muta, ``Foundations of Quantum Chromodynamics, An Introduction to Pertubrbative Methods in Gauge Theories", World Scientific Publishing Co. Pte. Ltd., 1998.
+	\bibitem{Cel79} W. Celmaster and R. J. Gonsalves, ``Renormalization-prescription dependence of the quantum-chromodynamic coupling constant", Phys. Rev. D 20 (1979) 1420. 
+	\bibitem{Pas80} P. Pascual and R. Tarrach, ``Slavnov-Taylor identities in Weinberg's renormalization scheme", Nucl. Phys. B 174 (1980) 123.
+	\bibitem{MS} G. 't Hooft, ``Dimensional regularization and the renormalization group", Nucl. Phys. B 61 (1973) 455.
+	\bibitem{Pet79} A. Peterman, ``Renormalization group and the deep structure of the proton", Phys. Rep. 53 (1979) 157.
+	\bibitem{Alt82} G. Altarelli, ``Partons in quantum chromodynamics", Phys. Rep. 81 (1982) 1.
+	\bibitem{Wil71} K. G. Wilson, ``Renormalization Group and Strong Interactions", Phys. Rev. D 3 (1971) 1818.
+	\bibitem{GelRGE} M. Gell-mann and F. E. Low, ``Quantum Electrodynamics at Small Distances", Phys. Rev. 95 (1954) 1300.
+	\bibitem{CallanRGE} C. G. Callan, Jr., ``Broken Scale Invariance in Scalar Field Theory", Phys. Rev. D 2 (1970) 1541.
+	\bibitem{SymRGE} K. Symanzik, ``Small distance behaviour in field theory and power counting", Comm. Math. Phys. 18 (1970) 227.
+	\bibitem{WeiRGE} S. Weinberg, ``New Approach to the Renormalization Group", Phys. Rev. D 8 (1973) 3497.
+	\bibitem{Cas74} W. Caswell, ``Asymptotic Behavior of Non-Abelian Gauge Theories to Two-Loop Order", Phys. Rev. Lett. 33 (1974) 244.
+	\bibitem{Jon74} D. R. T. Jones, ``Two-loop diagrams in Yang-Mills theory", Nucl. Phys. B 75 (1974) 531.
+	
+	\bibitem{Block} F. Block and A.Nordsieck, ``Note on the Radiation Field of the Electron", Phys. Rev, 52, 54 (1937).
+	\bibitem{YFS} D. R. Yenni, S. C. Frautschi and H. Suura, ``The infrared divergence phenomena and high-energy processes. Annals of Physics. 13, 379-452 (1961).
+	\bibitem{BFLW1987} B. F. L. Ward, ``Renormalization-group-improved Yennie-Frautschi-Suura theory", Phys. Rev. D 36, (1987) 939.
+	\bibitem{BFLWQFT} B. F. L. Ward, The lecture note for Quantum Field Theory 3.
+	\bibitem{JMJ} J. M. Jauch and F. Rohrlich, Helv. Phys. Acta 27, 613 (1954).
+	\bibitem{YS} D. R. Yennie and H. Suura, ``Higher Order Radiative Corrections to Electron Scattering", Phys. Rev. 105, (1957) 1378.
+	\bibitem{BFLWEWQCDQG} to be decided.
+	\bibitem{KORALB} S. Jadach and Z. Was, ``Monte Carlo Simulation of the Process $e^+e^-\to\tau^+\tau^-$ Including Radiative $O(\alpha^3)$ QED Corrections, Mass and Spin", Comput. Phyus. Commun. 36 (1985) 191.
+	\bibitem{KORALZ} S. Jadach, B.F.L. Ward and Z. Was, ``The Monte Carlo program KORALZ version 4.0 for lepton or quark pair production at LEP/SLC energies", Comput. Phys. Commun. 79(1994) 503.
+	\bibitem{BHLUMI1} S. Jadach, E. Richter-Was, B.F.L. Ward, Z. Was, ``Monte Carlo program BHLUMI 2.01 for Bhabha scattering at low angles with Yennie-Frautschi-Suura exponentiation", Comput. Phys. Commun. 70(1992) 305.
+	\bibitem{BHLUMI2} S.Jadach, W. Placzek, E. Richter-Was, B. F. L. Ward, and Z. Was,``Upgrade of the Monte Carlo program BHLUMI for Bhabha scattering at low angles to version 4.04",  Comput. Phys. Commun. 102(1997) 229.
+	\bibitem{YFS2} S. Jadach and B.F.L. Ward, ``YFS2— The second-order Monte Carlo program for fermion pair production at LEP/SLC, with the initial state radiation of two hard and multiple soft photons", Comput. Phys. Commun. 56(1990) 351.
+	\bibitem{KKMC} S. Jadach, B.F.L. Ward, Z. Was, ``The precision Monte Carlo event generator KK
+	for two-fermion final states in $e^+e^-$
+	collisions", Comput. Phys. Commun. 130(2000) 260.
+	\bibitem{KKMC-hh1} S. Jadach, B.F.L. Ward, Z. Was and S. Yost, Phys. Rev, D94, 074006.
+	\bibitem{KKMC-hh2} S. Jadach, B.F.L. Ward, Z. Was and S. Yost ``KKMC-hh: A Precision Event Generator for EW Radiative Corrections in Hadron Scattering", hep-ph/1811.03560.
+	\bibitem{KKMC0hh3} S. Jadach, B.F.L. Ward, Z. Was and S. Yost, hep-ph/1801.09509. 
+	\bibitem{DY} S.D. Drell and T.M. Yan, ``Massive Lepton-Pair Production in Hadron-Hadron Collisions at High Energies", Phys. Rev. Lett. 25, 316(1970).
+	\bibitem{CEEX1} S. Jadach, B.F.L. Ward, Z. Was, ``The Monte Carlo program KORALZ version 4.0 for lepton or quark pair production at LEP/SLC energies", Comput. Phys. Commun. 79(1994) 503.
+	\bibitem{CEEX2} S. Jadach, B.F.L. Ward and Z. Was, 
+	``Coherent exclusive exponentiation CEEX: the case of the resonant  $e^+e^-$ collision", Phys.Lett. B449(1999) 97
+	
+	\bibitem{CEEX5} S. Jadach, B.F.L. Ward and Z. Was, ``KK MC 4.22: Coherent exclusive exponentiation of electroweak corrections for $f\bar{f}\to f'\bar{f}'$ at the LHC and muon colliders", Phys.Rev. D 88 (2013) 114022.
+	\bibitem{ZFITTER} D. Bardin et al., ``ZFITTER v.6.21: A semi-analytical program for fermion pair production in $e^+e^-$ annihilation", Comput. Phys. Commun. 133(2001) 229.
+	\bibitem{TAULO1} S. Jadach, J.H. K{\"u}hn and Z. Was, ``TAUOLA - a library of Monte Carlo programs to simulate decays of polarized $\tau$ leptons", Comput. Phys. Commun. 64(1990) 275.
+	
+	\bibitem{TAULO3} S. Jadach, Z. Was, R. Decker and J.H. K{\"u}hn, ``The tau decay library TAUOLA: Version 2.4", Comput. Phys. Commun. 76 (1993) 361.
+	\bibitem{TAULO4} P. Golonka, B. Kersevan, T. Pierzchala, E. Richter-Was, Z. Was and M. Worek, ``The tauola-photos-F environment for the TAUOLA and PHOTOS packages, release II", Comput. Phys. Commun. 174 (2006) 818.
+	
+	
+	\bibitem{LHAPDF} A. Buckley, James Ferrando, Stephen Lloyd, Karl Nordstr\"om, Ben Page, Martin Rüfenacht, Marek Sch\"onherr and Graeme Watt, 
+	``LHAPDF6: parton density access in the LHC precision era", Eur. phyrs. J. C75(2015) 3, 132.
+	\bibitem{FOAM} S. Jadach, ``Foam: Multi-dimensional general purpose Monte Carlo generator with self-adapting simplical grid", Comput. Phys. Commun. 130 (2000) 244.
+	\bibitem{BK} F.A. Berends and R. Kleiss, ``Distributions in the process $e^+e^-\to\mu^+\mu^-(\gamma)$", Nucl. Phys. B 177 (1981) 237 .
+	\bibitem{BKJ} F.A. Berends, R. Kleiss and S. Jadach, ``Monte Carlo stimulation of radiative corrections to the processes $e^+e^-\to\mu^+\mu^-$ and $e^+e^-\to\bar{q}q$ in the $Z_0$ region", Comput. Phys. Commun. 29 (1983) 185.
+	\bibitem{BKJ-NPB} F.A. Berends, R. Kleiss and S. Jadach, ``Radiative corrections to muon pair and quark pair production in electron-positron collisions in the $Z_0$ region", Nucl. Phys. B 202 (1982) 63.
+	\bibitem{BWF-NPB} F.A. Berends, W. Van Neerven, and G. Burgers, ``Higher order radiative corrections at LEP energies", Nucl. Phys. B 297 (1988) 429.
+	\bibitem{JBZ94} S. Jadach, B.F.L. Ward and  Z.  Was, ``Coherent exclusive exponentiation CEEX: the case of the resonant $e^+e^-$ collision", Phys. Lett. B 449 (1999) 97.
+	\bibitem{Greco1} M. Greco, G. Pancheri-Srivastava and Y. Srivastava, ``Radiative corrections for colliding beam resonances", Nucl. Phys. B 101 (1975) 234.
+	\bibitem{Greco2} M. Greco, G. Pancheri-Srivastava and Y. Srivastava, ``Radiative corrections to $e^+e^-\to\mu^+\mu^-$ around the $Z_0$", Nucl. Phys. B 171 (1980) 118;B 197 (1982) 543E.
+	\bibitem{WasPol} Z. Was, ``Radiative corrections to $\tau$ pair production around $Z_0$", Acta Phys. Pol. B 18 (1987) 1099.
+	\bibitem{box} R. W. Brown, R. Decker and  E. A. Paschos, ``Weak Corrections to the $e^+e^-\to\mu^+\mu^-$ Asymmetry", Phys.  Rev. Lett. 52 (1984) 1192.
+	\bibitem{JW85} S. Jadach and Z. Was, ``Monte Carlo simulation of the process $e^+e^-\to\tau^+\tau^-$, $\tau^\pm\to X^\pm$ including radiative $O(\alpha^3)$
+	QED corrections, mass and spin effects", Comput. Phys. Commun. 36 (1985) 191.
+	\bibitem{Burges} G. Burgers, ``On the two-loop QED vertex correction in the high energy limit", Phys. Lett. 164 B (1985) 167.
+	\bibitem{BBW} F. Berends, G. Burgers and W. Van Neerven, ``QED radiative corrections to the reaction $e^+e^-\to Z\gamma$, Phys. Lett. B 177 (1986) 191.
+	\bibitem{PracMC} S. Jadach, ``Practical guide to Monte Carlo", 1999, hep-ph/9906056.
+	\bibitem{COMOV}S. Jadach, ``Comoving reference frames for multi-bremsstrahlung", To be submitted to Comput. Phys. Commun.
+	\bibitem{MPI}  S. Jadach, ``Yennie–Frautschi–Suura  soft photons in Monte Carlo event generators", 1987, MPI-PAE/PTh 6/87, preprint of MPI Munich,unpublished.
+	\bibitem{MG5} J. Alwall, R. Frederix, S. Frixione, V. Hirschi, F. Maltoni, O. Mattelaer, H. S.
+	Shao, T. Stelzer, P. Torrielli, and M. Zaro, ``The automated computation of tree-level and next-to-leading oreder differential cross sections, and their mathcing to parton shower simulations", JHEP, 7 (2014) 79. 
+	\bibitem{madgraph} T. Stelzer and W. F. Long, ``Automatic generation of tree level helicity amplitudes", Comput.Phys. Commun. 81 (1994) 357.
+	\bibitem{helas} H. Murayama, I. Watanebe, and K. Hagiwara, ``HELAS: HELicity amplitude subroutines for Feynman diagram evaluations". 
+	\bibitem{fks1} C. Duhr and B. Fuks, ``A superspace module for the FeynRules package", arXiv:1102.4191.
+	\bibitem{fks2} C. Degrande et al., ``UFO — The Universal FeynRules Output".
+	\bibitem{fks3} T. Gleisberg and F. Krauss, ``Automating dipole subtraction for QCD NLO calculations",
+	Eur. Phys. J. C 53 (2008) 501.
+	\bibitem{fks4} M.H. Seymour and C. Tevlin, ``TeVJet: a general framework for the calculation of jet
+	observables in NLO QCD", arXiv:0803.2231.
+	\bibitem{fks5} Hasegawa, S. Moch and P. Uwer, ``Automating dipole subtraction',
+	Nucl. Phys. Proc. Suppl. 183 (2008) 268.
+	\bibitem{fks6} R. Frederix, T. Gehrmann and N. Greiner, ``Automation of the dipole subtraction method in
+	MadGraph/MadEvent", JHEP 09 (2008) 122.
+	\bibitem{madloop} C.F. Berger et al., ``Precise predictions for W + 4 jet production at the Large Hadron Collider",
+	Phys. Rev. Lett. 106 (2011) 092001.
+	\bibitem{opp} G. Ossola, C.G. Papadopoulos and R. Pittau, ``CutTools: a program implementing the OPP
+	reduction method to compute one-loop amplitudes", JHEP 03 (2008) 042.
+	\bibitem{LHE} E. Boos et al, ``Generic user process interface for event generations", hep-ph/0109068
+	\bibitem{ATLAS} M. Aabound et al. (ATLAS Collaboration), ``Measurement of the W-boson mass in pp collisions at $\sqrt{s}=7$ TeV with the ATLAS detector", Eur. Phys. J. C 78 (2018) 110.
+	\bibitem{quarkmass} A. D. Martin, R. G. Roberts, W. J. Stirling, and R. S. Thorne, ``Parton distributions incorporating QED contribution", Eur. Phys. J. C 39 (2005) 155.
+	\bibitem{GMM} M. Gell-Mann, ``Symmetries of Baryons and Mesons"
+	, Phys. Rev. 125 (1962) 1067.
+	\bibitem{FieldQCD} R. D. Field, ``Applications of Perturbative QCD", 1989 
+\end{thebibliography}
+
+
+\end{document}

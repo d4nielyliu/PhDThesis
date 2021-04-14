@@ -1,0 +1,465 @@
+\chapter{Feynman Rules of the Electroweak SM} 
+
+In this appendix we outline the Feynman rules of electroweak SM in the 't Hooft-Feynman gauge including the counterterms. In the verticles all momenta are set up as incoming. 
+
+	
+Propagators:
+
+for gauge bosons $V=\gamma, Z, W$ in the 't Hooft-Feynamn gauge($\xi_i=1$)	
+
+\begin{axopicture}(260,60) %vector boson
+	\Photon(20,30)(110,30){3}{6.5}
+	\Vertex(20,30){1}
+	\Vertex(110,30){1}
+	\Text(10,30){$V_\mu$}\Text(120,30){$V_\nu$}\Text(60,40){$k$}
+	\Text(170,30){$=\frac{-ig_{\mu\nu}}{k^2-M_V^2}$,}	
+\end{axopicture}
+
+for Faddeev-Popov ghosts $G=u^\gamma,u^Z,u^W$
+
+\begin{axopicture}(260,60) %ghost
+	\DashLine[arrow](20,30)(110,30){2}
+	\Vertex(20,30){1}
+	\Vertex(110,30){1}
+	\Text(10,30){$G$}\Text(120,30){$\bar{G}$}\Text(60,40){$k$}
+	\Text(170,30){$=\frac{i}{k^2-M_G^2}$,}	
+\end{axopicture}
+
+for scalar fields $S=H,\chi,\phi$
+
+\begin{axopicture}(260,60) %scalar
+	\DashLine[arrow](20,30)(110,30){10}
+	\Vertex(20,30){1}
+	\Vertex(110,30){1}
+	\Text(10,30){$S$}\Text(120,30){${S}$}\Text(60,40){$k$}
+	\Text(170,30){$=\frac{i}{k^2-M_S^2}$,}	
+\end{axopicture}
+
+and for fermion fields $F=f_i$
+
+\begin{axopicture}(260,60)
+	\Line[arrow](20,30)(110,30)
+	\Vertex(20,30){1}
+	\Vertex(110,30){1}
+	\Text(10,30){$F$}\Text(120,30){$\bar{F}$}\Text(60,40){$p$}
+	\Text(170,30){$=\frac{i}{\slashed{p}-m_f}$.}	
+\end{axopicture}
+
+In the 't Hooft-Feynman gauge we have the following relations:
+\begin{equation}
+M_{u^\gamma}=0, \quad M_{u^Z}=M_\chi=M_Z, \quad M_{u^\pm}=M_\phi=M_W.
+\end{equation}
+
+Tadpole:
+
+\begin{axopicture}(260,60)
+	\Line(20,30)(110,30)
+	\GCirc(20,30){5.66}{1}	
+	\Line(24,26)(16,34)
+	\Line(16,26)(24,34)
+	\Text(90,40){$S$}
+	\Text(170,30){$=i\delta t$.}
+\end{axopicture}
+
+$VV$-counterterm:
+
+\begin{axopicture}(260,60) %vector boson
+	\Photon(20,30)(110,30){3}{6.5}
+	\Vertex(20,30){1}
+	\Vertex(110,30){1}
+	\Text(10,30){$V_\mu$}\Text(120,30){$V_\nu$}\Text(60,40){$k$}
+	\Text(170,30){$=-ig_{\mu\nu}[C_1 k^2-C_2]$}
+	\GCirc(65,30){5.66}{1}	
+	\Line(61,26)(69,34)
+	\Line(69,26)(61,34)	 %counterterm
+	
+\end{axopicture}
+\newline with the actual values of $V_1$, $V_2$ and $C_1$, $C_2$
+\begin{eqnarray}
+W^+W^-:&& C_1=\delta Z_W, \quad C_2=M_W^2\delta Z_W+\delta M_W^2\nonumber\\
+ZZ:&&  C_1=\delta Z_{ZZ}, \quad C_2=M_Z^2\delta Z_{ZZ}+\delta M_Z^2\nonumber\\
+AZ:&&  C_1=\frac{1}{2}\delta Z_{AZ}+\frac{1}{2}\delta Z_{ZA}, \quad C_2=M_Z^2\frac{1}{2}\delta Z_{ZA}\nonumber\\
+AA:&& C_1=\delta Z_{AA}, \quad C_2=0.
+\end{eqnarray}
+
+$SS$-counterterm:
+
+\begin{axopicture}(260,60) %scalar
+	\DashLine(20,30)(110,30){10}
+	\Vertex(20,30){1}
+	\Vertex(110,30){1}
+	\Text(10,30){$S_1$}\Text(120,30){${S_2}$}\Text(60,40){$k$}
+	\Text(170,30){$=i[C_1 k^2-C_2]$,}
+	\GCirc(65,30){5.66}{1}		
+	\Line(61,26)(69,34)
+	\Line(69,26)(61,34)	 %counterterm
+	
+\end{axopicture}
+\newline with the actual values of $S_1$, $S_2$ and $C_1$, $C_2$
+\begin{eqnarray}
+HH:C_1=\delta Z_H,\quad C_2=M_H^2\delta Z_H+\delta M_H^2.
+\end{eqnarray}
+
+$FF$-counterterm:
+
+\begin{axopicture}(260,60) %fermion
+	\Line(20,30)(110,30)
+	\Vertex(20,30){1}
+	\Vertex(110,30){1}
+	\Text(10,30){$F_1$}\Text(120,30){$\bar{F_2}$}\Text(50,40){$p$}
+	\Text(170,10){$=i[C_L\slashed{p}\frac{1}{2}(1-\gamma_5)+C_R\slashed{p}\frac{1}{2}(1+\gamma_5)]-C_S^-\slashed{p}\frac{1}{2}(1-\gamma_5-C_S^+\slashed{p}\frac{1}{2}(1+\gamma_5)]$,}
+	\GCirc(65,30){5.66}{1}	
+	\Line(61,26)(69,34)
+	\Line(69,26)(61,34)	 %counterterm
+	
+\end{axopicture}
+\newline with the actual values of $F_1$, $\bar{F}_2$ and $C_L, C_R, C_S^-, C_S^+$
+\begin{equation}
+f_i\bar{f}_i:\begin{cases} 
+C_L=\frac{1}{2}(\delta Z^{f,L}_{ij}+\delta Z^{f,L,\dagger}_{ij}),
+\\ C_R=\frac{1}{2}(\delta Z^{f,R}_{ij}+\delta Z^{f,R,\dagger}_{ij})
+\\
+C^-_S=m_{f,i}\frac{1}{2}\delta Z^{f,L}_{ij}+m_{f,i}\frac{1}{2}\delta Z^{f,R,\dagger}_{ij}+\delta_{ij}\delta m_{f,i},\\
+C^+_S=m_{f,i}\frac{1}{2}\delta Z^{f,R}_{ij}+m_{f,i}\frac{1}{2}\delta Z^{f,L,\dagger}_{ij}+\delta_{ij}\delta m_{f,i}.
+\end{cases}
+\end{equation}
+
+
+$VVVV$-couping:
+
+\begin{axopicture}(260,130) %fermion
+	\Photon(20,110)(65,65){3}{5.5}
+	\Photon(65,65)(110,20){3}{5.5}
+	\Photon(20,20)(65,65){3}{5.5}
+	\Photon(65,65)(110,110){3}{5.5}
+	\Vertex(65,65){1}		
+	\Text(10,110){$V_{1,\mu}$}
+	\Text(10,10){$V_{2,\nu}$}
+	\Text(120,10){$V_{4,\sigma}$}
+	\Text(120,110){$V_{3,\rho}$}
+	\Text(210, 65){$=ie^2C[2g_{\mu\nu}g_{\sigma\rho}-g_{\nu\rho}g_{\mu\sigma}-g_{\rho\mu}g_{\nu\sigma}]$}
+	\Vertex(65,65){3}
+\end{axopicture}
+\newline with the actual values of $V_1$,$V_2$,$V_3$,$V_4$ and $C$
+\begin{eqnarray}
+W^+W^+W^-W^-:&& C=\frac{1}{s_W^2}\left[1+2\delta Z_e-2\frac{\delta s_W}{s_W}+2\delta Z_W\right]\nonumber\\
+W^+W^-ZZ:&& C=-\frac{c_W^2}{s_W^2}\left[1+2\delta Z_e-2\frac{1}{c^2}\frac{\delta s_W}{s_W}+2\delta Z_W+\frac{1}{2}\delta Z_ZZ\right]+\frac{1}{2}\frac{c_W}{s_W}\nonumber\\
+W^+W^-AZ:&&C=
+\frac{c_W}{s_W}\left[1+2\delta Z_e-\frac{1}{c^2}\frac{\delta s_W}{s_W}+\delta Z_W+\frac{1}{2}\delta Z_{ZZ}+\frac{1}{2}\delta Z_{AA}\right]\nonumber\\
+&&-\frac{1}{2}\delta Z_{AZ}
+-\frac{1}{2}\frac{c^2_W}{s^2_W}\delta Z_{ZA}\nonumber\\
+W^+W^-AA:&&C=-\left[1+2\delta Z_e+\delta Z_W+\delta Z_{AA}\right]+\frac{1}{2}\frac{c_W}{s_W}\delta Z_{ZA}.
+\end{eqnarray}
+
+$VVV$-couping:
+
+\begin{axopicture}(260,130) %fermion
+	\Photon(10,65)(65,65){3}{5.5} 
+	\Photon(65,65)(120,35){3}{5.5}
+	\Photon(65,65)(120,105){3}{5.5}
+	\Vertex(65,65){1}		
+	\Text(10,75){$V_{1,\mu}, k_1$}
+	\Text(110,20){$V_{3,\rho},k_3$}
+	\Text(110,110){$V_{2,\nu},k_2$}
+	\Text(220, 65){$=-ieC[g_{\mu\nu}(k_2-k_1)_\rho-g_{\nu\rho}(k_3-k_2)_\mu$}
+	\Text(175,50){$-g_{\rho\mu}(k_1-k_3)_\nu$}
+	\Vertex(65,65){3}
+\end{axopicture}
+\newline with the actual values of $V_1$,$V_2$,$V_3$ and $C$
+\begin{eqnarray}
+AW^+W^-:&&C=1+\delta Z_e+\delta Z_W+\frac{1}{2}\delta Z_{AA}-\frac{1}{2}\frac{c_W}{s_W}\delta Z_{ZA},\nonumber\\
+ZW^+W^-:&&C=-\frac{c_W}{s_W}\left[1+\delta Z_e-\frac{1}{c^2}\frac{\delta s_W}{s_W}+\delta Z_W+\frac{1}{2}\delta Z_{ZZ}\right]+\frac{1}{2}\delta Z_{AZ}.\nonumber\\
+\end{eqnarray}
+
+$SSSS$-couping:
+
+\begin{axopicture}(260,130) %fermion
+	\Line[dash](20,110)(65,65)
+	\Line[dash](65,65)(110,20)
+	\Line[dash](20,20)(65,65)
+	\Line[dash](65,65)(110,110)
+	\Vertex(65,65){1}		
+	\Text(10,110){$S_{1}$}
+	\Text(10,10){$S_{2}$}
+	\Text(120,10){$S_{4,}$}
+	\Text(120,110){$S_{3}$}
+	\Text(160, 65){$=ie^2C$}
+	\Vertex(65,65){3}
+\end{axopicture}
+\newline with the actual values of $S_1$,$S_2$,$S_3$,$S_4$ and $C$
+\begin{eqnarray}
+HHHH:&& C=-\frac{3}{4s_W^2}\frac{M^2_H}{M^2_W}\left[1+2\delta Z_e-2\frac{\delta s_W}{s_W}+\frac{\delta M^2_H}{M^2_H}-\frac{\delta M^2_H}{M^2_H}+2\delta Z_H\right],\nonumber\\
+HH\chi\chi:&& C=-\frac{1}{4s_W^2}\frac{M^2_H}{M^2_W}\left[1+2\delta Z_e-2\frac{\delta s_W}{s_W}+\frac{\delta M^2_H}{M^2_H}-\frac{\delta M^2_H}{M^2_H}+\delta Z_H\right],\nonumber\\
+HH\phi\phi:&& C=-\frac{1}{4s_W^2}\frac{M^2_H}{M^2_W}\left[1+2\delta Z_e-2\frac{\delta s_W}{s_W}+\frac{\delta M^2_H}{M^2_H}-\frac{\delta M^2_H}{M^2_H}+\delta Z_H\right],\nonumber\\
+\chi\chi\chi\chi:&& C=-\frac{3}{4s_W^2}\frac{M^2_H}{M^2_W}\left[1+2\delta Z_e-2\frac{\delta s_W}{s_W}+\frac{\delta M^2_H}{M^2_H}-\frac{\delta M^2_H}{M^2_H}\right],\nonumber\\
+\chi\chi\phi\phi:&& C=-\frac{1}{4s_W^2}\frac{M^2_H}{M^2_W}\left[1+2\delta Z_e-2\frac{\delta s_W}{s_W}+\frac{\delta M^2_H}{M^2_H}-\frac{\delta M^2_H}{M^2_H}\right],\nonumber\\
+\phi\phi\phi\phi:&& C=-\frac{1}{2s_W^2}\frac{M^2_H}{M^2_W}\left[1+2\delta Z_e-2\frac{\delta s_W}{s_W}+\frac{\delta M^2_H}{M^2_H}-\frac{\delta M^2_H}{M^2_H}\right].\nonumber\\
+\end{eqnarray}
+
+$SSS$-couping:
+
+\begin{axopicture}(260,130) %fermion
+	\Line[dash](10,65)(65,65)
+	\Line[dash](65,65)(120,35)
+	\Line[dash](65,65)(120,105)
+	\Vertex(65,65){1}		
+	\Text(10,75){$S_1$}
+	\Text(110,25){$S_3$}
+	\Text(110,110){$S_2$}
+	\Text(160, 65){$=ieC$}
+	\Vertex(65,65){3}
+\end{axopicture}
+\newline with the actual values of $S_1$,$S_2$,$S_3$ and $C$
+\begin{eqnarray}
+HHH:&&C=-\frac{3}{2s}\frac{M^2_H}{m_W}\left[ 1+\delta Z_e-\frac{\delta s_W}{s_W}+\frac{\delta M^2_H}{M^2_H}-\frac{1}{2}\frac{\delta M^2_W}{M^2_W}+\frac{3}{2}\delta Z_H \right],\nonumber\\
+H\chi\chi:&&C=-\frac{1}{2s}\frac{M^2_H}{m_W}\left[ 1+\delta Z_e-\frac{\delta s_W}{s_W}+\frac{\delta M^2_H}{M^2_H}-\frac{1}{2}\frac{\delta M^2_W}{M^2_W}+\frac{1}{2}\delta Z_H \right],\nonumber\\
+H\chi\chi:&&C=-\frac{1}{2s}\frac{M^2_H}{m_W}\left[ 1+\delta Z_e-\frac{\delta s_W}{s_W}+\frac{\delta M^2_H}{M^2_H}-\frac{1}{2}\frac{\delta M^2_W}{M^2_W}+\frac{1}{2}\delta Z_H \right].\nonumber\\
+\end{eqnarray}
+
+
+$VVVV$-couping:
+
+\begin{axopicture}(260,130) %fermion
+	\Photon(20,110)(65,65){3}{5.5}
+	\Line[dash](65,65)(110,20)
+	\Photon(20,20)(65,65){3}{5.5}
+	\Line[dash](65,65)(110,110)
+	\Vertex(65,65){1}		
+	\Text(10,110){$V_{1,\mu}$}
+	\Text(10,10){$V_{2,\nu}$}
+	\Text(120,10){$S_2$}
+	\Text(120,110){$S_1$}
+	\Text(170, 65){$=ie^2g_{\mu\nu}C$}
+	\Vertex(65,65){3}
+\end{axopicture}
+\newline with the actual values of $V_1$,$V_2$,$S_1$,$S_2$ and $C$
+\begin{eqnarray*}
+	W^+W^-HH:&&C=\frac{1}{2s^2}\left[ 1+2\delta Z_e-2\frac{\delta s_W}{s_W}+\delta Z_W+\delta Z_H \right],\nonumber\\
+	W^+W^-\chi\chi:&&C=\frac{1}{2s^2}\left[ 1+2\delta Z_e-2\frac{\delta s_W}{s_W}+\delta Z_W \right],\nonumber\\
+	W^+W^-\phi\phi:&&C=\frac{1}{2s^2}\left[ 1+2\delta Z_e-2\frac{\delta s_W}{s_W}+\delta Z_W \right],\nonumber\\
+	ZZ\phi^+\phi^-:&&C=\frac{s^2_W-c^2_W}{2s_W^2c_W^2}\left[ 1+2\delta Z_e+\frac{2}{(s_W^2-c_W^2)c^2_W}\frac{\delta s_W}{s_W}+\delta Z_{ZZ} \right]\nonumber\\
+	&&+\frac{s^2_W-c^2_W}{s_Wc_W}\frac{1}{2}\delta Z_{AZ},\nonumber\\
+	ZA\phi^+\phi^-:&&C=\frac{s^2_W-c^2_W}{2s_W^2c_W^2}\biggl[ 1+2\delta Z_e+\frac{1}{(s_W^2-c_W^2)c^2_W}\frac{\delta s_W}{s_W}+\frac{1}{2}\delta Z_{ZZ} \nonumber\\
+	&&+\frac{1}{2}Z_{AA}\biggr]+\frac{1}{2}\frac{(s_W^2-c_W^2)^2}{2s^2_Wc^2_W}\delta Z_{ZA}+\delta Z_{AZ},\nonumber\\
+	AA\phi^+\phi^-:&& C=2[1+2\delta Z_e+\delta Z_{AA}]+\frac{1}{2}\frac{s^2_W-c^2_W}{s_Wc_W}\delta Z_{ZA},\nonumber\\
+	ZZHH:&&C=\frac{1}{2s^2_Wc^2_W}\biggl[ 1+2\delta Z_e+2\frac{s^2_W-c^2_W}{c^2_W}\frac{\delta s_W}{s_W}+\delta ZZ+\delta Z_H \biggr],\nonumber\\
+	ZZ\chi\chi:&&=\frac{1}{2s^2_Wc^2_W}\biggl[ 1+2\delta Z_e+2\frac{s^2_W-c^2_W}{c^2_W}\frac{\delta s_W}{s_W}+\delta ZZ \biggr],\nonumber\\
+	ZAHH:&& C=\frac{1}{2s^2_Wc^2_W}\frac{1}{2}\delta Z_{ZA},\nonumber\\
+	ZA\chi\chi:&& C=\frac{1}{2s^2_Wc^2_W}\frac{1}{2}\delta Z_{ZA},\nonumber\\
+\end{eqnarray*}
+\begin{eqnarray}
+W^\pm Z\phi^\mp H:&& C=-\frac{1}{2c_w}\biggl[ 1+\delta Z_e-\frac{\delta c_W}{c_W}+\frac{1}{2}\delta Z_W+\frac{1}{2}\delta Z_H+\frac{1}{2}\delta Z_{ZZ}\biggr]\nonumber\\
+&&-\frac{1}{2}\frac{1}{s_W}\delta Z_{AZ} ,\nonumber\\
+W^\pm A\phi^\mp H:&& C=-\frac{1}{2s_w}\biggl[ 1+\delta Z_e-\frac{\delta s_W}{s_W}+\frac{1}{2}\delta Z_W+\frac{1}{2}\delta Z_H+\frac{1}{2}\delta Z_{AA} \biggr]\nonumber\\
+&&-\frac{1}{2}\frac{1}{c_W}\delta Z_{ZA},\nonumber\\
+W^\pm Z\phi^\mp \chi:&& C=\mp\frac{i}{2c_w}\biggl[ 1+\delta Z_e-\frac{\delta c_W}{c_W}+\frac{1}{2}\delta Z_W+\frac{1}{2}\delta Z_{ZZ} \biggr]\mp\frac{1}{2}\frac{i}{2s_W}\delta Z_{AZ},\nonumber\\
+W^\pm Z\phi^\mp \chi:&& C=\mp\frac{i}{2s_w}\biggl[ 1+\delta Z_e-\frac{\delta s_W}{s_W}+\frac{1}{2}\delta Z_W+\frac{1}{2}\delta Z_{AA} \biggr]\mp\frac{1}{2}\frac{i}{2c_W}\delta Z_{ZA}.\nonumber\\
+\end{eqnarray}
+
+$VSS$-couping:
+
+\begin{axopicture}(260,130) %fermion
+	\Photon(10,65)(65,65){3}{5.5}
+	\Line[dash](65,65)(120,35)
+	\Line[dash](65,65)(120,105)
+	\Vertex(65,65){1}		
+	\Text(10,75){$V_\mu$}
+	\Text(110,25){$S_2,k_2$}
+	\Text(110,110){$S_1,k_1$}
+	\Text(180, 65){$=ieC(k_1-k_2)_\mu$}
+	\Vertex(65,65){3}
+\end{axopicture}
+\newline with the actual values of $V$, $S_1$,$S_2$ and $C$
+\begin{eqnarray}
+A\chi H:&& C=-\frac{1}{2}\frac{i}{2c_Ws_W}\delta Z_{ZA},\nonumber\\
+Z\chi H:&& C=-\frac{i}{2c_ws_W}\biggl[ 1+\delta Z_e+\frac{s^2_W-c^2_W}{c^2_W}\frac{\delta s_W}{s_W}+\frac{1}{2}\delta Z_H+\frac{1}{2}\delta Z_{ZZ} \biggr],\nonumber\\
+A\phi^+\phi^-:&& C=-\biggl[ 1+\delta Z_e+\frac{1}{2}\delta Z_{AA}+\frac{1}{2}\frac{s^2_W-c^2_W}{2s_Wc_W}\delta Z_{ZA} \biggr],\nonumber\\
+Z\phi^+\phi^-:&& C=-\frac{s^2_w-c^2_W}{2s_Wc_W}\biggl[ 1+\delta Z_e+\frac{1}{(s^2_W-c^2_W)c^2_W}\frac{\delta s_w}{s_W}+\frac{1}{2}\delta Z_{ZZ} \biggr]-\frac{1}{2}\delta Z_{AZ},\nonumber\\
+W^\pm\phi^\pm H:&& C=\mp\frac{1}{2s_W}\biggl[ 1+\delta Z_e-\frac{\delta s_W}{s_W}+\frac{1}{2}\delta Z_W+\frac{1}{2}\delta Z_H \biggr],\nonumber\\
+W^\pm\phi^\pm \chi:&& C=-\frac{i}{2s_W}\biggl[ 1+\delta Z_e-\frac{\delta s_W}{s_W}+\frac{1}{2}\delta Z_W \biggr].\nonumber\\
+\end{eqnarray}
+
+$SVV$-couping:
+
+\begin{axopicture}(260,130) %fermion
+	\Line[dash](10,65)(65,65)
+	\Photon(65,65)(120,35){3}{5.5}
+	\Photon(65,65)(120,105){3}{5.5}
+	\Vertex(65,65){1}		
+	\Text(10,75){$S$}
+	\Text(110,25){$V_{2,\rho}$}
+	\Text(110,110){$V_{1,\nu}$}
+	\Text(170, 65){$=ieg_{\mu\nu}C$}
+	\Vertex(65,65){3}
+\end{axopicture}
+\newline with the actual values of $S$, $V_1$,$V_2$ and $C$
+\begin{eqnarray}
+HW^+W^-:&& C=M_W\frac{1}{s_W}\biggl[ 1+\delta Z_e-\frac{\delta s_W}{s_W}+\frac{1}{2}\frac{\delta M^2_W}{M_W^2}+\frac{1}{2}\delta Z_H+\delta Z_W \biggr]\nonumber\\
+HZZ:&& C=M_W\frac{1}{s_Wc^2_W}\biggl[ 1+\delta Z_e+\frac{2s^2_W-c^2_W}{c^2_W}\frac{\delta s_W}{s_W}+\frac{1}{2}\frac{\delta M^2_W}{M_W^2}+\frac{1}{2}\delta Z_H+\delta Z_{ZZ} \biggr],\nonumber\\
+HZA:&& C=M_W\frac{1}{s_Wc^2_W}\frac{1}{2}\delta Z_{ZA},\nonumber\\
+\phi^\pm
+W^\mp Z:&& C=-M_W\frac{s_W}{c_W}\biggl[ 1+\delta Z_e+\frac{1}{c^2_W}\frac{\delta s_W}{s_W}+\frac{1}{2}\frac{\delta M^2_W}{M_W^2}+\frac{1}{2}\delta Z_W+\frac{1}{2}\delta Z_{ZZ} \biggr],\nonumber\\
+\phi^\pm W^\mp A:&& C=-M_W\biggl[ 1+\delta Z_e+\frac{1}{2}\frac{\delta M^2_W}{M_W^2}+\frac{1}{2}\delta Z_W+\frac{1}{2}\delta Z_{AA} \biggr]-M_W\frac{s_W}{c_W}\frac{1}{2}\delta Z_{ZA}.\nonumber\\
+\end{eqnarray}
+
+$VFF$-couping:
+
+\begin{axopicture}(260,130) %fermion
+	\Photon(10,65)(65,65){3}{5.5}
+	\Line[arrow](120,35)(65,65)
+	\Line[arrow](65,65)(120,105)
+	\Vertex(65,65){1}		
+	\Text(10,75){$V_\mu$}
+	\Text(110,25){$F_2$}
+	\Text(110,110){$\bar{F}_1$}
+	\Text(180, 65){$=ie\gamma_{\mu}(C^-\omega_-+C^+\omega_+)$}
+	\Vertex(65,65){3}
+\end{axopicture}
+\newline with the actual values of $V$, $\bar{F}_1$,$F_2$ and $C^+$ and $C^-$
+\begin{eqnarray}
+\gamma\bar{f}_if_j:&&
+\begin{cases}
+C^+=-Q_f[ \delta_{ij}( 1+\delta Z_e+\frac{1}{2}\delta Z_{AA})+\frac{1}{2}(\delta Z^{f,R}_{ij}+\delta Z^{f,R\dagger}_{ij})]+\delta_{ij}g^+_f\frac{1}{2}\delta Z_{ZA},\\
+C^-=-Q_f[ \delta_{ij}( 1+\delta Z_e+\frac{1}{2}\delta Z_{AA})+\frac{1}{2}(\delta Z^{f,L}_{ij}+\delta Z^{f,L\dagger}_{ij})]+\delta_{ij}g^-_f\frac{1}{2}\delta Z_{ZA},\\
+\end{cases}\nonumber\\
+Z\bar{f}_if_j:&&
+\begin{cases}
+C^+=g^+_f[ \delta_{ij}( 1+\frac{\delta g^+_f}{g^+_f}+\frac{1}{2}\delta Z_{ZZ})+\frac{1}{2}(\delta Z^{f,R}_{ij}+\delta Z^{f,R\dagger}_{ij})]-\delta_{ij}Q_f\frac{1}{2}\delta Z_{AZ},\\
+C^-=g^+_f[ \delta_{ij}( 1+\frac{\delta g^-_f}{g^-_f}+\frac{1}{2}\delta Z_{ZZ})+\frac{1}{2}(\delta Z^{f,L}_{ij}+\delta Z^{f,L\dagger}_{ij})]-\delta_{ij}Q_f\frac{1}{2}\delta Z_{AZ},\\
+\end{cases}\nonumber\\
+W^+\bar{u}_id_j:&&
+\begin{cases}
+C^+=0,\\
+C^-=\frac{1}{\sqrt{2}s_W}\biggl[V_{ij}\biggl(1+\delta Z_e-\frac{\delta S_W}{s_W}+\frac{1}{2}\delta Z_W\biggr)+\delta V_{ij}
++\frac{1}{2}\sum_k(\delta Z^{u,L\dagger}_{jk}V_{kj}\\
+\quad\quad+V_{ik}\delta Z^{d,L}_{kj})\biggr],
+\end{cases}\nonumber\\
+W^-\bar{d}_ju_i:&&
+\begin{cases}
+C^+=0,\\
+C^-=\frac{1}{\sqrt{2}s_W}\biggl[V_{ji}^\dagger\biggl(1+\delta Z_e-\frac{\delta S_W}{s_W}+\frac{1}{2}\delta Z_W\biggr)+\delta V_{ji}^\dagger
++\frac{1}{2}\sum_k(\delta Z^{d,L\dagger}_{jk}V_{ki}^\dagger\\
+\quad\quad+V_{jk}^\dagger\delta Z^{u,L}_{ki})\biggr],
+\end{cases}\nonumber\\
+W^+\bar{\nu}_il_j:&&
+\begin{cases}
+C^+=0,\\
+C^-=\frac{1}{\sqrt{2}s_W}\delta_{ij}\biggl[ 1+\delta Z_e-\frac{\delta s_W}{s_W}+\frac{1}{2}\delta Z_W+\frac{1}{2}(\delta Z^{\nu,L\dagger})_{ii}+\delta Z^{l,L}_{ii} \biggr],
+\end{cases}\nonumber\\
+W^-\bar{l}_j\nu_i:&&
+\begin{cases}
+C^+=0,\\
+C^-=\frac{1}{\sqrt{2}s_W}\delta_{ij}\biggl[ 1+\delta Z_e-\frac{\delta s_W}{s_W}+\frac{1}{2}\delta Z_W+\frac{1}{2}(\delta Z^{l,L\dagger})_{ii}+\delta Z^{\nu,L}_{ii} \biggr],
+\end{cases}
+\end{eqnarray}
+where
+\begin{eqnarray}
+&g^+_f=-\frac{s_W0}{c_W}Q_f,&\delta g^+_f=-\frac{s_W}{c_W}Q_f\biggl[ \delta Z_e+\frac{1}{c_W^2}\frac{\delta s_W}{s_W} \biggr],\nonumber\\
+&g^-_f=\frac{I^3_{W,f}-s^2_WQ_f}{s_Wc_W},&\delta g^+_f=\frac{I^2_{W,f}}{s_Wc_W}Q_f\biggl[ \delta Z_e+\frac{s^2_W-c^2_W}{c_W^2}\frac{\delta s_W}{s_W} \biggr]+\delta g^+_f.
+\end{eqnarray}
+The vector and axial vector couplings fo the $Z$-boson are given by
+\begin{equation}
+v_f=\frac{1}{2}(g^-+g^+)=\frac{I^3_{W,f}-2s_W^2Q_f}{2s_Wc_W},\quad a_f=\frac{1}{2}(g^-_f-g^+_f)=\frac{I^3_{W,f}}{2s_Wc_W}.
+\end{equation}
+\newpage
+$SFF$-couping:
+
+\begin{axopicture}(260,130) %fermion
+	\Line[dash](10,65)(65,65)
+	\Line[arrow](120,35)(65,65)
+	\Line[arrow](65,65)(120,105)
+	\Vertex(65,65){1}		
+	\Text(10,75){$V_\mu$}
+	\Text(110,25){$F_2$}
+	\Text(110,110){$\bar{F}_1$}
+	\Text(180, 65){$=ie(C^-\omega_-+C^+\omega_+)$}
+	\Vertex(65,65){3}
+\end{axopicture}
+\newline with the actual values of $S$, $\bar{F}_1$,$F_2$ and $C^+$ and $C^-$
+\begin{eqnarray*}
+	H\bar{f}_if_j:&&\begin{cases}
+		C^+=-\frac{1}{2s_W}\frac{m_{f,i}}{M_W}\biggl[ \delta_{ij}\biggl(  1+\delta Z_e-\frac{\delta s_w}{s_W}+\frac{\delta m_{f,i}}{m_{f,i}}-\frac{\delta M_W}{M_W}+\frac{1}{2}\delta Z_H \biggr)\\
+		\quad\quad\quad+\frac{1}{2}(\delta Z^{f,R}_{ij}+\delta Z^{f,R\dagger}_{ij}) \biggr],\\
+		C^-=-\frac{1}{2s_W}\frac{m_{f,i}}{M_W}\biggl[ \delta_{ij}\biggl(  1+\delta Z_e-\frac{\delta s_w}{s_W}+\frac{\delta m_{f,i}}{m_{f,i}}-\frac{\delta M_W}{M_W}+\frac{1}{2}\delta Z_H \biggr)\\
+		\quad\quad\quad+\frac{1}{2}(\delta Z^{f,L}_{ij}+\delta Z^{f,L\dagger}_{ij}) \biggr],
+	\end{cases}\nonumber\\
+	\chi\bar{f}_if_j:&&\begin{cases}
+		C^+=i\frac{1}{2s_W}2I^3_{W,f}\frac{m_{f,i}}{M_W}\biggl[ \delta_{ij}\biggl(  1+\delta Z_e-\frac{\delta s_w}{s_W}+\frac{\delta m_{f,i}}{m_{f,i}}-\frac{\delta M_W}{M_W} \biggr)\\
+		\quad\quad\quad+\frac{1}{2}(\delta Z^{f,R}_{ij}+\delta Z^{f,R\dagger}_{ij}) \biggr],\\
+		C^-=-i\frac{1}{2s_W}2I^3_{W,f}\frac{m_{f,i}}{M_W}\biggl[ \delta_{ij}\biggl(  1+\delta Z_e-\frac{\delta s_w}{s_W}+\frac{\delta m_{f,i}}{m_{f,i}}-\frac{\delta M_W}{M_W} \biggr)\\
+		\quad\quad\quad+\frac{1}{2}(\delta Z^{f,L}_{ij}+\delta Z^{f,L\dagger}_{ij}) \biggr],
+	\end{cases}\nonumber\\
+	\phi^+\bar{u}_id_j:&&
+	\begin{cases}
+		C^+=-\frac{1}{\sqrt{2}s_W}\frac{m_{d,j}}{M_W}\biggl[ V_{ij}\biggl( 1+\delta Z_e-\frac{\delta s_W}{s_W}+\frac{\delta m_{d,j}}{m_{d,j}}-\frac{\delta M_W}{M_W}+\delta V_{ij}\\
+		\quad\quad\quad +\frac{1}{2}\sum_k(\delta Z^{u,R\dagger}_{ik}V_{kj}+V_{ik}\delta Z^{d,R}_{kj}) \biggr) \biggr],\\
+		C^-=\frac{1}{\sqrt{2}s_W}\frac{m_{u,j}}{M_W}\biggl[ V_{ij}\biggl( 1+\delta Z_e-\frac{\delta s_W}{s_W}+\frac{\delta m_{u,j}}{m_{u,j}}-\frac{\delta M_W}{M_W}+\delta V_{ij}\\
+		\quad\quad\quad +\frac{1}{2}\sum_k(\delta Z^{u,L\dagger}_{ik}V_{kj}+V_{ik}\delta Z^{d,L}_{kj}) \biggr) \biggr],\\
+	\end{cases}\nonumber\\
+\end{eqnarray*}
+\begin{eqnarray}
+\phi^-\bar{d}_ju_i:&&
+\begin{cases}
+C^+=\frac{1}{\sqrt{2}s_W}\frac{m_{u,i}}{M_W}\biggl[ V^\dagger_{ji}\biggl( 1+\delta Z_e-\frac{\delta s_W}{s_W}+\frac{\delta m_{u,j}}{m_{u,j}}-\frac{\delta M_W}{M_W}+\delta V_{ji}^\dagger\\
+\quad\quad\quad +\frac{1}{2}\sum_k(\delta Z^{d,R\dagger}_{jk}V_{ki}^\dagger+V_{jk}^\dagger\delta Z^{u,R}_{ki}) \biggr) \biggr],\\
+C^-=-\frac{1}{\sqrt{2}s_W}\frac{m_{d,i}}{M_W}\biggl[ V^\dagger_{ji}\biggl( 1+\delta Z_e-\frac{\delta s_W}{s_W}+\frac{\delta m_{d,j}}{m_{d,j}}-\frac{\delta M_W}{M_W}+\delta V_{ji}^\dagger\\
+\quad\quad\quad +\frac{1}{2}\sum_k(\delta Z^{d,L\dagger}_{jk}V_{ki}^\dagger+V_{jk}^\dagger\delta Z^{u,L}_{ki}) \biggr) \biggr],\\
+\end{cases}\nonumber\\
+\phi^+\bar{\nu}_il_j:&&
+\begin{cases}
+C^+=-\frac{1}{\sqrt{2}s_W}\frac{m_{i,j}}{M_W}\delta_{ij}\biggl[  1+\delta Z_e-\frac{\delta s_W}{s_W}+\frac{\delta m_{i,j}}{m_{i,j}}-\frac{\delta M_W}{M_W} +\frac{1}{2}\biggl(\delta Z^{\nu,R\dagger}_{ii}+\delta Z^{l,R}_{ii}  \biggr) \biggr],\\
+C^-=0,
+\end{cases}\nonumber\\
+\phi^-\bar{l}_j\nu_i:&&
+\begin{cases}
+C^+=0,\\
+C^-=-\frac{1}{\sqrt{2}s_W}\frac{m_{i,j}}{M_W}\delta_{ij}\biggl[  1+\delta Z_e-\frac{\delta s_W}{s_W}+\frac{\delta m_{i,j}}{m_{i,j}}-\frac{\delta M_W}{M_W} +\frac{1}{2}\biggl(\delta Z^{l,L\dagger}_{ii}+\delta Z^{\nu,L}_{ii}  \biggr) \biggr].
+\end{cases}\nonumber\\
+\end{eqnarray}
+
+$VGG$-couping:
+
+\begin{axopicture}(260,130) %fermion
+	\Photon(10,65)(65,65){3}{5.5}
+	\Line[arrow,dash](120,35)(65,65)
+	\Line[arrow,dash](65,65)(120,105)
+	\Vertex(65,65){1}		
+	\Text(10,75){$V_\mu$}
+	\Text(110,25){$G_2,k_2$}
+	\Text(110,110){$\bar{G}_1,k_1$}
+	\Text(180, 65){$=iek_{1,\mu}C$}
+	\Vertex(65,65){3}
+\end{axopicture}
+\newline with the actual values of $V$, $\bar{G}_1$,$G_2$ and $C$
+\begin{eqnarray}
+A\bar{u}^\pm u^\pm:&& C=\pm\biggl[1+\delta Z_e+\frac{1}{2}\delta Z_{AA}\biggr]\mp\frac{c_W}{s_W}\frac{1}{2}\delta Z_{AA},\nonumber\\
+Z\bar{u}^\pm u^\pm:&& C=\mp\biggl[1+\delta Z_e-\frac{1}{c_W^2}\frac{\delta s_W}{s_W}+\frac{1}{2}\delta Z_{ZZ}\biggr]\pm\frac{1}{2}\delta Z_{AZ},\nonumber\\
+W^\pm\bar{u}^\pm u^Z:&& C=\pm\biggl[1+\delta Z_e-\frac{1}{c_W^2}\frac{\delta s_W}{s_W}+\frac{1}{2}\delta Z_{W}\biggr],\nonumber\\
+W^\pm\bar{u}^Z u^\mp:&& C=\mp\biggl[1+\delta Z_e-\frac{1}{c_W^2}\frac{\delta s_W}{s_W}+\frac{1}{2}\delta Z_{W}\biggr],\nonumber\\
+W^\pm\bar{u}^\pm u^\gamma:&& C=\mp\biggl[1+\delta Z_e+\frac{1}{2}\delta Z_{W}\biggr],\nonumber\\
+W^\pm\bar{u}^\gamma u^\pm:&& C=\pm\biggl[1+\delta Z_e+\frac{1}{2}\delta Z_{W}\biggr].
+\end{eqnarray}
+
+$SGG$-couping:
+
+\begin{axopicture}(260,130) %fermion
+	\Photon(10,65)(65,65){3}{5.5}
+	\Line[arrow,dash](120,35)(65,65)
+	\Line[arrow,dash](65,65)(120,105)
+	\Vertex(65,65){1}		
+	\Text(10,75){$V_\mu$}
+	\Text(110,25){$G_2$}
+	\Text(110,110){$\bar{G}_1$}
+	\Text(180, 65){$=ieC$}
+	\Vertex(65,65){3}
+\end{axopicture}
+\newline with the actual values of $S$, $\bar{G}_1$,$G_2$ and $C$
+\begin{eqnarray}
+H\bar{u}^Zu^Z:&&C=-\frac{1}{2s_Wc_W^2}M_W\biggl[ 1+\delta Z_e+\frac{2s_W^2-c_W^2}{c^2_W}\frac{\delta s_W}{s_W}+\frac{1}{2}\frac{\delta M^2_W}{M^2_W}+\frac{1}{2}\delta Z_H \biggr],\nonumber\\
+H\bar{u}^\pm u^\pm:&&C=-\frac{1}{2s_W}M_W\biggl[ 1+\delta Z_e-\frac{\delta s_W}{s_W}+\frac{1}{2}\frac{\delta M^2_W}{M^2_W}+\frac{1}{2}\delta Z_H \biggr],\nonumber\\
+\chi\bar{u}^\pm u^\pm:&&C=\mp i\frac{1}{2s_W}M_W\biggl[ 1+\delta Z_e-\frac{\delta s_W}{s_W}+\frac{1}{2}\frac{\delta M^2_W}{M^2_W} \biggr],\nonumber\\
+\phi^\pm\bar{u}^Zu^\mp:&&C=\frac{1}{2s_Wc_W}M_W\biggl[ 1+\delta Z_e+\frac{s_W^2-c_W^2}{c^2_W}\frac{\delta s_W}{s_W}+\frac{1}{2}\frac{\delta M^2_W}{M^2_W} \biggr],\nonumber\\
+\phi^\pm\bar{u}^\pm u^Z:&&C=\frac{s^2_W-c^2_W}{2s_Wc_W}M_W\biggl[ 1+\delta Z_e+\frac{1}{(s_W^2-c_W^2)c^2_W}\frac{\delta s_W}{s_W}+\frac{1}{2}\frac{\delta M^2_W}{M^2_W} \biggr],\nonumber\\
+\phi^\pm\bar{u}^\pm u^\gamma:&&C=M_W\biggl[ 1+\delta Z_e+\frac{1}{2}\frac{\delta M^2_W}{M^2_W} \biggr].\nonumber\\
+\end{eqnarray}
+

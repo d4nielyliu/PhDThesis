@@ -1,0 +1,6 @@
+\cftsetpnumwidth {\widthof {i}-.2em}
+\cftsetpnumwidth {\widthof {ii}-.2em}
+\cftsetpnumwidth {\widthof {iii}-.2em}
+\cftsetpnumwidth {\widthof {iv}-.2em}
+\cftsetpnumwidth {\widthof {1}-.2em}
+\cftsetpnumwidth {\widthof {1}-.2em}

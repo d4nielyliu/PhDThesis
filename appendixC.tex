@@ -1,0 +1,104 @@
+\chapter{The $SU(3)$ Group }
+The $SU(3)$ generators $T_a$ are hermitian, traceless matrices which generate the closed $SU(3)$ algebra
+\begin{equation}
+[T_a,T_b]=if_{abc}T_c,
+\end{equation}
+where $f_{abc}$ are the antisymmetric $SU(3)$ structure constants with non-zero values given by
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c c c c|} 
+		\hline
+		$a$ &$b$ &$c$ &$f_{abc}$ \\ [0.5ex] 
+		\hline
+		1 & 2 & 3 &1  \\ 
+		1 & 4 &7 &$\frac{1}{2}$ \\
+		1 & 5 &6 &$-\frac{1}{2}$ \\
+		2 & 4 &6 &$\frac{1}{2}$ \\
+		2 & 5 &7 &$\frac{1}{2}$\\ 
+		3 & 4 &5 &$\frac{1}{2}$\\
+		3 & 6 &7 &$-\frac{1}{2}$\\
+		4 & 5 &8 &$\frac{\sqrt{3}}{2}$\\
+		6 & 7 &8 &$\frac{\sqrt{3}}{2}$\\[1ex] 
+		\hline
+	\end{tabular}
+	\label{table:1}
+\end{table}
+
+A convenient representation of the $T_a$ matrices is the one introduced by Gell-Mann \cite{GMM} in which
+\begin{align}
+&T_1=\frac{1}{2}\left(\begin{array}{ccc}
+0&1&0\\1&0&0\\0&0&0
+\end{array}\right),\quad T_2=\frac{1}{2}\left(\begin{array}{ccc}
+0&-i&0\\i&0&0\\0&0&0
+\end{array}\right),\nonumber\\
+&T_3=\frac{1}{2}\left(\begin{array}{ccc}
+1&0&0\\0&-1&0\\0&0&0
+\end{array}\right),\quad T_4=\frac{1}{2}\left(\begin{array}{ccc}
+0&0&1\\0&0&0\\1&0&0
+\end{array}\right),\nonumber\\
+&T_5=\frac{1}{2}\left(\begin{array}{ccc}
+0&0&-i\\0&0&0\\i&0&0
+\end{array}\right),\quad T_6=\frac{1}{2}\left(\begin{array}{ccc}
+0&0&0\\0&0&1\\0&1&0
+\end{array}\right),\nonumber\\
+&T_7=\frac{1}{2}\left(\begin{array}{ccc}
+0&0&0\\0&0&-i\\0&i&0
+\end{array}\right),\quad T_8=\frac{1}{2\sqrt{3}}\left(\begin{array}{ccc}
+1&0&0\\0&1&0\\0&0&-2
+\end{array}\right).
+\end{align}
+
+The fundamental representation is 3-dimensional where $T_a$ satisfy the relation,
+\begin{equation}
+\{T_a,T_b\}=\frac{1}{3}\delta_{ab}+d_{abc}T_c,
+\end{equation}
+which is consistent with the normalization
+\begin{equation}
+\text{Tr}[T_aT_b]=\frac{1}{2}\delta_{ab}.
+\end{equation}
+Here $d_{abc}$ is totally symmetric in $a$, $b$ and $c$ and is given by
+\begin{equation}
+d_{abc}=2\text{Tr}[\{T_a,T_b\}T_c].
+\end{equation}
+According to eqs. (C.1) and (C.3), we find that
+\begin{equation}
+T_aT_b=\frac{1}{2}\left[\frac{1}{3}\delta_{ab}+(d_{abc}+if_{abc})T_c\right].
+\end{equation}
+The traces of the products of generators $T_a$ in the fundamental representation are given by
+\begin{equation}
+\text{Tr}[T_aT_bT_c]=\frac{1}{4}(d_{abc}+if_{abc}),
+\end{equation}
+\begin{equation}
+\text{Tr}[T_aT_bT_cT_d]=\frac{1}{12}\delta_{ab}\delta_{cd}+\frac{1}{8}(d_{abe}+if_{abe})(d_{cde}+if_{cde})
+\end{equation}
+
+In the adjoint representation the generator $T_a$ is a $8\times 8$ matrix and its matrix element reads
+\begin{equation}
+(T_a)_{bc}=-if_{abc}.
+\end{equation}
+The traces of products of generators $T^a$ yield
+\begin{equation}
+\text{Tr}[T_aT_bT_c]=\frac{3}{2}if_{abc},
+\end{equation}
+\begin{equation}
+\text{Tr}[T_aT_bT_cT_d]=\delta_{ab}\delta_{cd}+\delta_{ad}\delta_{bc}+\frac{3}{4}(d_{abe}d_{cde}-d_{ace}d_{bde}+d_{ade}d_{bce}).
+\end{equation}
+The eq. (C.10) reduces to
+\begin{equation}
+f_{ade}f_{bef}f_{cfd}=\frac{3}{2}f_{abc}.
+\end{equation}
+The Jacob identities 
+\begin{equation}
+[T_a,[T_b,T_C]]+\text{ cyclic permutations} = 0,
+\end{equation}
+\begin{equation}
+[T_a,\{T_b,T_C\}]+\text{ cyclic permutations} = 0,
+\end{equation}
+leads to the following relations:
+\begin{equation}
+f_{abe}f_{cde}+f_{cbe}f_{dae}+f_{dbe}f_{ace}=0,
+\end{equation}
+\begin{equation}
+f_{abe}f_{cde}+f_{cbe}f_{dae}+f_{dbe}f_{ace}=0.
+\end{equation}
+

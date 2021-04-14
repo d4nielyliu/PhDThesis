@@ -1,0 +1,2384 @@
+\chapter{CEEX and KKMC-hh }
+In last chapter, we have given a brief introduction to Yenni-Frautschi-Suura(YFS) theory. The YFS theory provides an elegant treatment for infrared singularities to all orders of the electromagnetic coupling $\alpha$. Rooted from YFS framework on QED exponetiation \cite{YFS}, many important Monte Carlo (MC) event generators were developed in pursuit of ultimate precision in theoretical particle theory, such as KORALB \cite{KORALB}, KORALZ \cite{KORALZ},BHLUMI \cite{BHLUMI1,BHLUMI2}, YFS2 \cite{YFS2}, KKMC \cite{KKMC}, KKMC-hh \cite{KKMC-hh1, KKMC-hh2, KKMC0hh3} and etc. 
+
+
+KKMC-hh is an extention of the generator KKMC for the process $e^+ e^- \to f\bar{f} + n\gamma$ in LEP energies, where $f\bar{f}$ represents a final state fermion pair. The MC structure is based on CEEX \cite{KKMC,CEEX1,CEEX2,CEEX5}, an amplitude based analog to the original YFS exponentiation, and includes residuals through the order of $\alpha^2 L$, where $L\equiv\log(\frac{s}{m^2_f})$.(big logarithm). Electroweak matrix element corrections are computed by DIZET 6.21 from the program ZFITTER \cite{ZFITTER}. ZFITTER calculates vacuum polarization for the photon and Z boson, and adds the form factor corrections to the vector coupling and angle-dependent form factor to includes the box diagram corrections. The decay is realized by TAUOLA \cite{TAULO1,TAULO3,TAULO4}.
+
+The KKMC of version 4.22 supports quark initial states, and a modified version 4.22 is incorporated into KKMC-hh to select the quarks via PDF's with the help of an LHAPDF\cite{LHAPDF} interface. KKMC-hh utilizes an adaptive MC program FOAM \cite{FOAM} to generate the quark momentum fractions $x_i$, the total ISR energy, and the quark flavor using a crude distribution which is constructed during an initialization phase.
+
+In this chapter, we will introduce the two types of QED matrix elements and exponentiations: the coherent exclusive exponentiation(CEEX) and exclusive exponentiation (EEX) at first. Then we would like to give a brief review the MC algorithms for KKMC. 
+
+\section{Amplitudes for Exclusive Exponentiation} 
+In this context, exclusivity means that the procedure of exponentiation(summing up the infrared ral and virtual contirbutionn within the scheme of perturbative quantum field theory) is done at the level of fully differential (multiphoton) cross section or at the level of the scattering matrix element (spin amplitudes) before integrating over photon momenta  in the phase space. As opposite to exclusivity, inclusivity represents executing the procedure of exponentiation after phase space integration over photon momenta. EEX is formulated in terms of spin summed or averaged differential distributions, which results both advantages and disadvantages. The advantage of EEX formulation is that the differential distributions are given analytically in terms of Mandelstam variables and they are easily examined by checking certain important limit, such as leading-logarithmic and soft limits. However, the disadvantage is that the squaring of the sums of spin amplitudes from Feynman diagrams leads to many interference terms, which in the exponentiation  are calculated analytically and individually. In spite of disadvantages, the EEX matrix element still play an important role to provide a testing environment for the new , more complicated matrix element of the CEEX class. In this section, we will give a concise introduction of amplitudes for exclusive exponentiation. We use the process $e^- e^+ \to f\bar{f} + n\gamma$ to illustrate the EEX, which could be extended to partonic process $q\bar{q} \to f\bar{f} + n\gamma$ in KKMC-hh($q\equiv quark$).
+
+\subsection{Master Formula}
+The kinematics of the process $e^- e^+ \to f\bar{f} + n\gamma$ is described in the figure below. In this case, we neglect the initial-final state interference. Therefore, we are allowed to distinguish between photons radiated from the initial-state fermions and those radiated from the final-state fermions. The four-momentum 
+\begin{equation}
+X = p_1 + p_2-\sum_{j=1}^{n} k_j = q_1+q_2+\sum_{l=1}^{n'} k'_l
+\end{equation}
+of the s-channel virtual boson($Z/\gamma^\ast$) is well defined. Let us denote the rest frame of X as XMS (the X zero momentum system).
+
+\begin{axopicture}(320,240) %vector boson
+	\Line[dash](80,120)(220,120)
+	\Line(80,20)(80,120)
+	\Line(80,120)(80,220)
+	\Line(220,120)(220,220)
+	\Line(220,20)(220,120)
+	\Line[arrow](10,20)(80,20) \Text(0,20){$p_2$} \Text(45,10){$e^+$}
+	\Line[arrow](80,220)(10,220)\Text(0,220){$p_1$}\Text(45,230){$e^-$}
+	\Line[arrow](290,20)(220,20)\Text(300,20){$q_2$}\Text(255,10){$\bar{f}$}
+	\Line[arrow](220,220)(290,220)\Text(300,220){$q_1$}\Text(255,230){$f$}
+	\Vertex(80,120){2}\Vertex(220,120){2}
+	\Photon(80,210)(140,210){3}{6.5}\Text(150,210){$k_1$}
+	\Photon(80,180)(140,180){3}{6.5}\Text(150,180){$k_2$}
+	\Photon(80,150)(140,150){3}{6.5}\Text(150,150){$k_3$}
+	\Photon(80,70)(140,70){3}{6.5}\Text(155,70){$k_{n-1}$}
+	\Photon(80,40)(140,40){3}{6.5}\Text(150,40){$k_n$}
+	\Text(110,100){$\ldots\ldots$}
+	\Text(20,120){$P=p_1+p_2$}
+	\Photon(220,190)(280,190){3}{6.5}\Text(290,190){$k'_1$}
+	\Photon(220,150)(280,150){3}{6.5}\Text(290,150){$k'_2$}
+	\Photon(220,70)(280,70){3}{6.5}\Text(295,70){$k'_{n'-1}$}
+	\Photon(220,40)(280,40){3}{6.5}\Text(290,40){$k'_{n'}$}
+	\Text(280,120){$Q=q_1+q_2$}
+\end{axopicture}
+\\ {\sl The kinematics of the process with multiple photon emission from the initial- and final-state fermions in the annihilation process.}
+\newline\newline
+Denoting the Lorentz-invariant phase-space by
+\begin{equation}
+d^n \text{Lips}(P;p_1,p_2,\cdots,p_n) = \prod_{j=1}^n \frac{d^3 p_j}{p_j^0} \delta^{(4)}\big( P-\sum_{j=1}^n p_j \big)
+\end{equation}
+for the process $e^-(p_1)+e^+(p_2)\to f(q_1)+\bar{f}(q_2)+n\gamma(k_j)+n'\gamma(k'_l)$, the $O(\alpha^r)$ total cross section reads
+\begin{eqnarray}
+\sigma^{(r)}_{EEX} &=& \sum_{n=0}^{\infty} \sum_{n'=0}^{\infty}\frac{1}{n!}\frac{1}{n'!}\iint d^{n+n'+2} \text{Lips}(p_1+ p_2;q_1,q_2,k_1\cdots,k_n,k'_1\cdots,k'_{n'})\nonumber\\
+&&\rho_{EEX}^{(r)}, r=0,1,2,3,
+\end{eqnarray}
+in terms of the fully differential multiphoton distribution
+\begin{eqnarray}
+&&\rho_{EEX}^{(r)}(p_1, p_2;q_1,q_2,k_1\cdots,k_n,k'_1\cdots,k'_{n'})\nonumber\\&=&\exp\left[ Y_e(\Sigma_I;p_1,p_2)+Y_f(\Sigma_F;q_1,q_2)\right]\prod_{j=1}^n \tilde{S}_I (k_j)\bar{\Theta(\Sigma_I;k_j)} \tilde{S}_F (k'_l)\bar{\Theta(\Sigma_F;k'_l)}
+\nonumber\\&&\Biggl\{ \bar{\beta}^{(r)}_0(X,p_1,p_2,q_1,q_2) +\sum_{j=1}^n\frac{\bar{\beta}^{(r)}_1I(X,p_1,p_2,q_1,q_2,k_j)}{\tilde{S}_I(k_j)} +\nonumber\\
+&& \sum_{l=1}^{n'}\frac{\bar{\beta}^{(r)}_1F(X,p_1,p_2,q_1,q_2,k'_l)}{\tilde{S}_F(k'_l)}+\sum_{n\ge j > k\ge 1}\frac{\bar{\beta}^{(r)_2II}(X,p_1,p_2,q_1,q_2,k_j,k_k)}{\tilde{S}_I(k_j)\tilde{S}_I(k_k)}\nonumber\\
+&&+\sum_{n'\ge l > m\ge 1}\frac{\bar{\beta}^{(r)_2FF}(X,p_1,p_2,q_1,q_2,k'_l,k'_m)}{\tilde{S}_F(k'_l)\tilde{S}_f(k'_m)}\nonumber\\
+&&+\sum_{j=1}^{n}\sum_{l=1}^{n'}\frac{\bar{\beta}^{(r)_2IF}(X,p_1,p_2,q_1,q_2,k_j,k'_l)}{\tilde{S}_I(k'_j)\tilde{S}_f(k'_l)}
+\nonumber\\
+&& + \sum_{n\ge j > k>l\ge 1} \frac{\bar{\beta}^{(r)}_{3III}(X,p_1,p_2,q_1,q_2,k_j,k_k,k_l)}{\tilde{S}_I(k_j)\tilde{S}_I(k_k)\tilde{S}_I(k_l)} \Biggr\}.
+\end{eqnarray}
+
+As we noted in last chapter, the YFS soft factors for real photons emitted from the initial and final state
+fermions are
+\begin{eqnarray}
+\tilde{S}_I(k_j)&=& -Q_e^2\frac{\alpha}{4\pi^2}\left(\frac{p_1}{k_j p_1}-\frac{p_2}{k_j p_2}\right)^2,\nonumber\\
+\tilde{S}_F(k'_l)&=& -Q_f^2\frac{\alpha}{4\pi^2}\left(\frac{q_1}{k'_l q_1}-\frac{q_2}{k'_l q_2}\right)^2,\
+\end{eqnarray}
+where $Q_e$ and $Q_f$ are the electric charges of the electron $e$ and fermion $f$. The $Y$ function in the exponential YFS from factor is defined as in last chapter:
+\begin{eqnarray}
+Y_f(\Omega, p, \bar{p}) &\equiv& 2Q_f^2\alpha \tilde{B}(\Omega,p,\bar{p})+2Q_f^2\alpha \Re B(\Omega,p,\bar{p})\nonumber\\
+&\equiv& -2Q_f^2\frac{\alpha}{8\pi^2}\int \frac{d^k}{k^0}\Theta(\Omega;k)\left( \frac{p}{kp}-\frac{\bar{p}}{k\bar{p}}\right)^2\nonumber\\
+&&+2Q^2_f\alpha \Re \int \frac{d^4 k}{k^2}\frac{i}{2\pi^3}\left( \frac{2p-k}{kp-k^2} - \frac{2\bar{p}-k}{2k\bar{p}-k^2} \right)^2.
+\end{eqnarray}
+
+The form factor above is IR convergent and depends explicitly on the soft-photon domains $\Omega = \Omega_I, \Omega_F$, which includes the IR divergence point $k=0$. We define $\Theta(\Omega;k) = 1$ for $k\in \Omega$ and $\Theta(\Omega;k) = 0$ for $k\in \bar{\Omega}$. The sum over contributions from the real photons inside the domain $\Omega$ to infinite order, together with the analogous contributions from virtual photons, forms the exponential YFS form factor. In the Monte Carlo calculation we generate photons $k\in \bar{\Omega}$ via function $\bar{\Theta(\Omega,k)} = 1 - \Theta(\Omega,k)$ 
+. Usually it is required that $
+\Omega_I$ and  $\Omega_F$ are small enough in the total cross section. And physical observables are independent of the choice of $\Omega_I$ and $\Omega_F$. so mathematically speaking, $\Omega_{I/F}$ is required to be dummy parameters in the calculation. If we neglect the initial final state inference, we could choose $\Omega_I$ and $\Omega_F$ differently. For example, let us define $\Omega_I$ with $k^0 < E_{min}$ in the center of mass system of the incoming $e^+ e^-$ beams and $\Omega$ with $k'^0<E'_{min}$ in the center of mass system of the outgoing fermions $f\bar{f}$. This is the easiest definition for the Monte Carlo Generation, but in the latter discussion, we would should how we deal with the situation $\Omega_I = \Omega_F$. The YFS form factor for the above choices of $\Omega_{I/F}$ are 
+\begin{equation}
+Y_e(\Omega_I;p_1,p_2) = \gamma_e\log\frac{2E_{min}}{\sqrt{2p_1 p_2}}+\frac{1}{4}\gamma_e + Q_e^2\frac{\alpha}{\pi}\left(-\frac{1}{2}+\frac{\pi^2}{3}\right),
+\end{equation}
+\begin{equation}
+Y_f(\Omega_F;p_1,p_2) = \gamma_f\log\frac{2E_{min}}{\sqrt{2p_1 p_2}}+\frac{1}{4}\gamma_f + Q_e^2\frac{\alpha}{\pi}\left(-\frac{1}{2}+\frac{\pi^2}{3}\right),
+\end{equation}
+where
+\begin{equation}
+\gamma_e = 2Q_e^2\frac{\alpha}{\pi}\left(\log\frac{2p_1 p_2}{m_e^2}-1\right),
+\end{equation}
+\begin{equation}
+\gamma_f = 2Q_f^2\frac{\alpha}{\pi}\left(\log\frac{2q_1 q_2}{m_f^2}-1\right),
+\end{equation}
+
+\subsection{Pure Virtual Corrections}
+As we discussed in the last chapter, the perturbative QED matrix element is located in the $\bar{\beta}$ functions. The$\bar{\beta}_0$ function is proprotional to the Born differential cross section $d\sigma^{Born}(s,\theta)/d\Omega$ for the process $e^+ e^- \to f\bar{f}$ and it contains calculable infrared convergent corrections order by order. We shall calculate $\bar{\beta}_0$ and other $\bar{\beta}$'s in the $O(\alpha^j)_{prag}, i=0,1,2$. 
+
+The $O(\alpha^j)_{prag}$ expressions for $\bar{\beta}_0^{(i)}$,$i=0,1,2$ are
+\begin{equation}
+\bar{\beta}_0^{(r)}(X,p_1,p_2,q_1,q_2) = \frac{1}{4}\sum_{k,l=1,2}\frac{d\sigma^{Born}}{d\Omega}(X^2, \theta_{kl}) (1+\delta^{(r)}_I)(1+\delta^{(r)}_F),
+\end{equation}
+
+\begin{eqnarray}
+\delta_I^{(0)}=0, \quad \delta_I^{(1)}=\frac{1}{2}\gamma, \quad \delta_I^{(2)}=\delta_I^{(1)}+\frac{1}{8}\gamma^2, \quad
+\delta_I^{(3)}=\delta_I^{(2)}+\frac{1}{48}\gamma^3, 
+\end{eqnarray}
+
+\begin{eqnarray}
+\delta_F^{(0)}=0, \quad \delta_F^{(1)}=\frac{1}{2}\gamma_f, \quad \delta_F^{(2)}=\delta_F^{(1)}+\frac{1}{8}\gamma^2_f, \quad
+\delta_F^{(3)}=\delta_F^{(2)}+\frac{1}{48}\gamma^3_f, 
+\end{eqnarray}
+
+where
+\begin{eqnarray}
+\cos\theta_{11} = \frac{\vec{p_1}\cdot\vec{q_1}}{|\vec{p_1}||\vec{q_1}|},\quad
+\cos\theta_{12} = \frac{-\vec{p_1}\cdot\vec{q_2}}{|\vec{p_1}||\vec{q_2}|},\nonumber\\
+\cos\theta_{21} = \frac{-\vec{p_2}\cdot\vec{q_1}}{|\vec{p_2}||\vec{q_1}|},\quad
+\cos\theta_{22} = \frac{\vec{p_2}\cdot\vec{q_2}}{|\vec{p_2}||\vec{q_2}|},
+\end{eqnarray}
+with all three-vectors in the rest frame of the four momentum $X$, namely, in the frame $XMS$.
+
+Notice that we take an average over four $\theta_{kl}$ instead of having a single $d\sigma^\text{Born}/d\Omega(\theta)$. The reason for this more complex choice is due to the treatment of the first- and higher-order real photon contributions in the next subsections. According to the Refs. \cite{BK,BKJ}, the exact single-photon ISR/FSR matrix element can be expressed as a linear combination of the two $d\sigma^\text{Born} /d\Omega (\theta_k), k=1,2,$ distributions. Our implementation of the LL matrix element of the two or three real photons could also apply this kind of linear combinations. Thus, it is practical and reasonable to adopt a similar approach alread for $\bar{\beta}_0$.
+Note that in the soft limit, all four angles $\theta_{kl}$ are identical. 
+
+Some reader might question the authenticity of the freedom of defining $\theta$ in $d\sigma^\text{Born}/d\Omega(\theta)$ in the first place. This question is answered in Ref. \cite{BHLUMI2,YFS2}. Briefly speaking, the differential cross section $d\sigma^\text{Born}/d\Omega(\theta)$ and $\bar{\beta}_0^{(i)}$ are defined in the two-body phase-space. However, they will be used all over the phase-space with additional photons(either soft or hard). This needs some extrapolations of $d\sigma^\text{Born}/d\Omega(\theta)$ and $\bar{\beta}_0^{(i)}$ beyond the two-body phase-space. The extrapolation is realized by manipulating the four-momenta in Ref. \cite{YFS2} and it is done as an extrapolation for the Mandelstam variables($s,t$ and $u$). However, we could solve this problem from another perspective. The effect due to changing from one specific extropolation to another is a kind of "higher order" effect for the entire calculation. For example, at $O(\alpha^1)$, changing the type of extrapolation brings in an $O(\alpha^2)$ effect. Therefore, it is logical to use a certain extropolation to minimize the higher-order effects.  
+
+\subsection{One Real Photon with Virtual corrections}
+The contributions $\bar{\beta}_1^{(2)}$ are built from the QED distributions wiht a single real-photon emission and up to one virtual-photon contribution. They are defined as follows:
+\begin{equation}
+\bar{\beta}_{1I}^{(i)}(X,p_1,p_2,q_1,q_2,k_j)=D_{1I}^{(i)}(X,p_1,p_2,q_1,q_2,k_j)-\tilde{S}_I(k_j)\bar{\beta}_0^{(i-1)}(X,p_1,p_2,q_1,q_2),
+\end{equation}
+
+\begin{equation}
+\bar{\beta}_{1F}^{(i)}(X,p_1,p_2,q_1,q_2,k'_l)=D_{1F}^{(i)}(X,p_1,p_2,q_1,q_2,k'_l)-\tilde{S}_F(k'_l)\bar{\beta}_0^{(i-1)}(X,p_1,p_2,q_1,q_2),
+\end{equation}
+where $i = 1,2$. We define all the ingredients for the initial-state contribution. The single initial-state photon emission differential distribution at the $O(\alpha^r)$,$r=1,2,3$ with up to two-loop virtual correction from the initial- and/or final-state photon is 
+\begin{eqnarray}
+&&D_{1I}^{(r)}(X,p_1,p_2,q_1,q_2,k_j)=Q_e^2\frac{\alpha}{4\pi^2}\frac{2p_1 p_2}{(k_j p_1)(k_j p_2)} W_e(\hat{\alpha_j},\hat{\beta_j})\nonumber\\
+&&\times \Biggl\{ \frac{(1-\hat{\alpha_j})^2}{2} \sum_{r=1,2} \frac{d\sigma^{Born}}{d\Omega}(X^2, \theta_{1r}) + \frac{(1-\hat{\beta_j})^2}{2} \sum_{r=1,2} \frac{d\sigma^{Born}}{d\Omega}(X^2, \theta_{2r}) \Biggr\}\nonumber\\
+&&\times \left[1+\Delta_I^{(r-1)}(z_j)\right](1+\delta_F^{(r-1)}),
+\end{eqnarray} 
+where
+\begin{eqnarray}
+&&\hat{\alpha_j}=\frac{k_j p_2}{p_1 p_2},  \quad \hat{\beta_j}=\frac{k_j p_1}{p_1 p_2},\quad z_j=(1-\hat{\alpha_j})(1-\hat{\beta_j}),\nonumber\\
+&&\Delta_I^{(0)}(z)\equiv 0, \quad \Delta_I^{(1)}(z)\equiv \frac{1}{2}\gamma-\frac{1}{4}\gamma\log(z),\nonumber\\
+&&\Delta_I^{(2)}(z)\equiv \Delta_I^{(1)}(z)+\frac{1}{8}\gamma^2-\frac{1}{8}\gamma^2\log(z)+\frac{1}{24}\gamma^2\log^2(z),\nonumber\\
+&&W_e(a,b)\equiv 1-\frac{m_e^2}{2p_1 p_2}\frac{(1-a)(1-b)}{(1-a)^2+(1-b)^2}\Bigl(\frac{a}{b}+\frac{b}{a}\Bigr).
+\end{eqnarray}
+
+Let us check the soft limit at first. In the case of more than one photon, if we take the soft limit $k_j\to 0$, keeping the momenta of the other photons constant, then $\theta_{kr}$ are generally all different. However, the sums over $d\sigma^\text{Born}/d\Omega$ in eq. (7.17) combine into a simple average over all four angles, as in eq. (7.11). So the single photon distribution reduces to 
+\begin{equation}
+D_{1I}^{(2,1)}(X,p_1,p_2,q_1,q_2,k_j)\sim\tilde{S}_I(k_j)\bar{\beta}_0^{(1,0)}(X,p_1,p_2,q_1,q_2)
+\end{equation}
+and thus $\bar{\beta}_{1I}^{(2,1)}(X,p_1,p_2,q_1,q_2,k_j)$ is IR finite. The above discussion implies that extrapolations for $\bar{\beta}_0$ and $\bar{\beta}_1$ have to be of the same type. 
+
+The collinear limit is our another concern. If all of the photons are collinear to the initial or final fermions, then all of the angles $\theta_{ij}, i,j=1,2$, are identical and equal to the LL effective
+scattering angle for the hard process in the frame XMS. This will facilitate the introduction of  the higher order LL corrections in the following.
+
+Note that there are many equivalent ways, modulo a term of $O(m^2/s)$, to express the single-bremsstrahlung spin-summed differential distribution \cite{BKJ-NPB}. Our choice results from minimizing the machine rounding errors which implementing Monte Carlo programs \cite{KORALZ,YFS2,KKMC}. And eq. (7.17) is explicitly expressed in terms of the Born differential cross sections, which helps the introduction of electroweak corrections.
+
+The virtual correction term $[1+\Delta_I^{(1)}(z_j)]$ is taken in the LL approximation and it agrees with the corresponding contribution in the Ref. \cite{BWF-NPB}. In the limit $k_j\to 0$, we have $\Delta_I^{(1)}(z)\to \delta_I^{(1)}$ and $\bar{\beta}_{1F}^{(2)}$ is infrared finite. The factor $(1+\delta_F^{(1)})$ represents the contribution from the simultaneous emission of the real initial and the virtual final photons.
+
+The key ingredients for the $O(\alpha^r)$ final state $\bar{\beta}_{1F}^{(r)}$, $r=1,2$, is the single final state photon emission matrix element with up to one-loop virtual initial-/final-state photon corrections:
+\begin{eqnarray}
+&&D_{1F}^{(r)}(X,p_1,p_2,q_1,q_2,k'_l)=Q_f^2\frac{\alpha}{4\pi^2}\frac{2q_1 q_2}{(k'_l q_1)(k'_l q_2)} W_f(\hat{\eta_l},\hat{\zeta_l})\nonumber\\
+&&\times \Biggl\{ \frac{(1-\hat{\eta_l})^2}{2} \sum_{r=1,2} \frac{d\sigma^{Born}}{d\Omega}(X^2, \theta_{r1}) + \frac{(1-\hat{\zeta_l})^2}{2} \sum_{r=1,2} \frac{d\sigma^{Born}}{d\Omega}(X^2, \theta_{r2}) \Biggr\}\nonumber\\
+&&\times \left[1+\Delta_F^{(r-1)}(z_l)\right](1+\delta_I^{(r-1)}),
+\end{eqnarray} 
+where
+\begin{eqnarray}
+&&\eta_l=\frac{k'_l q_2}{q_1 q_2}, \quad \zeta_l=\frac{k'_l q_1}{q_1 q_2}, \quad
+\hat{\eta_l}=\frac{\eta_l}{1+\eta_l+\zeta_l},\nonumber\\
+&&\Delta_F^{(0)}(z)\equiv 0, \Delta_F^{(1)}(z)\equiv \frac{1}{2}\gamma_f+\log(z)\nonumber\\
+&&W_e(a,b)\equiv 1-\frac{m_f^2}{2q_1 q_2}\frac{(1-a)(1-b)}{(1-a)^2+(1-b)^2}\Bigl(\frac{a}{b}+\frac{b}{a}\Bigr).
+\end{eqnarray}
+
+The discussions on the ISR distribution of eq. (7.17) also works for the FSR distribution above. 
+
+\subsection{Two Real Photons with Virtul Corrections}
+The contributions $\bar{\beta}_{2II}^{(2)}$, $\bar{\beta}_{2FF}^{(2)}$, and $\bar{\beta}_{2IF}^{(2)}$ are related to the emission of two real photons, two initial, two final and one initial and on final, respectively. They are defined formally:
+\begin{align}
+&\bar{\beta}_{2II}^{(r)}(X,p_1,p_2,q_1,q_2,k_j,k_k)\nonumber\\
+=&D_{2II}^{(r)}(X,p_1,p_2,q_1,q_2,k_j,k_k)-\tilde{S}_I(k_j)\bar{\beta}_{1I}^{(r-1)}(X,p_1,p_2,q_1,q_2,k_k)\nonumber\\&-\tilde{S}_I(k_k)\bar{\beta}_{1I}^{(r-1)}(X,p_1,p_2,q_1,q_2,k_j)-\tilde{S}_I(k_j)\tilde{S}_I(k_k)\bar{\beta}_{0}^{(r-2)}(X,p_1,p_2,q_1,q_2),\nonumber\\&r=2,3,
+\end{align}
+
+\begin{align}
+&\bar{\beta}_{2FF}^{(r)}(X,p_1,p_2,q_1,q_2,k'_l,k'_m)\nonumber\\
+=&D_{2FF}^{(r)}(X,p_1,p_2,q_1,q_2,k'_l,k'_m)-\tilde{S}_F(k'_l)\bar{\beta}_{1F}^{(r-1)}(X,p_1,p_2,q_1,q_2,k'_m)\nonumber\\&-\tilde{S}_F(k'_m)\bar{\beta}_{1F}^{(r-1)}(X,p_1,p_2,q_1,q_2,k'_l)-\tilde{S}_F(k'_l)\tilde{S}_F(k'_m)\bar{\beta}_{0}^{(r-2)}(X,p_1,p_2,q_1,q_2),\nonumber\\&r=2,3,
+\end{align}
+
+\begin{align}
+&\bar{\beta}_{2IF}^{(r)}(X,p_1,p_2,q_1,q_2,k_j,k'_l)\nonumber\\
+=&D_{2IF}^{(r)}(X,p_1,p_2,q_1,q_2,k_j,k'_l)-\tilde{S}_I(k_j)\bar{\beta}_{1F}^{(r-1)}(X,p_1,p_2,q_1,q_2,k'_l)\nonumber\\&-\tilde{S}_I(k'_l)\bar{\beta}_{1I}^{(r-1)}(X,p_1,p_2,q_1,q_2,k_j)-\tilde{S}_I(k_j)\tilde{S}_F(k'_l)\bar{\beta}_{0}^{(r-2)}(X,p_1,p_2,q_1,q_2),\nonumber\\&r=2,3.
+\end{align}
+
+The new terms $D_{2II}^{(2)}$, $D_{2FF}^{(2)}$, and $D_{2IF}^{(2)}$ in the above expressions are the differential distributions for the double bremsstrahlung. They are not calculated directly from Feynman diagrams but they are set up in the following way: if one photon is soft and the other is hard, then the single-bremsstrahlung expressions of (7.17) and (7.20) are recovered; if both photons are hard and collinear, then the proper LL limit is also recovered. 
+
+The definition of the double real ISR distribution is
+\begin{align}
+&D_{2II}^{(2)}(X,p_1,p_2,q_1,q_2,k_1,k_2)\nonumber\\
+\equiv& Q_e^4 \frac{\alpha}{4\pi^2} \frac{2p_1 p_2}{(k_1 p_1)(k_1 P_2)} \frac{\alpha}{4\pi^2}\frac{2p_1p_2}{(k_2p_1)(k_2p_2)}W_e(\hat{\alpha_1},\hat{\beta_1})W_e(\hat{\alpha_2},\hat{\beta_2})\nonumber\\
+&\Biggl\{\Theta (v_1-v_2)\left[ 1+\Delta_{II}^{(r-1)} (z_1,z_{12}) \right] (1+\delta_F^{(r-1)})\Bigg[\chi_2(\hat{\alpha_1};\hat{\alpha'_2},\hat{\beta'_2})\nonumber\\
+& \sum_{r=1,2}\frac{d\sigma^{Born}}{d\Omega}(X^2,\theta_{1r})+\nonumber\chi_2(\hat{\alpha_1};\hat{\alpha'_2},\hat{\beta'_2})\sum_{r=1,2}\frac{d\sigma^{Born}}{d\Omega}(X^2,\theta_{1r})+\nonumber \Bigg]+\nonumber\\
+&\Biggl\{\Theta (v_2-v_1)\left[ 1+\Delta_{II}^{(r-1)} (z_2,z_{21}) \right] (1+\delta_F^{(r-1)})\Bigg[\chi_2(\hat{\beta_1};\hat{\alpha'_2},\hat{\beta'_2})\nonumber\\ &\sum_{r=1,2}\frac{d\sigma^{Born}}{d\Omega}(X^2,\theta_{2r})+\chi_2(\hat{\beta_1};\hat{\alpha'_1},\hat{\beta'_1})\sum_{r=1,2}\frac{d\sigma^{Born}}{d\Omega}(X^2,\theta_{1r})+ \Bigg] \Biggr\},\nonumber\\
+\end{align}
+where
+\begin{eqnarray}
+&&\hat{\alpha'_1}=\frac{\hat{\alpha_1}}{1-\hat{\alpha_2}},\quad \hat{\alpha'_2}=\frac{\hat{\alpha_2}}{1-\hat{\alpha_1}}, \quad
+\hat{\beta'_1}=\frac{\hat{\beta_1}}{1-\hat{\beta_2}},\quad \hat{\beta'_2}=\frac{\hat{\beta_2}}{1-\hat{\beta_1}},\nonumber\\
+&&v_i=\hat{\alpha}_i+\hat{\beta}_i,\quad z_i=(1-\hat{\alpha}_i)(1-\hat{\beta}_i),\quad z_{ij}=(1-\hat{\alpha}_i-\hat{\alpha}_j)(1-\hat{\beta}_i-\hat{\beta}_j),\nonumber\\
+&&\chi_2(u;a,b)\equiv\frac{1}{4}(1-u)^2[(1-a)^2+(1-b)^2],\nonumber\\
+&&\Delta^{(0)}_{II}=0,\quad \Delta^{(1)}_{II}(z_i-\frac{1}{6}\gamma\log(z_i),z_{ij})=\frac{1}{2}\gamma-\frac{1}{6}\gamma\log(z_{ij}).
+\end{eqnarray}
+The variables $\hat{\alpha}_i$, $\hat{\beta}_i$ for the $i$th photon are defined as in eq. (7.18).
+
+In order to understand the construction, we examine the realization of the LL collinear limit in the exact single-bremsstrahlung matrix element of eq. (7.17). Suppose a photon carrying the fraction $x_1$ of the beam energy is collinear with $p_1$, then $\hat{\alpha}_1\sim x$, $\hat{\beta}_1
+\sim0$, all four angles are the same $\theta_{sr}\to\theta^\ast$ and we at once recover the correct LL formula
+\begin{eqnarray*}
+&&\frac{1}{2}(1-\hat{\alpha}_1)^2\sum_{r=1,2}\frac{d\sigma^{Born}}{d\Omega}(\theta_{1r})+\frac{1}{2}(1-\hat{\beta}_1)^2\sum_{r=1,2}\frac{d\sigma^{Born}}{d\Omega}(\theta_{2r})\nonumber\\
+&&\to\frac{1}{2}[1+(1-x)^2]\frac{d\sigma^{Born}}{d\Omega}(\theta^\ast).
+\end{eqnarray*}
+So it is natural to use the the angular-dependent Altarelli-Parisi (AP) factors of the type 
+\begin{equation*}
+\frac{1}{2}[(1-\hat{\alpha}_2)^2+(1-\hat{\beta}_2)^2]\frac{1}{2}[(1-\hat{\alpha}_1)^2+(1-\hat{\beta}_1)^2]
+\end{equation*}
+for the double emission. But the above expression is too simple to reproduce correctly the result of the double convolution of the AP kernels in the case that both photons are collinear with the same fermion
+\begin{equation*}
+\frac{1}{2}[1+(1-x_1)^2]\frac{1}{2}\biggl[ 1+\biggl( 1-\frac{x_2}{1-x_1} \biggr)^2 \biggr]\frac{d\sigma^{Born}}{d\Omega}(\theta^\ast),
+\end{equation*}
+where $x_2/(1-x_1)$ reflects the energy loss in the emission cascade because of the emission of $k_1$. In order to deal with the above situation, we need to reconstruct angular dependent AP factor as 
+\begin{equation*}
+\frac{1}{2}[(1-\hat{\alpha}_1)^2+(1-\hat{\beta}_1)^2]\frac{1}{2}[(1-\hat{\alpha'}_2)^2+(1-\hat{\beta'}_2)^2].
+\end{equation*}
+The above formula fits both kinds of the LL collinear limit, when two photons are collinear with a single beam or each of them follows a different beam. Finally, we reproduce the limit in which one photon is hard and the other is soft, $v_2=\hat{\alpha}_2+\hat{\beta}_2\to 0$. In this case, we split the above double-bremsstrahlung angular dependent AP factor into two parts
+\begin{align}
+\chi_2(\hat{\alpha}_1;\hat{\alpha'}_2,\hat{\beta'}_2)&=\frac{1}{2}(1-\hat{\alpha}_1)^2\frac{1}{2}[(1-\hat{\alpha'}_2)^2+(1-\hat{\beta'}_2)^2],\nonumber\\
+\chi_2(\hat{\beta}_1;\hat{\alpha'}_2,\hat{\beta'}_2)&=\frac{1}{2}(1-\hat{\beta}_1)^2\frac{1}{2}[(1-\hat{\alpha'}_2)^2+(1-\hat{\beta'}_2)^2],
+\end{align}
+and relate each one with the corresponding $\frac{d\sigma^{Born}}{d\Omega}$ as we did in eq. (7.17). The order in the cascade does not affect the result. So we just symmetrize over the two orderings in the cascade (Bose-Einstein symmetrization).
+
+The construction above gives the correct limit $D^{(2)}_{2II}(k_1,k_2)\to\widetilde{S}(k_2)D^{(1)}_{1I}(k_2)$
+for $v_1=\text{const}$ and $v_2\to 0$. Consequently, $\bar{\beta}^{(2)}_{II}(X,p_1,p_2,q_1,q_2,k_1,k_2)$ is finite in the limit of one or both photon momenta approaching to zero.
+
+The double final-state bremsstrahlung distribution is constructed in an analogous way:
+
+
+\begin{align}
+&D_{2FF}^{(2)}(X,p_1,p_2,q_1,q_2,k_1,k_2)\nonumber\\
+\equiv& Q_f^4 \frac{\alpha}{4\pi^2} \frac{2q_1 p_2}{(k'_1 q_1)(k'_1 p_2)} \frac{\alpha}{4\pi^2}\frac{2q_1p_2}{(k'_2q_1)(k'_2p_2)}W_f(\hat{\eta_1},\hat{\zeta_1})W_e(\hat{\eta_2},\hat{\zeta_2})\nonumber\\
+&\Biggl\{\Theta (v'_1-v'_2)\Bigg[\chi_2(\hat{\eta_1};\hat{\eta'_2},\hat{\zeta'_2}) \sum_{r=1,2}\frac{d\sigma^{Born}}{d\Omega}(X^2,\theta_{1r})\nonumber\\
+&+\chi_2(\hat{\eta_1};\hat{\eta'_2},\hat{\zeta'_2})\sum_{r=1,2}\frac{d\sigma^{Born}}{d\Omega}(X^2,\theta_{1r})\nonumber \Bigg]+\Theta (v'_2-v'_1) \Bigg[\chi_2(\hat{\zeta_1};\hat{\eta'_2},\hat{\zeta'_2})\nonumber\\ &\sum_{r=1,2}\frac{d\sigma^{Born}}{d\Omega}(X^2,\theta_{2r})+\chi_2(\hat{\zeta_1};\hat{\eta'_1},\hat{\zeta'_1})\sum_{r=1,2}\frac{d\sigma^{Born}}{d\Omega}(X^2,\theta_{1r})+ \Bigg] \Biggr\}\nonumber\\
+&\times[1+\Delta^{(r-1)}_I(z_j)],
+\end{align}
+where
+\begin{equation}
+\eta'_1=\frac{\eta_1}{1+\eta_2},\quad \eta'_2=\frac{\eta_2}{1+\eta_1},\quad 
+\zeta'_1=\frac{\zeta_1}{1+\zeta_2},\quad \zeta'_2=\frac{\zeta_2}{1+\zeta_1}.
+\end{equation}
+Note that the definition of the "primed" Sudakov variables is different from that in the ISR case, because the fermion momenta $q_{1,2}$ are affected by photon emission. The virtual corrections are absent because we restrict the FSR to $O(\alpha^2)_{LL}$. The above expression is tagged with $r=2,3$ for $O(\alpha^r)$, but the FSR is implemented only in $O(\alpha^2)$ and the only correction in $O(\alpha^3)$ is the ISR one loop correction.
+
+The distribution for one photon from the initial-state and the other from the final-state at $O(\alpha^r)$, $r=1,2$, is given by
+\begin{align}
+&D^{(r)}_{2IF}(X,p_1,p_2,q_1,q_2,k_j,k'_l)\nonumber\\
+=&Q^2_e\frac{\alpha}{4\pi^2}\frac{2p_1p_2}{(k_jp_1)(k_jp_2)}W_e(\hat{\alpha}_j,\hat{\beta}_j)Q^2_f\frac{\alpha}{4\pi^2}\frac{2q_1q_2}{(k'_lq_1)(k'_lq_2)}W_f(\hat{\eta}_l,\hat{\zeta}_l)\times\nonumber\\
+&\biggl\{ \frac{(1-\hat{\alpha}_j)^2}{2}\frac{(1-\hat{\eta}_l)^2}{2}\frac{d\sigma^{Born}}{d\Omega}(X^2,\theta_{11})+\frac{(1-\hat{\alpha}_j)^2}{2}\frac{(1-\hat{\zeta}_l)^2}{2}\frac{d\sigma^{Born}}{d\Omega}(X^2,\theta_{12})\nonumber\\
+&+\frac{(1-\hat{\beta}_j)^2}{2}\frac{(1-\hat{\eta}_l)^2}{2}\frac{d\sigma^{Born}}{d\Omega}(X^2,\theta_{21})+\frac{(1-\hat{\beta}_j)^2}{2}\frac{(1-\hat{\zeta}_l)^2}{2}\frac{d\sigma^{Born}}{d\Omega}(X^2,\theta_{22})  \biggr\}\nonumber\\
+&\times[1+\Delta_I^{(r-1)}(z_1)][1+\Delta_F^{(r-1)}(z'_2)],
+\end{align}
+where $\hat{\alpha}_j$, $\hat{\beta}_j$, $\hat{\eta}_l$, $\hat{\zeta}_l$ and other componets are defined in eqs. (7.18) and (7.21).
+
+\subsection{Three Real Photons}
+The differential distribution for three real ISR photons is obtained by the triple convolution of the AP kernel for each beam. In spite of the primary importance of the collinear limit, preserving all soft limit is also our concern while constructing the fully differential triple-photon distribution. In these limit the triple-photon differential distribution must reproduce the previously define Born, single-, and double-bremmsstrahlung distributions times the the appropriate soft factors. If not, we may encounter an issue of the IR finiteness of
+\begin{align}
+&\bar{\beta}^{(3)}_{3III}(X,p_i,q_j,k_1,k_2,k_3)\nonumber\\
+=&D^{(3)}_{3III}(X,p_i,q_j,k_1,k_2,k_3)-\widetilde{S}_I(k_1)\bar{\beta}^{(2)}_{2II}(X,p_i,q_j,k_2,k_3)\nonumber\\
+&-\widetilde{S}_I(k_2)\bar{\beta}^{(2)}_{2II}(X,p_i,q_j,k_1,k_3)
+-\widetilde{S}_I(k_3)\bar{\beta}^{(2)}_{2II}(X,p_i,q_j,k_1,k_2)\nonumber\\
+&-\widetilde{S}_I(k_1)\widetilde{S}_I(k_2)\bar{\beta}^{(1)}_{1I}(X,p_i,q_j,k_3)-\widetilde{S}_I(k_3)\widetilde{S}_I(k_1)\bar{\beta}^{(1)}_{1I}(X,p_i,q_j,k_2)\nonumber\\
+&-\widetilde{S}_I(k_2)\widetilde{S}_I(k_3)\bar{\beta}^{(1)}_{1I}(X,p_i,q_j,k_1)-\widetilde{S}_I(k_1)\widetilde{S}_I(k_2)\widetilde{S}_I(k_3)\bar{\beta}^{(0)}_{0}(X,p_i,q_j).\nonumber\\
+\end{align}
+As in the case of the double real ISR photons, the guideline for constructing the differential distributions includes (\romannumeral 1) the hardest photon decides which of the angles is used in $\frac{d\sigma^\text{Born}}{d\Omega}(X^2,\theta_{1r})$
+and (\romannumeral 2) we have to sum over all orderings in a cascade emission of several photons from one beam (Bose-Einstein Symmetrization). For the case of three real photons there are no virtual corrections.
+
+The construction for three real ISR is
+\begin{align}
+&D^{(3)}_{3III}(X,p_1,p_2,q_1,q_2,k_1,k_2,k_3)\nonumber\\
+&\equiv\prod_{l=1,3}Q^2_e\frac{\alpha}{4\pi^2}\frac{2p_1p_2}{(k_lp_1)(k_lp_2)}W_e(\hat{\alpha}_l,\hat{\beta}_l)\biggl\{ \Theta(v_1-v_2)\Theta(v_2-v_3) \nonumber\\
+&\biggl[ \chi_3(\hat{\alpha}_1;\hat{\alpha}'_2,\hat{\beta}'_2,\hat{\alpha}_3^{''},\hat{\beta}^{''}_3)\sum_{r=1,2}\frac{d\sigma^{Born}}{d\Omega}(X^2,\theta_{1r}) +\chi_3(\hat{\beta}_1;\hat{\alpha}'_2,\hat{\beta}'_2,\hat{\alpha}_3^{''},\hat{\beta}^{''}_3)\nonumber\\
+&\sum_{r=1,2}\frac{d\sigma^{Born}}{d\Omega}(X^2,\theta_{2r})\biggr]  + \text{remaining five permutations of (1,2,3)}   \biggr\}\nonumber\\
+\end{align}
+where
+\begin{eqnarray*}
+\chi_3(u_1;a_2,b_2,a_3,b_3)\equiv\frac{1}{8}(1-u_1)^2[(1-a_2)^2+(1-b_2)^2][(1-a_2)^2+(1-b_2)^2],
+\end{eqnarray*}
+\begin{eqnarray}
+\hat{\alpha}^{''}_3=\frac{\bar{\alpha}_3}{1-\bar{\alpha}_1-\bar{\alpha}_2},\quad \hat{\beta}^{''}_3=\frac{\bar{\beta}_3}{1-\bar{\beta}_1-\bar{\beta}_2}.
+\end{eqnarray}
+\newpage
+\section{Amplitudes for Coherent Exclusive Exponentiation}
+The coherent exclusive exponentiation was first introduce in Ref. \cite{JBZ94}, which is rooted in the YFS exponentiation \cite{YFS}. The exponentiation procedure which is a reorganization of the QED perturbative series such that the IR divergences are summed to up infinite order, is realized at the spin-amplitude level for both real and virtual IR divergences.  This is contrast with the EEX which is based on the traditional YFS theory, in which the isolation for the real IR-singularities is achieved for the squared spin-summed spin amplitudes. The computation of the spin amplitudes is finished with the help of the Kleiss and Stirling Spinor technique \cite{KS} (Please read Chapter 3 for details). It is very interesting that the IR cancellation of the CEEX occur for the integrated cross sections as usual even though the CEEX is formulated completely in terms of the spin amplitudes. In this section, we shall introduce the construction of the CEEX matrix element, the IR cancellation in the CEEX scheme and the virtual and photonic correction for CEEX.                    
+\subsection{Master Formula}
+
+Let us define the Lorentz-invariant phase-space as
+\begin{equation}
+\int d\text{Lips}_n(P;p_1,p_2,\cdots,p_n)=\int (2\pi)^4\delta\left(P-\sum_{i=1}^{n}p_i\right)\prod_{i=1}^n\frac{d^3p}{(2\pi)^32p^0_i},
+\end{equation}
+then we write the CEEX total cross section for the process
+\begin{equation}
+e^-(p_a)+e^+(p_b)\to f(p_c)+\bar{f}(p_d)+\gamma(k_1)+\gamma(k_2)+\cdots+\gamma(k_n),\quad n=0,1,2,\cdots
+\end{equation}
+with polarized beams and decays of unstable final fermions which are sensitive to fermion spin polarizations as follows:
+\begin{align}
+\sigma^{(r)}=&\frac{1}{\text{flux}(s)}\sum_{n=0}^{\infty}\int d\text{Lip}s_{n+2}(p_a+p_b;p_c,p_d,k_1,\cdots,k_n)\nonumber\\
+&\times\rho_{\text{CEEX}}^{(r)}(p_a,p_b,p_c,p_d,k_1,\cdots,k_n),
+\end{align}
+where, in the CMS (center of mass) $\text{flux}(s)=2s+O(m^2_e)$,
+\begin{align}
+&\rho_{\text{CEEX}}^{(r)}(p_a,p_b,p_c,p_d,k_1,\cdots,k_n)\nonumber\\
+=&\frac{1}{n!}\exp[Y(\Omega;p_a,\cdots,p_d)]\bar{\Theta}(\Omega)\sum_{\sigma_i=\pm 1}\sum_{\lambda_i,\lambda_j=\pm 1}\sum_{i,j,l,m=0}^{3}\hat{\epsilon}^i_a\hat{\epsilon}^j_b\sigma^i_{\lambda_a\bar{\lambda}_a}\sigma^j_{\lambda_b\bar{\lambda}_b}\nonumber\\
+&\times \mathfrak{M}_n^{(r)}\left( \begin{array}{cc}
+pk_1k_2\ldots k_n\\\lambda\sigma_1\sigma_2\ldots\sigma_n
+\end{array} \right)\left[\mathfrak{M}_n^{(r)}\left( \begin{array}{cc}
+pk_1k_2\ldots k_n\\\bar{\lambda}\sigma_1\sigma_2\ldots\sigma_n
+\end{array} \right)\right]^\ast\sigma^l_{\bar{\lambda}_c\lambda_c}\sigma^j_{\bar{\lambda}_d\lambda_d}\hat{h}^l_c\hat{h}^m_d.\nonumber\\
+\end{align}
+Assume that the $s$-chanel exchanges dominate and resonances are included, then we can define the complete set of spin amplitudes for the $n$ photon emission, in $O(\alpha^r)_\text{CEEX}$, $r=0,1,2$, as follows,
+\begin{align}
+& \mathfrak{M}_n^{(1)}\left( \begin{array}{cc}
+pk_1k_2\ldots k_n\\\lambda\sigma_1\sigma_2\ldots\sigma_n
+\end{array} \right)\nonumber\\
+\equiv&\sum_{\wp\in\{I,F\}^n}\prod_{i=1}^{n}\mathfrak{s}^{\{\wp_i\}}_{[i]} \biggl\{ \hat{\beta}_0^{(1)}\left( \begin{array}{c}
+p\\\lambda
+\end{array};X_\wp\right)
++\sum_{j=1}^n\frac{\hat{\beta}_{1\{\wp_j\}}^{(1)}\left( \begin{array}{c}         
+pk_j\\\lambda\sigma_j
+\end{array};X_\wp\right)}{\mathfrak{s}^{\{\wp_i\}}_{[j]}} \biggr
+\},\nonumber\\
+\end{align}
+\begin{align}
+&\mathfrak{M}_n^{(2)}\left( \begin{array}{cc}
+pk_1k_2\ldots k_n\\\lambda\sigma_1\sigma_2\ldots\sigma_n
+\end{array} \right)\nonumber\\
+\equiv&\sum_{\wp\in\{I,F\}^n}\prod_{i=1}^{n}\mathfrak{s}^{\{\wp_i\}}_{[i]} \biggl\{ \hat{\beta}_0^{(2)}\left( \begin{array}{c}
+p\\\lambda
+\end{array};X_\wp\right)
++\sum_{j=1}^n\frac{\hat{\beta}_{1\{\wp_j\}}^{(2)}\left( \begin{array}{c}         
+	pk_j\\\lambda\sigma_j
+	\end{array};X_\wp\right)}{\mathfrak{s}^{\{\wp_i\}}_{[j]}}\nonumber
+\nonumber\\
+&+\sum_{1\leq j<n\leq n}^n\frac{\hat{\beta}_{2\{\wp_j\wp_l\}}^{(2)}\left( \begin{array}{c}         
+	pk_jk_l\\\lambda\sigma_j\sigma_l
+	\end{array};X_\wp\right)}{\mathfrak{s}^{\{\wp_j\}}_{[j]}\mathfrak{s}^{\{\wp_l\}}_{[l]}}\nonumber
+\biggr\}.\nonumber\\
+\end{align}
+
+In order to simplify our expressions, we introduce a compact collective notation:
+\begin{equation}
+\left(
+\begin{array}{c}
+ p\\\lambda
+\end{array}
+\right)
+=\left(
+\begin{array}{c}
+p_ap_bp_cp_d\\\lambda_a\lambda_b\lambda_c\lambda_d
+\end{array}
+\right)
+\end{equation}
+for the fermion four-momenta $p_A$, $A=a,b,c,d$ (i.e., $p_1=p_a$, $p_2=p_b$, $q_1=p_c$, $q_2=p_d$) and helicities $\lambda_A$, $A=a,b,c,d$. For $k=1,2,3$, $\sigma^k$ are the Pauli matrices and $\sigma^0_{\lambda,\mu}=\delta_{\lambda,\mu}$ is the unit matrix. The components $\hat{\epsilon}^j_1$, $\hat{\epsilon}^k_2$, where $j,k=1,2,3$, are the components of the conventional spin-polarization vectors of the incoming fermions, defined in the GPS fermion rest frames (Plase read Appendix D for details). We define $\hat{\epsilon}^0_A=1$ in a nonstandard way (i.e., $p_A\cdot \hat{\epsilon}_A=m_e$, $A=a,b$). The polarimeter vector $\hat{h}_C$ are similarly defined in th proper GPS rest frames of the final unstable fermions ($p_C\cdot \hat{h}_C=m_f$, $C=c,d$).
+
+Next, we introduce and explain the notation for the IR integration limits for the real photons in eqs. (7.36) and (7.37). The factor $\bar{\Theta}(\Omega)$ in eq. (7.36) defines the IR integration limits for all real photons. For a single photon, $\Omega$ is the domain surrounding the IR divergences point $k=0$, which is excluded from the MC phase-space. In CEEX, $\Omega$ is the same for all photons since there is no actual differnce between ISR and FSR photons. We define a characteristic function $\Theta(\Omega,k)$ of the IR domain $\Omega$ as 
+\begin{equation}
+\Theta(\Omega,k)=
+\begin{cases}
+1 & \text{for }k\in\Omega,\\
+0 & \text{for }k\not\in \Omega.
+\end{cases}
+\end{equation}
+The characteristic functions for the part of the phase-space include in the MC integration for a single real photon is $\bar{\Theta}(\Omega,k)=1-\Theta(\Omega,k)$. Similarly, the characteristic function for all real photons is as follows:
+\begin{equation}
+\bar{\Theta}(\Omega)=\prod_{i=1}^n\bar{\Theta}(\Omega,k).
+\end{equation}
+In the computation corresponding to the KKMC program we define $\Omega$ in a traditional way with the photon-energy cut condition $k^0<E_\text{min}$.
+
+The YFS form factor \cite{YFS} for $\Omega$ defined with the condition $k^0<E_\text{min}$ is
+\begin{align}
+Y(\Omega;p_a,\ldots,p_d)=&Q^2_eY_\Omega(p_a,p_b)+Q^2_fY_\Omega(p_c,p_d)+Q_eQ_fY_\Omega(p_a,p_c)\nonumber\\
+&+Q_eQ_fY_\Omega(p_a,p_c)-Q_eQ_fY_\Omega(p_a,p_c)-Q_eQ_fY_\Omega(p_a,p_c),\nonumber\\
+\end{align}
+where
+\begin{align}
+Y_\Omega(p,q)\equiv&2\alpha\widehat{B}(\Omega,p,q)+2\alpha\Re{B}(\Omega,p,q)\nonumber\\
+\equiv&-2\alpha\frac{1}{8\pi^2}\int\frac{d^3k}{k^0}\Theta(\Omega;k)\left(\frac{p}{kp}-\frac{q}{kq}\right)^2\nonumber\\
+&+2\alpha\Re\int\frac{d^4k}{k^2}\frac{i}{(2\pi)^3}\left(\frac{2p-k}{2kp-k^2}-\frac{2q-k}{2kq-k^2}\right)
+\end{align}
+is given analytically in terms of dilogarithm functions. 
+
+The coherent sum is taken over the set $\{\wp\}=\{I,F\}$ for all $2^n$ partitions, the single partition $\wp$ is defined as a vector $(\wp_1,\wp_2,\ldots,\wp_n)$ where $\wp_i=1$ for an ISR photon and $\wp_F=F$ for an FSR photon. The set of all partitions is explicitly written as follows:
+\begin{equation*}
+\{\wp\}=\{(I,I,I,\ldots,I),(F,I,I,\ldots,I),(I,F,I,\ldots,I),\ldots,(F,F,F,\ldots,F)\}.
+\end{equation*}
+The $s$-channel four-momentum in the resonant $s$-channel propagator is $X_\wp=p_a+p_b-\sum_{\wp_i=I}k_i$.
+
+The soft amplitude factors $\mathfrak{s}^{\{\omega\}}_{[i]}$, $\omega=I,F$, are defined as follows:
+\begin{align}
+\mathfrak{s}^{\{I\}}_{[i]}\equiv&\mathfrak{s}^{\{I\}}_{[i]}(k)=-eQ_e\frac{b_\sigma(k,p_a)}{2k_ip_a}+eQ_e\frac{b_\sigma(k,p_b)}{2k_ip_b},\nonumber\\
+\left|\mathfrak{s}^{\{I\}}_{[i]}\right|^2=&-\frac{e^2Q_e^2}{2}\left( \frac{p_a}{k_ip_a}-\frac{p_b}{k_ip_b} \right)^2,
+\end{align}
+\begin{align}
+\mathfrak{s}^{\{F\}}_{[i]}&\equiv\mathfrak{s}^{\{I\}}_{[i]}(k)=+eQ_f\frac{b_\sigma(k,p_c)}{2k_ip_c}+eQ_e\frac{b_\sigma(k,p_d)}{2k_ip_d},\nonumber\\
+\left|\mathfrak{s}^{\{F\}}_{[i]}\right|^2&=-\frac{e^2Q_f^2}{2}\left( \frac{p_c}{k_ip_c}-\frac{p_d}{k_ip_d} \right)^2,
+\end{align}
+
+\begin{equation}
+b_\sigma(k,p)=\sqrt{2}\frac{\bar{u}_\sigma(k)\slashed p u_\sigma(\zeta)}{\bar{u}_{-\sigma}u_\sigma(\zeta)}.
+\end{equation}
+
+The simplest IR-finite $\hat{\beta}$ function $\hat{\beta}_0^{(0)}$ is the Born spin amplitudee times a kinematical factor
+\begin{equation}
+\widehat{\beta}^{(0)}_0\left(\begin{array}{c}
+p\\\lambda
+\end{array}
+;X\right)
+=\mathfrak{B}\left(\begin{array}{c}
+p\\\lambda
+\end{array}
+;X\right)\frac{X^2}{(p_c+p_d)^2}.
+\end{equation}
+Note that the Born spin amplitude $\mathfrak{B}\left(\begin{array}{c}
+p\\\lambda
+\end{array}
+;X\right)$ is an essential block for building all of the spin amplitudes. Applying the Feynman rules and the basic massive spinors with the definite GPS helicities, the Born spin amplitudes for $e^-(p_a)+e^+(p_b)\to f(p_c)+f(p_d)$ are given by 
+\begin{align}
+\mathfrak{B}\left(\begin{array}{c}
+p\\\lambda
+\end{array}
+;X\right)=&\mathfrak{B}\left(\begin{array}{c}
+p_ap_bp_cp_d\\\lambda_a\lambda_b\lambda_c\lambda_d
+\end{array}
+;X\right)
+=\mathfrak{B}\left[\begin{array}{c}
+p_bp_a\\\lambda_b\lambda_a
+\end{array}
+\right]\left[\begin{array}{c}
+p_cp_d\\\lambda_c\lambda_d
+\end{array}
+\right](X)\nonumber\\
+=&\mathfrak{B}_{[ba][cd]}(X)\nonumber\\
+=&ie^2\sum_{B=\gamma,Z}\prod^{\mu\nu}_B(X)(G^B_{e,\mu})_{[ba]}(G^B_{f,\mu})_{[cd]}H_B\nonumber\\
+=&\sum_{B=\gamma,Z}\mathfrak{B}^B_{[ba][cd]}(X),\nonumber\\
+(G^B_{e\mu})_{[ba]}\equiv&\bar{v}(p_b\lambda_b)G^B_{e,\mu}u(p_a,\lambda_a)\nonumber\\
+(G^B_{f\mu})_{[ba]}\equiv&\bar{v}(p_c\lambda_c)G^B_{f,\mu}u(p_d,\lambda_d)\nonumber\\
+G^B_{e,\mu}=&\gamma_\mu\sum_{\lambda=\pm}\omega_\lambda g^{B,e}_\lambda\nonumber\\
+G^B_{f,\mu}=&\gamma_\mu\sum_{\lambda=\pm}\omega_\lambda g^{B,f}_\lambda,\quad \omega_\lambda=\frac{1}{2}(1+\lambda\gamma_5),\nonumber\\
+\Pi^{\mu\nu}_B(X)=&\frac{g^{\mu\nu}}{X^2-M^2_B+i\Gamma_BX^2/M_B^2},
+\end{align}
+where $g^{B,f}_\lambda$ are the chiral coupling constants ($\lambda=\pm=R,L$) of the vector boson $B=\gamma,Z$ to the fermion $f$ in units of the electric charge $e$. Usually, the "hook function" $H_B$ is trivial: $H_\gamma=H_Z=1$. And spinor products can be reorganized with the help of Chisholm idenities:
+\begin{equation}
+\mathfrak{B}^B_{[ba][cd]}(X)=2ie^2\frac{\delta_{\lambda_a,-\lambda_b[g^{B,e}_{\lambda_a}g^{B,f}_{-\lambda_a}T_{\lambda_c\lambda_a}T'_{\lambda_b\lambda_d}+g^{B,e}_{\lambda_a}g^{B,f}_{-\lambda_a}U'_{\lambda_c\lambda_b}U_{\lambda_a\lambda_d}  ]}}{X^2-M^2_B+i\Gamma_BX^2/M_B}
+\end{equation}
+where
+\begin{align}
+T_{\lambda_c\lambda_a}&=\bar{u}(p_c,\lambda_c)u(p_a,\lambda_a)=S(p_c,m_c,\lambda_c,p_a,0,\lambda_a),\nonumber\\
+T'_{\lambda_b\lambda_d}&=\bar{v}(p_b,\lambda_b)v(p_d,\lambda_d)=S(p_b,0,-\lambda_b,p_d,-m_d,-\lambda_d),\nonumber\\
+U'_{\lambda_c\lambda_b}&=\bar{u}(p_c,\lambda_c)v(p_b,-\lambda_b)=S(p_c,m_c,\lambda_c,p_b,0,\lambda_b),\nonumber\\
+U_{\lambda_a\lambda_d}&=\bar{u}(p_a,-\lambda_a)v(p_d,\lambda_d)=S(p_b,0,-\lambda_a,p_d,-m_d,-\lambda_d).
+\end{align}
+
+
+\subsection{IR Structure in CEEX}
+
+In this subsection, we discuss the mechanism of the IR-cancellation in the CEEX scheme. Let us begin with the infinite-order perturbative expression for the total cross section given by the standard quantum-mechanical expression of the type ``matrix element squared modulus times phase-space":
+\begin{align}
+\sigma^{(\infty)}=&\sum_{n=0}^{\infty}\frac{1}{n!}\int d\tau_n(p_a+p_b;p_c,p_d,k_1,\ldots,k_n)\nonumber\\
+&\times\frac{1}{4}\sum_{\lambda,\sigma_i,\ldots,\sigma_n=\pm}\left|\mathcal{M}_n\left(\begin{array}{c}
+pk_1k_2\ldots k_n\\\lambda\sigma_1\sigma_2\ldots\sigma_n
+\end{array}\right)\right|^2,
+\end{align}
+where $d\tau_n$ is the respective ($n\gamma+2f$)-Lorentz-invariant phase-space, and $\mathcal{M}_n$ are the corresponding spin amplitudes. In order to simplify the discussion, we take the unpolarized case without narrow resonances here.
+
+
+According to the YFS theory \cite{YFS}, all virtual IR corrections can be relocated into an exponential form factor order by order and in infinite order
+\begin{equation}
+\mathcal{M}^{(\infty)}_n=\exp[\alpha B_4(p_a,p_b,p_c,p_d)]\mathfrak{m}^{(\infty)}_n.
+\end{equation}
+Since the convergence of the perturbative series is questionable, the equation above is practically treated as a symbolic representation of the order-by-order relation, which reads at $O(\alpha^r)$,
+\begin{equation}
+\mathcal{M}^{(r)}_n=\sum_{l=0}^{r-n}\frac{(\alpha B_4)^{r-l}}{(r-l)!}\mathfrak{m}^{[l+n]}_n\quad {(n\leq r)},
+\end{equation}
+where the index $l$ is the number of loops in $\mathfrak{M}^{[l+n]}_n$. The $\mathfrak{M}_n^{[l+n]}$'s are not only free of the virtual IR divergences, they are also universal: they are the same in every perturbative order $r$. The formula above can be reformulated as follows:
+\begin{eqnarray}
+\mathfrak{m}^{(r)}_n=\sum_{l=0}^{r-n}\mathfrak{m}_n^{[l+n]}=\{\exp[-\alpha B_4(p_a,p_b,p_c,p_d)]\mathcal{M}^{(r)}_n\}|_{O(\alpha^r)},
+\end{eqnarray}
+where $\mathcal{M}^{(r)}_n$ has to be evaluated from the Feynman diagrams in at least $O(\alpha^r)$. The above treatments are exactly the same as in Chapter 6.
+
+The YFS form factor $B_4$ for $e^-(p_a)+e^+(p_b)\to f(p_c)+\bar{f}(p_d)+n\gamma$ is
+\begin{equation}
+\alpha B_4(p_a,p_b,p_c,p_d)=\int \frac{d^4k}{k^2-m_\gamma^2+i\epsilon}\frac{i}{(2\pi)^3}\left|J_I(k)-J_F(k)\right|^2,
+\end{equation}
+where
+\begin{eqnarray}
+J_I&=&eQ_e[\hat{J}_a(k)-\hat{J}_b(k)],\nonumber\\
+J_F&=&eQ_f[\hat{J}_c(k)-\hat{J}_d(k)],\nonumber\\
+\hat{J}_f^\mu(k)&=&\frac{2p_f^\mu+k^\mu}{k^2+2k\cdot p_f+i\epsilon}.
+\end{eqnarray}
+Using the identity $(\sum_kZ_kJ_k)^2=-\sum_{i>k}Z_iZ_k(J_i-J-k)^2$ for $\sum Z_k=0$, where $Z_k$ is the charge of the particle with minus charge in the initial or final state repsectively, we can rewritten $B_4$ as the sum of the simpler dipole components.
+Note that the IR singularities are regularized with a fictitious photon mass $m_\gamma$. 
+\begin{align}
+B_4(p_a,p_b,p_c,p_d)=&Q^2_eB_2(p_a,p_b)+Q^2_fB_2(p_c,p_b)+Q_eQ_fB_2(p_a,p_c)\nonumber\\
+&+Q_eQ_fB_2(p_b,p_d)-Q_eQ_fB_2(p_a,p_d)-Q_eQ_fB_2(p_b,p_c),\nonumber\\
+\end{align}
+\begin{equation}
+B_2(p_i,p_j)\equiv\int\frac{d^4k}{k^2-m^2_\gamma+i\epsilon}\frac{i}{(2\pi)^3}[\hat{J}(p_i,k)-\hat{J}(p_j,k)].
+\end{equation}
+
+Next, we elaborate the isolation of the real IR divergences in the CEEX scheme, which differs in essential details from the original YFS method \cite{YFS} (Please read Chapter 6 for details). The essential difference is that we do not square the amplitudes immediately, and it is done numerically at a later stage. We use the results of the basic analysis of the real IR divergences of Ref. \cite{YFS}. The basic analysis of IR cancellations in Ref. \cite{YFS} is done in terms of the currents
+\begin{equation}
+j^\mu_f(k)=\frac{2p^\mu_f}{2p_f\cdot k},\quad f=a,b,c,d.
+\end{equation}
+The above currents are simply related to the $\mathfrak{s}$ factors:
+\begin{eqnarray}
+\mathfrak{s}^{I}_\sigma(k)&=&\text{const}\times Q_e(j_a-j_b)\cdot\epsilon_\sigma(\beta)\nonumber\\
+\mathfrak{s}^{F}_\sigma(k)&=&\text{const}\times Q_f(j_c-j_d)\cdot\epsilon_\sigma(\beta).
+\end{eqnarray}
+Note that the whole structure of the real IR singularities is completely controlled by the squares of the currents $|j(k)|^2$, for $j=j_a-j_b$ or $j=j_c-j_d$ because only the squares $|j(k)|^2$ are IR divergent and other contractions do not matter. Similarly, if we express spin amplitudes in terms of $\mathfrak{s}$ factors, only the squares $|\mathfrak{s}|^2$ are IR divergent and not the interference terms.
+
+The IR-divergent part of $\mathcal{M}$ is proportional to the products of $n$ $\mathfrak{s}$ factors
+\begin{equation}
+\mathfrak{M}_n\left(\begin{array}{c}
+pk_1k_2\ldots k_n\\\lambda\sigma_1\sigma_2\ldots\sigma_n
+\end{array}
+\right)\sim\hat{\beta}_0\left( \begin{array}{c}
+p\\
+\lambda
+\end{array};X \right)\mathfrak{s}_{\sigma_1}(k_1)\mathfrak{s}_{\sigma_2}(k_2)\ldots\mathfrak{s}_{\sigma_n}(k_n),
+\end{equation}
+\begin{equation}
+\mathfrak{s}_\sigma(k)\equiv\mathfrak{s}_\sigma^{\{F\}}+\mathfrak{s}_\sigma^{\{I\}}.
+\end{equation}
+Considering there are also non-leading IR singularities, the whole real-IR structure is revealed in the following decomposition:
+\begin{align}
+&\mathfrak{M}_n^{(\infty)}(k_1,k_2,k_3,\ldots,k_n)\nonumber\\
+=&\hat{\beta}_0\prod_{s=1}^{n}\mathfrak{s}(k_s)+\sum_{j=1}^{n}\hat{\beta}_1(k_j)\prod_{s\ne q}\mathfrak{s}(k_s)+\sum_{j_1>j_2}\hat{\beta}_2(k_{j_1},k_{j_2})\prod_{s\ne j_1,j_2}\mathfrak{s}(k_s)\nonumber\\
+&+\sum_{j_1>j_2>j_3}\hat{\beta}_2(k_{j_1},k_{j_2},k_{j_3})\prod_{s\ne j_1,j_2,j_3}\mathfrak{s}(k_s)+\cdots\nonumber\\
+&+\sum_{j=1}\hat{\beta}_{n-1}(k_1,\ldots,k_{j-1},k_{j+1},\ldots,k_n)\mathfrak{s}(k_j)+\hat{\beta}_n(k_1,k_2,k_3,\ldots,k_n)\nonumber\\
+\end{align}
+where the functions $\hat{\beta}_i$ are IR free and include finite loop corrections to infinite order. The decomposition of eq. (7.64) also has the order-by-order representation and it is written as follows:
+\begin{align}
+&\mathfrak{M}_n^{(n+l)}(k_1,k_2,k_3,\ldots,k_n)\nonumber\\
+=&\hat{\beta}_0^{(l)}\prod_{s=1}^{n}\mathfrak{s}(k_s)+\sum_{j=1}^{n}\hat{\beta}_1^{(1+l)}(k_j)\prod_{s\ne q}\mathfrak{s}(k_s)+\sum_{j_1>j_2}\hat{\beta}_2^{(2+l)}(k_{j_1},k_{j_2})\prod_{s\ne j_1,j_2}\mathfrak{s}(k_s)\nonumber\\
+&+\sum_{j_1>j_2>j_3}\hat{\beta}_2^{(3+l)}(k_{j_1},k_{j_2},k_{j_3})\prod_{s\ne j_1,j_2,j_3}\mathfrak{s}(k_s)+\cdots\nonumber\\
+&+\sum_{j=1}^n\hat{\beta}_{n-1}^{(n-1+l)}(k_1,\ldots,k_{j-1},k_{j+1},\ldots,k_n)\mathfrak{s}(k_j)+\hat{\beta}_n^{(n+l)}(k_1,k_2,k_3,\ldots,k_n)\nonumber\\
+=&\prod_{s=1}^{n}\mathfrak{s}(k_s)\biggl\{\hat{\beta}_0^{(l)} +\sum_{j=1}^n\frac{\hat{\beta}^{(1+l)}_1(k_j)}{\mathfrak{s}(k_j)}+\sum_{j_1<j_2}^n\frac{\hat{\beta}^{(2+l)}_2(k_{j_1},k_{j_2})}{\mathfrak{s}(k_{j_1})\mathfrak{s}(k_{j_2})}\nonumber\\ 
+&+\sum_{j_1<j_2<j_3}^n\frac{\hat{\beta}^{(3+l)}_3(k_{j_1},k_{j_2},k_{j_3})}{\mathfrak{s}(k_{j_1})\mathfrak{s}(k_{j_2})\mathfrak{s}(k_{j_3})}+\sum_{j=1}^n\frac{\hat{\beta}^{(n-1+l)}_{n-1}(k_1,\ldots,k_{j-1},k_{j+1},\ldots,k_n)}{\prod_{s\ne j}\mathfrak{s}(k_s)}\nonumber\\
+&+\frac{\hat{\beta}^{(n+l)}_{n}(k_1,k_2,k_3,\ldots,k_n)}{\prod_{s}\mathfrak{s}(k_s)} \biggr\}
+\end{align}
+at $O(\alpha^r)$, $r=n+l$. The functions $\hat{\beta}^{(n+l)}_n(k_1,k_2,k_3,\ldots,k_n)$ include up to $l$-loop corrections. The $\hat{\beta}^{(n+l)}_n(k_1,k_2,k_3,\ldots,k_n)$ functions are not only completely IR finite, but are universal as well. This feature is essential for reversing the relations of eq. (7.65). From this feature, we could calculate $\hat{\beta}^{(n+l)}_n$ from $\mathfrak{M}^{(r)}_n$ directly from the Feynman rules order-by-order:
+\begin{align*}
+\hat{\beta}^{(l)}_0&=\mathfrak{M}^{(l)}_0,\nonumber\\
+\hat{\beta}^{(l+1)}_1(k_1)&=\mathfrak{M}^{(1+l)}_1(k_1)-\hat{\beta}^{(l)}_0\mathfrak{s}(k_1),\nonumber\\
+\hat{\beta}^{(2+l)}_2(k_1,k_2)&=\mathfrak{M}^{(2+l)}_2(k_1,k_2)-\hat{\beta}^{(l+1)}_1(k_1)\mathfrak{s}(k_2)-\hat{\beta}^{(l+1)}_1(k_2)\mathfrak{s}(k_1)\nonumber\\
+&-\hat{\beta}^{(l)}_0\mathfrak{s}(k_1)\mathfrak{s}(k_2),\nonumber\\
+\hat{\beta}^{(3+l)}_3(k_1,k_2,k_3)&=\mathfrak{M}^{(3+l)}_2(k_1,k_2,k_3)-\hat{\beta}^{(2+l)}_2(k_1,k_2)\mathfrak{s}(k_3)-\hat{\beta}^{(2+l)}_2(k_1,k_3)\mathfrak{s}(k_2)\nonumber\\
+&-\hat{\beta}^{(2+l)}_2(k_2,k_3)\mathfrak{s}(k_1)-\hat{\beta}^{(1+l)}_1(k_1)\mathfrak{s}(k_2)\mathfrak{s}(k_3)-\hat{\beta}^{(1+l)}_1(k_2)\mathfrak{s}(k_1)\mathfrak{s}(k_2)\nonumber\\
+&-\hat{\beta}^{(1+l)}_1(k_3)\mathfrak{s}(k_1)\mathfrak{s}(k_2)-\hat{\beta}^{(l)}_0\mathfrak{s}(k_1)\mathfrak{s}(k_2)\mathfrak{s}(k_3),\ldots,
+\end{align*}
+\begin{align}
+&\hat{\beta}^{(n+l)}_n(k_1,\cdots,k_n)\nonumber\\
+=&\mathfrak{M}^{(n+l)}_n(k_1,\ldots,k_n)-\sum_{j=1}^{n}\hat{\beta}^{(n-1+l)}_{n-1}(k_1,\ldots k_{j-1},k_{j+1},\ldots,k_n)\mathfrak{s}(k_j)\nonumber\\
+&-\sum_{j_1<j_2}^{n-2}\hat{\beta}^{(n-2+l)}_{n-2}(k_1,\ldots k_{{j_1}-1},k_{{j_1}+1},\ldots k_{j_2-1},k_{j_2+1},\ldots,k_n)\mathfrak{s}(k_{j_1})\mathfrak{s}(k_{j_2})-\ldots\nonumber\\
+&-\sum_{j_1<j_2}\hat{\beta}^{(2+l)}_2(k_{j_1},k_{j_2})\prod_{s\neq j_1,j_2}\mathfrak{s}(k_s)-\sum_{j=1}^n\hat{\beta}^{(1+l)}_1(k_{j})\prod_{s\neq j}\mathfrak{s}(k_s)-\bar{\beta}^{(l)}_0\prod^n_{s=1}\mathfrak{s}(k_s).\nonumber\\
+\end{align}
+The above set of equations is a recursive rule, i.e., the higher-order $\hat{\beta}$'s are built in terms of the lower-order ones. In practical calculations one does not go to the infinite order but stops at some $O(\alpha^r)$ and the above set of equations is truncated for $\hat{\beta}^{(n+l)}_n$ by the requirement $n+l\leq r$. The above truncation is valid since we omit higher order $\hat{\beta}$'s which are IR finite. As a result of the fixed-order truncation, eq. (7.64) reads as follows
+\begin{align}
+&\mathfrak{M}^{(r)}_n(k_1,k_2,k_3,\ldots,k_n)\nonumber\\
+=&\prod_{s=1}^{n}\mathfrak{s}(k_s)\biggl\{ \bar{\beta}^{(r)}_0+\sum_{j=1}^n\frac{\bar{\beta}^{(r)}_1(k_j)}{\mathfrak{s}(k_j)}+\sum_{j_1<j_2}\frac{\bar{\beta}^{(r)}_2(k_{j_1},k_{j_2})}{\mathfrak{s}(k_{j_1})\mathfrak{s}(k_{j_2})}\nonumber\\
+& +\sum_{j_1<j_2<j_3}\frac{\bar{\beta}^{(r)}_3(k_{j_1},k_{j_2}),k_{j_3}}{\mathfrak{s}(k_{j_1})\mathfrak{s}(k_{j_2})\mathfrak{s}(k_{j_3})}+\sum_{j_1<j_2<\ldots<j_r}\frac{\bar{\beta}^{(r)}_3(k_{j_1},k_{j_2}),\ldots,k_{j_r}}{\mathfrak{s}(k_{j_1})\mathfrak{s}(k_{j_2})\ldots\mathfrak{s}(k_{j_3})} \biggr\}.\nonumber\\
+\end{align}
+
+The formula above represents the general finite-order $O(\alpha^r)_{exp}$ case.  For $r=0$ case only the first term survives, and in the $O(\alpha^2)$ case there are three terms. The CEEX spin amplitudes in eq. (7.36) represent the case of $r=0,1,2$. 
+
+Let us give an explicit example: in the recurisve calculations of $\hat{\beta}$ in $O(\alpha^3)$, one needs to calculate $\hat{\beta}^{(l)}_0$, $l=0,1,2,3$; $\hat{\beta}^{(1+l)}_1$, $l=0,1,2,$; $\hat{\beta}^{(2+l)}_2$, $l=0,1$; and  $\hat{\beta}^{(3)}_3$. Therefore, according to eq. (7.66), we have
+\begin{align}
+\hat{\beta}^{(l)}_0\left(
+\begin{array}{c}
+p\\\lambda
+\end{array}
+\right)=&\mathfrak{M}^{(l)}_0\left(
+\begin{array}{c}
+p\\\lambda
+\end{array}
+\right),\quad l=0,1,2,\nonumber\\
+\hat{\beta}^{(1+l)}_1\left(
+\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array}
+\right)=&\mathfrak{M}^{(1+l)}_1\left(
+\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array}
+\right)-\hat{\beta}^{(l)}_0\left(
+\begin{array}{c}
+p\\\lambda
+\end{array}
+\right)\mathfrak{s}_{\sigma_1}(k_1),\quad l=0,1,\nonumber\\
+\hat{\beta}^{(2)}_2\left(
+\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}
+\right)=&\mathfrak{M}^{(2)}_1\left(
+\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}
+\right)-\hat{\beta}^{(1)}_1\left(
+\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array}
+\right)\mathfrak{s}_{\sigma_2}(k_2)\nonumber\\
+&-\hat{\beta}^{(1)}_1\left(
+\begin{array}{c}
+pk_2\\\lambda\sigma_2
+\end{array}
+\right)\mathfrak{s}_{\sigma_1}(k_1)-\hat{\beta}^{(0)}_0\left(
+\begin{array}{c}
+p\\\lambda
+\end{array}
+\right)\mathfrak{s}_{\sigma_1}(k_1)\mathfrak{s}_{\sigma_2}(k_2),\nonumber\\
+\end{align}
+where the amplitude $\mathfrak{M}$ is given by eq. (7.55).
+
+At fixed-order $O(\alpha^r)_\text{CEEX}$, we have
+\begin{align}
+\sigma^{(r)}=&\sum_{n=0}^{\infty}\frac{1}{n!}\int d\tau_n(p_1+p_2;p_3,p_4,k_1,\cdots,k_n)\nonumber\\
+&\times\exp[2\alpha\Re B_4(p_a,\ldots,p_d)]\frac{1}{4}\sum_{spin}\left| \mathfrak{M}^{(r)}_n(k_1,k_2,\ldots k_n) \right|^2,
+\end{align}
+where $\mathfrak{M}^{(r)}_n$ is given by eq. (7.67) and we factorize out the $\mathfrak{s}$ factors
+\begin{equation}
+\frac{1}{4}\sum_{spin}\left| \mathfrak{M}^{(r)}_n(k_1,k_2,k_3,\ldots k_n) \right|^2=d_n(k_1,k_2,k_3,\ldots k_n)\prod_{s=1}^{n}\left| \mathfrak{s}(k_s) \right|^2,
+\end{equation}
+where
+\begin{align}
+&d_n(k_1,k_2,k_3,\ldots k_n)\nonumber\\
+=&\biggl| \bar{\beta}^{(r)}_0+\sum_{j=1}^{n}\frac{\hat{\beta}_1^{(r)}(k_j)}{\mathfrak{s}(k_j)}+\sum_{j_1<j_2}^{n}\frac{\hat{\beta}_2^{(r)}(k_{j_1},k_{j_2})}{\mathfrak{s}(k_{j_1})\mathfrak{s}(k_{j_2})}+\sum_{j_1<j_2<j_3}^{n}\frac{\hat{\beta}_3^{(r)}(k_{j_1},k_{j_2},k_{j_3})}{\mathfrak{s}(k_{j_1})\mathfrak{s}(k_{j_2})\mathfrak{s}(k_{j_3})}\nonumber\\
+&+\ldots+\sum_{j_1<j_2<\ldots<j_r}^{n}\frac{\hat{\beta}_r^{(r)}(k_{j_1},k_{j_2},\ldots,k_{j_r})}{\mathfrak{s}(k_{j_1})\mathfrak{s}(k_{j_2})\ldots\mathfrak{s}(k_{j_3})} \biggr|^2.
+\end{align}
+Apparently the function $d_n(k_1,k_2,k_3,\ldots,k_n)$ is IR finite and we can set $m_\gamma\to 0$ in it. Besides $2\Re B_4$ the IR regulator $m_\gamma$ remainsin all $\mathfrak{s}(k_i)$ factors and in the lower phase-space boundary of all real photons in $\int\frac{d^3k}{2k^0}$. 
+
+The IF finiteness of above total cross section can be checked by partial differentiation with respect to the photon mass
+\begin{align}
+\frac{\partial}{\partial m_\gamma}\sigma^{(r)}=&\sum_{n=0}^{\infty}\int d\tau_n(P;p_3,p_4,k_1,\ldots,k_n)\exp(2\alpha\Re B_4)\frac{\partial}{\partial m_\gamma}\{2\alpha\Re B_4\}\nonumber\\
+&\times\frac{1}{4}\sum_{spin}\left| \mathfrak{M}^{(r)}_n(k_1,k_2,k_3,\ldots k_n) \right|^2+\sum_{n=1}^{\infty}\frac{1}{n!}\sum_{s=1}^{n}\nonumber\\
+&\times\int d\tau_{n-1}(P;p_3,p_4,k_1,\cdots,k_{s-1},k_{s+1},\cdots,k_n)\nonumber\\
+&\times\exp(2\alpha\Re B_4)\frac{\partial}{\partial m_\gamma}\biggl\{ \int\frac{d^3k_s}{(2\pi)^32k^0_s}|\mathfrak{s}(k_s)|^2 \biggr\}\prod_{j\neq s}|\mathfrak{s}(k_j)|^2\nonumber\\
+&\times d_n(k_1,k_2,\ldots,k_s,\ldots,k_n).
+\end{align}
+Note that 
+\begin{equation*}
+\frac{\partial}{\partial m_\gamma}\biggl\{ \int\frac{d^3k_s}{2k^0_s}|\mathfrak{s}(k_s)|^2 \biggr\}
+\end{equation*}
+is a $\delta$-like measure concentrated at $k_s=0$ and therefore we may use the limit
+\begin{align*}
+d_n(k_1,\ldots,k_s,\ldots,k_n)&\to d_n(k_1,k_2,\ldots,k_{s-1},0,k_{s+1},\ldots,k_n)\nonumber\\
+&\equiv d_{n-1}(k_1,k_2,\ldots,k_{s-1},k_{s+1},\ldots,k_n).
+\end{align*}
+With the help of the limit above, we notice that all of the terms in the $\sum^n_{s=1}$ are identical so that we could sum them up after formally renaming the photon integration variables in the second in integral and rewrite eq. (7.72) in the following way:
+\begin{align}
+\frac{\partial}{\partial m_\gamma}\sigma^{(r)}=&\sum_{n=0}^{\infty}\int d\tau_n(P;p_3,p_4,k_1,\ldots,k_n)\nonumber\\
+&\times\exp(2\alpha\Re B_4)\frac{1}{4}\sum_{spin}\left| \mathfrak{M}^{(r)}_n(k_1,k_2,k_3,\ldots k_n) \right|^2\nonumber\\
+&\times\frac{\partial}{\partial \mu}\biggl\{ 2\alpha\Re B_4+\int\frac{d^3 k_s}{(2\pi)^32k^0_s}|\mathfrak{s}(k_s)|^2 \biggr\}\nonumber\\
+=&0,
+\end{align}
+where the indepence of $m_\gamma$ of the sum of the one-photon real and virtual integrals is because of the cancellation of the IR singularities in the YFS theory. 
+
+We have introduced the general notation for the IR domain $\Omega$ in eq. (7.42). Now it is time to exclude the $\Omega$ domain from the real photon phase space. Splitting the real photon integration phase space, the total cross section (7.69) is rewritten as
+\begin{align}
+\sigma^{(r)}=&\sum_{n=0}^{\infty}\frac{1}{n!}\biggl\{ \int\frac{d^3k_j}{(2\pi)^32K_j^0}|\mathfrak{s}(k_j)|^2\Theta(\Omega,k_j)+\int\frac{d^3 k_j}{(2\pi)^32k_j^0}|\mathfrak{s}(k_j)|^2\Theta(\Omega,k_j) \biggr\}\nonumber\\
+&\times\int d\tau_0\left( P-\sum^n_{j=1}k_j;p_3,p_4 \right)\exp(2\alpha\Re B_4)d_n(k_1,k_2,\ldots,k_n).
+\end{align}
+After expanding the binomial product into $2^n$ terms we consider the sum of all $\binom{n}{1}=n$ terms in which one photon is in $\Omega$ and the other ones are not:
+\begin{align}
+&\frac{1}{n!}\sum_{s=1}^{n}\int\frac{d^3k_s}{(2\pi)^32k_s^0}|\mathfrak{s}(k_s)|^2\Theta(\Omega,k_s)\prod_{j\neq s}^{n}\int\frac{d^3k_j}{(2\pi)^32k^0_j}|\mathfrak{s}(k_j)|^2\bar{\Theta}(\Omega,k_j)\nonumber\\
+&\times\int d\tau_0\left( P-\sum_{j=1}^{n}k_j;p_3,p_4 \right)\exp(2\alpha\Re B_4)d_n(k_1,k_2,\cdots,k_{s-1},0,k_{s+1},\ldots,k_n)\nonumber\\
+=&\frac{1}{n!}\binom{n}{1}\int\frac{d^3}{(2\pi)^32k^0}|\mathfrak{s}(k)|^2\Theta(\Omega,k)\int d\tau_{n-1}(P;p_3,p_4,k_1,k_2,\ldots,k_{n-1})\nonumber\\
+&\times\prod_{j=1}^{n=1}\bar{\Theta}(\Omega,k_j)|\mathfrak{s}(k_j)|^2d_{n-1}(k_1,k_2,\ldots,k_{n-1}).
+\end{align}
+A similar summation is taken for the $\binom{n}{s}$ terms where $s$ photons are in the IR domain $\Omega$, leading to 
+\begin{align}
+\sigma^{(r)}=&\sum_{n=0}^{\infty}\frac{1}{n!}\sum_{s=0}^{n}\binom{n}{s}\left( \int\frac{d^3k}{(2\pi)^32k^0}|\mathfrak{s}(k)|^2\Theta(\Omega,k) \right)^s\nonumber\\
+&\times\int d\tau_{n-s}(P;p_3,p_4,k_1,k_2,\ldots,k_{n-s})\prod_{j=1}^{n-s}\{|\mathfrak{s}(k_j)|^2\bar{\Theta}(\Omega)\}\nonumber\\
+&\times\exp(2\alpha\Re B_4)d_{n-s}(k_1,k_2,\ldots,k_{n-s})\nonumber\\
+=&\sum_{n=0}^{\infty}\frac{1}{n!}\int d\tau_n(P;p_3,p_4,k_1,k_2,\ldots,k_n)\exp\left(\int\frac{d^3 k_j}{(2\pi)^32k^0_j}|\mathfrak{s}(k_j)|^2\Theta(\Omega,k_j)\right)\nonumber\\
+&\times\exp[2\alpha\Re B_4(p_1,\ldots,p_4)]\prod_{j=1}^{n}\{|\mathfrak{s}(k_j)|^2\bar{\Theta(\Omega,k_j)}\}d_n(k_1,k_2,\ldots,k_n).
+\end{align}
+The additional overall exponential factor contains
+\begin{align}
+2\alpha\widetilde{B}_4(p_1,\ldots,p_4)=&\int\frac{d^3k_j}{(2\pi)^32k^0_j}|\mathfrak{s}(k_j)|^2\Theta(\Omega,k_j)\nonumber\\
+=&2\alpha[Q_e^2\widetilde{B}_2(p_1,p_2)+Q_f^2\widetilde{B}_2(p_3,p_4)+Q_eQ_f\widetilde{B}_2(p_1,p_3)\nonumber\\
+&+Q_eQ_f\widetilde{B}_2(p_2,p_4)-Q_eQ_f\widetilde{B}_2(p_1,p_4)-Q_eQ_f\widetilde{B}_2(p_2,p_3)],\nonumber\\
+\end{align}
+\begin{align}
+\widetilde{B}_2(p,q)&\equiv-\int\frac{d^3k}{(2\pi)^32k^0}\Theta(\Omega,k)[j_p(k)-j_q(k)]^2\nonumber\\
+&\equiv\int\frac{d^3k}{k^0}\Theta(\Omega,k)\frac{-1}{8\pi^2}\left( \frac{p}{kp}-\frac{q}{kq} \right)^2.
+\end{align}
+Furthermore, the YFS form factor is 
+\begin{equation}
+Y(\Omega;p_1,\cdots,p_4)=2\alpha\widetilde{B}_4(p_1,\ldots,p_4)+2\alpha\Re\widetilde{B}_4(p_1,\ldots,p_4).
+\end{equation}
+
+In pursue of the completeness of the discussion, let us check the IR cancellations in the total cross section with $\Omega$ as the new regulator:
+\begin{eqnarray}
+\sigma^{(r)}&=&\sum_{n=0}^{\infty}\frac{1}{n!}\int d\tau_n(P;p_3,p_4,k_1,k_2,\ldots,k_n)\prod^n_{j=1}\{|\mathfrak{s}(k_j)|^2\bar{\Theta}(\Omega,k_j)\}\nonumber\\
+&&\times\exp\left[2\alpha\widetilde{B}_4(\Omega;p_1,\ldots,p_4)+2\alpha\Re B_4(p_1,\ldots,p_4)\right]d_n(k_1,k_2,\ldots,k_n).\nonumber\\
+\end{eqnarray}
+Now IR finiteness of the total cross section is converted into the independence of the domain $\Omega$
+\begin{equation}
+\frac{\partial}{\partial\Omega}\sigma^{(r)}=0.
+\end{equation}
+This can be proved by the same argument for the photon mass $m_\gamma$. Considering $\Omega\to\Omega'=\Omega+\delta\Omega$, that is $\bar{\Omega}'=\bar{\Omega}-\delta\Omega$ and $\Omega'$ 
+can be either larger or smaller than $\Omega$, the only requirement is that both are very small. Consequently we have 
+\begin{eqnarray}
+\sigma^{(r)}&=&\sum_{n=0}^{\infty}\frac{1}{n!}\prod_{j=1}^{n}\biggl\{ \int\frac{d^3k_j}{(2\pi)^32k^0_j}|\mathfrak{s}(k_j)|^2\bar{\Theta}(\Omega',k_j)+\int\frac{d^3k_j}{(2\pi)^32k^0_j}|\mathfrak{s}(k_j)|^2\bar{\Theta}(\delta\Omega',k_j)  \biggr\}\nonumber\\
+&&\times\int d\tau_0\left(P-\sum k_j;p_3,p_4\right)\exp[2\alpha\widetilde{B}_4(\Omega;p_1,\ldots,p_4)+2\alpha\Re B_4(p_1,\ldots,p_4)]\nonumber\\
+&&\times d_n(k_1,k_2,\ldots,k_n)\nonumber\\
+&=&\sum_{n=0}^{\infty}\frac{1}{n!}\sum_{s=0}^{n}\binom{n}{s}\biggl\{ \int\frac{d^3k}{(2\pi)^32k_0}|\mathfrak{s}(k)|^2\Theta(\delta\Omega,k) \biggr\}^s\int d\tau_{n-s}(P;p_3,p_4,k_1,\ldots,k_{n-s})\nonumber\\
+&&\times\prod_{j=1}^{n-s}{|\mathfrak{s}(k_j)|^2\Theta(\Omega',k_j)}\exp[2\alpha\widetilde{B}_4(\Omega;p_1,\ldots,p_4)+2\alpha\Re B_4(p_1,\ldots,P_4)]\nonumber\\
+&&\times d_{n-s}(k_1,k_2,\ldots,k_{n-s})\nonumber\\
+&=&\sum_{n=0}^{\infty}\frac{1}{n!}\int d\tau_n(P;p_3,p_4,k_1,\ldots,k_n)\exp\biggl[ \int\frac{d^3k}{(2\pi)^32k^0}|\mathfrak{s}(k)|^2\Theta(\delta\Omega,k)\nonumber\\
+&&+2\alpha\widetilde{B}_4(\Omega;p_1\ldots,p_4)+2\alpha\Re B_4(p_1,\ldots,p_4) \biggr]\prod_{j=1}^{n}\{|\mathfrak{s}(k_j)|^2\bar{\Omega}(\Omega',k_j)\}\nonumber\\
+&&\times d_n(k_1,k_2,\ldots,k_n),
+\end{eqnarray}
+
+
+\subsection{Narrow Neutral Resonance in CEEX}
+We have introduced the general mechanism of the IR-cancellation in the CEEX scheme in the last subsection. In this subsection, we will introduce the possible formulation of CEEX. There are three possible versions of CEEX so far. We will mainly describe the the version of the resonant Born. These three possible verions are as follows.
+
+(A) The version the non-resonant Born without partitions:
+\begin{equation}
+\mathfrak{M}^{(0)}_n\left(\begin{array}{c}
+pk_1k_2\ldots k_n\\\lambda\sigma_1\sigma_2\ldots\sigma_n
+\end{array}\right)=\prod_{i=1}^{n}[\mathfrak{s}^I_{\sigma_i}(k_i)+\mathfrak{s}^F_{\sigma_i}(k_i)]\mathfrak{B}_{[ba][cd]}.
+\end{equation}
+
+(B) The version for the non-resonant Born with partitions:
+\begin{equation}
+\mathfrak{M}^{(0)}_n\left(\begin{array}{c}
+pk_1k_2\ldots k_n\\\lambda\sigma_1\sigma_2\ldots\sigma_n
+\end{array}\right)=\sum_{\wp\in\{I,F\}^n}\prod_{i=1}^{n}\mathfrak{s}^{\{\wp_i\}}_{\sigma_i}(k_i)\mathfrak{B}_{[ba][cd]}(X_{\wp}).
+\end{equation}
+
+(C) The version for the resonant Born:
+\begin{align}
+\mathfrak{M}^{(0)}_n\left(\begin{array}{c}
+pk_1k_2\ldots k_n\\\lambda\sigma_1\sigma_2\ldots\sigma_n
+\end{array}\right)=&\sum_{\wp\in\{I,F\}^n}\prod_{i=1}^{n}\mathfrak{s}^{\{\wp_i\}}_{\sigma_i}(k_i)\frac{X^2_{\wp}}{(p_3+p_4)^2}\nonumber\\
+&\sum_{R=\gamma,Z}\mathfrak{B}^B_{[ba][cd]}(X_{\wp})\exp[\alpha\Delta B^R_4(X_\wp)].
+\end{align}
+
+We define the additional form factor for the Z resonance for case (C):
+\begin{equation}
+\alpha\Delta B_4^Z(X)=\int\frac{d^4k}{k^2-m^2_\gamma+i\epsilon}\frac{i}{(2\pi)^3}J_{I\mu}(k)[J_{F}^\mu(k)]^\ast\left(\frac{X^2-\bar{M}^2}{(X-k)^2-\bar{M}^2}-1\right),
+\end{equation}
+where $\bar{M}^2=M_Z^2-iM_Z\Gamma_Z$. The currents $J^\mu$ are given by eq. (7.57), while for the nonresonat part $\Delta B^\gamma_4 (X)=0$.
+
+Let us make a brief comparison among these three versions. The case (B) will become case (A) if we neglect the partition dependence of the four momenetum in the Born amplitude: $\mathfrak{B}_{[ba][cd]}(X_\wp)\to\mathfrak{B}_{[ba][cd]}(P)$, where $P=p_a+p_b$ or $P=p_c+p_d$ or any other which is independent of the momentum of the individual photon. This feature is due to
+\begin{equation}
+\prod_{i=1}^{n}[\mathfrak{s}^{\{F\}}_{\sigma_i}(k_i)+\mathfrak{s}^{\{I\}}_{\sigma_i}(k_i)]\equiv\sum_{\wp\in\{I,F\}}\prod_{i=1}^n\mathfrak{s}^{\{\wp\}}_{\sigma_i}(k_i).
+\end{equation}
+Obviously case (C) is efficient for the resonant process while cases (A) and (B) are only suitable for nonresonant process. If (A) does not sum the higher orders, it has a clear advantage over (B), which is simpler computer code and less consumption of CPU time because of no summation over partition. However, (B) sums up the LL higher orders more efficiently than (A). Considering our aim is to cover the resonant process, it is natural to utilize (B) for the nonresonant background of the spin amplitudes. Once the summation over partitions happens, it is also easy to apply the case (B) for the nonresonant background. In other words, if (C) is carried out, then (B) comes automatically. 
+
+After comparing these three versions, we focus on the case (C) now because it becomes (B) for nonresonant background component.
+For the narrow neutral resonance, the photons emitted during the productiona dn decay processes are separated by a long time interval; they are therefore totally independent. In the perturbative QED, this fact is reflected in a certain class of cancellations between ISR and FSR photon on the one hand and the virtual and real corrections on the other hand. Because of the presence of narrow resonances, it is not sufficient to sum up the real emissions coherently, taking the energy shift in the resonance propagator into account \cite{Greco1,Greco2}. It is also necessary to sum the virtual emission up to infinite order---this is why the resonance form factor $\exp(B^Z_4)$ is include in eq. (7.85). Next we will derive eq. (7.86) and show that the IFI cancellations do work to infinite order.
+
+Let us rewrite the YFS function in a modified notation
+\begin{equation}
+\alpha B_4(p_a,\ldots,p_d)=\int\frac{d^4k}{k^2-m^2_\gamma+i\epsilon}\frac{i}{(2\pi)^3}S(k),
+\end{equation}
+where
+\begin{equation}
+S_I(k)=|J_I(k)|^2,\quad S_F(k)=|J_F(k)|^2,\quad S_{Int}(k)=-2\Re[J_I(k)\cdot J^\ast_F(k)]
+\end{equation}
+Due to the presence of the narrow resonance, the YFS factorization of the virtual IR contribution must take into account the dependence of the scalar part of the resonance propagator on photon energies of order $\Gamma$. The relevant integrals with $n$ virtual photons is given by
+\begin{equation}
+I=(P^2-\bar{M}^2)\sum_{n=0}^{\infty}\frac{1}{n!}\sum_{\wp\in\mathcal{P}_n}\prod_{i=0}^{n}\int\frac{i}{(2\pi)^3}\frac{d^4k_i}{k^2_i-m_\gamma^2}S_{\wp_i}(k_i)\frac{1}{P^2_\wp-\bar{M}^2},
+\end{equation}
+where $\bar{M}^2=M^2-iM\Gamma$, and $\mathcal{P}_n$ is a set of all $3^n$ partitions $(\wp_1,\wp_2,\ldots,\wp_n)$ with $\wp_i=\text{I},\text{F},\text{Int}$, and $P_\wp\equiv P-\sum_{\wp_i}k_i$ includes only the momenta of the photons in $S_\text{Int}$. The $(P^2-M^2)$ factor is conventional, making the integral dimensionless. We will show that the integral above factorizes into the conventional YFS form factor and the additional non-IR factor due to the resonance $R=Z$: 
+\begin{equation}
+I=\exp[\alpha B^R_4(m_\gamma,s,\bar{M})]=\exp[\alpha B_4(m_\gamma,s)+\alpha\Delta B^R_4(s,\bar{M})].
+\end{equation}
+We aim to find the analytical expression of the additional function $\Delta B^R_4$. In the present computation, we adopt the following approximate formula \cite{Greco1,Greco2},
+\begin{equation}
+\alpha\Delta B^R_4(s')=-2Q_eQ_f\frac{\alpha}{\pi}\log\left(\frac{t}{u}\right)\log\left(\frac{\bar{M}^2-s}{\bar{M}^2}\right)=-\frac{1}{2}\gamma_{Int}\log\left(\frac{\bar{M}^2-s}{\bar{M}^2}\right).
+\end{equation}
+In the following, we will derive the equation above and show explicitly that the above virtual interference part of the form factor cancels exactly with the corresponding real interference contributions.
+
+Becaue the soft virtual photons entering into $S_I$ and $S_F$ in eq. (7.90) do not enter the resonance propagator, we factorize and sum up the contributions with $S_I$ and $S_F$:
+\begin{align}
+I=&\sum_{n_1=0}^{\infty}\frac{1}{n_1!}\prod_{i_1=0}^{n_1}\int\frac{i}{(2\pi)^3}\frac{d^4k_{i_1}}{k_{i_1}^2-m^2_\gamma}S_I(k_{i_1})\sum_{n_2=0}^{\infty}\frac{1}{n_2!}\prod_{i_2=0}^{n_2}\int\frac{i}{(2\pi)^3}\frac{d^4k_{i_2}}{k_{i_2}^2-m^2_\gamma}S_F(k_{i_2})\nonumber\\
+&\times\sum_{n_13=0}^{\infty}\frac{1}{n_3!}\prod_{i_3=0}^{n_3}\int\frac{i}{(2\pi)^3}\frac{d^4k_{i_3}}{k_{i_3}^2-m^2_\gamma}S_{Int}(k_{i_3})\frac{1}{\left(P-\sum_{j=1}^{n_3}k_j\right)-\bar{M}^2}\nonumber\\
+\equiv&\exp(\alpha B_i+\alpha B_F)\sum_{n=0}^{\infty}\frac{1}{n!}
+\prod_{i=0}^{n}\int\frac{i}{(2\pi)^3}\frac{d^4k_i}{k_i^2-m^2_\gamma}S_{Iin}(k_i)\frac{1}{\left(P-\sum_{j=1}^{n}k_j\right)-\bar{M}^2}.\nonumber\\
+\end{align}
+Here we neglect the quadratic terms in the photon energies $O(k_ik_j)$
+\begin{align}
+\frac{1}{\left(P-\sum_{j=1}^{n}k_j\right)-\bar{M}^2}&\simeq\frac{1}{P^2-2P\sum_{j=1}^{n}k_j-\bar{M}^2}\nonumber\\
+&=\frac{1}{P^2-\bar{M}^2}\frac{1}{1-\sum_{j=1}^{n}\frac{2Pk_j}{P^2-\bar{M}^2}}\nonumber\\
+&\simeq\frac{1}{P^2-\bar{M}^2}\prod_{j=1}^{n}\frac{1}{1-\frac{2Pk_j}{P^2-\bar{M}^2}}\nonumber\\
+&\simeq\frac{1}{P^2-\bar{M}^2}\prod_{j=1}^{n}\frac{P^2-\bar{M}^2}{(P-k_j)^2-\bar{M}^2},
+\end{align}
+and this gives us
+\begin{align}
+I&=\exp(\alpha B_I+\alpha B_F)\exp\left( \int\frac{i}{(2\pi)^3}\frac{d^4k}{k^2-m_\gamma^2+i\epsilon}S_{Iin}(k)\frac{P^2-\bar{M}^2}{(P-k)^2-\bar{M}^2} \right)\nonumber\\
+&=\exp[\alpha B_4(m_\gamma)+\alpha\Delta B_4^R(\Gamma)],
+\end{align}
+where
+\begin{equation}
+\alpha\Delta B^R_4(\Gamma)=\int\frac{i}{(2\pi)^3}\frac{d^4k}{k}S_{Iin}(k)\left(\frac{P^2-\bar{M}^2}{(P-k)^2-\bar{M}^2}-1\right).
+\end{equation}
+As $k\to 0$ the emission amplitude can be expressed as
+\begin{equation*}
+\mathcal{M}\to\frac{1}{k}\left\{ \epsilon_1+O\left(\frac{k}{\bar{M}}\right)+\frac{k}{\Gamma_Z}\left[\epsilon_2+O\left(\frac{k}{\bar{M}}\right)\right] \right\},
+\end{equation*}
+where $\epsilon_{1,2}$ are constants independent of $k$, so that
+\begin{equation*}
+\left| \frac{2Pk_j}{P^2-\bar{M}^2}\right|\ll 1,
+\end{equation*}
+namely, photon energy is below the resonance width. This constraint is completely analogous to the usual YFS expansion into an IR-singular part and the rest \cite{YFS}. The approach we choose here is based on the fact that the virtual and real contributions from the IFI for photons with $E_\gamma>\Gamma$ do cancel as a result of the time separation between the production and decay. We shall show the cancellation mechanism is valid next. 
+
+Let us check analytically the real multiphoton emission contribtuion for the IFI. We began with the integral in which the total photon energy $K=\sum_{j=1}^{n}k_j$ is kept below $E_\text{max}=v_\text{max}\sqrt{s}$, where $\Gamma<E_\text{max}\ll\sqrt{s}$:
+\begin{align}
+\sigma=&\sum_{n=0}^{\infty}\frac{1}{n!}\int\prod_{i=1}^{n}\frac{d^3k_i}{(2\pi)^32k_i^0}\sum_{\sigma_1\ldots\sigma_n}\left| \sum_{\wp\in\{I,F\}^n}\prod_{j=1}^{n}\mathfrak{s}_{[j]}^{\{\wp_j\}}\frac{1}{X^2_\wp-\bar{M}^2}\exp[\alpha B^R_4(X_\wp)] \right|^2\nonumber\\
+&\times\Theta\left(E_{max}-\sum_{j=1}^{n}k_j\right)\nonumber\\
+=&\sum_{n=0}^{\infty}\frac{1}{n!}\int_{K^0<v\sqrt{s}}\prod_{i=1}^{n}\frac{d^3k_i}{(2\pi)^32k^0_i}\sum_{\sigma_1\ldots\sigma_n}\sum_{\wp,\wp'\in\{I,F\}^n}\prod_{j=1}^{n}\mathfrak{s}_{[j]}^{\{\wp_j\}}\mathfrak{s}_{[j]}^{\ast\{\wp'_j\}}\nonumber\\
+&\times\frac{\exp[\alpha B^R_4(X_\wp)]}{X_\wp^2-\bar{M}^2}\left(\frac{\exp[\alpha B^R_4(X_\wp)]}{X_\wp^2-\bar{M}^2}\right)^\ast\nonumber\\
+=&\sum_{n=0}^{\infty}\frac{1}{n!}\int_{K^0<v\sqrt{s}}\prod_{i=1}^{n}\frac{d^3k_i}{2k^0_i}\sum_{\wp,\wp'\in\{I^2,F^2,IF,FI\}^n}\prod_{\wp_j=I^2}2\widetilde{S}_I(k_j)\prod_{\wp_j=F^2}2\widetilde{S}_F(k_j)\nonumber\\
+&\times\prod_{\wp_j=IF}2\widetilde{S}_{Int}(k_j)\prod_{\wp_j=FI}2\widetilde{S}_{Int}(k_j)\frac{\exp[\alpha B_4^R(P-K_I-K_{IF})]}{(P-K_I-K_{IF})^2-\bar{M}^2}\nonumber\\
+&\times\left( \frac{\exp[\alpha B_4^R(P-K_I-K_{FI})]}{(P-K_I-K_{FI})^2-\bar{M}^2} \right)^\ast,
+\end{align}
+where
+\begin{align}
+&2(2\pi)^2\widetilde{S}_I(k_j)=\sum_{\sigma_j}\left|\mathfrak{s}^{\{I\}}_{[j]}\right|^2,\quad 2(2\pi)^2\widetilde{S}_F(k_j)=\sum_{\sigma_j}\left|\mathfrak{s}^{\{F\}}_{[j]}\right|^2,\nonumber\\
+&2(2\pi)^2\widetilde{S}_{Int}(k_j)=\sum_{\sigma_j}\mathfrak{s}^{|{I}}_{[j]}\left(\mathfrak{s}^{\{F\}}_{[j]}\right)^\ast=\sum_{\sigma_j}\mathfrak{s}^{|{F}}_{[j]}\left(\mathfrak{s}^{\{I\}}_{[j]}\right)^\ast,\nonumber\\
+&K_{I^2}=\sum_{\wp_j=I^2} k_j,\quad K_{F^2}=\sum_{\wp_j=F^2} k_j\quad K_{IF}=\sum_{\wp_j=IF} k_j\quad K_{FI}=\sum_{\wp_j=FI} k_j,\nonumber\\
+&K=K_{I^2}+K_{F^2}+K_{IF}+K_{FI}.
+\end{align}
+The product of two sums, each over $2^n$ partitions $\wp,\wp'\in\{I,F\}^n$, is now replaced by the single sum over $4^n$ partitions $\wp\in\{I^2,F^2,IF,FI\}^n$, where the IF, FI represent the interference terms. And the summation over the number of the photons can be reorganized as follows:
+\begin{align}
+\sigma(v_{max})
+=&\sum_{n_1=0}^{\infty}\frac{1}{n_1!}\int\prod_{i_1=1}^{n_1}\frac{d^3k_{i_1}}{2k^0_{i_1}}2\widetilde{S}_I(k_{i_1})\prod_{i_2=1}^{n_2}\frac{d^3k_{i_2}}{2k^0_{i_2}}2\widetilde{S}_F(k_{i_2})\nonumber\\
+&\times\prod_{i_3=1}^{n_3}\frac{d^3k_{i_3}}{2k^0_{i_3}}2\widetilde{S}_{Int}(k_{i_3})\prod_{i_4=1}^{n_4}\frac{d^3k_{i_4}}{2k^0_{i_4}}2\widetilde{S}_{Int}(k_{i_4})\nonumber\\
+&\times\frac{\exp[\alpha B^R_4(P-K_{II}-K_{IF})]}{(P-K_{II}-K_{IF})^2-\bar{M}^2}\left(\frac{\exp[\alpha B^R_4(P-K_{II}-K_{IF})]}{(P-K_{II}-K_{IF})^2-\bar{M}^2}\right)^\ast\nonumber\\
+&\times\Theta(E_{max}-K^0_{II}-K^0_{FF}-K^0_{IF}-K^0_{FI})
+\end{align}
+where $K_{I^2}=\sum_{i_1}k_{i_1}$, $K_{F^2}=\sum_{i_2}k_{i_2}$, $K_{IF}=\sum_{i_3}k_{i_3}$ and $K_{FI}=\sum_{i_4}k_{i_4}$. The sums over the pure initial- and final-state contributions, and over the interference contributions are well factorized and ready to be performed analytically. First, we integrate and sum up contributions from the very soft photons below $\epsilon\sqrt{s}$,
+\begin{align}
+&\sigma(v_{max})=\int_{0}^{E_{max}}dE'\int_{0}^{E_{max}}\delta(E'-E_I-E_F-E_{Int})dE_IdE_FdE_{IF}dE_{FI}\nonumber\\
+&\times\sum_{n_1=0}^{\infty}\frac{1}{n_1!}\prod_{i_1=1}^{n_1}\int_{k^0_{i_1}>\epsilon E}\frac{d^3k_{i_1}}{2k^0_{i_1}}2\widetilde{S}_I(k_{i_1})\exp[2\alpha\widetilde{B}_I(\epsilon E)+2\alpha\Re B_I]\delta\left(E_I-\sum_{i_1}k^0_{i_1}\right)\nonumber\\
+&\times\sum_{n_2=0}^{\infty}\frac{1}{n_2!}\prod_{i_2=1}^{n_2}\int_{k^0_{i_2}>\epsilon E}\frac{d^3k_{i_2}}{2k^0_{i_2}}2\widetilde{S}_F(k_{i_2})\exp[2\alpha\widetilde{B}_F(\epsilon E)+2\alpha\Re B_F]\delta\left(E_F-\sum_{i_2}k^0_{i_2}\right)\nonumber\\
+&\times\sum_{n_3=0}^{\infty}\frac{1}{n_3!}\prod_{i_3=1}^{n_3}\int_{k^0_{i_3}>\epsilon E}\frac{d^3k_{i_3}}{2k^0_{i_3}}2\widetilde{S}_I(k_{i_3})\frac{\exp[\alpha\Delta B^R_4(P-K_{II}-K_{IF})]}{(P-K_{II}-K_{IF})^2-\bar{M}^2}\nonumber\\
+&\times\exp[2\alpha\widetilde{B}_{Int}(\epsilon E)+2\alpha\Re B_{Int}]\delta\left(E_{Int}-\sum_{i_3}k^0_{i_3}\right)\nonumber\\
+&\times\sum_{n_4=0}^{\infty}\frac{1}{n_4!}\prod_{i_4=1}^{n_4}\int_{k^0_{i_4}>\epsilon E}\frac{d^3k_{i_4}}{2k^0_{i_4}}2\widetilde{S}_I(k_{i_4})\left(\frac{\exp[\alpha\Delta B^R_4(P-K_{II}-K_{IF})]}{(P-K_{II}-K_{IF})^2-\bar{M}^2}\right)^\ast\nonumber\\
+&\times\exp[2\alpha\widetilde{B}_{Int}(\epsilon E)+2\alpha\Re B_{Int}]\exp(2\alpha\Re\Delta B^R_4)\delta\left(E_{Int}-\sum_{i_3}k^0_{i_3}\right),
+\end{align}
+where $E=\frac{\sqrt{s}}{2}$. The integration over photon momenta gives 
+\begin{align}
+\sigma(v_{max})=&\int_{0}^{v_{max}}dv\delta(v-v_I-v_F-v_{IF}-v_{FI})\nonumber\\
+&\times\int dv_IF(\gamma_I)v_I^{\gamma_I-1}\exp[2\alpha\widetilde{B}_I(E)+2\alpha\Re B_I]\nonumber\\
+&\times\int dv_FF(\gamma_F)v_F^{\gamma_F-1}\exp[2\alpha\widetilde{B}_F(E)+2\alpha\Re B_F]\nonumber\\
+&\times\int dv_{IF}F\left(\frac{\gamma_{Int}}{2}\right)\frac{1}{2}\gamma_{Int}v_{IF}^{\frac{1}{2}\gamma_{IF}-1}\nonumber\\
+&\times\left(\frac{\exp\{\alpha\Delta B_4^R[s(1-v_I)(1-v_{FI})]\}}{s(1-v_I)(1-v_{FI})-\bar{M}^2}\right)\exp[\alpha\widetilde{B}_{Int}(E)+\alpha\Re B_{Int}]\nonumber\\
+&\times\int dv_{FI}F\left(\frac{\gamma_{Int}}{2}\right)\frac{1}{2}\gamma_{Int}v_{FI}^{\frac{1}{2}\gamma_{FI}-1}\left(\frac{\exp\{\alpha\Delta B_4^R[s(1-v_I)(1-v_{FI})]\}}{s(1-v_I)(1-v_{FI})-\bar{M}^2}\right)^\ast\nonumber\\
+&\times\exp[\alpha\widetilde{B}_{Int}(E)+\alpha\Re B_{Int}],
+\end{align}
+which is explicitly free of IR singularities.
+
+The main problem is whether the $\log\left(\frac{\Gamma}{M_Z}\right)$ terms in the interference subintegral
+\begin{align}
+I_{Int}=&\Re\int_{0}^{v_{max}-v_I-v_F-v_{FI}}dv_{IF}F\left(\frac{\gamma_{IF}}{2}\right)\frac{1}{2}\gamma_{IF}v_{IF}^{\frac{1}{2}\gamma_{Int}-1}\nonumber\\
+&\times\frac{\exp\{\alpha\Delta B_4^R[s'(1-v_{IF})]\}}{s'(1-v_{IF})-\bar{M}^2}.
+\end{align}
+can be cancelled perfectly. We ignore the term $\exp[\alpha\widetilde{B}_{Int}(E)+\alpha\Re B_{Int}]$, because  it does not depend on the resonance parameters. The bulk of the integral comes from the neighborhood of $v_{IF}=0$ and the integrad is $\sim\frac{1}{v}$ at large $v$ because of the resonance. Thus we can extend the integration limit to $\int_{0}^{\infty}dv_{Int}$. We could apply the standard techniques of the complex functions to evaluate the integral. We first reformulate the integral as an integral over the discontinuity $C_1$ along the real axis
+\begin{align}
+I_{Int}=&F\left(\frac{\gamma_{IF}}{2}\right)\exp[\alpha\Delta B^R_4(s')]\frac{1}{i\sin(\frac{\pi}{2}\gamma_{Int})}\nonumber\\
+&\times\int_{C_1}dz\frac{1}{2}\gamma_{Int}(-z)^{\frac{1}{2}\gamma_{Int}-1}\frac{1}{s'-\bar{M}^2-s'z}.
+\end{align}
+because the contour can be closed with big circle, the integral is given by the residue at $z=1-\frac{\bar{M}^2}{s'}$:
+\begin{align}
+I_{Int}&=F\left(\frac{\gamma_{IF}}{2}\right)\exp[\alpha\Delta B^R_4(s')]\frac{\frac{\pi}{2}\gamma_{Int}}{\sin(\frac{\pi}{2}\gamma_{Int})}\left(\frac{\bar{M}^2-s'}{s'}\right)^{\gamma_{Int}-1}\frac{1}{s'}\nonumber\\
+&=\frac{1}{\bar{M}^2-s'}F\left(\frac{\gamma_{Int}}{2}\right)\frac{\frac{\pi}{2}\gamma_{Int}}{\sin(\frac{\pi}{2}\gamma_{Int})}\exp[\alpha\Delta B^R_4(s')]\left(\frac{\bar{M}^2-s'}{s'}\right)^{\frac{1}{2}\gamma_{Int}}\nonumber\\
+&=\frac{1}{\bar{M}^2-s'}[1+O(\gamma_{Int})],
+\end{align}
+where we use the result below
+\begin{align}
+\alpha\Delta B^R_4(s')&=-2Q_eQ_f\frac{\alpha}{\pi}\log\left(\frac{t}{u}\right)\log\left(\frac{\bar{M}^2-s'}{\bar{M}^2}\right)\nonumber\\
+&=-\frac{1}{2}\gamma_{Int}\log\left(\frac{\bar{M}^2-s'}{\bar{M}^2}\right).
+\end{align}
+Therefore we have proved the full cancellation of the dependence on the resonance parameters for the integrated cross section. 
+
+As we have shown before, the $\hat{\beta}$-functions can be derived with the recursive relation of eq. (7.66). The only additional work here is we must keep track of the type of the external real photon (ISR or FSR) and of the total photon momentum after emission of the ISR photons:
+\begin{align}
+\hat{\beta}_0^{(l)}\left(\begin{array}{c}
+p\\\lambda
+\end{array};P\right)=&\mathfrak{M}^{(l)}_0\left(\begin{array}{c}
+p\\\lambda
+\end{array};P\right),\quad l=0,1,2,\nonumber\\
+\hat{\beta}_{1\{I\}}^{(1+l)}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};P-k_1\right)=&\mathfrak{M}^{(1+l)}_{1\{I\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};P-k_1\right)
+\nonumber\\
+&-\hat{\beta}_0^{(l)}\left(\begin{array}{c}
+p\\\lambda
+\end{array};P-k_1\right)\mathfrak{s}^{\{I\}}_{\sigma_1}(k_1),  \qquad l=0,1\nonumber\\
+\hat{\beta}_{1\{F\}}^{(1+l)}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};P\right)=&\mathfrak{M}^{(1+l)}_{1\{F\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};P\right)\nonumber\\
+&-\hat{\beta}_0^{(l)}\left(\begin{array}{c}
+p\\\lambda
+\end{array};P\right)\mathfrak{s}^{\{F\}}_{\sigma_1}(k_1),\qquad l=0,1\nonumber\\
+\hat{\beta}_{2\{\omega_1,\omega_2\}}^{(2)}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array};X_\omega\right)=&\mathfrak{M}^{(2)}_{2\{\omega_1,\omega_2\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array};X_\omega\right)\nonumber\\
+&-\hat{\beta}_{1\{\omega_1\}}^{(1)}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};X_\omega\right)\mathfrak{s}^{\{\omega_2\}}_{\sigma_2}(k_2)\nonumber\\
+&-\hat{\beta}_{1\{\omega_2\}}^{(1)}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};X_\omega\right)\mathfrak{s}^{\{\omega_1\}}_{\sigma_1}(k_1)\nonumber\\
+&-\hat{\beta}_{0}^{0}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};X_\omega\right)\mathfrak{s}^{\{\omega_1\}}_{\sigma_1}(k_1)\mathfrak{s}^{\{\omega_2\}}_{\sigma_2}(k_2),
+\end{align}
+where $X_\omega=P-\sum_{\omega_i=I}k_i$, $P=p_a+p_b$.
+
+The amplitude $\mathfrak{M}$ in eq. (7.106) is given actually by eq. (7.55) with the form factor including the resonance part:
+\begin{align}
+&\mathfrak{M}^{(r)R}_{n\{\omega\}}\left(\begin{array}{c}
+pk_1\cdots k_n\\\lambda\sigma_1\cdots\sigma_n
+\end{array};X_\omega\right)\nonumber\\
+=&\biggl\{ \exp[-\alpha B_4-\alpha\Delta B_4^R(X_\omega)] \mathcal{M}^{(r)R}_{n\{\omega\}}\left(\begin{array}{c}
+pk_1\cdots k_n\\\lambda\sigma_1\cdots\sigma_n
+\end{array};X_\omega\right)\biggr\}\biggr|_O(\alpha^r).\nonumber\\
+\end{align}
+As we see the type $R=\gamma,Z$ of the resonance form factor $B^R_4$ must be adjusted to the type of the component in $\mathcal{M}^{(r)R}$.
+
+\subsection{Virtual Corrections, No Photons}
+So far we have only obtained the formal expressions of $\hat{\beta}$-functions by recursive relations. We will accumulate the actual formulas for the $\hat{\beta}$-functions contributing to the CEEX amplitudes with the case of no real photons and up to two virtual photons. 
+
+Let us begin with the case of the $O(\alpha^1)$ spin amplitudes with one virtual and zero real photons coming from the Feynman diagrams, which contribute the first order $\hat{\beta}^{(1)}_0$. The spin amplitudes are given by
+\begin{align}
+\mathcal{M}_0^{(1)}\left(\begin{array}{c}
+p\\\lambda
+\end{array};X\right)=&\mathfrak{B}\left(\begin{array}{c}
+p\\\lambda
+\end{array};X\right)[1+Q^2_eF_1(s,m_e,m_\gamma)][1+Q^2_fF_1(s,m_f,m_\gamma)]\nonumber\\
+&+\mathcal{M}^{(1)}_{Box}\left(\begin{array}{c}
+p\\\lambda
+\end{array};X\right),
+\end{align}
+where $F_1$ is the standard electric form factor regularized with a photon mass. We neglect the magnetic form factor $F_2$ temporarily, It will be restored in the future. In $F_1$ we keep the exact final fermion mass. 
+
+In the present work we adopt the spin amplitudes for $\gamma$-$\gamma$ adn $\gamma$-$Z$ boxes in the small mass approximation $\frac{m^2_e}{s}\to 0$, $\frac{m_f^2}{s}\to 0 $, accodring to Refs. \cite{WasPol,box},
+\begin{align}
+\mathcal{M}^{(1)}_\text{Box}=&2ie^2\sum_{B=\gamma,Z}\frac{g_{\lambda_a}^{B,e}g_{-\lambda_a}^{B,f}T_{\lambda_c\lambda_a}T'_{\lambda_b\lambda_d}+g_{\lambda_a}^{B,e}g_{\lambda_a}^{B,f}U'_{\lambda_c\lambda_b}U_{\lambda_a\lambda_d}}{X^2-M_B^2+i\Gamma\frac{X^2}{M_B}}\nonumber\\
+&\times\delta_{\lambda_a,-\lambda_b}\delta_{\lambda_c,-\lambda_d}\frac{\alpha}{\pi}Q_eQ_f[\delta_{\lambda_a,\lambda_c}f_{BDP}(\bar{M}^2_B,m_\gamma,s,t,u)\nonumber\\
+&-\delta_{\lambda_a,-\lambda_c}f_{BDP}(\bar{M}^2_B,m_\gamma,s,u,t)],
+\end{align}
+where
+\begin{align}
+f_{BDP}(\bar{M},m_\gamma,s,u,t)=&\log\left(\frac{t}{u}\right)\log\left(\frac{m^2_\gamma}{\sqrt{tu}}\right)-2\log\left(\frac{t}{u}\right)\log\left(\frac{\bar{M}^2_B-s}{\bar{M}^2_B}\right)\nonumber\\
+&+Li_2\left(\frac{\bar{M}^2+u}{\bar{M}^2_b}\right)-Li_2\left(\frac{\bar{M}^2+t}{\bar{M}^2_b}\right)\nonumber\\
+&+\frac{(M^2_B-s)(u-t-\bar{M}_B^2)}{u^2}\biggl\{ \log\left(\frac{-t}{s}\right)\log\left(\frac{\bar{M}^2_B-s}{\bar{M}^2_B}\right)\nonumber\\
+&+Li_2\left(\frac{\bar{M}^2_B+t}{\bar{M}^2_B}\right)-Li_2\left(\frac{\bar{M}^2_B-s}{\bar{M}^2_B}\right) \biggr\}\nonumber\\
+&+\frac{(\bar{M}^2_B-s)^2}{us}\log\left(\frac{\bar{M}^2_B-s}{\bar{M}_B^2}\right)+\frac{\bar{M}^2-s}{u}\log\left(\frac{-t}{\bar{M}^2_B}\right),\nonumber\\
+\end{align}
+$\bar{M}^2_Z=M^2_Z-iM_Z\Gamma_Z$, $\bar{M}^2_\gamma=m^2_\gamma$, and the function $f_{BDP}$ is from Ref. \cite{box}. The standard Mandelstam variables $s$, $t$ and $u$ are defined as usual: $s=(p_a+p_b)^2$, $t=(p_a-p_c)^2$ and $u=(p_a-p_d)^2$. Since in the rest of the calculation we do not use $\frac{m_f^2}{s}\to0$, we intend to replace the above box spin amplitudes with the finit mass result according to Ref \cite{JW85}. 
+
+Using eq. (7.107) we have
+\begin{eqnarray}
+\hat{\beta}_0^{(1)}\left(\begin{array}{c}
+p\\\lambda
+\end{array};X\right)=\mathfrak{B}\left(\begin{array}{c}
+	p\\\lambda
+	\end{array};X\right)[1+\delta^{(1)e}_{Virt}(s)][1+\delta^{(1)f}_{Virt}(s)]+\mathcal{R}_{Box}^{(1)}\left(\begin{array}{c}
+	p\\\lambda
+	\end{array};X\right),\nonumber\\
+\end{eqnarray}
+where
+\begin{eqnarray}
+&&\delta^{(1)e}_{Virt}(s)=Q^2_eF_1(s,m_e,m_\gamma)-Q^2_e\alpha B_2(p_a,p_b,m_\gamma)=Q^2_e\frac{\alpha}{\pi}\frac{1}{2}\bar{L}_e\nonumber\\
+&&\delta^{(1)f}_{Virt}(s)=Q^2_fF_1(s,m_f,m_\gamma)-Q^2_e\alpha B_2(p_c,p_d,m_\gamma)=Q^2_f\frac{\alpha}{\pi}\frac{1}{2}\bar{L}_f\nonumber\\
+&&\bar{L}_e=\log\left(\frac{s}{m_e^2}\right)+i\pi-1,\quad \bar{L}_f=\log\left(\frac{s}{m_f^2}\right)+i\pi-1.
+\end{eqnarray}
+
+The IR substraction in $\mathcal{M}_\text{Box}^{(1)}$ using eq. (7.107) results in the IR-finite $\mathcal{R}_\text{Box}$. The above substraction is equivalent to the following substitution:
+\begin{equation}
+f_{BDP}(\bar{M}^2_B,m_\gamma,s,t,u)\to f_{BDP}(\bar{M}^2,m_\gamma,s,t,u)-f_{IR}(m_\gamma,t,u),
+\end{equation}
+where
+\begin{align}
+f_{IR}(m_\gamma,t,u)=&\frac{2}{\pi}B_2(p_a,p_c,m_\gamma)-\frac{2}{\pi}B_2(p_a,p_d,m_\gamma)\nonumber\\
+=&\log\left(\frac{t}{u}\right)\log\left(\frac{m^2_\gamma}{\sqrt{tu}}\right)+\frac{1}{2}\log\left(\frac{t}{u}\right),
+\end{align}
+and the additional resonance factor $\exp[-\alpha\Delta B^Z_4(s)]$ in eq. (7.107) includes the additional substraction in teh $\gamma$-Z box part:
+\begin{equation}
+f_\text{BDP}(s,t,u)\to f_\text{BDP}(s,t,u)-\alpha\Delta B_4^Z(s).
+\end{equation}
+
+Our $O(\alpha^2)$ expressions for $\hat{\beta}^{(2)}_0$ are still incomplete because we neglected some trivial transposition of the diagrams among the second-order vertex diagrams.  By eq. (7.107) we have 
+\begin{eqnarray}
+\hat{\beta}_0^{(2)}\left(\begin{array}{c}
+p\\\lambda
+\end{array};X\right)=\mathfrak{B}\left(\begin{array}{c}
+p\\\lambda
+\end{array};X\right)[1+\delta^{(2)e}_{Virt}(s)][1+\delta^{(2)f}_{Virt}(s)]+\mathcal{R}_{Box}^{(2)}\left(\begin{array}{c}
+p\\\lambda
+\end{array};X\right),\nonumber\\
+\end{eqnarray}
+It the present calculation we omit the two-loop double box contribution in $\mathcal{R}_{Box}^{(2)}$. In fact we keep only the first-order box contribution $\mathcal{R}_{Box}^{(1)}$ in our incomplete $O(\alpha^2)$-type matrix element. Note that the lack of the above contribution will not undermine the validity of our approach because what we omit is IR finite. And since the contribution we neglect is expected to be numerically small, of $O(\alpha^2 L^1)$, our overall physical precision is still reliable.
+
+Accoring to Refs. \cite{BWF-NPB,Burges,BBW}, we have the $O(\alpha^2)$ corrections to the electric form factor as follows:
+\begin{align}
+\delta^{(2)e}_{Virt}(s,m_e)=&\delta^{(1)e}_{Virt}(s)+\left(\frac{\alpha}{\pi}\right)^2\left[ \frac{\bar{L}^2_e}{8}+\bar{L_e}\left(\frac{3}{32}-\frac{3}{4}\zeta_2+\frac{3}{2}\zeta_3\right) \right],\nonumber\\
+\delta^{(2)f}_{Virt}(s,m_f)=&\delta^{(1)f}_{Virt}(s)+\left(\frac{\alpha}{\pi}\right)^2\left[ \frac{\bar{L}^2_f}{8}+\bar{L_e}\left(\frac{3}{32}-\frac{3}{4}\zeta_2+\frac{3}{2}\zeta_3\right) \right].\nonumber\\
+\end{align}
+
+Next, let us discuss the electroweak corrections in CEEX. In the absence of Electroweak corrections, the coupling constants of two neutral boson $\gamma$ and $Z$ are defined conventionally as
+\begin{align}
+&G^{Z,f}_\lambda=g^{Z,f}_V-\lambda g^{Z,f}_A,\quad G_\lambda^{\gamma,f}=g^{Z,f}_V, \quad \lambda=\pm=R,L,\nonumber\\
+&g^{\gamma,e}_V=Q_e=-1,\quad g^\gamma_{V,f}=Q_f,\quad g^{\gamma,e}_A=0,\quad g^\gamma_{A,f}=0,\nonumber\\
+&g^{Z,e}_V=\frac{2T^3_e-4Q_e\sin^2\theta_W}{16\sin^2\theta_W\cos^2\theta_W},\quad g^{Z,f}_V=\frac{2T^3_f-4Q_f\sin^2\theta_W}{16\sin^2\theta_W\cos^2\theta_W},\nonumber\\
+&g^{Z,e}_A=\frac{2T^3_e}{16\sin^2\theta_W\cos^2\theta_W},\quad g^{Z,f}_V=\frac{2T^3_f}{16\sin^2\theta_W\cos^2\theta_W},
+\end{align}
+where $T^3_f$ is the isospin of the left-handed component of the fermion.
+
+Electroweak corrections in CEEX are implemented using DIZET package, which is a part of the ZFITTER semi-analytical program. The actual execution of the electroweak corrections goes as follows: the $\gamma$ and $Z$ propagators are multiplied by the corresponding two scalar form factors due to vacuum polarizations:
+\begin{align}
+H_\gamma&\to H_\gamma\times\frac{1}{2-\Pi_\gamma},\nonumber\\
+H_Z&\to H_Z\times 16\sin^2\theta_W\cos^2\theta_W\frac{G_\mu M^2_Z}{\alpha_{QED}8\sqrt{2}\pi}\rho_{EW}.
+\end{align}
+Additionally the vector coupling constants of $Z$ boson are multiplied by extra form factors
+\begin{eqnarray}
+g^{Z,e}_V=\frac{2T^3_e-4Q_e\sin^2\theta_W}{16\sin^2\theta_W\cos^2\theta_W}\to\frac{2T^3_e-4Q_e\sin^2\theta_WF^e_{EW}(s)}{16\sin^2\theta_W\cos^2\theta_W},\nonumber\\ g^{Z,f}_V=\frac{2T^3_f-4Q_f\sin^2\theta_W}{16\sin^2\theta_W\cos^2\theta_W}\to\frac{2T^3_f-4Q_f\sin^2\theta_WF^f_{EW}(s)}{16\sin^2\theta_W\cos^2\theta_W},
+\end{eqnarray}
+where the electroweak form factors $F^3_{EW}(s)$ and $F^f_{EW}(s)$ are given by DIZET library and they correspond to electroweak vertex corrections.
+
+The electroweak box diagrams need a more complicated treatment. In the Born spin amplitudes two products of the coupling constants are given by 
+\begin{align}
+g^{Z,e}_\lambda g^{Z,f}_{-\lambda}&=(g^{Z,e}_V-\lambda g^{Z,e}_A)(g^{Z,f}_V+\lambda g^{Z,f}_A),\nonumber\\
+g^{Z,e}_\lambda g^{Z,f}_{\lambda}&=(g^{Z,e}_V-\lambda g^{Z,e}_A)(g^{Z,f}_V-\lambda g^{Z,f}_A).
+\end{align}
+Therefore the doubly-vector component arrives at
+\begin{equation}
+g^{Z,e}_Vg^{Z,f}_V=\frac{4T_e^3T^3_f-8T^3_eQ_fF^f_{EW}(s)-8T^3_fQ_eF^e_{EW}(s)+16Q_f^2F^{ef}_{EW}(s,t)}{(16\sin^2\theta_W\cos^2\theta_W)^2},
+\end{equation}
+where the new form factor $F^{e,f}_{EW}(s,t)$ corresponds to electroweak box diagrams and is angle-dependent. 
+
+
+\subsection{One Real Photon}
+Next let us discuss of the $\hat{\beta}_1$ tensors corresponding to the emission of a single real photon with the tree-level case (zero virtual photons). We start with $O(\alpha^1)$ split amplitude fro the single bremsstrahlung (including ISR and FSR). 
+
+\begin{axopicture}(520,140)
+	\Photon(50,70)(120,70){2}{6}\Text(85,60){$\gamma^\ast,Z$}
+	\Vertex(50,70){1.5}\Vertex(120,70){1.5}
+	\Line[arrow](10,30)(30,50)\Line[arrow](30,50)(50,70)
+	\Photon(30,50)(50,30){2}{3} \Text(55,30){$1$}
+	\Line[arrow](50,70)(10,110)
+	\Line[arrow](120,70)(160,30)
+	\Line[arrow](160,110)(120,70)
+	\Text(15,20){$a$}
+	\Text(155,20){$c$}
+	
+	\Text(15,120){$b$}
+	\Text(155,120){$d$}
+	\Photon(220,70)(290,70){2}{6}\Text(255,60){$\gamma^\ast,Z$}
+	\Line[arrow](180,30)(220,70)
+	\Line[arrow](220,70)(200,90)\Line[arrow](200,90)(180,110)
+	\Photon(200,90)(220,110){2}{3}\Text(230,110){$1$}
+	\Line[arrow](290,70)(330,30)
+	\Line[arrow](330,110)(290,70)
+	\Text(185,20){$a$}
+	\Text(325,20){$c$}
+	
+	\Text(185,120){$b$}
+	\Text(325,120){$d$}
+	\Text(170,0){ISR diagrams.}
+\end{axopicture}
+\\ \newline \newline
+The first-order, one-photon, ISR matrix element from the Feynman diagrams is
+\begin{align}
+\mathcal{M}_{1\{I\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array}\right)
+=&eQ_e\bar{v}(p_b,\lambda_b)\mathbf{M}_{\{I\}}\frac{\slashed p_a+m-\slashed k_1}{-2k_1p_a}\slashed \epsilon^\ast_{\sigma_1}(k_1)u(p_a,\lambda_a)\nonumber\\
+&+eQ_e\bar{v}(p_b,\lambda_b)\slashed \epsilon^\ast_{\sigma_1}(k_1)\frac{-\slashed p_b+m+\slashed k_1}{-2k_1p_a}\mathbf{M}_{\{I\}}u(p_a,\lambda_a),\nonumber\\
+\end{align}
+where
+\begin{equation}
+\mathbf{M}_{\{I\}}=ie^2\sum_{B=\gamma,Z}\Pi_{B}^{\mu\nu}(X)G^B_{e\mu}(G^B_{f,\nu})_{[cd]}
+\end{equation}
+is the annihilation scattering spinor matrix, including the final-state spinors. We split the above formula into the soft IR parts proportional to $(\slashed p\pm m)$ and the non-IR parts proportional to $\slashed k_1$. Then we have, using completeness relation (D.5) in the Appenix (D)
+\begin{align}
+\mathcal{M}_{1\{I\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array}\right)
+=&-\frac{eQ_e}{2k_1p_a}\sum_\rho\mathfrak{B}\left[\begin{array}{c}
+p_bp_a\\\lambda_b\rho_a
+\end{array}\right]_{[cd]}U\left[\begin{array}{c}
+p_ak_1p_a\\\rho_a\sigma_1\lambda_a
+\end{array}\right]\nonumber\\
+&+\frac{eQ_e}{2k_1p_a}\sum_\rho V\left[\begin{array}{c}
+p_bk_1p_b\\\lambda_b\sigma_1\rho_b
+\end{array}\right]
+\mathfrak{B}\left[\begin{array}{c}
+p_bp_a\\\rho_b\lambda_a\
+\end{array}\right]_{[cd]}\nonumber\\
+&+\frac{eQ_e}{2k_1p_b}\sum_\rho\mathfrak{B}\left[\begin{array}{c}
+p_bk_1\\\lambda_b\rho
+\end{array}\right]_{[cd]}U\left[\begin{array}{c}
+k_1k_1p_a\\\rho\sigma_1\lambda_a
+\end{array}\right]\nonumber\\
+&-\frac{eQ_e}{2k_1p_b}\sum_\rho V\left[\begin{array}{c}
+p_bk_1k_1\\\lambda_b\sigma_1\rho
+\end{array}\right]
+\mathfrak{B}\left[\begin{array}{c}
+k_1p_a\\\rho\lambda_a\
+\end{array}\right]_{[cd]}.\nonumber\\
+\end{align}
+The summation in the first two terms gets canceled by the diagonality property of $U$ and $V$ and leads to
+\begin{align}
+\mathcal{M}_{1\{I\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array}\right)=&\mathfrak{s}^{\{I\}}_{\sigma_1}(k_1)\mathfrak{B}\left[\begin{array}{c}
+p\\\lambda
+\end{array}\right]+r_{\{I\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array}\right),\nonumber\\
+r_{\{I\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array}\right)=&+\frac{eQ_e}{2k_1p_b}\sum_\rho\mathfrak{B}\left[\begin{array}{c}
+p_bk_1\\\lambda_b\rho
+\end{array}\right]_{[cd]}U\left[\begin{array}{c}
+k_1k_1p_a\\\rho\sigma_1\lambda_a
+\end{array}\right]\nonumber\\
+&-\frac{eQ_e}{2k_1p_b}\sum_\rho V\left[\begin{array}{c}
+p_bk_1k_1\\\lambda_b\sigma_1\rho
+\end{array}\right]
+\mathfrak{B}\left[\begin{array}{c}
+k_1p_a\\\rho\lambda_a\
+\end{array}\right]_{[cd]},\nonumber\\
+\mathfrak{s}^{\{I\}}_{\sigma_1}(k_1)=&-eQ_e\frac{b_{\sigma_1}(k_1,p_a)}{2k_1p_a}+eQ_e\frac{b_{\sigma_1}(k_1,p_b)}{2k_1p_b}.
+\end{align}
+The soft part is now separated and the remaining non-IR part for CEEX is obtained.
+
+\begin{axopicture}(520,140)
+	\Photon(50,70)(120,70){2}{6}\Text(85,60){$\gamma^\ast,Z$}
+	\Line[arrow](10,30)(50,70)
+	\Line[arrow](50,70)(10,110)
+	\Line[arrow](120,70)(140,50)\Line[arrow](140,50)(160,30)
+	\Photon(140,50)(160,70){2}{3}\Text(160,80){$1$}
+	\Line[arrow](160,110)(120,70)
+	\Text(15,20){$a$}
+	\Text(155,20){$c$}
+	
+	\Text(15,120){$b$}
+	\Text(155,120){$d$}
+	\Photon(220,70)(290,70){2}{6}\Text(255,60){$\gamma^\ast,Z$}
+	\Line[arrow](180,30)(220,70)
+	\Line[arrow](220,70)(180,110)
+	\Line[arrow](290,70)(330,30)
+	\Line[arrow](330,110)(310,90)\Line[arrow](310,90)(290,70)
+	\Photon(310,90)(330,70){2}{3}\Text(330,60){$1$}
+	\Text(185,20){$a$}
+	\Text(325,20){$c$}
+	
+	\Text(185,120){$b$}
+	\Text(325,120){$d$}
+	\Text(170,0){FSR diagrams.}
+\end{axopicture}
+\\ \newline\newline
+
+The case of the final-state, one-real-photon emission can be analyzed in a analogous way. The first-order FSR, one-photon, matrix element reads 
+\begin{align}
+\mathcal{M}_{1\{F\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array}\right)
+=&eQ_f\bar{u}(p_c,\lambda_c)\slashed \epsilon^\ast_{\sigma_1}(k_1)\frac{\slashed p_c+m+\slashed k_1}{2k_1p_c}\mathbf{M}_{\{F\}}v(p_d,\lambda_d)\nonumber\\
+&+eQ_f\bar{u}(p_c,\lambda_c)\mathbf{M}_{\{F\}}\frac{-\slashed p_d+m-\slashed k_1}{2k_1p_d}\slashed \epsilon^\ast_{\sigma_1}(k_1)v(p_d,\lambda_d),\nonumber\\
+\end{align}
+where
+\begin{equation}
+\mathbf{M}_{\{F\}}=ie^2\sum_{B=\gamma,Z}\Pi_{B}^{\mu\nu}(X)(G^B_{e,\mu})_{[ba]}G^B_{f\nu}
+\end{equation}
+is the annihilation scattering spinor matrix, including the initial spinors. Analogously, the expansion into soft and non-IR parts for the FSR spin amplitudes is obtained:
+\begin{align}
+\mathcal{M}_{1\{F\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array}\right)=&\mathfrak{s}^{\{F\}}_{\sigma_1}(k_1)\mathfrak{B}\left[\begin{array}{c}
+p\\\lambda
+\end{array}\right]+r_{\{F\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array}\right),\nonumber\\
+r_{\{F\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array}\right)=&+\frac{eQ_f}{2k_1p_c}\sum_\rho U\left[\begin{array}{c}
+p_ck_1k_1\\\lambda_c\sigma_1\rho
+\end{array}\right]\mathfrak{B}_{[ba]}\left[\begin{array}{c}
+k_1p_d\\\rho\lambda_d
+\end{array}\right]\nonumber\\
+&-\frac{eQ_f}{2k_1p_d}\sum_\rho \mathfrak{B}_{[ba]}\left[\begin{array}{c}
+p_ck_1\\\lambda_c\rho
+\end{array}\right]V\left[\begin{array}{c}
+k_1k_1p_d\\\rho\sigma_1\lambda_d
+\end{array}\right]
+,\nonumber\\
+\mathfrak{s}^{\{F\}}_{\sigma_1}(k_1)=&-eQ_f\frac{b_{\sigma_1}(k_1,p_c)}{2k_1p_c}+eQ_f\frac{b_{\sigma_1}(k_1,p_d)}{2k_1p_d}.
+\end{align}
+
+For the discussion of the remaining non-IR terms, it is useful to introduce a compact tensor nontation:
+\begin{equation}
+U\left[ \begin{array}{c}
+p_fk_ik_j\\\lambda_f\sigma_i\sigma_f
+\end{array} \right]\equiv U_{[f,i,j]},\quad \mathfrak{B}\left[\begin{array}{c}
+p_bp_a\\\lambda_a\lambda_b
+\end{array}\right]\left[\begin{array}{c}
+p_cp_d\\\lambda_c\lambda_d
+\end{array}\right],
+\end{equation}
+
+
+\begin{equation}
+U_{[a,i,j']}V_{[j',j,b]}\equiv\sum_{\sigma'_j=\pm}U\left[\begin{array}{c}
+p_ak_ik_j\\\lambda_a\sigma_i\sigma'_j
+\end{array}\right]V\left[\begin{array}{c}
+k_jk_jp_b\\\sigma'_j\sigma_j\lambda_b
+\end{array}\right].
+\end{equation}
+
+With the help of the above notation, the complete $O(\alpha^1)$ spin amplitudes for the one-photon ISR+FSR with explicit split into IR and non-IR parts, and ISR and FSR parts reads
+\begin{align}
+\mathfrak{M}^{(1)}_1\left(
+\begin{array}{c}
+pk_1\\\lambda\sigma
+\end{array}\right)=&\mathfrak{M}^{(1)}_{1\{I\}}\left(
+\begin{array}{c}
+pk_1\\\lambda\sigma
+\end{array}\right)(P-k_1)+\mathfrak{M}^{(1)}_{1\{F\}}\left(
+\begin{array}{c}
+pk_1\\\lambda\sigma
+\end{array}\right)(P)\nonumber\\
+=&\mathfrak{s}_{[1]}^{\{I\}}\mathfrak{B}\left(\begin{array}{c}
+p\\\lambda
+\end{array};P-k_1\right)+r_{I}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};P-k_1\right)\nonumber\\
+&+\mathfrak{s}_{[1]}^{\{F\}}\mathfrak{B}\left(\begin{array}{c}
+p\\\lambda
+\end{array};P\right)+r_{F}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};P\right),
+\end{align}
+where
+\begin{align}
+r_{I}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};X\right)=&\frac{eQ_e}{2kp_a}\mathfrak{B}_{[b1'cd]}(X)U_{[1'1a]}-\frac{eQ_e}{2kp_b}V_{[b11']}\mathfrak{B}_{[1'acd]}(X)\nonumber\\
+r_{F}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};X\right)=&\frac{eQ_f}{2kp_c}U_{[c11']}\mathfrak{B}_{[ba1'd]}(X)-\frac{eQ_f}{2kp_d}\mathfrak{B}_{[bac1']}(X)V_{[1'1d]}.\nonumber\\
+\end{align}
+In the lowest order, the Born spin amplitudes $\mathfrak{B}$ are defined in eq. (7.50).
+
+
+With the help of the $O(\alpha^1)$ variant of eq. (7.106) we are now ready to obtain 
+\begin{align}
+\hat{\beta}^{(1)}_{1\{I\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};P-k_1\right)\equiv&r_{\{I\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};P-k_1\right),\nonumber\\
+\hat{\beta}^{(1)}_{1\{F\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};P\right)\equiv&r_{\{F\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};P\right)\nonumber\\
+&+\left(\frac{(p_c+p_d+k_1)^2}{(p_c+p_d)^2}-1\right)\mathfrak{B}\left(\begin{array}{c}
+p\\\lambda
+\end{array};X\right).\nonumber\\
+\end{align}
+The total four-momentum in the resonance propagator $X$ is uniquely define as $X=P-k_1$ in the case of ISR and  $X=P$ in the case of FSR.
+
+In order to obtain the $\hat{\beta}^{(2)}_1$, we have to deal with the non-trivial case of the simultaneous emission of virtual and real photons. Therefore it is instructive to write the formal definition of $\hat{\beta}^{(2)}_1$ in a particular case:
+\begin{align}
+\mathfrak{M}^{(2)}_{1\{\omega\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};X_\omega\right)&=\biggl\{ \exp[-\alpha B_4-\alpha \Delta B^R_4(X_\omega)]\mathcal{M}^{(2)}_{1\{\omega\}} \biggr\}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};X_\omega\right)\biggr|_O(\alpha^2),\nonumber\\
+\omega&=I,F,\quad R=\gamma,Z,
+\end{align}
+\begin{align}
+\hat{\beta}^{(2)}_{1\{I\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};P-k_1\right)=&\mathfrak{M}^{(2)}_{1\{I\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};P-k_1\right)-\mathfrak{s}^{\{I\}}_{\sigma_1}\hat{\beta}_0^{(1)}\left(\begin{array}{c}
+p\\\lambda
+\end{array};P-k_1\right),\nonumber\\
+\hat{\beta}^{(2)}_{1\{F\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};P-k_1\right)=&\mathfrak{M}^{(2)}_{1\{F\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};P\right)-\mathfrak{s}^{\{F\}}_{\sigma_1}\hat{\beta}_0^{(1)}\left(\begin{array}{c}
+p\\\lambda
+\end{array};P\right).
+\end{align}
+For this moment, we have the amplitudes corresponding to vertexlike diagrams and we miss the diagrams of the "5-box" type. More precisely, after applying the IR virtual substraction in eq. (7.135) we expand in the number of loops,
+\begin{align}
+\mathfrak{M}^{(2)}_{1\{\omega\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};X\right)=&\mathfrak{M}^{(1)}_{1\{\omega\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};X\right)+\alpha Q^2_e\mathfrak{M}^{[1]}_{1\{\omega\},II}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};X\right)\nonumber\\
+&+\alpha Q^2_f\mathfrak{M}^{[1]}_{1\{\omega\},FF}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};X\right)\nonumber\\
+&+\alpha Q_e Q_f\mathfrak{M}^{[1]}_{1\{\omega\},\text{Box5}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};X\right).
+\end{align}
+In the above formula the first term corresponds the tree-level single bremsstrahlung, the next two terms correspond to the vertexlike diagrams, and the last one represents the "5-box"-type diagrams. The "5-box" term is given by
+\begin{align}
+\hat{\beta}^{(2)}_{1\{\omega\},\text{Box5}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};X\right)=&\alpha Q_eQ_f\mathfrak{M}^{[1]}_{1\{\omega\},\text{Box5}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};X\right)\nonumber\\
+&-\mathfrak{s}_{[1]}^{\{I\}}\mathcal{R}^{(1)}_\text{Box}\left(\begin{array}{c}
+p\\\lambda
+\end{array};X\right)--\mathfrak{s}_{[1]}^{\{F\}}\mathcal{R}^{(1)}_\text{Box}\left(\begin{array}{c}
+p\\\lambda
+\end{array};X\right).\nonumber\\
+\end{align}
+As we see, the trivial IR part is proportional to the ordinary box contribution mentioned before. 
+
+From the pure "vertexlike" diagrams for one real ISR photon we have the following $O(Q_e^2\alpha^2)$ result:
+\begin{align}
+\hat{\beta}^{(2)}_{1\{I\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};X\right)\equiv& r_{\{I\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};X\right)[1+\delta_{Virt}^{(1)e}(s)+\rho_{Virt}^{(2)e}(s,\widetilde{\alpha}_1,\widetilde{\beta}_1)]\nonumber\\
+&\times[1+\delta_{Virt}^{(1)f}(s)]+\mathfrak{B}\left(\begin{array}{c}
+p\\\lambda
+\end{array};X\right)\mathfrak{s}^{\{I\}}_{\sigma_1}(k_1)\rho_{Virt}^{(2)e}(s,\widetilde{\alpha},\widetilde{\beta})\nonumber\\
+\end{align}
+where
+\begin{align}
+\rho_{Virt}^{(2)e}(s,\widetilde{\alpha},\widetilde{\beta})=&\frac{\alpha}{\pi}Q^2_e\frac{1}{2}[V(s,\widetilde{\alpha},\widetilde{\beta})+V(s,\widetilde{\beta}),\widetilde{\alpha}],\nonumber\\
+V(s,\widetilde{\alpha},\widetilde{\beta})=&\log(\widetilde{\alpha})\log(1-\widetilde{\beta})+Li_2(\widetilde{\alpha})-\frac{1}{2}\log^2(1-\widetilde{\alpha})\nonumber\\
+&+\frac{3}{2}\log(1-\widetilde{\alpha})+\frac{1}{2}\frac{\widetilde{\alpha}(1-\widetilde{\alpha})}{[1+(1-\widetilde{\alpha})^2]}
+\end{align}
+and we use the Sudakov varibles
+\begin{equation}
+\widetilde{\alpha}_i=\frac{2k_ip_b}{2p_ap_b},\quad\widetilde{\beta}_i=\frac{2k_ip_a}{2p_ap_b}.
+\end{equation}
+
+From eq. (7.139) we have several remarks:
+
+The terms of $O(\alpha^4)$ like $|\mathfrak{s}_\sigma^{\{I\}}\rho_{Virt}^{(2)e}|^2$ in the cross section are not rejected. They are included in the process of numerical evaluation of the differential cross sections out of spin amplitudes.
+
+The term $r_{\{I\}}\delta_{Virt}^{(1)e}$ contributes to $O(\alpha^2L^2)$ to the integrated cross section: one logarithm is explicit from the virtual photon and another is from the integration over the angle of the real photon.
+
+The term $\sim\log(\widetilde{\alpha})\log(1-\widehat{\beta})$ contributes a correction of $O(\alpha^2L^2)$ to the integrated cross section. The double logarthim comes directly from the integration over the angle of the real photon:
+\begin{equation}
+\int\frac{d^3k}{k^0}\Re[\rho_{Virt}^{(2)e}(k)\{\hat{\beta}_0\mathfrak{s}^{\{I\}}_\sigma(k)\}^\ast]\sim Q^2_e\alpha^2\int_{\frac{m^2_e}{s}}\frac{d\widetilde{\alpha}}{\widetilde{\alpha}}\sim Q^2_e\alpha^2\log^2\left(\frac{s}{m^2_e}\right).
+\end{equation}
+
+Similarly, the $O(Q_f^2\alpha^2)$ contribution for one real FSR photon is 
+\begin{align}
+\hat{\beta}^{(2)}_{1\{F\}}\left(\begin{array}{c}
+pk\\\lambda\sigma
+\end{array};X\right)\equiv& r_{\{F\}}\left(\begin{array}{c}
+pk\\\lambda\sigma
+\end{array};X\right)[1+\delta_{Virt}^{(1)f}(s)][1+\delta_{Virt}^{(1)f}(s)+\rho_{Virt}^{(2)f}(s,\widetilde{\alpha'},\widetilde{\beta'})]\nonumber\\
+&+\mathfrak{B}\left(\begin{array}{c}
+\mathfrak{p}\\\lambda
+\end{array};X\right)\mathfrak{s}^{\{F\}}_{\sigma_1}(k_1)\rho_{Virt}^{(2)f}(s,\widetilde{\alpha'},\widetilde{\beta'})\nonumber\\
+&+\mathfrak{B}\left(\begin{array}{c}
+\mathfrak{p}\\\lambda
+\end{array};X\right)\mathfrak{s}^{\{F\}}_{\sigma}(k)[1+\delta_{Virt}^{(1)e}(s)][1+\delta_{Virt}^{(1)f}(s)]\nonumber\\
+&\times\left(1-\frac{(p_c+p_d+k)^2}{(p_c+p_d)^2}\right)
+\end{align}
+where
+\begin{eqnarray*}
+\rho_{Virt}^{(2)f}(s,\widetilde{\alpha},\widetilde{\beta})&=&\frac{\alpha}{\pi}Q^2_f\frac{1}{4}\bar{L}_f[\log(1-\widetilde{\alpha}^{''})+\log(1-\widetilde{\beta}^{''})],
+\end{eqnarray*}
+\begin{align}
+&\widetilde{\alpha}'=\frac{2k_ip_b}{2p_ap_b},\quad\widetilde{\beta}'=\frac{2k_ip_a}{2p_ap_b},\nonumber\\
+&\widetilde{\alpha}^{''}=\frac{\widetilde{\alpha}'}{1+\widetilde{\alpha}'+\widetilde{\beta}'},\quad \widetilde{\alpha}^{''}=\frac{\widetilde{\beta}'}{1+\widetilde{\alpha}'+\widetilde{\beta}'}.
+\end{align}
+In the above FSR amplitudes averaged over the photon angles, only the double logarithmic part is kept.
+
+
+\subsection{Two Real Photons}
+
+In the $O(\alpha^2)$, the contributions from two real photons are completely at the tree level without virtual corrections. There are three types of double bremsstrahlung: two ISR photons, two FSR photons and one ISR photon plus one FSR photon. In the following, the corresponding spin amplitudes will be given without any approximation, in particular we will not use the small-mass approximation $\frac{m_f^2}{s}\ll 1$.
+
+(\romannumeral 1) Two real ISR photons:
+The second-order, two-photon, ISR matrix element for the Feynman diagrams is given by
+\begin{align}
+&\mathcal{M}^{(2)}_{2\{II\}}\left(\begin{array}{c}
+p_ap_bk_1k_2\\\lambda_a\lambda_b\sigma_1\sigma_2
+\end{array};P-k_1-k_2\right)\nonumber\\
+=&ie^2\sum_{B=\gamma,Z}\Pi_B^{\mu\nu}(P-k_1-k_2)(G^B_{f,\nu})_{[c,d]}(eQ_e)^2\bar{v}(p_b,\lambda_b)\nonumber\\
+&\times\biggl\{ G^B_{e,\mu}\frac{(\slashed p_a+m)-\slashed k_1-\slashed k_2}{-2k_1p_a-2K_2p_a+2k_1k_2}\slashed \epsilon^\ast_{\sigma_1}(k_1) \frac{(\slashed p_a+m)-\slashed k_2}{-2k_2p_a}\slashed\epsilon^\ast_{\sigma_2}(k_2)\nonumber\\
+&+ \slashed \epsilon^\ast_{\sigma_1}(k_1)\frac{(-\slashed p_b+m)-\slashed k_1}{-2k_1p_b}\slashed\epsilon^\ast_{\sigma_2}(k_2)\frac{(-\slashed p_b+m)+\slashed k_1+\slashed k_2}{-2k_1p_b-2K_2p_b+2k_1k_2} G^B_{e,\mu}\nonumber\\
+&+ \slashed \epsilon^\ast_{\sigma_1}(k_1)\frac{(-\slashed p_b+m)-\slashed k_1}{-2k_1p_b}G^B_{e,\mu}\frac{(\slashed p_a+m)-\slashed k_2}{-2k_2p_a} \slashed\epsilon^\ast_{\sigma_2}(k_2)\nonumber\\
+&+(1\leftrightarrow 2)\biggr\}u(p_a,\lambda_a).
+\end{align}
+Using eq. (7.106), we have
+\begin{align}
+&\hat{\beta}^{(2)}_{2\{II\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array};P-k_1-k_2\right)
+=\mathfrak{M}^{(2)}_{2\{II\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array};P-k_1-k_2\right)\nonumber\\
+&-\hat{\beta}^{(1)}_{1\{I\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};P-k_1-k_2\right)\mathfrak{s}^{\{I\}}_{\sigma_2}(k_2)-\hat{\beta}^{(1)}_{1\{I\}}\left(\begin{array}{c}
+pk_2\\\lambda\sigma_2
+\end{array};P-k_1-k_2\right)\mathfrak{s}^{\{I\}}_{\sigma_2}(k_1)\nonumber\\
+&-\hat{\beta}^{(0)}_{0}\left(\begin{array}{c}
+p\\\lambda
+\end{array};P-k_1-k_2\right)\mathfrak{s}^{\{I\}}_{\sigma_1}(k_1)\mathfrak{s}^{\{I\}}_{\sigma_2}(k_2).
+\end{align}
+We will repeat what we did in the one-photon case:  we isolate the group of terms containing two factors of $(\slashed p +m)$ from the above equation first, then isolate the group containing a single factor of $(\slashed p +m)$, and isolate the rest at last. Such a treatment will almost exactly split eq. (7.67) into a contribution with two $\mathfrak{s}$ factors, a contribution with one single $\mathfrak{s}$ factor, and the IR-finite remnant $\hat{\beta}^{(2)}_2$. In other words, we decompose $\mathfrak{M}^{2}_{2\{II\}}$ into several terms as described above and then implement the IR subtraction of eq. (7.146) term by term.
+
+Let us first discuss the doubly IR-divergent part proportional to two factors of $(\slashed p +m)$. In order to simplify the discussion, we omit the moment $2k_1k_2$ in the propagator. Using the completeness relations (D.5) and diagonality property (D.12) in the Appendix (D), we can factorize the soft factors exactly and completely
+\begin{align}
+&(eQ_e)^2\bar{v}(p_b,\lambda_b)
+\biggl\{ G^B_{e,\mu}\frac{(\slashed p_a+m)-\slashed k_1-\slashed k_2}{-2k_1p_a-2K_2p_a+2k_1k_2}\slashed \epsilon^\ast_{\sigma_1}(k_1) \frac{(\slashed p_a+m)-\slashed k_2}{-2k_2p_a}\slashed\epsilon^\ast_{\sigma_2}(k_2)\nonumber\\
+&+ \slashed \epsilon^\ast_{\sigma_1}(k_1)\frac{(-\slashed p_b+m)-\slashed k_1}{-2k_1p_b}\slashed\epsilon^\ast_{\sigma_2}(k_2)\frac{(-\slashed p_b+m)+\slashed k_1+\slashed k_2}{-2k_1p_b-2K_2p_b+2k_1k_2} G^B_{e,\mu}\nonumber\\
+&+ \slashed \epsilon^\ast_{\sigma_1}(k_1)\frac{(-\slashed p_b+m)-\slashed k_1}{-2k_1p_b}G^B_{e,\mu}\frac{(\slashed p_a+m)-\slashed k_2}{-2k_2p_a} \slashed\epsilon^\ast_{\sigma_2}(k_2)+(1\leftrightarrow 2)\biggr\}u(p_a,\lambda_a)\nonumber\\
+=&(G^B_{e,\mu})_{[ba]}(eQ_e)^2\biggl\{ \frac{b_{\sigma_1}(k_1,p_a)}{2k_1p_a+2k_2p_a} \frac{b_{\sigma_2}(k_2,p_a)}{2k_2p_a}+\frac{b_{\sigma_1}(k_1,p_b)}{2k_1p_b}\frac{b_{\sigma_2}(k_2,p_b)}{2k_1p_b+2k_2p_b}\nonumber\\
+& -\frac{b_{\sigma_1}(k_1,p_b)}{2k_1p_b}\frac{b_{\sigma_2}(k_2,p_a)}{2k_2p_a}+(1\leftrightarrow 2)\biggr\}\nonumber\\
+=&(G^B_{e,\mu})_{[ba]}\mathfrak{s}^{[I]}_{\sigma_1}(k_1)\mathfrak{s}^{[I]}_{\sigma_2}(k_2),
+\end{align}
+where the identity
+\begin{equation}
+\frac{1}{2k_1p_a+2K_2p_a}\frac{1}{2k_1p_a}+\frac{1}{2k_1p_a+2K_2p_a}\frac{1}{2k_1p_a}=\frac{1}{2k_1p_a}\frac{1}{2k_2p_a}
+\end{equation}
+is applied.
+
+If we restore the term $2k_1k_2$ in the propagator, $\mathcal{M}^\text{Double IR}_{2\{II\}}$ leads to
+\begin{align}
+\hat{\beta}_{2\{II\}}^{(2)\text{Double}}\left[\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}\right]=&\mathcal{M}_{2\{II\}}^{(2)\text{Double}}\left[\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}\right]-\mathfrak{s}^{\{I\}}_{\sigma_1}(k_1)\mathfrak{s}^{\{I\}}_{\sigma_2}(k_2)\mathfrak{B}\left[\begin{array}{c}
+p\\\lambda
+\end{array}\right]\nonumber\\
+=&(\mathfrak{s}^{(a)}_{[1]}\mathfrak{s})^{(a)}_{[2]}\Delta_a+\mathfrak{s}^{(b)}_{[1]}\mathfrak{s})^{(b)}_{[2]}\Delta_b)\mathfrak{B}\left[\begin{array}{c}
+p\\\lambda
+\end{array}\right],\nonumber\\
+\mathfrak{s}^{(a)}_{\sigma_i}(k_i)\equiv&\mathfrak{s}^{(a)}_{\sigma_i}=-eQ_e\frac{b_{\sigma_1}(k_1,p_a)}{2k_ip_a},\nonumber\\
+\mathfrak{s}^{(b)}_{\sigma_i}(k_i)\equiv&\mathfrak{s}^{(b)}_{\sigma_i}=-eQ_e\frac{b_{\sigma_1}(k_1,p_b)}{2k_ip_b},\nonumber\\
+\mathfrak{s}^{\{I\}}_{\sigma_i}(k_i)\equiv&\mathfrak{s}^{(a)}_{[i]}+\mathfrak{s}^{(b)}_{[i]}=\mathfrak{s}^{(a)}_{\sigma_i}(k_i)+\mathfrak{s}^{(b)}_{\sigma_i}(k_i),\nonumber\\
+\Delta_f=&\frac{2k_1p_f+2k_2p_f}{2k_1p_f+2k_2p_f\mp 2k_1k_2}-1\nonumber\\
+=&\frac{\pm2k_1k_2}{2k_1p_f+2k_2p_f\mp 2k_1k_2},\quad f=a,b,c,d.
+\end{align}
+Clearly, $\hat{\beta}^{(2)\text{Double}}$ is IR finite due to the $\Delta_f$ term.  We introduced the compact notation above. From now on, for simplicity, we use the notation below
+\begin{equation}
+r_{if}=2k_i\cdot p_f,\quad r_{ij}=2k_i\cdot k_j,\quad f=a,b,c,d\quad i,j=1,2,\ldots,n.
+\end{equation}
+
+The next group of terms we are going to deal with is the one containing the single factor $(\slashed p+m)$. To be more specific, we will include terms that may result in a single IR divergence (if $k_1\ll k_2$ or $k_2\ll k_1$), namely, with $(\slashed p+m)$ next to a spinor, at the end of the fermion line:
+\begin{align}
+\mathfrak{M}^{\text{Single IR}}_{2\{II\}}\left[\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}\right]
+=&ie^2\sum_{B=\gamma,Z}\Pi_B^{\mu\nu}(X)(G^B_{f,\nu})_{[c,d]}(eQ_e)^2\bar{v}(p_b,\lambda_b)\nonumber\\
+&\times\biggl\{ G^B_{e,\mu}\frac{-\slashed k_1-\slashed k_2}{-r_{1a}-r_{2a}+r_{12}}\slashed \epsilon^\ast_{\sigma_1}(k_1)\frac{\slashed p_a+m}{-r_{2a}} \slashed \epsilon^\ast_{\sigma_2}(k_2)\nonumber\\
+&+\slashed\epsilon^\ast_{\sigma_1}(k_1)\frac{-\slashed p_b+m}{-r_{1b}}\slashed\epsilon^\ast_{\sigma_2}\frac{\slashed k_1+\slashed k_2}{-r_{1b}-r_{2b}+r_{12}}G^B_{e,\mu} \nonumber\\
+&+\slashed\epsilon^\ast_{\sigma_1}(k_1)\frac{-\slashed p_b+m}{-r_{1b}}G^B_{e,\mu}\frac{-\slashed k_2}{-r_{2a}}\slashed\epsilon^\ast_{\sigma_2}\nonumber\\
+&+\slashed\epsilon^\ast_{\sigma_1}(k_1)\frac{-\slashed k_1}{-r_{1b}}G^B_{e,\mu}\frac{-\slashed p_a+m}{-r_{2a}}\slashed\epsilon^\ast_{\sigma_2}+(1\leftrightarrow 2)\biggr\}u(p_a,\lambda_a).\nonumber\\
+\end{align}
+With the help of the compact notation, we can express $\mathcal{M}^\text{Single IR}_{2\{II\}}$ in a form which leads to an easy numerical calculation:
+\begin{align}
+\mathcal{M}^\text{Single IR}_{2\{II\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}\right)=&eQ_e\frac{-\mathfrak{B}_{[b1'][cd]}U_{[1'1a]}--\mathfrak{B}_{[b2'][cd]}U_{[2'1a]}}{-r_{1a}-r_{2a}+r_{12}}\mathfrak{s}^{(a)}_{[2]}\nonumber\\
+&+eQ_e\mathfrak{s}^{(b)}_{[1]}\frac{V_{[b22']}\mathfrak{B}_{[2'a][cd]}+V_{[b21']}\mathfrak{B}_{[1'a][cd]}}{-r_{1a}-r_{2a}+r_{12}}\nonumber\\
+&-eQ_e\mathfrak{s}^{(b)}_{[1]}\mathfrak{B}_{[b2'][cd]}\frac{U_{[2'2a]}}{-r_{2a}}+eQ_e\frac{V_{[b11']}}{-r_{1b}}\mathfrak{B}_{[1'a][cd]}\mathfrak{s}^{(a)}_{[2]}\nonumber\\
+&+(1\leftrightarrow 2).
+\end{align}
+Moreover, the single-IR part to be eliminated is
+\begin{align}
+\hat{\beta}^{(1)}_{1(1)[1]}\mathfrak{s}^{\{I\}}_{[2]}+\hat{\beta}^{(1)}_{1(1)[2]}\mathfrak{s}^{\{I\}}_{[1]}=&r^{\{I\}}_{[1]}\mathfrak{s}^{\{I\}}_{[2]}+r^{\{I\}}_{[2]}\mathfrak{s}^{\{I\}}_{[1]}\nonumber\\
+=&\biggl( eQ_e\mathfrak{B}_{[b1'][cd]}\frac{U_{[1'1a]}}{r_{1a}} -eQ_e\frac{V_{[b11']}}{r_{1a}}\mathfrak{B}_{[1'a][cd]}  \biggr)\mathfrak{s}_{[2]}^{\{I\}}\nonumber\\
+&+(1\leftrightarrow 2).
+\end{align}
+To sum up, we have
+\begin{align}
+\hat{\beta}^\text{Single}_{2\{II\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}\right)=&\mathcal{M}^\text{Single IR}_{2\{II\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}\right)-\hat{\beta}^{(1)}_{1(1)[1]}\mathfrak{s}^{\{I\}}_{[2]}-\hat{\beta}^{(1)}_{1(1)[2]}\mathfrak{s}^{\{I\}}_{[1]}\nonumber\\
+=&-eQ_e\mathfrak{B}_{[b2'][cd]}\frac{U_{[2'1a]}}{-r_{1a}-r_{2a}+r_{12}}\mathfrak{s}^{(a)}_{[2]}\nonumber\\
+&+eQ_e\mathfrak{s}^{(b)}_{[1]}\frac{U_{[2'1a]}}{-r_{1a}-r_{2a}+r_{12}}\mathfrak{B}_{[1'a][cd]}\nonumber\\
+&-eQ_e\mathfrak{B}_{[b1'][cd]}\left(\frac{U_{[1'1a]}}{-r_{1a}-r_{2a}+r_{12}}-\frac{U_{[1'1a]}}{-r_{1a}}\right)\mathfrak{s}^{(a)}_{[2]}\nonumber\\
+&+eQ_e\mathfrak{s}^{(a)}_{[2]}\left(\frac{V_{[b22']}}{-r_{1a}-r_{2a}+r_{12}}-\frac{V_{[b22']}}{-r_{2b}}\right)\mathfrak{B}_{[2'a][cd]}\nonumber\\
+&+(1\leftrightarrow 2).
+\end{align}
+It is straightforward to find that the expression above is IR-finite.
+
+At last, we need to include all the remaining terms from eq. (7.147). They are IR-finite and read
+\begin{align}
+\hat{\beta}^\text{Rest}_{2\{II\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}
+\right)=&ie^2\sum_{B=\gamma,Z}\Pi^{\mu\nu}_B(X)(G^B_{f,\nu})_{[cd]}(eQ_e)^2\bar{v}(p_b,\lambda_b)\nonumber\\
+&\times\biggl\{ G^B_{e,\mu}\frac{(\slashed p_a+m)-\slashed k_1-\slashed k_2}{-r_{1a}-r_{2a}+r_{12}}\slashed\epsilon^\ast_{\sigma_1}(k_1)\frac{-\slashed k_2}{-r_{2a}}\slashed \epsilon^\ast_{\sigma_2}(k_2)\nonumber\\
+&+\slashed\epsilon^\ast_{\sigma_1}(k_1)\frac{-\slashed k_2}{-r_{1b}}\slashed \epsilon^\ast_{\sigma_2}(k_2)\frac{(\slashed -p_b+m)+\slashed k_1+\slashed k_2}{-r_{1b}-r_{2b}+r_{12}}G^B_{e,\mu}\nonumber\\  &+\slashed\epsilon^\ast_{\sigma_1}(k_1)\frac{-\slashed k_2}{-r_{1b}}G^B_{e,\mu}\frac{-\slashed k_2}{-r_{2a}}\slashed \epsilon^\ast_{\sigma_2}(k_2)+(1\leftrightarrow 2)\biggr\}u(p_a,\lambda_a).\nonumber\\
+\end{align}
+With the help of tensor notation in the fermion helicity indices, we can expree the above equation in terms of the $U$ and $V$ matrices in the following way:
+\begin{align}
+&\hat{\beta}^\text{Rest}_{2\{II\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}
+\right)\nonumber\\
+=&(eQ_e)^2\frac{\mathfrak{B}_{[ba'][cd]}U_{[a'12'']}-\mathfrak{B}_{[b1'][cd]}U_{[1'12'']}-\mathfrak{B}_{[b2'][cd]}U_{[2'12'']}}{-r_{1a}-r_{2a}+r_{12}}\frac{-U_{[2''2a]}}{-r_{2a}}\nonumber\\
+&+(eQ_e)^2\frac{V_{[b11'']}}{-r_{1b}}\frac{-V_{[1''2b']\mathfrak{B}_{[b'a][cd]}}+V_{[1''21']\mathfrak{B}_{[1'a][cd]}}+V_{[1''22']\mathfrak{B}_{[2'a][cd]}}}{-r_{1b}-r_{2b}+r_{12}}\nonumber\\
+&+(eQ_e)^2\frac{V_{{b11'}}}{-r_[1b]}\mathfrak{B}_{[1'2'][cd]}\frac{-U_{[2'2a]}}{-r_{2a}}+(1\leftrightarrow 2).
+\end{align}
+Therefore the total ISR $\hat{\beta}_{2\{II\}}$ reads
+\begin{equation}
+\hat{\beta}_{2\{II\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}
+\right)=\hat{\beta}_{2\{II\}}^\text{Double}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}
+\right)+\hat{\beta}_{2\{II\}}^\text{Single}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}
+\right)+\hat{\beta}_{2\{II\}}^\text{Rest}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}
+\right).
+\end{equation}
+
+(\romannumeral 2) Two real FSR photons:
+The case of double final-state real photon emission can by treated in an analogous way. The second order two FSR photon matrix element is
+\begin{align}
+&\mathcal{M}^{(2)}_{2\{FF\}}\left(\begin{array}{c}
+p_ap_bk_1k_2\\\lambda_a\lambda_b\sigma_1\sigma_2
+\end{array};P\right)\nonumber\\
+=&ie^2\sum_{B=\gamma,Z}\Pi_B^{\mu\nu}(P)(G^B_{e,\mu})_{[ba]}(eQ_e)^2\bar{u}(p_c,\lambda_c)\nonumber\\
+&\times\biggl\{ \slashed \epsilon^\ast_{[1]}(k_1)\frac{(\slashed p_c+m)+\slashed k_1}{-2k_1p_c}\slashed\epsilon^\ast_{[2]}(k_2)\frac{(\slashed p_c+m)+\slashed k_1+\slashed k_2}{2k_1p_c+2K_2p_c+2k_1k_2} G^B_{f,\mu}\nonumber\\
+& +G^B_{f,\mu}\frac{(-\slashed p_d+m)-\slashed k_1-\slashed k_2}{2k_1p_d+2k_2p_d+2k_1k_2}\slashed \epsilon^\ast_{\sigma_1}(k_1) \frac{(-\slashed p_d+m)-\slashed k_2}{-2k_2p_d}\slashed\epsilon^\ast_{\sigma_2}(k_2)\nonumber\\
+&+ \slashed \epsilon^\ast_{[1]}(k_1)\frac{(\slashed p_c+m)+\slashed k_1}{2k_1p_c}G^B_{f,\mu}\frac{(-\slashed p_d+m)-\slashed k_2}{2k_2p_d} \slashed\epsilon^\ast_{[2]}(k_2)\nonumber\\
+&+(1\leftrightarrow 2)\biggr\}v(p_d,\lambda_d).
+\end{align}
+Analogously, the expansion into soft and non-IR parts for the FSR spin amplitudes is done in a completely similar way to the ISR case. The subtraction formula is 
+\begin{align}
+\hat{\beta}^{(2)}_{2\{FF\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array};P\right)
+=&\mathfrak{M}^{(2)}_{2\{FF\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array};P\right)-\hat{\beta}^{(1)}_{1\{F\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};P\right)\mathfrak{s}^{\{F\}}_{\sigma_2}(k_2)\nonumber\\
+&-\hat{\beta}^{(1)}_{1\{F\}}\left(\begin{array}{c}
+pk_2\\\lambda\sigma_2
+\end{array};P\right)\mathfrak{s}^{\{F\}}_{\sigma_2}(k_1)\nonumber\\
+&-\hat{\beta}^{(0)}_{0}\left(\begin{array}{c}
+p\\\lambda
+\end{array};P\right)\mathfrak{s}^{\{F\}}_{\sigma_1}(k_1)\mathfrak{s}^{\{F\}}_{\sigma_2}(k_2).
+\end{align}
+
+First we obtain the contribution from the group of terms containing two $(\slashed p-m)$ factors:
+\begin{align}
+&\hat{\beta}_{2\{FF\}}^{(2)\text{Double}}\left[\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}\right]\nonumber\\
+=&\mathcal{M}_{2\{FF\}}^{(2)\text{Double}}\left[\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}\right]-\mathfrak{s}^{\{F\}}_{[1]}\mathfrak{s}^{\{F\}}_{[2]}\mathfrak{B}_{[ba][cd]}\frac{(p_c+p_d+k_1+k_2)^2}{(p_c+p_d)^2}\nonumber\\
+=&(\Delta_c\mathfrak{s}^{(a)}_{[1]}\mathfrak{s})^{(a)}_{[2]}+\Delta_d\mathfrak{s}^{(b)}_{[1]}\mathfrak{s})^{(b)}_{[2]})\mathfrak{B}_{[ba][cd]}-\mathfrak{s}^{\{F\}}_{[1]}\mathfrak{s}^{\{F\}}_{[2]}\mathfrak{B}\left[\begin{array}{c}
+p_bp_a\\\lambda_b\lambda_a
+\end{array}\right]\nonumber\\
+&\times\left(\frac{(p_c+p_d+k_1+k_2)^2}{(p_c+p_d)^2}-1\right);\nonumber\\
+&\mathfrak{s}^{(c)}_{\sigma_i}(k_i)\equiv\mathfrak{s}^{(a)}_{[i]}=+eQ_f\frac{b_{\sigma_1}(k_i,p_c)}{r_{ic}},\nonumber\\
+&\mathfrak{s}^{(d)}_{\sigma_i}(k_i)\equiv\mathfrak{s}^{(d)}_{[i]}=-eQ_f\frac{b_{\sigma_1}(k_i,p_d)}{2k_ip_d},\nonumber\\
+&\mathfrak{s}^{\{F\}}_{\sigma_i}(k_i)\equiv\mathfrak{s}^{(c)}_{[i]}+\mathfrak{s}^{(d)}_{[i]}=\mathfrak{s}^{(c)}_{\sigma_i}(k_i)+\mathfrak{s}^{(d)}_{\sigma_i}(k_i),\nonumber\\
+\end{align}
+which is explicitly finite. The group of terms containing only one $(\slashed p-m)$ factor at the end of the fermion line reads
+\begin{align}
+&\mathcal{M}^\text{Single IR}_{2\{FF\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}\right)\nonumber\\
+=&eQ_f\mathfrak{s}^{(c)}_{[1]}\frac{U_{[c21']}}{r_{1c}+r_{2c}+r_{12}}\mathfrak{B}_{[ba][1'd]} + eQ_f\mathfrak{s}^{(c)}_{[1]}\frac{U_{[c22']}}{r_{1c}+r_{2c}+r_{12}}\mathfrak{B}_{[ba][2'd]}\nonumber\\
+&+eQ_f\mathfrak{B}_{[ba][c1']}\frac{-V_{[1'1d]}}{r_{1d}+r_{2d}+r_{12}}\mathfrak{s}^{(d)}_{[2]} + eQ_f\mathfrak{B}_{[ba][c2']}\frac{-V_{[2'1d]}}{r_{1d}+r_{2d}+r_{12}}\mathfrak{s}^{(d)}_{[2]}\nonumber\\
+&+eQ_f\mathfrak{s}^{(c)}_{[1]}\mathfrak{B_{[ba][c2']}}\frac{-V_{[2'2d]}}{r_{2d}}+eQ_f\frac{U_{[c11']}}{r_{1c}}\mathfrak{B_{[ba][1'd]}}\mathfrak{s}^{(d)}_{[2]}+(1\leftrightarrow 2).
+\end{align}
+Using the matrix notation (in the fermion spin indices), we have
+\begin{align}
+&\mathcal{M}^\text{Single IR}_{2\{FF\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}\right)\nonumber\\
+=&eQ_f\mathfrak{s}_{[1]}^{(c)}\frac{U_{[c21']}}{r_{1c}+r_{2c}+r_{12}}\mathfrak{B}_{[ba][1'd]}+eQ_f\mathfrak{s}_{[1]}^{(c)}\frac{U_{[c22']}}{r_{1c}+r_{2c}+r_{12}}\mathfrak{B}_{[ba][2'd]}\nonumber\\
+&+eQ_f\mathfrak{B}_{[ba][c1']}\frac{-V_{[1'1d]}}{r_{1d}+r_{2d}+r_{12}}\mathfrak{s}^{(d)}_{[2]}+eQ_f\mathfrak{B}_{[ba][c2']}\frac{-V_{[2'1d]}}{r_{1d}+r_{2d}+r_{12}}\mathfrak{s}^{(d)}_{[2]}\nonumber\\
+&+eQ_f\mathfrak{s}^{(c)}_{[1]}\mathfrak{B}_{[ba][c2']}\frac{-V_{[2'2d]}}{r_{2d}}+eQ_f\frac{U_{[c11']}}{r_{1c}}\mathfrak{B}_{[ba][1'd]}\mathfrak{s}^{(d)}_{[2]}+(1\leftrightarrow 2).\nonumber\\
+\end{align}
+Moreover, the single-IR part to be eliminated is 
+\begin{align}
+&\hat{\beta}^{(1)}_{1(0)[1]}\mathfrak{s}^{\{F\}}_{[2]}+\hat{\beta}^{(1)}_{1(0)[1]}\mathfrak{s}^{\{F\}}_{[1]}\nonumber\\
+=&r^{\{F\}}_{[1]}r^{\{F\}}_{[2]}+r^{\{F\}}_{[2]}r^{\{F\}}_{[1]}\nonumber\\
+=&\biggl( +eQ_e\mathfrak{B}_{[ba][1'd]}\frac{U_{[c11']}}{r_{1C}}-eQ_e\frac{V_{[1'1d]}}{r_{1d}}\mathfrak{B}_{[ba][c1']} \biggr)\mathfrak{s}^{\{F\}}_{[2]}+(1\leftrightarrow 2)\nonumber\\
+&-\mathfrak{B}_{[ba][cd]}\biggl( \frac{(p_c+p_d+k_1)^2}{(p_c+p_d)^2}-1 \biggr)\mathfrak{s}^{\{F\}}_{[1]}\mathfrak{s}^{\{F\}}_{[2]}+(1\leftrightarrow 2).
+\end{align}
+Then we obtain
+\begin{align}
+&\hat{\beta}^\text{Single}_{2\{FF\}}\left(
+\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}\right)\nonumber\\
+=&\mathcal{M}^\text{Single IR}_{2\{FF\}}\left(
+\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}\right)-\hat{\beta}^{(1)}_{1(0)}\left(
+\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array}\right)\mathfrak{s}^{\{F\}}\left[\begin{array}{c}
+k_2\\\sigma_2
+\end{array}\right]-\hat{\beta}^{(1)}_{1(0)}\left(
+\begin{array}{c}
+pk_2\\\lambda\sigma_2
+\end{array}\right)\mathfrak{s}^{\{F\}}\left[\begin{array}{c}
+k_1\\\sigma_1
+\end{array}\right]\nonumber\\
+=&eQ_f\mathfrak{s}^{(c)}_{[1]}\biggl\{ \biggl( \frac{U_{[c22']}}{r_{2c}+r_{1c}+r_{12}}-\frac{U_{[c22']}}{r_{2c}} \biggr)\mathfrak{B}_{[ba][2'd]}+\frac{U_{[c21']}}{r_{2c}+r_{1c}+r_{12}}\mathfrak{B}_{[ba][1'd]} \biggr\}\nonumber\\
+&+eQ_f\biggl\{\mathfrak{B}_{[ba][c1']}\biggl( \frac{-V_{[1'1d]}}{r_{1d}+r_{2d}+r_{12}}-\frac{-V_{[1'1d]}}{r_{1d}}\biggr)+\frac{-V_{2'1d}}{r_{1d}+r_{2d}+r_{12}}\mathfrak{B}_{[ba][c2']}  \biggr\}\mathfrak{s}^{(d)}_{[2]}\nonumber\\
+&+\mathfrak{B}_{[ba][cd]}\biggl( \frac{(p_c+p_d+k_1)^2}{(p_c+p_d)^2}-1 \biggr)\mathfrak{s}^{\{F\}}_{[1]}\mathfrak{s}^{\{F\}}_{[2]}+(1\leftrightarrow 2).
+\end{align}
+Finally the remaining term in eq. (7.158) reads
+\begin{align}
+&\mathcal{M}^\text{Rest}_{2\{FF\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}\right)\nonumber\\
+=&ie^2\sum_{B=\gamma,Z}\Pi_B^{\mu\nu}(X)(G^B_{e,\mu})_{[b,a]}(eQ_f)^2\bar{u}(p_c,\lambda_c)\biggl\{\slashed \epsilon^\ast_{[1]}\frac{\slashed k_1}{r_{1c}}\slashed \epsilon^\ast_{[2]}\frac{(\slashed p_c+m)+\slashed k_1+\slashed k_2}{r_{1c}+r_{2c}+r_{12}}G^B_{f,\nu}  \nonumber\\
+&+G^B_{f,\nu}\frac{(-\slashed p_d+m)-\slashed k_1-\slashed k_2}{r_{1d}+r_{2d}+r_{12}}\slashed \epsilon^\ast_{[1]}\frac{-\slashed k_2}{r_{2d}}\slashed \epsilon^\ast_{[2]}+\slashed\epsilon^\ast_{[1]}\frac{\slashed k_1}{r_{1c}}G^B_{f,\nu}\frac{-\slashed k_2}{r_{2d}}\epsilon^\ast_{[2]}+(1\leftrightarrow 2)
+\biggr\}v(p_d,\lambda_d).\nonumber\\
+\end{align}
+Thus, using the matrix notation, we obtain
+\begin{align}
+&\hat{\beta}^\text{Rest}_{2\{FF\}}\left(
+\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}\right)\nonumber\\
+=&\mathcal{M}^\text{Rest}_{2\{FF\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}\right)\nonumber\\
+=&(eQ_f)^2\frac{U_{[c11'']}}{r_{1c}}\frac{U_{[1''2c']}\mathfrak{B}_{[ba][c'd]}+U_{[1''21']}\mathfrak{B}_{[ba][1'd]}+U_{[1''22']}\mathfrak{B}_{[ba][2'd]}}{r_{1c}+r_{2c}+r_{12}}\nonumber\\
+&+(eQ_f)^2\frac{-\mathfrak{B}_{[ba][cd']}V_{[d'12'']}-\mathfrak{B}_{[ba][c1']}V_{[1'12'']}-\mathfrak{B}_{[ba][c2']}V_{[2'12'']}}{r_{1d}+r_{2d}+r_{12}}\frac{-V_{[2''2d]}}{r_{2d}}\nonumber\\
+&+(eQ_f)^2\frac{U_{[c11']}}{r_{1c}}\mathfrak{B}_{[ba][1'2']}\frac{-V_{[2'2d]}}{r_{2d}}+(1\leftrightarrow 2).
+\end{align}
+The total contribution from the double FSR real photon emission reads 
+\begin{equation}
+\hat{\beta}_{2\{FF\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}
+\right)=\hat{\beta}_{2\{FF\}}^\text{Double}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}
+\right)+\hat{\beta}_{2\{FF\}}^\text{Single}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}
+\right)+\hat{\beta}_{2\{FF\}}^\text{Rest}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array}
+\right).
+\end{equation}
+
+(\romannumeral 3) One real ISR photon and one real FSR photon:
+Compared with cases described before, the case of one real ISR photon and one real FSR photon is easier since there is at most one photon on one fermion line:
+\begin{align}
+&\mathcal{M}^{(2)}_{2\{IF\}}\left(\begin{array}{c}
+p_ap_bp_cp_dk_1k_2\\\lambda_a\lambda_b\lambda_c\lambda_d\sigma_1\sigma_2
+\end{array};P-k_1\right)\nonumber\\
+=&ie^2\sum_{B=\gamma,Z}\Pi^{\mu\nu}_B(P-k_1)\nonumber\\
+&\times eQ_e\bar{v}(p_b,\lambda_b)\biggl( G^B_{e,\mu}\frac{\slashed p_a-\slashed k_1+m}{-2k_1p_a}\slashed\epsilon^\ast_{[1]}
++\slashed\epsilon^\ast_{[1]}\frac{-\slashed p_b+\slashed k_1+m}{-2k_1p_b}G^B_{e,\mu}\biggr)u(p_a,\lambda_a)\nonumber\\
+&\times eQ_f\bar{u}(p_c,\lambda_c)\biggl( G^B_{f,\nu}\frac{-\slashed p_d-\slashed k_2+m}{2k_2p_d}\slashed\epsilon^\ast_{[2]}
++\slashed\epsilon^\ast_{[2]}\frac{\slashed p_c+\slashed k_2+m}{2k_2p_c}G^B_{f,\nu}\biggr)v(p_d,\lambda_d)\nonumber\\
+\end{align}
+and the IR subtraction is 
+\begin{align}
+&\hat{\beta}^{(2)}_{2\{IF\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array};P-k_1\right)\nonumber\\
+=&\mathfrak{M}^{(2)}_{2\{IF\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array};P-k_1\right)-\hat{\beta}^{(1)}_{1\{I\}}\left(\begin{array}{c}
+pk_1\\\lambda\sigma_1
+\end{array};P-k_1\right)\mathfrak{s}^{F}_{\sigma_2}(k_2)\nonumber\\
+&-\hat{\beta}^{(1)}_{1\{F\}}\left(\begin{array}{c}
+pk_2\\\lambda\sigma_2
+\end{array};P-k_1\right)\mathfrak{s}^{I}_{\sigma_1}(k_1)-\hat{\beta}^{(0)}_{0}\left(\begin{array}{c}
+p\\\lambda
+\end{array};P-k_1\right)\mathfrak{s}^{I}_{\sigma_1}(k_1)\mathfrak{s}^{I}_{\sigma_2}(k_2).\nonumber\\
+\end{align}
+And $\hat{\beta}_{2\{IF\}}$ can be obtained by a simple subtraction of all terms proportional to one or two $(\slashed p-m)$ factors
+\begin{align}
+&\hat{\beta}_{2\{IF\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array};X\right)\nonumber\\
+=&ie^2\sum_{B=\gamma,Z}\Pi^{\mu\nu}_B(X)eQ_e\bar{v}(p_b,\lambda_b)\biggl(G^B_{e,\mu}\frac{-\slashed k_1}{-r_{1a}}\slashed\epsilon^\ast_{[1]}+\slashed\epsilon^\ast_{[1]}\frac{\slashed k_1}{-r_{1b}}G^B_{e,\mu}\biggr)u(p_a,\lambda_a)\nonumber\\
+&\times eQ_f\bar{u}(p_c,\lambda_c)\biggl( G^B_{f,\nu}\frac{-\slashed k_2}{r_{2d}}\slashed\epsilon^\ast_{[2]}+\slashed\epsilon^\ast_{[2]}\frac{\slashed k_2}{r_{2c}}G^B_{f,\nu} \biggr)v(p_d,\lambda_d).
+\end{align}
+In the programmable matrix notation it can be written as
+\begin{align}
+&\hat{\beta}_{2\{IF\}}\left(\begin{array}{c}
+pk_1k_2\\\lambda\sigma_1\sigma_2
+\end{array};X\right)\nonumber\\
+=&ie^2\sum_{B=\gamma,Z}\Pi^{\mu\nu}_B(X)e^2Q_eQ_f\biggl( (G^B_{e\mu})_{b1'}\frac{-U_{[1'1a]}}{-r_{1a}}+\frac{V_{[b11']}}{-r_{1b}}(G^B_{e,\mu})_{[1'a]} \biggr)\nonumber\\
+&\times\biggl( (G^B_{f,\nu})_{[c2']}\frac{-V_{[2'2d]}}{r_{2d}}+\frac{U_{[c22']}}{r_{2c}}(G^B_{f,\nu})_{[2'd]} \biggr)\nonumber\\
+=&e^2Q_eQ_f\biggl( \mathfrak{B}_{[b1'][c2']}(X)\frac{-U_{[1'1a]}}{-r_{1a}}\frac{-V_{[2'2d]}}{r_{2d}}+\frac{U_{[c22']}}{r_{2c}}\mathfrak{B}_{[b1'][2'd]}(X)\frac{-U_{[1'1a]}}{-r_{1a}}\nonumber\\
+&+\frac{V_{[b11']}}{-r_{1b}}\mathfrak{B}_{[1'a][c2']}(X)\frac{-V_{[2'2d]}}{r_{2d}}+\frac{V_{[b11']}}{-r_{1b}}\frac{U_{[c22']}}{r_{2c}}\mathfrak{B}_{[1'a][2'd]}(X) \biggr).
+\end{align}
+
+\section{Relations between CEEX and EEX}
+We have shown the EEX and CEEX schemes in details in the last two sections. Next we shall compare certain important and interesting features of both schemes in more detail.
+
+Let us first investigate the limit of the CEEX in which we drop the dependence on the partition index $X_\wp\to P$, where $P=p_a+p_b$. Note that there is no such analogy in the EEX. In this limit, for the simplest case of the $O(\alpha)$ exponentiation, we find
+\begin{equation}
+\sum_{\wp\in\mathcal{P}}e^{\alpha B_4(X_\wp)}\frac{X^2_\wp}{s_{cd}}\mathfrak{B}\left(
+\begin{array}{c}
+p\\\lambda
+\end{array};X_\wp\right)\prod_{-=1}^{n}\mathfrak{s}^{\{\wp_i\}}_{[i]}\Rightarrow e^{\alpha B_4(X_\wp)}\mathfrak{B}\left(
+\begin{array}{c}
+p\\\lambda
+\end{array};X_\wp\right)\prod_{i=1}^{n}(\mathfrak{s}^{\{I\}}_{[i]}+\mathfrak{s}^{\{F\}}_{[i]}),
+\end{equation}
+because of the relation (7.87). Note that the ISR$\otimes$FSR interference contribution is preserved in the above transition. 
+
+Next we would like to discuss the case of the very narrow resonances, which the ISR$\otimes$FSR interference contribution to any physical observable is so small that it can be neglected. This corresponds to a well-defined limit in the CEEX scheme. In this limit, for the simplest case of the $O(\alpha^0)$ exponentiation we have
+\begin{align}
+|\mathcal{M}^{(0)}_n|^2=&\sum_{\wp\in\mathcal{P}}\sum_{\wp'\in\mathcal{P}}\exp[\alpha B_4(X_\wp)]\exp[\alpha B_4(X_\wp')]^\ast\nonumber\\
+&\times \mathfrak{B}\left(
+\begin{array}{c}
+p\\\lambda
+\end{array};X_\wp\right)\mathfrak{B}\left(
+\begin{array}{c}
+p\\\lambda
+\end{array};X_\wp\right)^\ast\prod_{i=1}^{n}\mathfrak{s}^{\{\wp_i\}}_{[i]}\mathfrak{s}^{\{\wp'_j\}\ast}_{[j]}\nonumber\\
+\Rightarrow&\exp[2\alpha\Re B_2(p_a,p_b)]\exp[2\alpha\Re B_2(p_c,p_d)]\nonumber\\
+&\times\sum_{\wp\in\mathcal{P}}\left|\mathfrak{B}\left(
+\begin{array}{c}
+p\\\lambda
+\end{array};X_\wp\right)\right|^2\prod_{i=1}^{n}\left| \mathfrak{s}^{\{\wp_i\}}_{[i]} \right|^2.
+\end{align}
+In the above transition we omit the ISR$\otimes$FSR interference entirely, by dropping the nondiagonal terms $\wp\neq\wp'$ in the double summation over partitions, and replace the resonance form factor by the sum of the traditional YFS form factors for the ISR and the FSR. In this way, we find $O(\alpha^0)_\text{EEX}$ is identical to $O(\alpha^0)_\text{CEEX}$. 
+
+Last but not least, it is important to find out the relations between the CEEX $\hat{\beta}$'s defined at the amplitude level and the EEX $\bar{\beta}$'s defined at the differential distribution level. Let us suppress all spin indices, that is, for every term like $|\cdots|^2$ or $\Re[AB^\ast]$ the corresponding spin sum or average is taken. Then traditional $\bar{\beta}$'s of the EEX/YFS scheme at the $O(\alpha^2)$ level are
+\begin{align}
+\bar{\beta}^{(l)}_0=&\left|\mathfrak{M}^{(l)}_0\right|^2_{(\alpha^l)},\quad l=0,1,2\nonumber\\
+\bar{\beta}^{(l)}_1(k)=&\left|\mathfrak{M}^{(l)}_1(k)\right|^2_{(\alpha^{l+1})}-\bar{\beta}^{(l)}_0\left|\mathfrak{s}(k)\right|^2,\quad l=0,1\nonumber\\
+\bar{\beta}^{(2)}_2(k_1,k_2)=&\left|\mathfrak{M}^{(l)}_1(k_1,k_2)\right|^2_{(\alpha^{l+1})}-\bar{\beta}^{(l)}_0(k_1)\left|\mathfrak{s}(k_2)\right|^2-\bar{\beta}^{(l)}_0(k_2)\left|\mathfrak{s}(k_1)\right|^2\nonumber\\
+&-\bar{\beta}^{(0)}_0\left|\mathfrak{s}(k_1)\right|^2\left|\mathfrak{s}(k_2)\right|^2,
+\end{align}
+where the subscript $|_{(\alpha^r)}$ means a truncation to $O(\alpha^r)$. Now for each $\mathfrak{M}^{(n+l)}_n$, after substituting its expansion in terms of $\hat{\beta}$'s according to eq. (7.65), we have
+\begin{align}
+\bar{\beta}^{(l)}_0=&\left|\hat{\beta}^{(l)}_0\right|^2_{(\alpha^l)},\quad l=0,1,2\nonumber\\
+\bar{\beta}^{(l)}_1(k)=&\left|\hat{\beta}^{(l)}_1(k)\right|^2+2\Re[\hat{\beta}^{(l)}_0\hat{\beta}^{(l)\ast}_1(k)]_{(\alpha^{l+1})},\quad l=0,1,\nonumber\\
+\bar{\beta}^{(2)}_2(k_1,k_2)=&\left|\hat{\beta}^{(2)}_2(k_1,k_2)\right|^2+2\Re\{[\hat{\beta}^{(1)}_1(k_1)\mathfrak{s}(k_2)][\hat{\beta}^{(1)}_1(k_2)\mathfrak{s}(k_1)]\}^\ast\nonumber\\
+&+2\Re\{[\hat{\beta}^{(2)}_2(k_1,k_2)[\hat{\beta}_1^{(1)}(k_1)\mathfrak{s}(k_2)+\hat{\beta}_1^{(1)}(k_2)\mathfrak{s}(k_1)]\nonumber\\
+&\times\hat{\beta}^{(0)}_1\mathfrak{s}(k_1)\mathfrak{s}(k_2)\}^\ast.
+\end{align}
+The relation is not completely trivial for $O(\alpha^2)$, and there are some extra IR-finite terms on the right hand side. From the above analysis it is clear that $\bar{\beta}$'s are generally more complicated objects than the $\hat{\beta}$'s. Moreover, in the $\bar{\beta_{0}}$ and $\bar{\beta_{1}}$ some higher-order virtual terms are unnecessarily truncated, which probably undermines the perturbative convergence of the EEX scheme in comparision with that of CEEX scheme. The above relation clearly exhibits the difference between the EEX and CEEX schemes. 
+
+In the above discussion, we show how the two examples of the EEX scheme can be obtained as a limit case of the CEEX, and show the exact relation between the $\bar{\beta}$'s of the EEX and the $\hat{\beta}$'s of the CEEX. From these it is clear that the CEEX scheme is more general than the EEX scheme.
+\newpage
+\section{Monte Carlo Algorithm}
+In this section we will introduce the Monte Carlo Algorithm for the KKMC, which generates final-state four momenta, i.e, points within the Lorentz invariant phase space according to eq. (7.2) for EEX and eq. (7.36) for CEEX. The MC technique of  the KKMC is generally an approach of integrating exactly over the phase space without approximation. It is based on the rigorous perturbative quantum field theory: the differential cross section  is the phase-space times the scattering amplitude for the corresponding Feynman diagrams. Furthermore, the KKMC is not only the phase-space integration but aslo the simulation of the actual scattering process, since it requires events (lists of four momenta) to be generated with weight equal to 1. Generally speaking, the MC algorithm includes a handful for elementary techniques such as weight-rejection, mapping and multibranching \cite{PracMC}. We will take the notation and terminology in Ref. \cite{PracMC}. In the KKMC, the self-adapting MC FOAM \cite{FOAM} is adpoted as a buidling block, which works for arbitrary integrand distributions. In general, it is wise to minimize the use of the multibranching and utilize the method of reweighting, constructing several layers of weights and taking their product as the total weight. In the KKMC, there are only three multibranchings, one for the types of the final fermion type $f=e,\mu,\tau,d,u,s,c,b$, another one for the photon partitions and the last one for helicities of the emitted photons. 
+
+In the following discussions, we will introduce the algorithm of the Monte Carlo generation of the events according to CEEX and EEX differential distributions. The algorithm is constructed with elementary technique of MC simulation and multibranching with casual use of mapping (change of integration variables). The weights are products of several component weights ordered in a chain. Their job is to simplify the very complicated differential distributions so that we could integrate manually over certain integration variables. The remaining variables that we are not able to integrate will be dealt with the self-adapting MC generator FOAM. The procedure of simplifications mentioned above which involves with weights, multibranchings and mappings wll be exhibited in the following subsections. 
+
+\subsection{Weights and Distributions}
+First, let us describe the organization of the weights and distributions in KKMC. There are four principal distributions: pure phase space, model, crude and primary. Their ratios are the principal weight in KKMC.
+
+The pure Lorentz-invariant phase space distribution given by eq. (7.2) is the basic reference differential distribution, of which the four-momentum conversation $\delta$ will be no generated directly in the MC, so that all other differential distributions of interest can be expressed in its terms
+\begin{equation}
+d\sigma(r_1,\ldots,r_n)=\rho(r_1,\ldots,r_n)d\tau_n(P;r_1,\ldots,r_n),
+\end{equation}
+where the density distribution, defined as follows:
+\begin{equation}
+\rho(r_1,\ldots,r_n)=\frac{d\sigma(r_1,\ldots,r_n)}{d\tau_n(P;r_1,\ldots,r_n)},
+\end{equation}
+is analytical with no $\delta$'s. 
+
+The model distribution is the density distribution corresponding to a physical model
+\begin{equation}
+\rho^\text{Mod}(r_1,\ldots,r_n)=\frac{d\sigma^\text{Mod}(r_1,\ldots,r_n)}{d\tau_{n+2}(P;r_1,\ldots,r_n)},
+\end{equation}
+with which MC events will be generated.
+
+The crude distribution is a density distribution 
+\begin{equation}
+\rho^\text{Cru}(r_1,r_2\ldots,k_n)=\frac{d\sigma^\text{Cru}(r_1,r_2,k_1,\ldots,k_n)}{d\tau_{n+2}(P;r_1,r_2,k_1,\ldots,k_n)}.
+\end{equation}
+It is close to all model distributions of a certain class and it should be maximally simple. And it should be Lorentz-invariant and be a maximally simple function of dot-products of the four-momentum. Here and later $r_1$, $r_2$ will denote the four-momenta of the outgoing fermions while $k_i$ will denote the momenta of photons. In such cases the dimension of the phase-space will be explicitly $n+2$.
+
+The primary distribution
+\begin{equation}
+d\rho^\text{Pri}(\xi_1,\xi_2,\ldots,\xi_n)
+\end{equation} 
+is defined primarily in the space $\Sigma$ of variables $\xi_i$ with the following properties: (a) the integral $\int d\rho^\text{Pri}(\xi_1,\xi_2,\ldots,\xi_n)$ is known independently from analytical integration or an independent numerical integration of the Gauss type; (b) a well-defined mapping $r\to\xi$ exists. Therefore one can define
+\begin{equation}
+\rho^\text{Pri}(r_1,r_2\ldots,k_n)=\frac{d\sigma^\text{Pri}(\xi_1,\xi_2,\ldots,\xi_n)}{d\tau_{n+2}(P;r_1,r_2,k_1,\ldots,k_n)},
+\end{equation}
+which is restricted to $\xi\in\Sigma_\text{LIPS}$ and is the distribution generated at the lowest level of the Monte Carlo. A zero weight will be assigned to the MC points (events) $\xi\not\in\Sigma_\text{LIPS}$. The $\rho^\text{Pri}$ relates to events generated according to $d\rho^\text{Pri}$ with all weights equal to 1. 
+
+The choice of the intermediate crude distribution, which stands between the primary and model distribution, depends on the practical need of modularity of the MC. For example we would like to use the same low-level MC event generator for both EEX and CEEX models. Undoubtedly we would like the MC event generator to have a well-defined low-level MC module. The weighted events are generated according to the crude distribution and the weight is
+\begin{equation}
+W^\text{Cru}(r_1,r_2,\ldots,r_n)=\begin{cases}
+\frac{d\sigma^\text{Cru}(r_i(\xi_j))}{d\sigma^\text{Pri}(r_i)}=\frac{\rho^\text{Cru}(r_i)}{\rho^\text{Pri}(r_i)}, &\quad \xi\in\Sigma_\text{LIPS},\\
+0, &\quad \xi\not\in\Sigma_\text{LIPS}.
+\end{cases}
+\end{equation}
+The above weight is determined by the low-level MC numerically without any further information on how the event $(r_1,r_2,\ldots,r_n)$ was actually generated.
+
+The model weight for the $m$-th model is given by the ratio
+\begin{equation}
+W^\text{Mod}(r_1,r_2,\ldots,r_n)=\frac{d\sigma^\text{Mod}_m(r_1,r_2,\ldots,r_n)}{d\sigma^\text{Cru}(r_1,r_2,\ldots,r_n)}=\frac{\rho^\text{Mod}(r_i)}{\rho^\text{Cru}(r_i)},
+\end{equation}
+which is evaluated in a separate module. And the crude distribution $\rho^\text{Cru}$ is calculated locally in the corresponding module, using an analytical expression in terms of four-momenta of the event, and without any access to information from the lower-level MC. The total weight obviously reads
+\begin{equation}
+W^\text{Tot}_m=W^\text{Cru}W^\text{Mod}_m,
+\end{equation}
+and the total cross section is given by
+\begin{equation}
+\sigma^\text{Tot}_m=\braket{W^\text{Tot}_m}\sigma^\text{Pri}.
+\end{equation}
+
+After giving the formal expressions for weights and distributions, we need to define the crude differential distribution explicitly for both EEX and CEEX. We first define the crude differential distribution with respect to the standard Lorentz invariant phase space as follows:
+\begin{align}
+&\rho^\text{Cru}_{\dot{n},n'}(q_1,q_2;\dot{k}_1,\ldots,\dot{k}_n;k'_1,\ldots,l'_{n'})\nonumber\\
+\equiv&\frac{d\sigma_\text{Cru}}{d\tau_{n+n'+2}(P;q_1,q_2,\dot{k}_1,\ldots,\dot{k}_{\dot{n}},k'_1,\ldots,k'_n)}\nonumber\\
+=&\frac{1}{\dot{n}!}\frac{1}{n'!}\frac{\sigma_\text{Born}(s_X)}{4\pi}\frac{s_X}{s_Q}\frac{2}{\beta_f}\prod_{j=1}^{\dot{n}}2\widetilde{S}_e(\dot{k}_j)\bar{\Theta}_e(\dot{k}_j)e^{\gamma_e\log\epsilon_e}\prod_{l=1}^{n'}\widetilde{S}_f(\dot{k}'_l)\bar{\Theta}_f(\dot{k}'_l)e^{\gamma_f\log\epsilon_f},\nonumber\\
+\end{align}
+where 
+\begin{align*}
+\epsilon_e=\frac{2E_\text{min}}{\sqrt{2p_1p_2}},\quad \epsilon_f=\frac{2E'_\text{min}}{\sqrt{2q_1q_2}},\quad \beta_f=\sqrt{1-\frac{4m^2_f}{s_q}},\quad s_Q=2q_1q_2+2m^2_f.
+\end{align*}
+and $\gamma_e$ and $\gamma_f$ are given by eqs. (7.9) and (7.10) respectively. The infrared and collinear singularities are in the soft factos $\widetilde{S}$. The $\sigma_\text{Born}(s_X)$ has a resonance peak at $s_X$. The flux factor $\frac{s_Q}{s_X}$ is from the $O(\alpha^1)$ QED matrix element, and it can also be obtained form the leading-log approximation at any order. Note that the above crude distribution is only for EEX. It would only fit one single partition in CEEX. 
+
+\begin{align}
+&\rho(p_c,p_d,k_1,\ldots,k_n)\nonumber\\
+=&\frac{d\sigma^{(0)}}{dLIPS_{n+2}(P;p_c,p_d,k_1,\ldots,k_n)}\nonumber\\
+=&\frac{1}{n!}\frac{e^{Y(\Omega;p_a,\ldots,p_d)\bar{\Theta}(\Omega)}}{flux(s)}\frac{1}{4}\sum_{\sigma_i\neq\mp 1}\sum_{\lambda_i=\mp 1}\mathfrak{M}^{(0)}_n\left(\begin{array}{c}
+pk_1k_2k\ldots k_n\\\lambda\sigma_1\sigma_2\ldots\sigma_n
+\end{array}\right)\nonumber\\
+&\times\left[\mathfrak{M}^{(0)}_n\left(\begin{array}{c}
+pk_1k_2k\ldots k_n\\\lambda\sigma_1\sigma_2\ldots\sigma_n
+\end{array}\right)\right]^\ast\nonumber\\
+=&\frac{e^Y}{4s}\Theta\frac{1}{n!}\sum_{\sigma_i,\lambda_i}\sum_{\{\wp\}}\sum_{\{\wp'\}}\biggl[\prod_{i=1}^{n} \mathfrak{s}^{\wp_i}_{[i]}\mathfrak{B}\left(\begin{array}{c}
+p\\\lambda
+\end{array};X_{\wp_i} \right)\frac{X^2_{\wp_i}}{s^{''}}\biggr]\biggl[\prod_{j=1}^{n} \mathfrak{s}^{\wp'_j}_{[j]}\mathfrak{B}\left(\begin{array}{c}
+p\\\lambda
+\end{array};X_{\wp_j} \right)\frac{X^2_{\wp_j}}{s^{''}}\biggr]^\ast\nonumber\\
+\end{align}
+where $s^{''}=(p_c+p_d)^2$. In the crude distribution we would like to neglect IFI. That means we need to drop non-diagonal terms $\wp'\neq\wp$. Additionally,  the YFS form factor needs to be simplified to preserve IR cancellation
+ \begin{equation*}
+Y(\Omega;p_a,\ldots,p_d)\to\gamma_e\log\epsilon_e+\gamma_f\log\epsilon_f.
+\end{equation*}
+Therefore we have
+\begin{align}
+&\rho(p_c,p_d,k_1,\ldots,k_n)\nonumber\\
+=&\frac{1}{n!}\frac{1}{4s}\exp(\gamma_e\log\epsilon_e+\gamma_f\log\epsilon_f)\sum_{\wp}\prod_{i=1}^{n}\bar{\Theta}(k_i)\sum_{\sigma_i}\left|\mathfrak{s}^{\wp_i}_{[i]}\right|^2\sum_{\lambda_i}\left|\mathfrak{B}\left(\begin{array}{c}
+p\\\lambda
+\end{array};X_{\wp_j} \right)\right|^2\frac{X^4_{\wp_i}}{(s^{''})^2}.\nonumber\\
+\end{align}
+We can identify
+\begin{equation*}
+\sum_{\sigma_i}\left|\mathfrak{s}^{\omega_i}_{[i]}\right|^2=-8\pi^3\widetilde{S}_\omega(k_i),\quad \widetilde{S}_1(k_i)\equiv \widetilde{S}_I(k_i),\quad \widetilde{S}_0(k_i)\equiv \widetilde{S}_F(k_i),
+\end{equation*}
+and the Born-like differential cross section
+\begin{equation*}
+\sum_{\lambda_i}\left|\mathfrak{B}\left(\begin{array}{c}
+p\\\lambda
+\end{array};X_{\wp_j} \right)\right|^2\frac{X^2_{\wp_i}}{s^{''}}\sim\frac{d\sigma_\text{Born}}{d\Omega}(s,s^{''},t,u,t',u',X^2_{\wp_i}),
+\end{equation*}
+which is dependent on $s=2p_ap_b$, $s^{''}=2p_cp_d$, $t=-2p_ap_c$, $t'=-2p_bp_d$, $u=-2p_ap_d$, $u'=-2p_bp_c$ and $X^2_{\wp_i}$ in the $Z$ resonance propagator. Let us convert it into an "angular average" expression
+\begin{equation*}
+\sum_{\lambda_i}\left|\mathfrak{B}\left(\begin{array}{c}
+p\\\lambda
+\end{array};X_{\wp_j} \right)\right|^2\frac{X^2_{\wp_i}}{s^{''}}\to\frac{\sigma_\text{Born}(X^2_{\wp_i})}{4\pi},
+\end{equation*}
+Finally, the crude distribution for CEEX is defined as follows:
+\begin{align}
+&\rho^\text{Cru}_{[n]}(p_c,p_d,k_1,\ldots,k_n)\nonumber\\
+=&\frac{d\sigma^\text{Cru}_\text{CEEX}}{d\tau_{n+2}(P;p_c,p_d,k_1,\ldots,k_n)}\nonumber\\
+=&\frac{1}{n!}\sum_{\{\wp\}}\frac{1}{s}\exp(\gamma_e\log\epsilon_e+\gamma_f\log\epsilon_f)\frac{\sigma^\text{Born}(X^2_{\wp_i})}{4\pi}\frac{X^2_{\wp_i}}{s^{''}}\frac{2}{\beta_f}\prod_{i=1}^{n}\bar{\Theta}(k_i)\widetilde{S}_{\wp_i}(k_i).\nonumber\\
+\end{align}
+For arbitrary photon multiplicity we have the following relations between crude distributions for CEEX and EEX
+\begin{equation}
+\rho^\text{Cru}_{[n]}(k_1,\ldots,k_n)=\sum_{\dot{n}+n'=n}\rho^\text{Cru}_{[\dot{n},n']}(k_1,\ldots,k_{\dot{n}},k_1,\ldots,k_{n'}).
+\end{equation}
+
+
+
+The model weight for the $O(\alpha^{(r)})$ EEX reads
+\begin{equation}
+W^{(r)}_\text{EEX}(q_1,q_2;\dot{k}_1,\ldots,\dot{k}_{\dot{n}};k'_1,\ldots,k'_{n'})=\frac{\rho^{(r)}_\text{EEX}(p_1,p_2,q_1,q_2;\dot{k}_1,\ldots,\dot{k}_{\dot{n}};k'_1,\ldots,k'_{n'})}{\rho_{[\dot{n},n']}^\text{Cru}(q_1,q_2;\dot{k}_1,\ldots,\dot{k}_{\dot{n}};k'_1,\ldots,k'_{n'})},
+\end{equation}
+where the model distribution in the numerator is given by eq. (7.4) and the crude distrubtion in the denominator is given by eq. (7.186). And the model weight for the $O(\alpha^{(r)})$ CEEX reads
+\begin{equation}
+W^{(r)}_\text{CEEX}(p_a,p_b,p_c,p_d;k_1,\ldots,k_{n})=\frac{\rho^{(r)}_\text{CEEX}(p_a,p_b,p_c,p_d;k_1,\ldots,k_{n})}{\rho_{[\dot{n},n']}^\text{Cru}(p_c,p_d;k_1,\ldots,k_{n})(2\pi)^{3(n+2)-4}},
+\end{equation}
+where the model distribution in the numerator is given by eq. (7.37) and the crude distrubtion in the denominator is given by eq. (7.189). Note that the factor $(2\pi)^{3(n+2)-4}$ is derived from the difference in the normalization of $d\text{LIPS}_n$ and $d\tau_n$.
+
+
+Therefore, according to the previous subsection the corresponding total weight is
+\begin{align}
+&W^{(r)Tot}_\text{CEEX}(p_a,p_b,p_c,p_d;k_1,\ldots,k_{n})\nonumber\\=&W^{(r)}_\text{CEEX}(p_a,p_b,p_c,p_d;k_1,\ldots,k_{n})W^\text{Cru}(p_a,p_b,p_c,p_d;k_1,\ldots,k_{n})\nonumber\\
+\end{align}
+and
+\begin{align}
+&W^{(r)Tot}_\text{EEX}(q_1,q_2;\dot{k}_1,\ldots,\dot{k}_{\dot{n}};k'_1,\ldots,k'_{n'})\nonumber\\=&W^{(r)}_\text{EEX}(q_1,q_2;\dot{k}_1,\ldots,\dot{k}_{\dot{n}};k'_1,\ldots,k'_{n'})W^\text{Cru}(q_1,q_2;\dot{k}_1,\ldots,\dot{k}_{\dot{n}};k'_1,\ldots,k'_{n'})\nonumber\\
+\end{align}
+where $W^\text{Cru}$ is exactly the same since we did the proper Bosen-Einstein symmetrization for CEEX. Among these model weights, only one can be used as the principal weight for a rejection of the events. Obviously we choose the best one, $O(\alpha^{(2)})$ CEEX-type. 
+
+
+\subsection{Phase-space Reorganization}
+Let us start with rewriting the phase space integral of eq. (7.186) for the crude total cross section as follows 
+\begin{align}
+\sigma^\text{Cru}=&\int ds_x\sum_{n=0}^{\infty}\sum_{n'=0}^{\infty}\int d\tau_{n+1}(P;k_1,\ldots,k_n,X)
+ \frac{1}{n!}\prod_{j=1}^{n}\widetilde{S}_e(k_j)\bar{\Theta}_e(k_j)\nonumber\\
+ &\times\int d\tau_{n'+2}(X;k'_1,\ldots,k'_n,q_1,q_2)\frac{1}{n!}\prod_{j=1}^{n}\widetilde{S}_f(k'_l)\bar{\Theta}_f(k'_l)\nonumber\\
+ &\times\frac{\sigma_\text{Born}(s_X)}{4\pi}\frac{s_X}{s_Q}\frac{2}{\beta_f}\exp(\gamma_e\log\epsilon_e+\gamma_f\log\epsilon_f)
+\end{align}
+where $P=p_1+p_2$. The integral above is Lorentz-invariant and can be computed in any reference frame. So we can take advantage of the Lorentz invariance of $d\tau_{n'+2}(X;k'_1,\ldots,k'_n,q_1,q_2)$ and we transform all its variables to the reference frame where $X=\hat{X}=(\sqrt{s_X},0,0,0)$, the XMS frame, and rewrite eq. (7.195) as follows,
+\begin{align}
+\sigma^\text{Cru}=&\int ds_x\sum_{n=0}^{\infty}\sum_{n'=0}^{\infty}\int d\tau_{n+1}(P;k_1,\ldots,k_n,X)
+\frac{1}{n!}\prod_{j=1}^{n}\widetilde{S}_e(k_j)\bar{\Theta}_e(k_j)\nonumber\\
+&\times\int d\tau_{n'+2}(\bar{X};\bar{k}'_1,\ldots,\bar{k}'_n,\bar{q}_1,\bar{q}_2)\frac{1}{n!}\prod_{j=1}^{n}\widetilde{S}_f(\bar{k}'_l)\bar{\Theta}_f(\bar{k}'_l)\nonumber\\
+&\times\frac{\sigma_\text{Born}(s_X)}{4\pi}\frac{s_X}{s_Q}\frac{2}{\beta_f}\exp(\gamma_e\log\epsilon_e+\gamma_f\log\epsilon_f),
+\end{align}
+where those variables with a bar are defined in XMS. So far this operation is still ambiguous. We have to write down explicitly the Lorentz transformation $L_X$ from XMS to CMS and back. Here we apply a so-called parallel boost $B_X$ along the direction of the $\vec{X}$ in PMS (a laboratory frame where $\vec{P}=0$ and $p_1=(p^0,0,0,p^3)$. The corresponding transformation matrix is
+\begin{equation}
+B_X=\left[\begin{array}{cc}
+\frac{X^0}{M_X},&\frac{\vec{X}^T}{M_X}\\
+\frac{\vec{X}}{M_X},&I+\frac{\vec{X}\otimes\vec{X}}{M_X(M_X+X^0)}
+\end{array}\right], \quad X^2=M_X^2,
+\end{equation}
+where $T$ denotes the matrix transposition and $\otimes$ denotes the tensor product. The transformation from the XMS to CMS is
+\begin{equation}
+k'_i|_\text{CMS}=L_X\bar{k}'_i,\quad q_i|_\text{CMS}=L_X\bar{q}_i,\quad L_X=B_X.
+\end{equation}
+
+The emission of the FSR photons is done in the comoving frame attached to the momenta $q_i$ of outgoing fermions, namely, in the frame where $\vec{Q}=\vec{q}_1+\vec{q}_2=0$ and $q_1=(q^0_1,0,0,|q^3_1|)$, which is called QMS. In order to get from XMS to QMS we must know $k'_i$. This problem can be solved by reparametrization the FSR integral with the help of the integration over the Lorentz group \cite{COMOV}. Applying the result of Ref. \cite{COMOV}, we have
+\begin{align}
+\sigma^\text{Cru}=&\int ds_X\sum_{n=0}^{\infty}\frac{1}{n!}\prod_{j=1}^{n}\frac{d^3k_j}{2k^0_j}2\widetilde{S}_e(k_j)\bar{\Theta}_e(k_j)\delta\biggl(s_X-\biggl(P-\sum_{j=0}^{n}k_j\biggr)^2\biggr)e^{\gamma_e\log\epsilon_e}\nonumber\\
+&\times\int d\psi d\cos\omega\frac{\sigma_\text{Born}(s_X)}{4\pi}\sum_{n'=0}^{\infty}\frac{1}{n'!}\int ds_Q\prod_{l=1}^{n'}\frac{d^3\tilde{k}'_l}{2\tilde{k}_l^{'0}}\widetilde{S}_f(\tilde{k}'_l)\bar{\Theta}_f(\tilde{k}'_l)\nonumber\\
+&\times \delta\biggl(s_X-\biggl(\hat{Q}-\sum_{j=0}^{n'}\tilde{k}'_j\biggr)^2\biggr)e^{\gamma_f\log\epsilon_f},
+\end{align}
+where those variables with a tilde are defined in QMS. Note that the Jacobian from the reparametrization of the FSR integral cancels exactly the factor $\frac{s_X}{s_Q}\frac{2}{\beta_f}$. The explicit transformation from QMS to XMS defines the new integration varibales $\psi$ and $\omega$:
+\begin{equation}
+\bar{k}_i=L_Ak_i,\quad \bar{q}_i=L_A\hat{q}_i, \quad L_A=R_3(\psi)R_2(\omega)B^{-1}_{\hat{X}}, \quad \hat{X}=\hat{Q}-\sum \tilde{k}'_j.
+\end{equation}
+Notice that the explicit integration over $q_1$ and $q_2$ has disappeared completely after the operation above, which leads a great simplification of the crude integral. Note that $\psi$ and $\omega$ are not polar angles of a certain momentum in a certain frame but parameters in the Lorentz transformation. 
+
+Therefore the crude integral can be rewritten in the following way:
+\begin{align}
+\sigma^\text{Cru}=&\sum_{f=\mu,\tau,u,s,c,b}\sum_{n=0}^{\infty}\sum_{n'=0}^{\infty}\int d\tau_{n+n'+2}(P;q_q,q_2,k_1,\ldots,k_n,k'_1,\ldots,k'_{n'})\nonumber\\
+&\times\rho^\text{Cru}_{[n,n']}(q_1,q_2;k_1,\ldots,k_n;k'_1,\ldots,k'_{n'})\nonumber\\
+=&\sum_{f=\mu,\tau,u,s,c,b}\int ds_X\sigma_\text{Born}^f(s_X)\int d\psi \frac{d\cos\omega}{4\pi}\nonumber\\
+&\times\sum_{n=0}^{\infty}\frac{1}{n!}\prod_{j=1}^{n}\frac{d^3k_j}{2k^0_j}2\widetilde{S}_e(k_j)\bar{\Theta}_e(k_j)\delta\biggl(s_X-\biggl(P-\sum_{j=0}^{n}k_j\biggr)^2\biggr)e^{\gamma_e\log\epsilon_e}\nonumber\\
+&\times\sum_{n'=0}^{\infty}\frac{1}{n'!}\int ds_Q\prod_{l=1}^{n'}\frac{d^3\tilde{k}'_l}{2\tilde{k}_l^{'0}}\widetilde{S}_f(\tilde{k}'_l)\bar{\Theta}_f(\tilde{k}'_l) \delta\biggl(s_X-\biggl(\hat{Q}-\sum_{j=0}^{n'}\tilde{k}'_j\biggr)^2\biggr)e^{\gamma_f\log\epsilon_f},\nonumber\\
+\end{align}
+Obviously this factorizes into independent ISR and FSR parts. The above integral is ready for the MC generation.
+
+\subsection{MC generation of the FSR photon momenta}
+Next we will describe the MC algorithm for the generation of the FSR photon momenta. Let us consider FSR part of the crude integral of eq. (7.201)
+\begin{equation}
+\mathfrak{F}_{n'}=\frac{1}{n'!}\int_{4m_f^2}^{s_X}ds_Q\prod_{j=1}^{n'}\int\frac{d^3\widetilde{k}'_j}{\widetilde{k}^{'0}_j}\Theta(\widetilde{k}'_j-E'_\text{min})\delta\biggl(s_X-\biggl(\hat{Q}+\sum_{l=0}^{n'}\widetilde{k}'_l\biggr)^2\biggr)e^{\gamma_f\log\epsilon_f},
+\end{equation}
+where
+\begin{eqnarray}
+&&\gamma_f=Q_f^2\frac{\alpha}{\pi}\frac{1+\beta^2_f}{\beta_f}\biggl( \log\frac{1+\beta_f}{1-\beta_f}-1 \biggr)=Q_f^2\frac{\alpha}{\pi}\frac{1+\beta^2_f}{\beta_f}\biggl( \log\frac{(1+\beta_f)^2}{\mu^2_f}-1 \biggr),\nonumber\\
+&&\beta_f=\sqrt{1-\mu_f^2},\quad \mu^2_f=\frac{4m_f^2}{s_Q},\quad \epsilon_f=\frac{2E'_\text{min}}{\sqrt{s_Q}},\quad \hat{Q}=(\sqrt{s},0,0,0)
+\end{eqnarray}
+where  we restored finite fermion mass $m_f$, photon momenta $\widetilde{k}'_l$ in the QMS rest frame of the outgoing fermions and $E'_{\text{min}}$ is the minimum energy of the real photon in this frame. Let us express the photon momenta in units of $\frac{1}{2}\sqrt{s_Q}$ and introduce polar parametrization and other auxiliary notation:
+\begin{align}
+\widetilde{k}'_j&\equiv\frac{\sqrt{s_Q}}{2}\bar{k}_j\equiv\frac{\sqrt{s_Q}}{2}x_j(1,\sin\theta_j\cos\phi_j,\sin\theta_j\sin\phi_j,\cos\theta_j),\nonumber\\
+\widetilde{K}'&=\sum_{l=0}^{n'}\widetilde{k}'_l\equiv\frac{\sqrt{s_Q}}{2}\bar{K}.
+\end{align}
+Then the $\delta$-function can be eliminated:
+\begin{align}
+\int_{4m_f^2}^{s_X}ds_Q\delta\biggl(s_X-\biggl(\hat{Q}+\sum_{l=0}^{n'}\widetilde{k}'_l\biggr)^2\biggr)&=\int_{4m_f^2}^{s_X}ds_Q\delta\biggl(s_X-s_Q\biggl(1+\bar{K}^0+\frac{1}{4}\bar{K}^2\biggr)\biggr)\nonumber\\
+&=\frac{\Theta(s_Q(\bar{k}_1,\ldots,\bar{k}_{n'}-4m^2_f)}{1+\bar{K}^0+\frac{1}{4}\bar{K}^2},
+\end{align}
+and from now on
+\begin{equation}
+s_Q=s_Q(\bar{k_1},\ldots,\bar{k_n'})=\frac{s_X}{1+\bar{K}+\frac{1}{4}\bar{K}^2}.
+\end{equation}
+And the single-photon distribution is transformed as follows:
+\begin{align}
+&\frac{d^3\widetilde{k}'_j}{\widetilde{k'}^0_j}\widetilde{S}_f(\widetilde{k}'_j)=\frac{dx_j}{x_j}\frac{d\phi_j}{2\pi}d\cos\theta_j\frac{\alpha}{\pi}f\biggl(\theta_j,\frac{m^2_f}{s_Q}\biggr),\nonumber\\
+&f\biggl(\theta_j,\frac{m^2_f}{s_Q}\biggr)=\frac{1+\beta^2_f}{\delta_{1j}\delta_{2j}}-\frac{\mu^2_f}{2}\frac{1}{\delta^2_{1j}}-\frac{\mu^2_f}{2}\frac{1}{\delta^2_{2j}},\nonumber\\
+&\delta_{1j}=1-\beta_f\cos\theta_j,\quad
+\delta_{2j}=1+\beta_f\cos\theta_j.
+\end{align}
+and the whole FSR integral is transformed into the semi-factorized expression:
+\begin{align}
+\mathfrak{F}_{n'}=&\frac{1}{n'!}\prod_{j=1}^{n'}\int_{\epsilon_f}^{\infty}\frac{dx_j}{x_j}\int_{0}^{2\pi}\frac{d\phi_j}{2\pi}\int_{-1}^{+1}d\cos\theta_j\frac{\alpha}{\pi}f\biggl(\theta_j,\frac{m^2_f}{s_Q}\biggr)\nonumber
+\\
+&\times\frac{\Theta(s_Q-4m^2_f)}{1+\bar{K}+\frac{1}{4}\bar{K}^2}e^{\gamma_f}\log\epsilon_f.
+\end{align}
+Note that the integral above is not factorized into a product of independent integrals since the dependence on all photon momenta $\bar{k}_j$ is entering everywhere through the variable $s_Q$. So we call it semi-factorized.
+
+Moreover, the introduction of the factor $\frac{1}{2}\sqrt{s_Q}$ leads another problem: the upper bound of $x_j$ extends to a large values but not really to infinity due to the $\Theta(s_Q-4m^2_f)$. And this problem can be solved by the following change of variables:
+\begin{eqnarray}
+&&y_i=\frac{x_i}{1+\sum x_j},\quad x_i=\frac{y_i}{1-\sum y_j},\nonumber\\
+&&1+\sum_jx_j=\frac{1}{1-\sum y_j}=1+\bar{K}^0=1+\frac{2K'\cdot Q}{s_Q}=\frac{s_X}{s_Q}\biggl(1-\frac{K'^2}{s_X}\biggr),\nonumber\\
+\end{eqnarray}
+which leads to
+\begin{align}
+\mathfrak{F}_{n'}=&\frac{1}{n'!}\prod_{j=1}^{n'}\int_{\frac{\epsilon_f}{1+\bar{K}^0}}^{1}\frac{dy_j}{y_j}\int_{0}^{2\pi}\frac{d\phi_j}{2\pi}\int_{-1}^{+1}d\cos\theta_j\frac{\alpha}{\pi}f\biggl(\theta_j,\frac{m^2_f}{s_Q}\biggr)\nonumber\\
+&\times\frac{1+\bar{K}^0}{1+\bar{K}^0+\frac{1}{4}\bar{K}^2}\Theta(s_Q-4m_f^2)e^{\gamma_f\log\epsilon_f}.
+\end{align}
+With the help of new variables the condition $s_Q>4m^2_f$ (easily executable in the MC) translates approximately into $\sum_j y_j<1$. Then we have
+\begin{equation*}
+\frac{1+\bar{K}^0}{1+\bar{K}^0+\frac{1}{4}\bar{K}^2}\leq 1,
+\end{equation*}
+which is perfect for the MC. However, the new IR limit $y_j>\epsilon_f/(1+\bar{K}^0)$ is inconvenient for the MC. This issue can be solved by substituting
+\begin{equation}
+\epsilon_f=\delta_f(1+\bar{K}^0).
+\end{equation}
+where $\delta_f\ll 1$ is the new IR regulator for the FSR real photon. Note that this gives a new lower bound for the photon energy in the QMS:
+\begin{equation}
+E^{''}_\text{min}=\delta_f\frac{1}{2}\sqrt{s_Q}(1+\bar{K}^0)=\delta_f\frac{1}{2}\sqrt{s_Q}\biggl(1+\frac{2K'\cdot\hat{Q}}{s_Q}\biggr),
+\end{equation}
+which is higher that the previous $E'_\text{min}=\frac{1}{2}\sqrt{s_Q}\delta_f$. Therefore, we must keep the value of $\delta_f$ very low.
+
+So far the FSR integral (7.202) has been transformed without any approximations and the integrals were conveniently parametrized for the MC generation:
+\begin{align}
+\mathfrak{F}_{n'}=&\frac{1}{n'!}\prod_{j=1}^{n'}\int_{\delta_f}^{1}\frac{dy_j}{y_j}\int_{0}^{2\pi}\frac{d\phi_j}{2\pi}\int_{-1}^{+1}d\cos\theta_j\frac{\alpha}{\pi}f\biggl(\theta_j,\frac{m^2_f}{s_Q}\biggr)\nonumber\\
+&\times\frac{1+\bar{K}^0}{1+\bar{K}^0+\frac{1}{4}\bar{K}^2}\Theta(s_Q-4m_f^2)e^{\gamma_f\log(\delta_f(1+\bar{K}^0))}.
+\end{align}
+There is a one-to-one correspondence between the points in the Lorentz-invariant phase space and the points in space of the new variables:
+\begin{equation}
+\{n',(\widetilde{k}'_1,\ldots,\widetilde{k}'_{n'})\}\leftrightarrow\{n',(y_j,\theta_j,\phi_j),\quad j=1,\ldots,n'\}.
+\end{equation}
+Besides, we can write explicitly the differential distributions in the two equivalent parametrizations
+\begin{align}
+&\frac{d\mathfrak{F}_{n'}}{ds_Q\delta(s_X-(\hat{Q}+\sum_{l=0}^{n'}\widetilde{k}'_l)^2)\prod_{j=1}^{n'}\frac{d^3\widetilde{k}'_j}{2\widetilde{k'}^0_j}}\nonumber\\
+=&\frac{\Theta(s_Q-4m^2_f)}{n'!}\exp\biggl[\gamma_f\log\biggl(\frac{2E^{''}_\text{min}}{\sqrt{s_X}}\biggr)\biggr]\prod_{j=1}^{n'}2\widetilde{S}_f(\widetilde{k}'_j)\Theta(\widehat{k}'_j-E^{''}_\text{min})\nonumber\\
+\end{align}
+\begin{align}
+&\frac{d\mathfrak{F}_{n'}}{\prod_{j=1}^{n'}dy_jd\cos\theta_j d\phi_j}\nonumber\\
+=&\frac{\Theta(s_Q-4m^2_f)}{n'!}e^{\gamma_f\log(\delta_f(1+\bar{K}^0))}\biggl(\frac{\alpha}{2\pi^2}\biggr)^{n'}\prod_{j=1}^{n'}\frac{\Theta(y_j-\delta_f)}{y_j}f\biggl(\theta_j,\frac{m_f^2}{s_Q}\biggr).\nonumber\\
+\end{align}
+
+Now it is time to introduce the simplifications that lead to a primary distribution. And the primary distribution can be integrated analytically and generated using standard uniform random numbers. The simplifications are given as
+\begin{align}
+&f\biggl(\theta_j,\frac{m_f^2}{s_Q}\biggr)\to \bar{f}\biggl(\theta_j,\frac{m_f^2}{s_X}\biggr)=\frac{1+\bar{\beta}^2_f}{\bar{\beta}_f}\frac{1}{1-\bar{\beta}_f^2\cos^2\theta_j},\nonumber\\
+&\frac{1+\bar{K}^0}{1+\bar{K}^0+\frac{1}{4}\bar{K}^2}\Theta(s_Q-4m^2_f)\to 1,\nonumber\\
+&e^{\gamma_f\log(\delta_f(1+\bar{K}^0))}\to e^{\bar{\gamma}_f\log{\delta}_f},
+\end{align}
+where
+\begin{equation}
+\bar{\beta}_f=\biggl[1-\biggl(\frac{m^2_f}{s_X}\biggr)^2\biggr]^\frac{1}{2},\quad \bar{\gamma}_f=Q^2_f\frac{\alpha}{\pi}\frac{1+\bar{\beta}^2_f}{\bar{\beta}_f}\log\frac{1+\bar{\beta}_f}{1-\bar{\beta}_f}.
+\end{equation}
+With the help of the simplifications above we could remove any complicated dependence on the momenta of all photons through $s_Q$, replacing $s_Q$ with $s_X$. Then hard FSR photons get stronger collinear peaks at $\cos\theta_j=\pm 1$ in the primary differential distribution. Thus the FSR primary differential distribution is:
+\begin{equation}
+\frac{d\mathfrak{F}^\text{Pri}_{n'}}{\prod_{j=1}^{n'}dy_jd\cos\theta_j d\phi_j}=e^{\bar{\gamma}_f\log(\delta_f)}\biggl(\frac{\alpha}{2\pi^2}\biggr)^{n'}\prod_{j=1}^{n'}\frac{\Theta(y_j-\delta_f)}{y_j}\bar{f}\biggl(\theta_j,\frac{m^2_f}{s_X}\biggr),
+\end{equation}
+and the compensating weight which transforms the primary distribution into the crude distribution is
+\begin{eqnarray}
+w^\text{Cru}_\text{FSR}=\frac{d\mathfrak{F}_{n'}}{d\mathfrak{F}_{n'}^\text{Pri}}=\frac{1+\bar{K}^0}{1+\bar{K}^0+\frac{1}{4}\bar{K}^2}e^{\gamma_f\log(\delta_f(1+\bar{K}^0))-\bar{\gamma}_f\log(\delta_f)}\prod_{j=1}^{n'}\frac{f\biggl(\theta_j,\frac{m^2_f}{s_Q}\biggr)}{\bar{f}\biggl(\theta_j,\frac{m^2_f}{s_X}\biggr)}.\nonumber\\
+\end{eqnarray}
+Events $\{n',(y_j,\cos\theta_j,\phi_j),\quad j=1,\ldots,n'\}$ generated according to $d\mathfrak{F}^\text{Pri}_{n'}$, defined in eq. (7.221) with weight $w^\text{Cru}_\text{FSR}$, will be distributed according to the differential distribution (7.216).
+
+Finally we conclude that the integral over the FSR primary distribution can be evaluated analytically:
+\begin{align}
+\sum_{n'=0}^{\infty}\mathfrak{F}^\text{Pri}_{n'}=&\sum_{n'=0}^{\infty}\frac{1}{n'!}\prod_{j=1}^{n'}\int_{\delta_f}^{1}\frac{dy_j}{y_j}\int_{0}^{2\pi}\frac{d\phi_j}{2\pi}\int_{-1}^{+1}d\cos\theta_j\frac{\alpha}{\pi}\bar{f}\biggl(\theta_j,\frac{m^2_f}{s_X}\biggr)e^{\bar{\gamma}_f\log(\delta_f)}\nonumber\\
+=&\sum_{n'=0}^{\infty}e^{-\bar{\gamma}_f\log(1/\delta_f)}\frac{1}{n'!}\biggl(\bar{\gamma}_f\log\frac{1}{\delta_f}\biggr)^{n'}\nonumber\\
+=&\sum_{n'=0}^{\infty}e^{-\braket{n'}}\frac{\braket{n'}^{n'}}{n'!}=1.
+\end{align}
+The photon multiplicity for the primary distribution is the standard Poisson distribution, with the average
+\begin{equation}
+\braket{n'}=\bar{\gamma}_f\log\frac{1}{\delta_f},
+\end{equation}
+and the overall normalization is equal to 1.
+
+The MC generation of the distribution (7.219) is fully factorized, and the variables $\cos\theta_j$, $\phi_j$ and $y_j$ can be generated independently. The distribution of $\phi_j$ is flat and the distribution of $y_j$ is trivial to generate
+\begin{equation}
+\phi_j=2\pi r_{1j},\quad y_j=\delta^{r_{2j}}_f,
+\end{equation}
+where $r_{ij}$ are the standard uniform random numbers $0<r_{ij}<1$. The distribution of $\cos\theta_j$ needs using the branching approach: it is split into two components
+\begin{equation}
+\frac{2}{1-\bar{\beta}_f\cos^2\theta_j}=\frac{1}{1-\bar{\beta}_f\cos\theta_j}+\frac{1}{1+\bar{\beta}_f\cos\theta_j},
+\end{equation}
+and $\cos\theta_j$ is generated according to one component, chosen with the equal odd between these two. For instance, if we choose the first component as $1/(1-\bar{\beta}_f\cos\theta_j)$, then
+\begin{equation}
+\cos\theta_j=\frac{1}{\bar{\beta}_j}\biggl\{ 1-(1+\bar{\beta}_f)\biggl(\frac{1-\bar{\beta}_f}{1+\bar{\beta}_f}\biggr)^{r_{3j}} \biggr\},
+\end{equation}
+where $r_{3j}$ is another uniform random number.
+
+Next we introduce the MC algorithm of the generation of the ISR photon momenta. Let us begin with the ISR part of the crude integral (7.201) for one final fermion type $f$
+\begin{align}
+\mathfrak{I}_n=&\frac{1}{n!}\int ds_X\sigma^f_\text{Born}(s_X)\prod_{j=1}^{n}\int\frac{d^3k_j}{k^0_j}\widetilde{S}_e(k_j)\Theta(k^0_j-E_\text{min})\nonumber\\
+&\times\delta\biggl( s_X-\biggl( P-\sum_{j=0}^{n}k_j \biggr)^2 \biggr)e^{\gamma_e\log\epsilon_e},
+\end{align}
+where $E_\text{min}=\epsilon_e\frac{1}{2}\sqrt{s}$ is the minimum energy of the real ISR photon in the laboratory CMS. We first introduce the variable $v=1-\frac{s_X}{s}$ and order energies of the photons
+\begin{align}
+\mathfrak{I}_n=&\int_{0}^{v_\text{max}}dv\sigma^f_\text{Born}(s(1-v))\prod_{j=1}^{n}\int\frac{d^3k_j}{k^0_j}\widetilde{S}_e(k_j)\nonumber\\
+&\times\Theta(k^0_1-k^0_2)\Theta(k^0_2-k^0_3)\ldots\Theta(k^0_n-E_\text{min})\delta\biggl(v-\frac{2KP-K^2}{s}\biggr)e^{\gamma_e\log\epsilon_e},\nonumber\\
+\end{align}
+where $K=\sum_{j=0}^{n}k_j$ and $v_\text{max}=1-\frac{4m^2_f}{s}$. Then we rescale all momenta and introduce a polar parametrization
+\begin{equation}
+k_i=\eta\bar{k}_i=\eta x_i(1,\sin\theta_i\sin\phi_i,\sin\theta_i\cos\phi_i,\cos\theta_i);
+\end{equation}
+We fix the scaling factor $\eta$ so that $\bar{k}^0_1=x_1=v$:
+\begin{align}
+\mathfrak{I}_n=&\int d\eta\delta\biggl(\eta-\frac{k^0_1}{v}\biggr)\int_{0}^{v_\text{max}}dv\sigma^f_\text{Born}(s(1-v))\prod_{j=1}^{n}\frac{d^3k_j}{k^0_j}\widetilde{S}_e(k_j)\nonumber\\
+&\times\Theta(k^0_1-k^0_2)\Theta(k^0_2-k^0_3)\ldots\Theta(k^0_n-E_\text{min})\delta\biggl(v-\frac{2KP-K^2}{s}\biggr)e^{\gamma_e\log\epsilon_e}\nonumber\\
+=&\int_{0}^{v_\text{max}}dv\sigma^f_\text{Born}(s(1-v))\prod_{j=1}^{n}\int_{0}^{1}\frac{dx_j}{x_j}\int_{0}^{2\pi}\frac{d\phi_j}{2\pi}\int_{-1}^{+1}d\cos\theta_j\frac{\alpha}{\pi}f(\cos\theta_j)\nonumber\\
+&\times\delta(v-x_1)\Theta(x_1-x_2)\Theta(x_2-x_3)\ldots\Theta(\lambda_0x_n-\epsilon)e^{\gamma_e\log\epsilon_e}\mathcal{J}(\bar{K},v),\nonumber\\
+\end{align}
+where $\eta_0$ is the root of the equation $v-\frac{2\bar{K}P}{s}\eta+\frac{\bar{K}^2}{s}\eta=0$ and $\mathcal{J}(\bar{K},v)$ is an overall Jacobian factor:
+\begin{align}
+&\mathcal{J}(\bar{K},v)=\frac{v}{\eta_0}\frac{1}{\frac{2\bar{K}P}{s}-2\eta_0\frac{\bar{K}^2}{s}}=\frac{1}{2}\biggl(1+\frac{1}{\sqrt{1-Av}}\biggr),\nonumber\\
+&\eta_0=\frac{\sqrt{s}}{2}\frac{v}{\bar{K}^0}\frac{2}{1+\sqrt{1-Av}}\equiv\frac{\sqrt{s}}{2}\lambda_0,\nonumber\\
+&A=\frac{\bar{K}^2P^2}{(\bar{K}P)^2}=\frac{\bar{K}^2}{(\bar{K}^0)^2}\leq 1,\quad 0\leq\lambda_0\leq 1,
+\end{align}
+and the photon angular distribution is determined by
+\begin{equation}
+f(\cos\theta_j)=\frac{2}{(1-\beta\cos\theta_j)(1+\beta\cos\theta_j)}-\frac{2m^2_e}{s}\frac{1}{(1-\beta\cos\theta_j)^2}-\frac{2m^2_e}{s}\frac{1}{(1+\beta\cos\theta_j)^2}.
+\end{equation}
+
+Up till now, the ISR integral (7.226) has been transformed without any approxiamation and there is a one-to-one correspondence of the points in the Lorentz-invariant phase space and the points in the space of new variables:
+\begin{equation}
+\{n,(\widetilde{k}_1,\ldots,\widetilde{k}_{n})\}\leftrightarrow\{n,(y_j,\theta_j,\phi_j),\quad j=1,\ldots,n\}.
+\end{equation}
+Analogouly, we can write the differential distrbutions in two equivalent parametrizations of the IRS crude differential distribution:
+\begin{eqnarray}
+&&\frac{d\mathfrak{I}_n}{ds_X\prod_{j=1}^{n}\frac{d^3k_j}{2k^0_j}}=\frac{1}{n!}\sigma^f_\text{Born}(s_X)\prod_{j=1}^{n}2\widetilde{S}_e(k_j)\Theta(k^0_j-E_\text{min})e^{\gamma_e\log\epsilon_e}\quad n>0\nonumber\\
+&&\frac{d\mathfrak{I}_n}{dv\prod_{j=1}^{n}dx_jd\cos\theta_jd\phi_j}=\sigma^f_\text{Born}(s(1-v))\biggl(\frac{\alpha}{2\pi^2}\biggr)^n\delta(v-x_1)\frac{\Theta(\lambda_0x_n-\epsilon)}{x_n}\nonumber\\
+&&\times\prod_{j=1}^{n-1}\frac{\Theta(x_j-x_{j-1})}{x_j}\prod_{j=1}^{n}f(\cos\theta_j)e^{\gamma_e\log\epsilon_e}\mathcal{J}(\bar{K},v),\quad n>0,\nonumber\\
+&&\frac{d\mathcal{J}_0}{ds_X}=\sigma^f_\text{Born}(s)\delta(s_X),\quad \frac{d\mathcal{J}_0}{dv}=\sigma^f_\text{Born}(s)\delta(s_X),\quad n=0.
+\end{eqnarray}
+Now we are ready to introduce the simplification leading to the ISR primary differential distribution:
+\begin{eqnarray}
+&&f(\cos\theta_j)\to\bar{f}(\cos\theta_j)=\frac{2}{(1-\cos\theta_j(1+\cos\theta_j)},\nonumber\\
+&&\mathcal{J}(\bar{K},v)\to\mathcal{J}_0(v)=\frac{1}{2}\biggl(1+\frac{1}{\sqrt{1-v}}\biggr),\nonumber\\
+&&\Theta(\lambda_0x_n-\epsilon)\to\Theta(x_n-\epsilon),
+\end{eqnarray}
+where 
+\begin{equation}
+\bar{\gamma_e}=2\frac{\alpha}{\pi}\log\biggl(\frac{s}{m^2_e}\biggr).
+\end{equation}
+
+Thus, the ISR primary differential distribution reads
+\begin{eqnarray}
+&&\frac{d\mathfrak{I}_n}{dv\prod_{j=1}^{n}dx_jd\cos\theta_jd\phi_j}=\sigma^f_\text{Born}(s(1-v))\biggl(\frac{\alpha}{2\pi^2}\biggr)^n\delta(v-x_1)\frac{\Theta(\lambda_0x_n-\epsilon)}{x_n}\nonumber\\
+&&\times\prod_{j=1}^{n-1}\frac{\Theta(x_j-x_{j-1})}{x_j}\prod_{j=1}^{n}f(\cos\theta_j)e^{\gamma_e\log\epsilon_e}\mathcal{J}_0(v),\quad n>0,\nonumber\\
+&&\frac{d\mathcal{J}^\text{Pri}_0}{dv}=\sigma^f_\text{Born}\delta(v),\quad n=0,
+\end{eqnarray}
+and the corresponding weight is
+\begin{equation}
+w^\text{Cru}_\text{ISR}=\frac{d\mathfrak{I}_n}{d\mathfrak{I}^\text{Pri}_n}=\Theta(\lambda_0 x_n-\epsilon)\frac{\mathcal{J}(\bar{K},v)}{\mathcal{J}_0(v)}\prod_{j=1}^{n}\frac{f(\cos\theta_j)}{\bar{f}(\cos\theta_j)}.
+\end{equation}
+Note that the $\Theta(\lambda_0x_n-\epsilon)$ contribution to the weight leads directly to a characteristic factor $F(\gamma_e)=e^{-C\gamma_e}/\Gamma(1+\gamma_e)$ \cite{YFS2,MPI}
+\begin{equation}
+f(\cos\theta_j)=\frac{2\sin^2\theta_j}{[(1-\beta\cos\theta_j)(1+\beta\cos\theta_j)]^2},
+\end{equation}
+Finally, we can integrate analytically the ISR primary differential distribution
+\begin{eqnarray}
+&&\mathfrak{I}^\text{Pri}=\sum_{n=0}^{\infty}\mathfrak{I}^\text{Pri}_n\nonumber\\
+&&=\sum_{n=0}^{\infty}\int_{0}^{v_\text{max}}dv\sigma^f_\text{Born}(s(1-v))\prod_{j=1}^{n}\int_{0}^{1}\frac{dx_j}{x_j}\int_{0}^{2\pi}\frac{d\phi_j}{2\pi}\int_{-1}^{+1}d\cos\theta_j\nonumber\\
+&&\times\frac{\alpha}{\pi}\bar{f}(\cos\theta_j)\delta(v-x_1)\Theta(x_1-x_2)\Theta(x_2-x_3)\ldots\Theta(\lambda_0x_n-\epsilon)e^{\gamma_e\log\epsilon_e}\mathcal{J}_0(v),\nonumber\\
+&&=\int_{0}^{v_\text{max}}dv\sigma^f_\text{Born}(s(1-v))\mathcal{J}_0(v)e^{\gamma_e\log\epsilon_e}\nonumber\\
+&&\times\biggl(\delta(v)+\Theta(v-\epsilon)\frac{1}{v}\sum_{n=1}^{\infty}\frac{1}{(n-1)!}\biggl(\bar{\gamma}_e\log\frac{v}{\epsilon}\biggr)^{n-1}\biggr)\nonumber\\
+&&=\int_{0}^{\epsilon}dv\gamma_e v^{\gamma_e-1}\sigma^f_\text{Born}(s)+\int_{\epsilon}^{v_\text{max}}dv\sigma^f_\text{Born}(s(1-v))\mathcal{J}_0(v)\bar{\gamma}_e
+v^{\bar{\gamma}_e-1}\epsilon^{\gamma_e-\bar{\gamma}_e}.\nonumber\\
+\end{eqnarray}
+
+For the generation of the primary differential distribution $d\mathfrak{I}^\text{Pri}$, we start with the generation of $v$ according to
+\begin{equation}
+\frac{d\mathfrak{I}^\text{Pri}}{dv}=\sigma^f_\text{Born}(s(1-v))\mathcal{J}_0(v)\bar{\gamma}_e
+v^{\bar{\gamma}_e-1}\epsilon^{\gamma_e-\bar{\gamma}_e},
+\end{equation}
+which is done by using FOAM. Photon multiplicity $n$ is generated in the next step. For $v<\epsilon$ we have simply
+\begin{equation}
+\mathfrak{I}^\text{Pri}_n=\text{const}\times\frac{1}{(n-1)!}\biggl(\bar{\gamma}_e\log\frac{v}{\epsilon}\biggr)^{n-1},
+\end{equation}
+which is just the shifted-by-one Poisson distribution $P_{n-1}$, with the average $\braket{n-1}=\bar{\gamma_e}\log\frac{v}{\epsilon}$. The angles $\cos\theta_j$ and $\phi_j$ are generated in the same way as in the case of FSR.
+
+
+
+\subsection{Common IR Boundary For ISR and FSR}
+
+ 
+As discussed above, IRS photons are generated in CMS, while the FSR ones are generated in QMS. It is therefore the easiest to introduce the IR cut for the real photons in terms of minimum energy in these two frames. This defines the IR boundary, and IR domains inside them, which are differential for ISR and FSR real photons. As long as the ISR-FSR interference (IFI) is omitted, this will not be an issue. However, the IFI is present and the IR boundary has to be common for the CEEX. For the case of events with weight 1, this can be solved by taking the common IR domain which contains both ISR and FSR domains. For each event, we "remove from the record" all photons that are inside the new common IR domain. However, for the case of weighted events, the above approach has to be modified and it needs to be accompanied by the additional weight that is analytically calculable. We shall introduce this approach in the following.
+
+Let us consider the case of EEX 
+\begin{equation}
+\sigma^{(r)}_\text{EEX}=\int W^{(r)}_\text{EEX}d\sigma^\text{Cru},
+\end{equation}
+where the model weight $W^{(r)}_\text{EEX}$ is defined in eq. (7.191) in terms of the $O(\alpha^r)$ EEX differential distributions (7.4). Using eq. (7.195)
+\begin{equation}
+\epsilon_f=\delta_f\biggl(1+\frac{2QK'}{s_Q}\biggr),\quad K'=\sum_{i=0}^{n'}k'_i,
+\end{equation}
+which was introduced to facilitate the MC generation, we have
+\begin{align}
+\sigma^{(r)}_\text{EEX}\{A\}=&\sum_{n=0}^{\infty}\sum_{n'=0}^{\infty}\int d\sigma^\text{Cru}_{[n,n']}(\Omega_I,\Omega_F)\nonumber\\
+&\times A(n,k_1,\ldots,k_n;n',k'_1,\ldots,k'_{n'};p_i,q_i)\nonumber\\
+&\times W^{(r)}_\text{EEX}(n,k_1,\ldots,k_n;n',k'_1,\ldots,k'_{n'};p_i,q_i),\nonumber\\
+d\sigma^\text{Cru}_{[n,n']}(\Omega_I,\Omega_F)\equiv& ds_X\frac{\sigma_\text{Born}(s_X)}{4\pi}d\tau_{n+1}(P;k_1,\ldots,k_n,X)\nonumber\\
+&\times e^{\gamma_e\log\epsilon}\frac{1}{n!}\prod_{j=1}^{n}2\widetilde{S}_e(k_j)\bar{\Theta}(\Omega_I,k_j)d\tau_{n'+2}(X;k'_1,\ldots,k'_{n'},q_1,q_2)\nonumber\\
+&\times\frac{s_X}{s_Q}\frac{2}{\beta_f}e^{\gamma_f\log\left(\delta_f\frac{s_Q+2K'Q}{s_Q}\right)}\frac{1}{n!}\prod_{l=1}^{n'}2\widetilde{S}_f(k'_l)\bar{\Theta}(\Omega_F,k'+l),\nonumber\\
+\end{align}
+where we have introduced a general acceptance function A to discuss the IR cancellations. Each IR-safe observable corresponds uniquely to one or more such acceptance functions. 
+The acceptance function corresponding to a physically meaningful, IR-safe, observable must follow the important rule 
+\begin{equation}
+\lim_{k_i\to 0}A(n,k_1,\ldots,k_{i-1},k_i,k_{i+1},\ldots,k_n)=A(n-1,k_1,\ldots,k_{i-1},k_{i+1},\ldots,k_n),
+\end{equation}
+and there should be a similar rule for FSR photons. 
+
+So far we have kept the IR domains different for ISR and FSR. For ISR, $\Omega_I$ was defined by: $k^0_j<\epsilon_e\frac{1}{2}\sqrt{s}$ in the laboratory CMS system where $\vec{p}_1+\vec{p}_2=0$. For FSR, $\Omega_F$ was defined by $k^{'0}_j<\delta_f((s_Q+2K'Q)/s_Q)\frac{1}{2}\sqrt{s_Q}$ in the QMS system where $\vec{q}_1+\vec{q}_2=0$. Next, we are about to bring the two IR domains together 
+\begin{equation}
+d\sigma^{\text{Cru}\ast}_{[n,n']}(\Omega_I,\Omega_F).
+\end{equation}
+
+It is known that the total cross section and any IR-safe observable should be independent of $\Omega_I$ and $\Omega_F$. The inituitive solution is to set $\delta_f$ so small that $\Omega_F\subset\Omega_I$ always holds, and to neglect all FSR photons $k'_i\in\delta\Omega=\Omega_I\backslash\Omega_F$, i.e., removing them from the list of the generated momenta in the MC. Note that since $(s_Q+2K'Q)/S_Q\sim s_X/s_Q\ll s_X/(4m^2_f)$. Next we will prove the validity of the approach described above. Let us consider the internal FSR subintegral in eq. (7.244), fixing all ISR photon momenta 
+\begin{align}
+\mathfrak{I}=&\sum_{n'=0}^{\infty}\int d\tau_{n'+2}(X;k'_1,\ldots,k'_n,q_1,q_2)\nonumber\\
+&\times\frac{1}{n'!}\prod_{l=1}^{n'}2\widetilde{S}_f(k'_l)\bar{\Theta(\Omega_F,k'_l)}b(k'_1,\ldots,k'_{n'};p_i,q_i),
+\end{align}
+where
+\begin{align*}
+b(k'_1,\ldots,k'_{n'};p_i,q_i)\equiv& e^{\gamma_f\log\left(\delta_f\frac{s_Q+2K'Q}{s_Q}\right)}\frac{s_X}{s_Q}\frac{2}{\beta_f}\nonumber\\
+&\times W^{(r)}_\text{EEX}(n,k_1,\ldots,k_n;n',k'_1,\ldots,k'_{n'};p_i,q_i)\nonumber\\
+&\times A(n,k_1,\ldots,k_n;n',k'_1,\ldots,k'_{n'};p_i,q_i).
+\end{align*}
+Given that $\Omega_I=\Omega_F\cup\delta\Omega$ we can split every photon integral into two parts and reorganize the sum factorizing out the integral over $\delta\Omega$
+\begin{align}
+\mathfrak{I}\{A\}=&\sum_{n'=0}^{\infty}\frac{1}{n'!}\prod_{l=1}^{n'}\biggl\{ \int\frac{d^3k'_l}{k^{'0}_l}\Theta(\delta\Omega,k'_l)\widetilde{S}_f(l'_l)+\int\frac{d^3k'_l}{k^{'0}_l}\Theta(\Omega_I,k'_l)\widetilde{S}_f(l'_l) \biggr\}\nonumber\\
+&\times \int d\tau_{n'+2}(X,k'_i;q_1,q_2)b(k'_1,\ldots,k'_{n'};p_i,q_i)\nonumber\\
+=&\sum_{n'=0}^{\infty}\frac{1}{n'!}\sum_{s=0}^{n'}\binom{n'}{s}\biggl\{  \int\frac{d^3k}{2k^0}\Theta(\delta\Omega,k')\widetilde{S}_f(k') \biggr\}^s\nonumber\\
+&\times d\tau_{n'+2-s}\biggl( X-\sum_{1}^{s};k'_1,\ldots,k'_{n'-s},q_1,q_2 \biggr)\nonumber\\
+&\times\prod_{l=1}^{n'-s}\bar{\Theta}(\Omega_I,k'_l)\widetilde{S}_f(k'_l)b(k'_1,\ldots,k'_{n'-s};p_i,q_i),
+\end{align}
+where 
+\begin{equation*}
+\Theta(\delta\Omega,k')=\begin{cases}
+=1\quad &\text{for }k'\in\delta\Omega,\\
+=0\quad &\text{otherwise}.
+\end{cases}
+\end{equation*}
+Note that because of the specific expansion (7.4) of $\rho^{(r)}_\text{EEX}$ into $\bar{\beta}$-components the model weight $W^{(r)}_\text{EEX}$ is the most important ingredient in the above algebraic transformation. The model weight $W^{(r)}_\text{EEX}$ satisfies the IR-safeness condition
+\begin{align}
+&\lim_{k'_i\to 0}W^{(r)}_\text{EEX}(n',k'_1,\ldots,k'_{i-1},k'_i,k'_{i+1},\ldots,k'_{n'})\nonumber\\
+=&W^{(r)}_\text{EEX}(n'-1,k'_1,\ldots,k'_{i-1},k'_{i+1},\ldots,k'_{n'}),
+\end{align}
+and so does the function $b(k'_1,\ldots,k'_{n'};p_i,q_i)$. Thus the integral becomes
+\begin{align}
+\mathfrak{I}\{A\}=&\sum_{n'=0}^{\infty}\int d\tau_{n'+2}(X;k'_1,\ldots,k'_{n'},q_1,q_2)\frac{1}{n!}\prod_{l=1}^{n'}2\widetilde{S}_f(k'_l)\bar{\Theta(\Omega_I,k'_l)}\nonumber\\
+&\times\exp\biggl(\int\frac{d^3k}{2k^0}\Theta(\delta\Omega,k)2\widetilde{S}_f(k)\biggr)b(k'_1,\ldots,k\_{n'};p_i,q_i),
+\end{align}
+getting an additional exponential factor. 
+
+Therefore, by the explicit calculation, it is valid to skip photons that fall into $\delta\Omega=\Omega_I\backslash\Omega_F$
+\begin{align}
+&d\sigma^{\text{Cru}\ast}_{[n,n']}(\Omega_I,\Omega_I)\nonumber\\
+=&ds_X\frac{\sigma_\text{Born}(s_X)}{4\pi}d\tau_{n+1}(P;k_1,\ldots,k_n,X)\nonumber\\
+&\times e^{\gamma_e\log\epsilon}\frac{1}{n!}\prod_{j=1}^{n}2\widetilde{S}_e(k_j)\bar{\Theta}(\Omega_I,k_j)d\tau_{n'+2}(X;k'_1,\ldots,k'_n;q_1,q_2)\frac{s_X}{s_Q}\frac{2}{\beta_f}\nonumber\\
+&\times e^{R_F(\Omega_I)}\frac{1}{n'!}\prod_{l=1}^{n'}2\widetilde{S}_f(k'_l)\bar{\Theta(\Omega_I,k'_l)},
+\end{align}
+where
+\begin{equation}
+R_F=\gamma_f\log\biggl(\delta_f\frac{s_Q+2K'Q}{s_Q}\biggr)+2Q^2_f\alpha\widetilde{B}(\Omega_I,q_1,q_2)-2Q^2_f\alpha\widetilde{B}(\Omega_F,q_1,q_2).
+\end{equation}
+Note that the integral is preserved by construction
+\begin{equation*}
+\sum_{n,n'}\int d\sigma^{\text{Born}\ast}_{[n,n']}(\Omega_I,\Omega_F)=\sum_{n,n'}\int d\sigma^{\text{Born}}_{[n,n']}(\Omega_I,\Omega_F).
+\end{equation*}
+Now, we can not keep using $\rho^{(r)}_\text{EEX}$ of eq. (7.4) since the IR boundary in the new above distribution has changed for FSR photons. We have to use another distribution $\rho^{\ast(r)}_\text{EEX}$ in which $\widehat{B}(\Omega_F)$ is replaced by $\widehat{B}(\Omega_I)$ in the YFS form factor,
+\begin{equation*}
+\rho^{\ast(r)}_\text{EEX}=\rho^{(r)}_\text{EEX}e^{2Q^2_f(\widetilde{B}(\Omega_I,q_1,q_2)-\widetilde{B}(\Omega_F,q_1,q_2))}.
+\end{equation*}
+And since the model weight is the ratio of the model distribution and the crude one, the new exponential factor cancel out. Thus the new model weight is functionally exactly the same
+\begin{equation*}
+W^{\ast(r)}_\text{EEX}=W^{(r)}_\text{EEX}.
+\end{equation*}
+In the new MC calculation, we have
+\begin{equation}
+\sigma_\text{EEX}^{(r)}=\int W^{\ast(r)}_\text{EEX}d\sigma^{\text{Cru}\ast}=\int W^{(r)}_\text{EEX}d\sigma^{\text{Cru}\ast}.
+\end{equation}
+This result is trivial since in the MC program for the EEX model we change almost nothing, only neglecting hidden photons in the evaluation of the model weight. This feature implies that very soft photons are not important for all IR-safe integrand functions.
+
+The term $\gamma_f\log(\ldots)$ in $R_F$ is canceled by $\widetilde{B}(\Omega_F)$ and there is actually no dependence on $\Omega_F$ or $\delta_f$ in $d\sigma^{\text{Cru}\ast}_{[n,n']}$ any more. The IR cancellation is now ensured by the term below
+\begin{equation*}
+2\frac{\alpha}{\pi}\biggl(\log\frac{2q_1q_2}{m^2_f}-1\biggr)\log\epsilon.
+\end{equation*}
+
+However, the situation is still not as good as expected. We have to deal with the complication due to the use of the weighted events at the level of the crude distribution. Let us return to the EEX case
+\begin{equation}
+\sigma_\text{EEX}^{(r)}=\int W^{(r)}_\text{EEX}W^\text{Cru}_\text{FSR}W^\text{Cru}_\text{ISR}d\sigma^{\text{Pri}}.
+\end{equation}
+Now the issue is that photons in $\delta\Omega$ cannot be hidden, because $W^\text{Cru}_\text{FSR}$ does not follow the IR-saftness condition
+\begin{align*}
+&\lim_{k'_i\to 0}W^\text{Cru}_\text{FSR}(n',k'_1,\ldots,k'_i,\ldots,k'_{n'})\nonumber\\
+=&W^\text{Cru}_\text{FSR}(n'-1,k'_1,\ldots,k'_{i-1},k'_{i+1},\ldots,k'_{n'})\frac{f\left(\theta_i,\frac{m_f^2}{s_Q}\right)}{\bar{f}\left(\theta_i,\frac{m_f^2}{s}\right)}.
+\end{align*}
+Soft photons contribute the finite ratio $(f/\bar{f})$, and this condition is essential for the IR-cancellations and for the overall normalization.
+
+In order to save the validity of the approach of replacing $\Omega_F$ with $\Omega_I$, we repeat the calculation of eq. (7.248) and assume that photons hidden inside $\delta\Omega$ do not constribute the factor $(f/\bar{f})$ to the overall weight. Then we obtan an expression with the modified exponential factor
+\begin{align}
+\mathfrak{I}'\{A\}=&\sum_{n'=0}^{\infty}\int d\tau_{n'+2}(X';k'_1,
+\ldots,k'_{n'},q_1,q_2)\frac{1}{n'!}\prod_{l=1}^{n'}2\widetilde{S}_f(k'_l)\bar{\Theta}(\Omega_I,k'_l)\nonumber\\
+&\times\exp\biggl( \int_{\delta\Omega}\frac{d^3 k}{k^0}\widetilde{S}_f(k)\frac{\bar{f}\left(\theta_i,\frac{m_f^2}{s}\right)}{f\left(\theta_i,\frac{m_f^2}{s_Q}\right)} \biggr)b(k'_1,\ldots,k'_{n'};p_i,q_i).
+\end{align}
+It is important that the effect from neglecting $(f/\bar{f})$ in the overall weight can be calculated analytically. If so, we can compensate analytically for the missing average contribution to $W^\text{Cru}_\text{FSR}$ from the hidden photons. The evaluation of the integral over $\delta\Omega$ is based on the relation 
+\begin{equation*}
+\widetilde{S}^\ast_f(k)=\widetilde{S}_f(k)\frac{\bar{f}\left(\theta_i,\frac{m_f^2}{s}\right)}{f\left(\theta_i,\frac{m_f^2}{s_Q}\right)}=-Q^2_f\frac{\alpha}{4\pi}\biggl(\frac{q^\ast_1}{kq^\ast_1}-\frac{q^\ast_2}{kq^\ast_2}\biggr).
+\end{equation*}
+where $q^\ast_i$, $i=1,2$, are defined so that $(q^\ast_i)^2=m^2_f(s_Q/s)$. Moreover, they have the same directions as the original $\vec{q}_i$ and the same total energy, $q^{\ast0}_1+q^{\ast0}_2=\sqrt{s_Q}$ in the QMS. Thus we have
+\begin{equation}
+I_{\delta\Omega}=\int_{\delta\Omega}\frac{d^3k}{k^0}\widetilde{S}_f(k)\frac{\bar{f}\left(\theta_i,\frac{m_f^2}{s}\right)}{f\left(\theta_i,\frac{m_f^2}{s_Q}\right)}=2\alpha Q_f[\widetilde{B}(\Omega_I,q^\ast_1,q^\ast_2)-\widetilde{B}(\Omega_F,q^\ast_1,q^\ast_2)].
+\end{equation}
+
+To sum up, for the case of the weighted events, the method of hiding photons in $\delta\Omega=\Omega_I\backslash\Omega_F$ leads to a new crude distribtuion similar to that in eq. (7.251) with the new
+\begin{equation}
+R_f=\gamma_f\log\biggl(\delta_f\frac{s_Q+2K'Q}{s_Q}\biggr)+2Q^2_f\alpha\widetilde{B}(\Omega_I,q^\ast_1,q^\ast_2)-2Q^2_f\alpha\widetilde{B}(\Omega_F,q^\ast_1,q^\ast_2).
+\end{equation}
+Consequently the above exponential factor does not cancel not exactly in the model weight with the corrctions to the YFS form factor as before. And we have the correcting factor in the model weight:
+\begin{align}
+W_\text{hide}=&\exp\{ -2\alpha Q_f[\widetilde{B}(\Omega_I,q^\ast_1,q^\ast_2)-\widetilde{B}(\Omega_F,q^\ast_1,q^\ast_2)]\nonumber\\
+&+2\alpha Q_f[\widetilde{B}(\Omega_I,q_1,q_2)-\widetilde{B}(\Omega_F,q_1,q_2)] \}.
+\end{align}
+
+The important asset from the approach of hiding photons in $\delta\Omega=\Omega_I\backslash\Omega_F$ is that with the above correcting factor we could do calculation for the CEEX model with the ISR-FSR interference switched on.
+
+\subsection{Entire MC Algorithm Top-to-Bottom}
+For the CEEX model, according to the results of the previous subsections, we obtain
+\begin{equation}
+\sigma^{(r)}_\text{CEEX}\{A\}=\sum_{f=\mu,\tau,d,u,s,c,b}\sum_{n=0}^{\infty}\sum_{n'=0}^{\infty}\int AW^{(r)}_\text{CEEX}W^\text{Cru}_\text{FSR}W^\text{Cru}_\text{ISR}W_\text{hide}d\sigma^{\text{Pri}\ast}_{[n,n']}(\Omega_I).
+\end{equation}
+And $d\sigma^{\text{Pri}}_{[n,n']}(\Omega_I)$ is derived from the product of the ISR and FSR primary differential distributions
+\begin{equation}
+d\sigma^{\text{Pri}}_{[n,n']}(\Omega_I,\Omega_F)=d\mathfrak{I}^\text{Pri}_n(\Omega_I)d\mathfrak{I}^\text{Pri}_{n'}(\Omega_F)
+\end{equation}
+by means of hiding FSR photons in $\delta\Omega$. Therefore, only momenta outside the common IR-domain enter into the evaluation of $W^{(r)}_\text{CEEX}$ and of all other weights.
+
+The integrated cross section with the acceptance function $A$ is obtained in the MC run in a standard way
+\begin{equation}
+\sigma^{(r)}_\text{CEEX}\{A\}=\braket{AW^{(r)}_\text{CEEX}W^\text{Cru}_\text{FSR}W^\text{Cru}_\text{ISR}W_\text{hide}}\sigma^{\text{Pri}\ast}.
+\end{equation}
+The overall normalization is based on 
+\begin{align}
+\sigma^{\text{Pri}\ast}=&\sum_{f=\mu,\ldots,b}\sum_{n=0}^{\infty}\sum_{n'=0}^{\infty}\int d\sigma^{\text{Pri}\ast}_{[n,n']}(\Omega_I)=\sum_{n=0}^{\infty}\int d\mathfrak{I}^\text{Pri}_n(\Omega_I)\sum_{n'=0}^{\infty}\int d\mathfrak{F}^\text{Pri}_{n'}(\Omega_F)\nonumber\\
+=&\sum_{f=\mu,\ldots,b}\sum_{n=0}^{\infty}\int d\mathfrak{I}^\text{Pri}_n(\Omega_I)\nonumber\\
+=&\sum_{f=\mu,\ldots,b}\int_{0}^{1}dv\sigma^f_\text{Born}(s(1-v))\mathcal{J}_0(v)\bar{\gamma}_ev^{\bar{\gamma}_e-1}\epsilon^{\gamma_e-\bar{\gamma}_e},
+\end{align}
+where we have used the property $\int\sum d\mathfrak{F}^\text{Pri}(\Omega_F)\equiv 1$ of eq. (7.221), and the ISR part is taken from eq. (7.239). 
+
+Now we have the entire MC algorithm from the top to the bottom. It starts from the generation of $v$ describing the total energy loss due to the IRS, the type of final fermion f and the photon multiplicities $n$ and $n'$, and then generate photon energies and angles using the method described in the previous subsections.

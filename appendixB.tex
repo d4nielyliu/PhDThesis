@@ -1,0 +1,294 @@
+\chapter{Feynman Rules of Quantum Chromodynamics}
+
+In this appendix we outline the Feynman rules of quantum chromodynamics including the counterterms.
+\begin{eqnarray}
+V_{\mu_1\mu_2\mu_3}(k_1,k_2,k_3)&=&(k_1-k_2)_{\mu_3}g_{\mu_1\mu_2}+(k_2-k_3)_{\mu_1}g_{\mu_2\mu_3}+(k_3-k_1)_{\mu_2}g_{\mu_3\mu_1}\nonumber\\
+\end{eqnarray}
+\begin{eqnarray}
+W^{a_1\cdots a_4}_{\mu_1\cdots\mu_4}&=&(f^{13,24}-f^{14,32})g_{\mu_1\mu_2}g_{\mu_3\mu_4}+(f^{12,34}-f^{14,23})g_{\mu_1\mu_3}g_{\mu_2\mu_4}\nonumber\\
+&&+(f^{13,42}-f^{12,34})g_{\mu_1\mu_4}g_{\mu_3\mu_2}
+\end{eqnarray}
+\begin{eqnarray}
+f^{ij,kl}&=&f^{a_ia_ja}f^{a_ka_la}
+\end{eqnarray}
+
+	
+Propagators:
+\newline
+Gluons $A$
+
+\begin{axopicture}(260,60) %vector boson
+	\Gluon(20,30)(110,30){4}{6.5}
+	\Vertex(20,30){1}
+	\Vertex(110,30){1}
+	\Text(10,30){$a\mu$}\Text(120,30){$b\nu$}\Text(60,40){$k$}
+	\Text(210,30){$=\delta_{ab}\frac{1}{k^2}\biggl( g_{\mu\nu}-(1-\alpha)\frac{k_\mu k_\nu}{k^2} \biggr)$,}	
+\end{axopicture}
+\newline
+Faddeev-Popov ghosts $\chi$
+
+\begin{axopicture}(260,60) %ghost
+	\DashLine[arrow](110,30)(20,30){2}
+	\Vertex(20,30){1}
+	\Vertex(110,30){1}
+	\Text(10,30){$a$}\Text(120,30){$\bar{b}$}\Text(60,40){$k$}
+	\Text(170,30){$=\delta_{ab}\frac{-1}{k^2}$,}	
+\end{axopicture}
+\newline
+Quark fields $\psi$
+
+\begin{axopicture}(260,60)
+	\Line[arrow](110,30)(20,30)
+	\Vertex(20,30){1}
+	\Vertex(110,30){1}
+	\Text(10,30){$a$}\Text(120,30){$b$}\Text(60,40){$p$}
+	\Text(170,30){$=\delta_{ij}\frac{1}{m_f-\slashed{p}}$.}	
+\end{axopicture}
+\newline
+Gluon-counterterm
+
+\begin{axopicture}(260,60) %vector boson
+	\Gluon(20,30)(59.34,30){4}{3}
+	\Gluon(59.34,30)(110,30){4}{3}
+	\Vertex(20,30){1}
+	\Vertex(110,30){1}
+	\Text(10,30){$a\mu$}\Text(120,30){$b\nu$}\Text(65,47){$k$}
+	\Text(210,30){$=(Z_3-1)\delta_{ab}(k_\mu k_\nu-k^2g_{\mu\nu})$}
+	\GCirc(65,30){5.66}{1}	
+	\Line(61,26)(69,34)
+	\Line(69,26)(61,34)	 %counterterm
+\end{axopicture}
+\newline
+Faddeev-Popov ghost counterterm
+
+\begin{axopicture}(260,60) %scalar
+	\DashLine[arrow](59.34,30)(20,30){2}
+	\DashLine[arrow](110,30)(59.34,30){2}
+	\Vertex(20,30){1}
+	\Vertex(110,30){1}
+	\Text(10,30){$a$}\Text(120,30){$b$}\Text(65,47){$k$}
+	\Text(170,30){$=(\widetilde{Z}_3-1)\delta_{ab}k^2$,}
+	\GCirc(65,30){5.66}{1}		
+	\Line(61,26)(69,34)
+	\Line(69,26)(61,34)	 %counterterm
+	
+\end{axopicture}
+\newline
+Fermion counterterm
+
+\begin{axopicture}(260,60) %fermion
+	\Line[arrow](59.34,30)(20,30)
+	\Line[arrow](110,30)(59.34,30)
+	\Vertex(20,30){1}
+	\Vertex(110,30){1}
+	\Text(10,30){$i$}\Text(120,30){$j$}\Text(50,40){$p$}
+	\Text(210,30){$=[(Z_2-1)\slashed p-(Z_2Z_m-1)m_R]\delta_{ij}$,}
+	\GCirc(65,30){5.66}{1}	
+	\Line(61,26)(69,34)
+	\Line(69,26)(61,34)	 %counterterm
+\end{axopicture}	
+
+
+Vertices:	
+\newline
+Three-gluon vertex
+
+\begin{axopicture}(260,130) %fermion
+	\Gluon(10,65)(65,65){4}{5.5} 
+	\Gluon(65,65)(120,35){4}{5.5}
+	\Gluon(65,65)(120,105){4}{5.5}
+	\Vertex(65,65){1}		
+	\Text(10,75){$a_1, \mu_1$}
+	\Text(110,20){$a_3, \mu_3$}
+	\Text(110,115){$a_2, \mu_2$}
+	\Text(220, 65){$=-igf^{a_1a_2a_3}V_{\mu_1\mu_2\mu_3}(k_1,k_2,k_3)$}
+	\Vertex(65,65){2}
+\end{axopicture}
+\newline
+Gluon-ghost-ghost vertex
+
+\begin{axopicture}(260,130) %fermion
+	\Gluon(10,65)(65,65){4}{5.5} 
+	\DashLine[arrow](120,35)(65,65){2}
+	\DashLine[arrow](65,65)(120,105){2}
+	\Vertex(65,65){1}		
+	\Text(10,75){$a, \mu$}
+	\Text(110,20){$c$}
+	\Text(110,115){$b$}
+	\Text(220, 65){$=-igf^{a_1a_2a_3}k_\mu$}
+	\Vertex(65,65){2}
+\end{axopicture}
+\newline
+Gluon-quark-quark vertex
+
+\begin{axopicture}(260,130) %fermion
+	\Gluon(10,65)(65,65){4}{5.5} 
+	\Line[arrow](120,35)(65,65)
+	\Line[arrow](65,65)(120,105)
+	\Vertex(65,65){1}		
+	\Text(10,75){$a, \mu$}
+	\Text(110,20){$j$}
+	\Text(110,115){$i$}
+	\Text(220, 65){$=g\gamma_\mu T^a_{ij}$}
+	\Vertex(65,65){2}
+\end{axopicture}
+\newline
+Four-gluon vertex
+
+\begin{axopicture}(260,130) %fermion
+	\Gluon(20,110)(65,65){4}{5.5}
+	\Gluon(65,65)(110,20){4}{5.5}
+	\Gluon(20,20)(65,65){4}{5.5}
+	\Gluon(65,65)(110,110){4}{5.5}
+	\Vertex(65,65){1}		
+	\Text(10,120){$a_1,\mu_1$}
+	\Text(10,10){$a_2,\mu_2$}
+	\Text(120,10){$a_3,\mu_3$}
+	\Text(120,120){$a_4,\mu_4$}
+	\Text(210, 65){$=-g^2W^{a_1\cdots a_4}_{\mu_1\cdots\mu_4}$}
+	\Vertex(65,65){3}
+\end{axopicture}
+\newline
+Three-gluon vertex counterterm
+
+\begin{axopicture}(260,130) %fermion
+	\Gluon(10,65)(65,65){4}{5.5} 
+	\Gluon(65,65)(120,35){4}{5.5}
+	\Gluon(65,65)(120,105){4}{5.5}
+	\Vertex(65,65){1}		
+	\Text(10,75){$a_1, \mu_1$}
+	\Text(110,20){$a_3, \mu_3$}
+	\Text(110,115){$a_2, \mu_2$}
+	\Text(220, 65){$=(Z_1-1)(-i)g_Rf^{a_1a_2a_3}V_{\mu_1\mu_2\mu_3}(k_1,k_2,k_3)$}
+	\GCirc(65,65){5.66}{1}	
+	\Line(61,61)(69,69)
+	\Line(69,61)(61,69)	 %counterterm
+\end{axopicture}
+\newline
+Gluon-ghost-ghost vertex counterterm
+
+\begin{axopicture}(260,130) %fermion
+	\Gluon(10,65)(65,65){4}{5.5} 
+	\DashLine[arrow](120,35)(65,65){2}
+	\DashLine[arrow](65,65)(120,105){2}
+	\Vertex(65,65){1}		
+	\Text(10,75){$a, \mu$}
+	\Text(110,20){$c$}
+	\Text(110,115){$b$}
+	\Text(220, 65){$=(\widetilde{Z}_1-1)(-i)g_Rf^{abc}k_\mu$}
+	\GCirc(65,65){5.66}{1}	
+	\Line(61,61)(69,69)
+	\Line(69,61)(61,69)	 %counterterm
+\end{axopicture}
+\newline
+Gluon-quark-quark vertex
+
+\begin{axopicture}(260,130) %fermion
+	\Gluon(10,65)(65,65){4}{5.5} 
+	\Line[arrow](120,35)(65,65)
+	\Line[arrow](65,65)(120,105)
+	\Vertex(65,65){1}		
+	\Text(10,75){$a, \mu$}
+	\Text(110,20){$j$}
+	\Text(110,115){$i$}
+	\Text(220, 65){$=(\widetilde{Z}_{1F}-1)g_RT^{a}_{ij}\gamma_\mu$}
+	\GCirc(65,65){5.66}{1}	
+	\Line(61,61)(69,69)
+	\Line(69,61)(61,69)	 %counterterm
+\end{axopicture}
+
+Four-gluon vertex
+
+\begin{axopicture}(260,130) %fermion
+	\Gluon(20,110)(65,65){4}{5.5}
+	\Gluon(65,65)(110,20){4}{5.5}
+	\Gluon(20,20)(65,65){4}{5.5}
+	\Gluon(65,65)(110,110){4}{5.5}
+	\Vertex(65,65){1}		
+	\Text(10,120){$a_1,\mu_1$}
+	\Text(10,10){$a_2,\mu_2$}
+	\Text(120,10){$a_3,\mu_3$}
+	\Text(120,120){$a_4,\mu_4$}
+	\Text(210, 65){$=(Z_4-1)(-1)g_R^2W^{a_1\cdots a_4}_{\mu_1\cdots\mu_4}.$}
+	\GCirc(65,65){5.66}{1}	
+	\Line(61,61)(69,69)
+	\Line(69,61)(61,69)	 %counterterm
+\end{axopicture}
+
+Loops:
+\newline
+The gluon loop
+
+\begin{axopicture}(260,130) %fermion
+	\GluonArc(65,65)(35,185,175){7}{13}
+	\Text(15,75){$a,\mu$}
+	\Text(15,55){$b,\nu$}
+	\Line[arrow](115,55)(115,75)
+	\Text(125,65){$k$}
+	\Text(190,65){$\int\frac{d^4k}{(2\pi)^4i}\delta^{ab}g^{\mu\nu}.$}
+\end{axopicture}
+\newline
+The ghost loop
+
+\begin{axopicture}(260,130) %fermion
+	\Arc[arrow,dash](65,65)(35,185,175)
+	\Text(15,75){$a$}
+	\Text(15,55){$b$}
+	\Line[arrow](115,55)(115,75)
+	\Text(125,65){$k$}
+	\Text(190,65){$-\int\frac{d^4k}{(2\pi)^4i}\delta^{ab}.$}
+\end{axopicture}
+\newline
+The quark loop
+
+\begin{axopicture}(260,130) %fermion
+	\Arc[arrow](65,65)(35,185,175)
+	\Text(15,75){$a$}
+	\Text(15,55){$b$}
+	\Line[arrow](115,55)(115,75)
+	\Text(125,65){$k$}
+	\Text(190,65){$-\int\frac{d^4k}{(2\pi)^4i}\delta^{ij}\delta^{\alpha\beta}.$}
+\end{axopicture}
+\newline
+The gluon-quark loop
+
+\begin{axopicture}(260,130) %fermion
+	\GluonArc(65,65)(35,0,180){5}{9}
+	\Line[arrow](100,65)(30,65)
+	\Text(65,55){$k$}
+	\Text(190,75){$\int\frac{d^4k}{(2\pi)^4i}.$}
+\end{axopicture}
+\newline
+The gluon-ghost loop
+
+\begin{axopicture}(260,130) %fermion
+	\GluonArc(65,65)(35,0,180){5}{9}
+	\Line[dash,arrow](100,65)(30,65)
+	\Text(65,55){$k$}
+	\Text(190,75){$\int\frac{d^4k}{(2\pi)^4i}.$}
+\end{axopicture}
+
+
+Symmetry factors
+
+\begin{axopicture}(260,110) %fermion
+	\GluonArc(65,65)(20,0,360){3}{13}
+	\Gluon(15,65)(45,65){3}{4}
+	\Gluon(85,65)(105,65){3}{4}
+	\Text(180,65){$\sim \frac{1}{2!}$}
+\end{axopicture}
+
+\begin{axopicture}(260,70) %fermion
+	\GluonArc(65,65)(15,0,360){3}{13}
+	\Gluon(15,45)(65,45){3}{4}
+	\Gluon(65,45)(105,45){3}{4}
+	\Text(180,65){$\sim \frac{1}{2!}$}
+\end{axopicture}
+
+\begin{axopicture}(260,80) %fermion
+	\GluonArc(65,65)(20,0,360){3}{13}
+	\Gluon(15,65)(45,65){3}{4}
+	\Gluon(85,65)(105,65){3}{4}
+	\Gluon(45,65)(85,65){3}{6}
+	\Text(180,65){$\sim \frac{1}{3!}$}
+\end{axopicture}

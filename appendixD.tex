@@ -1,0 +1,100 @@
+\chapter{The Global Positioning of Spin GPS scheme}
+In Chapter 3, we introduced the Kleiss and Stirling spinor method. In the KS scheme, the massless spinors and massive spinors are defined \cite{KS}. The definitions in the KS scheme will be supplemented in Ref. \cite{GPS} with the precise prescription of the spin quantization axes, the translation from spin amplitudes to density matrices, and the methodology of connecting production and decay for unstable fermions. 
+
+The GPS rules determining the spin quantization frame for the $u(p,\pm)$ and $v(p,\pm)$ of eq. (3.99) are summarized as follows:
+
+(\romannumeral 1) In the rest frame of the fermion, take the $z$-axis along $-\vec{k}$.
+
+(\romannumeral 2) Place the $x$ axis in the plane define by the $z$-axis from the previous point and the vector $\vec{\eta}$, in the same half-plane as $\vec{\eta}$.
+
+(\romannumeral 3) With the $y$-axis, complete the right-handed system of coordinates. The rest frame defined in this way we call the GPS frame of the particular fermion.
+
+Next we will assume that polarization vectors of beams and of outgoing fermions are defined in their corresponding GPS frames.
+
+For the definitions of inner product of the spinors are the same as those described in Chapter 3. 
+
+For a circularly polarization vector with four-momentum $k$ and helicity $\sigma=\pm 1$ we take the following convention \cite{ChnMag}:
+\begin{equation*}
+[\epsilon^\mu_\sigma(\beta)]^\ast=\frac{\bar{u}_\sigma(k)\gamma^\mu u_\sigma(\beta)}{\sqrt{2}u_{-\sigma}(k)u_\sigma(\beta)}
+\end{equation*}
+\begin{equation}
+[\epsilon^\mu_\sigma(\zeta)]^\ast=\frac{\bar{u}_\sigma(k)\gamma^\mu u_\sigma(\zeta)}{\sqrt{2}u_{-\sigma}(k)u_\sigma(\zeta)}
+\end{equation} 
+where  $\beta$ is an arbitrary light-like four-vector $\beta^2=0$. The second choice with $u_\sigma(\zeta)$ (constant basic spinors) often simplifies the resulting photon emission amplitudes. With the help of the Chisholm identity
+\begin{equation}
+\bar{u}_\sigma(k)\gamma_\mu u_\sigma(\beta)\gamma^\mu=2u_\sigma(\beta)\bar{u}_{-\sigma}(k)+2u_\sigma(k)\bar{u}_{-\sigma}(\beta),
+\end{equation}
+\begin{equation}
+\bar{u}_\sigma(k)\gamma_\mu u_\sigma(\zeta)\gamma^\mu=2u_\sigma(\zeta)\bar{u}_{-\sigma}(k)+2u_\sigma(k)\bar{u}_{-\sigma}(\zeta),
+\end{equation}
+we obtain two useful formula, equivalent to eq. (D.1)
+\begin{eqnarray}
+\slashed\epsilon^\ast_\sigma(k,\beta)&=&\frac{\sqrt{2}}{\bar{u}_{-\sigma}(k)u_\sigma(\beta)}[u_\sigma(\beta)\bar{u}_{-\sigma}(k)+u_\sigma(k)\bar{u}_{-\sigma}(\beta)],\nonumber\\
+\slashed\epsilon^\ast_\sigma(k,\zeta)&=&\frac{\sqrt{2}}{\sqrt{2\zeta k}}[u_\sigma(\zeta)\bar{u}_{-\sigma}(k)-u_\sigma(k)\bar{u}_{-\sigma}(\zeta)].
+\end{eqnarray}
+
+While calculating photon emission spin amplitudes, we will use the following important building blocks, i.e., the elements of the ``transition matrices" $U$ and $V$ defined as 
+\begin{eqnarray}
+\bar{u}(p_1,\lambda_1)\slashed\epsilon^\ast_\sigma(k,\beta)u(p_2,\lambda_2)=U\binom{k}{\sigma}\left[\begin{array}{c}
+p_1p_2\\\lambda_1\lambda_2
+\end{array}\right]=U^\sigma_{\lambda_1,\lambda_2}(k,p_1,m_1,p_2,m_2),\nonumber\\
+\bar{v}(p_1,\lambda_1)\slashed\epsilon^\ast_\sigma(k,\zeta)v(p_2,\lambda_2)=V\binom{k}{\sigma}\left[\begin{array}{c}
+p_1p_2\\\lambda_1\lambda_2
+\end{array}\right]=V^\sigma_{\lambda_1,\lambda_2}(k,p_1,m_1,p_2,m_2).\nonumber\\
+\end{eqnarray}
+In the case of $u_\sigma(\zeta)$ the above transition matrices reads
+\begin{equation}
+U^+(k,p_1,m_1,p_2,m_2)=\sqrt{2}\left[\begin{array}{cc}
+\sqrt{\frac{2\zeta p_2}{2\zeta k}}s_+(k,\hat{p}_1),&0\\
+m_2\sqrt{\frac{2\zeta p_1}{2\zeta p_2}}-m_1\sqrt{\frac{2\zeta p_1}{2\zeta p_2}},&\sqrt{\frac{2\zeta p_1}{2\zeta k}}s_+(k,\hat{p}_2)
+\end{array}\right],
+\end{equation}
+\begin{equation}
+U^-_{\lambda_1,\lambda_2}(k,p_1,m_1,p_2,m_2)=[-U^+_{\lambda_2,\lambda_1}(k,p_2,m_2,p_1,m_1)]^\ast,
+\end{equation}
+\begin{equation}
+V^\sigma_{\lambda_1,\lambda_2}(k,p_1,m_1,p_2,m_2)=-U^\sigma_{-\lambda_1,-\lambda_2}(k,p_1,-m_1,p_2,-m_2).
+\end{equation}
+
+Compared with the case of $u_\sigma(\zeta)$, the more general case $u(\beta)$ is a little bit more complicated
+\begin{eqnarray}
+&&U^+(k,p_1,m_1,p_2,m_2)\nonumber\\
+&=&\sqrt{\frac{2}{s_-(k,\beta)}}\nonumber\\
+&&\times\left[\begin{array}{cc}
+s_+(\hat{p}_1,k)s_-(\beta,\hat{p}_2)+m_1m_2\sqrt{\frac{2\zeta\beta}{2\zeta p_1}\frac{2\zeta k}{2\zeta p_2}}, m_1\sqrt{\frac{2\zeta\beta}{2\zeta p_1}}s_+(k,\hat{p}_2)+m_2\sqrt{\frac{2\zeta\beta}{2\zeta p_2}s_+(\hat{p}_1,k)}\\
+m_1\sqrt{\frac{2\zeta k}{2\zeta p_1}}s_-(\beta,\hat{p}_2)+m_2\sqrt{\frac{2\zeta k}{2\zeta p_2}s_-(\hat{p}_1,\beta)}, s_-(\hat{p}_1,\beta)s_+(k,\hat{p}_2)+m_1m_2\sqrt{\frac{2\zeta\beta}{2\zeta p_1}\frac{2\zeta k}{2\zeta p_2}}
+\end{array}\right].\nonumber\\
+\end{eqnarray} 
+The numbering of elements in matrices $U$ and $V$ is
+\begin{equation}
+\{(\lambda_1,\lambda_2)\}=\left[\begin{array}{cc}
+(++)&(+-)\\
+(-+)&(--)
+\end{array}\right].
+\end{equation}
+
+When computing bremsstrahlung amplitudes we will adopt the following compact notation:
+\begin{eqnarray}
+U\left[\begin{array}{c}
+pkp\\\lambda_1\sigma\lambda_2
+\end{array}\right]&\equiv&U^\sigma_{\lambda_1,\lambda_2}(k,p_1,m_1,p_2,m_2)\nonumber\\
+V\left[\begin{array}{c}
+pkp\\\lambda_1\sigma\lambda_2
+\end{array}\right]&\equiv&V^\sigma_{\lambda_1,\lambda_2}(k,p_1,m_1,p_2,m_2).
+\end{eqnarray}
+
+When dealing with the soft real photon limit we will implement the following important diagonality property:
+\begin{equation}
+U\left[\begin{array}{c}
+pkp\\\lambda_1\sigma\lambda_2
+\end{array}\right]=V\left[\begin{array}{c}
+pkp\\\lambda_1\sigma\lambda_2
+\end{array}\right]=b_\sigma(k,p)\delta_{\lambda_1,\lambda_2},
+\end{equation}
+\begin{equation}
+b_\sigma(k,p)=\sqrt{2}\frac{\bar{u}(k)\slashed p u_\sigma(\zeta)}{\bar{u}(k)u_\sigma(\zeta)}=\sqrt{2}\sqrt{\frac{2\zeta p}{2\zeta k}}s_\sigma(k,\hat{p}),
+\end{equation}
+which also holds in the general case of $u_\sigma(\beta)$, where
+\begin{equation}
+b_\sigma(k,p)=\frac{\sqrt{2}}{s_{-\sigma}(k,\beta)}\biggl( s_{-\sigma}(\beta,\hat{\beta})s_\sigma(\hat{p},k)+\frac{m^2}{2\zeta\hat{p}} \sqrt{(2\beta\zeta)(2\zeta k)}\biggr).
+\end{equation}

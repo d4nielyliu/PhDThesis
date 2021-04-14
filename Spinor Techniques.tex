@@ -1,0 +1,654 @@
+\chapter{Spinor Techniques}
+\section{Introdution}
+The cross sections of bremsstrahlung processes at high energies in gauge theories are of interest for both theoretical and experimental physicists due to the deveolopment of experiments in colliders. In these processes, light leptons and quarks could be viewed as massless as long as the electromagnetic and strong interactions are concerned. When the Feynman rules of the theory are determined, the rest of the work is reduced to the calculation of the amplitudes of Feynman diagrams. The amplitudes can be computed with the standard manipulations for squaring matrix elements and summing over the polarizations of the particles. 
+
+Although the standard approach is straightforward, it becomes impractical when both the number of external lines and the number of diagrams involved become large. To be specific, aftering writting down the amplitude $M$ of the corresponding Feynman diagrams, we usually have an analytic expression for the cross section $\sum |M|^2$ with a spin and/or color sum or average. The result is usually a function of Minkowski products of the particle four-momenta. 
+
+The calculation of the cross section is facilitated by two considerations. First, the polarization vector $\epsilon^\mu$ of external spin-$1$ particles could be summed covariantly. For a massive vector boson with mass $m$ and momentum $q^\mu$ we have the spin sum
+\begin{equation}
+\sum\epsilon^\mu\epsilon^{\ast\nu}=-g^{\mu\nu}+\frac{q^\mu q^\nu}{m^2},
+\end{equation}
+while for a massless vector boson with momentum $k^\mu$ we have in the axial gauge:
+\begin{equation}
+\sum\epsilon^\mu\epsilon^{\ast\nu}=-g^{\mu\nu}+\frac{p^\mu k^\nu+k^\mu p^\nu}{p\cdot k},
+\end{equation}
+where $p^\mu$ is a four-vector different from $k^\mu$. Second, a product of spinor sandwiches can be expressed as a trace over a string of Dirac matrices, using spinor projection operators. For a massive spin-$\frac{1}{2}$ particle with mass $m$ and momentum $p^\mu$ we have the spin sum 
+\begin{equation}
+\begin{cases}
+\sum\bar{u}(p)u(p)=\slashed p+m,\\
+\sum\bar{v}(p)v(p)=\slashed p-m.
+\end{cases}
+\end{equation}
+For a massless fermion with moemntum $p^\mu$ and helicity $\lambda=\pm1$, we have
+\begin{equation}
+u_\lambda(p)\bar{u}_\lambda(p)=\omega_\lambda\slashed{p},\quad \omega_\lambda=\frac{1}{2}(1+\lambda\gamma_5).
+\end{equation}
+
+The above method has some appealing features. The unobserved spins and polarizations do not arise in the final result; the arbitrary overall complex phases of the spinors and polarization vectors cancel. The algebraic calculation of the trace expressions is straightforward and can be performed for any amplitude. However, the last condition limits the complexity of the problems that can be dealt with. Since we have to square the amplitude before we can use eqs. (3.1)-(3.4), both the number of traces and their length increases very fast with the order of perturbation theory. It is very easy to make mistakes.
+
+In order to handle this problem, spinor product methods were proposed by three groups independently: the CALKUL approach \cite{calkul1,calkul3,calkul2,calkul4,CALKUL}, "Chinese magic" polarization scheme \cite{ChnMag},  and Kleiss and Stirling Spinor Technique \cite{KS}. The essential idea is that the gauge invariance allows one to use a set of polarization vectors which eliminate radiation from one entire side of a charged line and simplify considerably the calculation. In this chapter, we will introduce these three approaches respectively.
+
+
+\section{The CALKUL Approach}
+First, we introduce the heliciy amplitude approach \cite{calkul1,calkul3,calkul2,calkul4} proposed the CALKUL collaboration (F. A. Berends, P. De Causmaecker, R. Gastmans, R. Kleiss, W. Troost and T. T. Wu).
+
+For a massless fermion of four-momentum $q$, there are two possible helicity states $u_+(q)$ and $u_-(q)$ specified by
+\begin{align}
+u_\pm(q)&=\frac{1}{2}(1\pm\gamma_5)u_\pm(q),\\
+\bar{u}_\pm(q)&=\bar{u}_\pm(q)\frac{1}{2}(1\mp\gamma_5).
+\end{align}
+By the normalization
+\begin{equation}
+u_+(q)\bar{u}_+(q)+u_-(q)\bar{u}_-(q)=\slashed q,
+\end{equation}
+it follows that
+\begin{equation}
+u_\pm(q)\bar{u}_\pm(q)=\frac{1}{2}(1\pm\gamma_5)\slashed q.
+\end{equation}
+
+For the anti-fermion of momentum $q$, the relations are similar:
+\begin{align}
+v_\pm(q)&=\frac{1}{2}(1\mp\gamma_5)v_\pm(q),\\
+\bar{v}_\pm(q)&=\bar{v}_\pm(q)\frac{1}{2}(1\pm\gamma_5),\\
+v_\pm(q)\bar{v}_\pm(q)&=\frac{1}{2}(1\mp\gamma_5)\slashed q.
+\end{align}
+
+It is convenient to apply the Dirac bracket notation.
+\begin{eqnarray}
+&\ket{q,+}\equiv u_+(q),&\ket{q,+}\equiv v_-(q),\nonumber\\
+&\ket{q,-}\equiv u_(q,),&\ket{q,-}\equiv v^+(q),\nonumber\\
+&\bra{q,+}\equiv \bar{u}_+(q),&\bra{q,-}\equiv \bar{v}_-(q),\nonumber\\
+&\bra{q,-}\equiv \bar{u}_-(q),&\bra{q,-}\equiv \bar{v}_+(q).
+\end{eqnarray}
+Then we have 
+\begin{eqnarray}
+\ket{q,+}\bra{q,+}=\frac{1}{5}(1+\gamma_5)\slashed q,\nonumber\\
+\ket{q,-}\bra{q,-}=\frac{1}{5}(1-\gamma_5)\slashed q,
+\end{eqnarray}
+and
+\begin{equation}
+\braket{q,+|q,+}=\braket{q,-|q,-}=0.
+\end{equation}
+More generally, for arbitrary $q_1$ and $q_2$ satisfying $q_1^2=q_2^2=0$,
+\begin{equation}
+\braket{q_1,\pm|q_2,\pm}=0.
+\end{equation}
+Products like $\braket{q_1,+|q_2,-}$ are not well defined since each state can carry an arbitrary phase, but the norm is 
+\begin{equation}
+|\braket{q_1,+|q_2,-}|^2=tr\biggl[\frac{1}{2}(1-\gamma_5)\slashed q_2\frac{1}{2}(1+\gamma_5)\slashed q_1\biggr]=2(q_1q_2).
+\end{equation}
+
+Next, let us discuss the polarization vectors of the gauge boson. Assume a massless gauge boson with four-momentum $k$ is radiated from a charged line for which $q_+$ and $q_-$ are the momenta of the outgoing antifermion and fermion. A massless boson has two polarization states, and the polarizations can be contructed as follows:
+\begin{equation}
+\begin{cases}
+&\epsilon^\parallel_\mu=N[(q_+k)q_{-\mu}-(q_-k)q_{+\mu}],\\
+&\epsilon^\perp_\mu=N\epsilon_{\mu\alpha\beta\gamma}q^\alpha_+q^\beta_-k^\gamma,
+\end{cases}
+\end{equation}
+where
+\begin{equation}
+N=[2(q_+q_-)(q_+k)(q_-k)]^\frac{1}{2}.
+\end{equation}
+
+Alternatively, from eq. (3.17), we can introduce the circular polarization vectors
+\begin{equation}
+\epsilon^\pm_\mu=\sqrt{\frac{1}{2}}(\epsilon^\parallel_\mu\pm\i\epsilon^\perp_\mu),
+\end{equation}
+with which we will work from now on. 
+
+Using the identity
+\begin{equation}
+i\gamma^\mu\epsilon_{\mu\alpha\beta\gamma}=(\gamma_\alpha\gamma_\beta\gamma_\gamma-\gamma_\alpha g_{\beta\gamma}+\gamma_\beta g_{\alpha\gamma}-\gamma_\gamma g_{\alpha\beta})\gamma_5,
+\end{equation}
+we have 
+\begin{equation}
+\slashed \epsilon^\pm=-\frac{1}{2\sqrt{2}}N[\slashed k\slashed q_- k\slashed q_+(1\pm\gamma_5)-\slashed q_- \slashed q_+\slashed k(1\mp\gamma_5)].
+\end{equation}
+which leads to great simplifications. There are several reasons for advantages resulting from eq. (3.21):
+\newline$\bullet$ \quad If the gauge boson line is next to the the external fermion or antifermion line, only one ot the terms on the right-hand side of eq. (3.21) gives a non-zero contribution due to the Dirac equations for massless fermions.
+\newline$\bullet$ \quad When there is a gauge boson line next to the external fermion or antifermion line, either a factor $1+\gamma_5$ or a factor $1-\gamma_5$ occurs. This factor ensures for every other real boson line attached to this fermion line, only one of the two terms on the right-hand side of eq. (3.21) survives. 
+\newline$\bullet$ \quad When the gauge boson line is next to the external fermion line, there is a cancellation of the denominator. Assume we have an outgoing electron with momentum $q_-$, and the emission of a photon  with momentum $k$. If the vertex for the photon emission is next to the outgoing electron line, then the amplitude contains a factor
+\begin{align}
+\bar{u}(q_-)\slashed\epsilon^\pm\frac{\slashed q_-+\slashed k}{2(q_-k)}&=-\frac{1}{2\sqrt{2}}N\bar{u}(q_-)\slashed k\slashed q_-\slashed q_+(1\pm\gamma_5)\frac{q_-+k}{q_-k}\nonumber\\
+&=-\frac{1}{2\sqrt{2}}N\bar{u}(q_-)\slashed q_+(\slashed q_-+\slashed k)(1\mp\gamma_5).
+\end{align}
+Therefore the denominator $2(q_-k)$ is cancelled. In the upcoming example, we will see this denominator cancellation makes a large contribution for the simplicity of the calculation.
+
+In order to illustrate the nice features of the CALKUL helicity amplitude method, we will exhibit the explicit computation the amplitude for the singe bremsstrahlung process in QED.
+
+For the reaction
+\begin{equation}
+e^+(p_+)+e^-(p_-)\to\mu^+(q_+)+\mu^-(q_-)+\gamma(k),
+\end{equation}
+for which the Feynman diagrams are shown below
+
+\begin{axopicture}(520,140)
+	\Photon(50,70)(120,70){2}{6}
+	\Vertex(50,70){1.5}\Vertex(120,70){1.5}
+	\Line[arrow](10,30)(30,50)\Line[arrow](30,50)(50,70)
+	\Photon(30,50)(50,30){2}{3} \Text(60,30){$\gamma(k)$}
+	\Line[arrow](50,70)(10,110)
+	\Line[arrow](120,70)(160,30)
+	\Line[arrow](160,110)(120,70)
+	\Text(25,20){$e^-(p_-)$}
+	\Text(145,20){$\mu^-(q_-)$}
+	\Text(85,0){(1)}
+	\Text(25,120){$e^+(p_+)$}
+	\Text(145,120){$\mu^+(q_+)$}
+	\Photon(220,70)(290,70){2}{6}
+	\Line[arrow](180,30)(220,70)
+	\Line[arrow](220,70)(200,90)\Line[arrow](200,90)(180,110)
+	\Photon(200,90)(220,110){2}{3}\Text(230,110){$\gamma(k)$}
+	\Line[arrow](290,70)(330,30)
+	\Line[arrow](330,110)(290,70)
+	\Text(195,20){$e^-(p_-)$}
+	\Text(315,20){$\mu^-(q_-)$}
+	\Text(255,0){(2)}
+	\Text(195,120){$e^+(p_+)$}
+	\Text(315,120){$\mu^+(q_+)$}
+\end{axopicture}
+
+\begin{axopicture}(520,140)
+	\Photon(50,70)(120,70){2}{6}
+	\Line[arrow](10,30)(50,70)
+	\Line[arrow](50,70)(10,110)
+	\Line[arrow](120,70)(140,50)\Line[arrow](140,50)(160,30)
+	\Photon(140,50)(160,70){2}{3}\Text(160,80){$\gamma(k)$}
+	\Line[arrow](160,110)(120,70)
+	\Text(25,20){$e^-(p_-)$}
+	\Text(145,20){$\mu^-(q_-)$}
+	\Text(85,0){(3)}
+	\Text(25,120){$e^+(p_+)$}
+	\Text(145,120){$\mu^+(q_+)$}
+	\Photon(220,70)(290,70){2}{6}
+	\Line[arrow](180,30)(220,70)
+	\Line[arrow](220,70)(180,110)
+	\Line[arrow](290,70)(330,30)
+	\Line[arrow](330,110)(310,90)\Line[arrow](310,90)(290,70)
+	\Photon(310,90)(330,70){2}{3}\Text(330,60){$\gamma(k)$}
+	\Text(195,20){$e^-(p_-)$}
+	\Text(315,20){$\mu^-(q_-)$}
+	\Text(255,0){(4)}
+	\Text(195,120){$e^+(p_+)$}
+	\Text(315,120){$\mu^+(q_+)$}
+\end{axopicture}
+
+Applying the Feynman rules, we have
+\begin{align}
+M_1&=\frac{ie^2}{2(q_+q_-)}\bar{v}(p_+)\gamma_\mu\frac{\slashed p_--\slashed k}{2(p_-k)}\slashed\epsilon u(p_-)\bar{u}(q_-)\gamma^\mu v(q_+),\nonumber\\
+M_2&=\frac{ie^2}{2(q_+q_-)}\bar{v}(p_+)\gamma_\mu\frac{-\slashed p_++\slashed k}{-2(p_+k)}\slashed\epsilon u(p_-)\bar{u}(q_-)\gamma^\mu v(q_+),\nonumber\\
+M_3&=\frac{ie^2}{2(p_+p_-)}\bar{v}(p_+)\gamma_\mu u(p_-)\bar{u}(q_-)\slashed\epsilon\frac{\slashed q_-+\slashed k}{2(q_-k)}\gamma^\mu v(q_+),\nonumber\\
+M_4&=\frac{ie^2}{2(p_+p_-)}\bar{v}(p_+)\gamma_\mu u(p_-)\bar{u}(q_-)\gamma^\mu\frac{-\slashed q_+-\slashed k}{2(q_+k)}\slashed\epsilon v(q_+).
+\end{align}
+When the photon is radiated from the electron line, it is convenient to choose
+\begin{align}
+\slashed\epsilon^\pm_p&=N_p[\slashed p_+\slashed p_-\slashed k(1\mp\gamma_5)-\slashed k\slashed p_+\slashed p_-(1\pm\gamma_5)],\nonumber\\
+N^{-1}_p&=4[(p_+p_-)(p_+k)(p_-k)]^\frac{1}{2}.
+\end{align}
+but for radiation from the muon line, it is advantageous to take
+\begin{align}
+\slashed\epsilon^\pm_q&=N_q[\slashed q_-\slashed q_+\slashed k(1\mp\gamma_5)-\slashed k\slashed q_-\slashed q_+(1\pm\gamma_5)],\nonumber\\
+N^{-1}_q&=4[(q_+q_-)(q_+k)(q_-k)]^\frac{1}{2}.
+\end{align}
+The two choices are related by a simple phase factor. Let us consider the photon to be moving along the $z$-axis. Because the diagrams $M_1$ and $M_2$ together form a gauge-invariant set, and so do $M_3$ and $M_4$, we can make gauge transformations so that the polarization vector $\epsilon^\pm_p$ and $\epsilon^\pm_q$ only have components in the $xy$-plane. Since the have the same norm, they can differ at most by a phase factor and terms proportional k,
+\begin{eqnarray}
+e_q&=&e^{\pm i\phi}\epsilon^\pm_p+\beta_\pm k,\nonumber\\
+e^{\pm i\phi}&=&-(\epsilon^\mp_p\epsilon^\pm_q)=-N_pN_qtr[\slashed p_+\slashed p_-\slashed k\slashed q_+\slashed q_+\slashed k(1\mp\gamma_5)].
+\end{eqnarray}
+
+Now we are ready to calculate the helicity amplitudes which are denoted by $M(\lambda_1(e^+),\lambda_2(e^-),\lambda_3(\mu^+),\lambda_4(\mu^-),\lambda_5(k))$. Due to helicity conservation, electron and positron helicities must be opposite, as well as the muon helicities. For for all $\lambda_5$,
+\begin{eqnarray}
+&&M(+,+,+,+,\lambda_5)=M(-,-,+,+,\lambda_5)\nonumber\\
+&&=M(+,+,-,-,\lambda_5)=M(-,-,-,-,\lambda_5)=0.
+\end{eqnarray}
+
+Consider the non-vanishing helicity amplitudes next. Let us introduce the notation
+\begin{eqnarray}
+&s=(p_++p_-)^2, &s=(q_++q_-)^2,\nonumber\\
+&t=(p_+-q_+)^2, &t'=(p_--q_-)^2,\nonumber\\
+&u=(p_+-q_-)^2, &u'=(p_--q_+)^2,
+\end{eqnarray}
+with
+\begin{equation}
+s+s'+t+t'+u+u'=0.
+\end{equation}
+For the amplitude $M(+,-,+,-,+)$, only the diagrams $M_1$ and $M_4$ contribute.
+\begin{align}
+&M(+,-,+,-,+)\nonumber\\
+&=\frac{ie^3}{s'}N_pe^{i\phi}\bar{v}(p_+)\gamma_\mu\frac{\slashed p_--\slashed k}{-2(p_-k)}\slashed p_+\slashed p_-\slashed k(1-\gamma_5)u(p_-)\bar{u}(q_-)\gamma^\mu\frac{1-\gamma_5}{2}v(q_+)\nonumber\\
+&+\frac{ie^3}{s}N_p\bar{v}(p_+)\gamma_\mu\frac{1-\gamma_5}{2}u(p_-)\bar{u}(q_-)\gamma^\mu\frac{-\slashed q_+-\slashed k}{2(q_+k)}\slashed q_-\slashed q_+\slashed k(1-\gamma_5)v(q_+)\nonumber\\
+&=-\frac{ie^3}{2s'}N_pe^{i\phi}\bar{v}(p_+)\gamma_\mu(\slashed q_++\slashed q_-)\slashed p_+(1-\gamma_5)u(p_-)\bar{u}(q_-)\gamma^\mu(1-\gamma_5)v(q_+)\nonumber\\
+&-\frac{ie^3}{2s'}N_q\bar{v}(p_+)\gamma_\mu(1-\gamma_5)u(p_-)\bar{u}(q_-)\gamma^\mu(\slashed p_++\slashed p_-)\slashed q_-(1-\gamma_5)v(q_+).\nonumber\\
+\end{align}
+To simplify this result further, we rewrite the first term for example
+\begin{align}
+&-\frac{ie^3}{2s}N_pe^{i\phi}\bar{v}(p_+)\gamma_\mu(\slashed q_++\slashed q_-)\slashed p_+(1-\gamma_5)u(p_-)\bar{u}(q_-)\gamma^\mu(1-\gamma_5)v(q_+)\nonumber\\
+&=-\frac{ie^3}{2s}N_pe^{i\phi}\frac{\bar{v}(p_+)\gamma_\mu(\slashed q_++\slashed q_-)\slashed p_+(1-\gamma_5)u(p_-)\bar{u}(q_-)\gamma^\mu(1-\gamma_5) v(q_+)}{\bar{v}(q_+)\slashed q_-(1-\gamma_5)v(p_+)}\nonumber\\
+&\times \bar{v}(q_+)\slashed q_-(1-\gamma_5)v(p_+)\nonumber\\
+&=\frac{4ie^3}{s}N_pe^{i\phi}\frac{\bar{u}(q_-)\slashed p_+\slashed q_-\slashed q_+(\slashed q_++\slashed q_-)\slashed =_+(1-\gamma_5)u(p_-)}{\bar{v}(q_+)\slashed q_-(1-\gamma_5)v(p_+)}\nonumber\\
+&=\frac{16ie^3}{s}N_p(p_+q_-)(q_+q_-)\frac{\bar{u}(q_-)\slashed p_+(1-\gamma_5)u(p_-)\bar{v}(p_+)\slashed q_-(1-\gamma_5)v(q_+)}{tr[\slashed q_+\slashed q_-(1-\gamma_5)\slashed p_+\slashed q_-(1-\gamma_5)]}\nonumber\\
+&=\frac{ie^3}{s}N_p\bar{u}(q_-)\slashed p_+(1-\gamma_5)u(p_-)\bar{v}(p_+)\slashed q_-(1-\gamma_5)v(q_+).
+\end{align}
+Performing similar manipulations with the last term in eq. (3.31) we have 
+\begin{align}
+&-\frac{ie^3}{2s'}N_q\bar{v}(p_+)\gamma_\mu(1-\gamma_5)u(p_-)\bar{u}(q_-)\gamma^\mu(\slashed p_++\slashed p_-)\slashed q_-(1-\gamma_5)v(q_+)\nonumber\\
+&=\frac{ie^3}{s}N_q\bar{u}(q_-)\slashed p_+(1-\gamma_5)u(p_-)\bar{v}(p_+)\slashed q (1-\gamma_5)v(q_+).
+\end{align}
+Therefore, we obtain
+\begin{align}
+&M(+,-,+,-,+)\nonumber\\
+&=-ie^3\biggl[\frac{N_q}{s}(\epsilon^-_q\epsilon^+_q)+\frac{N_p}{s'}(\epsilon^-_p\epsilon^+_q) \biggr]\bar{u}(q_-)\slashed p_+(1-\gamma_5)u(p_-)\bar{v}(p_-)\slashed q_-(1-\gamma_5)v(q_+)\nonumber\\
+&\simeq 4e^3\frac{u}{(ss')^\frac{1}{2}}[s'N_q(\epsilon_q^-\epsilon^+_q)+sN_p(\epsilon_p^-\epsilon^+_q)].
+\end{align}
+
+For the helicity amplitude $M(+,-,-,+,+)$, only the diagrams $M_1$ and $M_3$ survive and we have, performing similar manipulations 
+\begin{align}
+&M(+,-,-+,+)\nonumber\\
+&=ie^3\biggl[\frac{N_q}{s}(\epsilon_q^-\epsilon_q^+)+\frac{N_p}{s'}(\epsilon_p^-\epsilon_q^+) \biggr] \bar{u}(q_-)\slashed q_+\slashed p_+(1-\gamma_5)u(p_-)\bar{v}(p_+)(1+\gamma_5)v(q_+)\nonumber\\
+&\simeq 4e^3[s'N_q(\epsilon_q^-\epsilon_q^+)+sN_p(\epsilon_p^-\epsilon_q^+)]\frac{t}{(ss')^\frac{1}{2}}.
+\end{align}
+
+In a completely analogous way, we have
+
+\begin{align}
+M(-,+,+,-,+)
+&\simeq 4e^3[s'N_q(\epsilon_q^-\epsilon_q^+)+sN_p(\epsilon_p^-\epsilon_q^+)]\frac{t'}{(ss')^\frac{1}{2}},\nonumber\\
+M(-,+,-,+,+)
+&\simeq 4e^3[s'N_q(\epsilon_q^-\epsilon_q^+)+sN_p(\epsilon_p^-\epsilon_q^+)]\frac{u'}{(ss')^\frac{1}{2}}.
+\end{align}
+By parity conjugation, we have
+\begin{align}
+M(+,-,+,-,-)
+&\simeq 4e^3[s'N_q(\epsilon_q^-\epsilon_q^+)+sN_p(\epsilon_p^-\epsilon_q^+)]\frac{u'}{(ss')^\frac{1}{2}},\nonumber\\
+M(+,-,-,+,-)
+&\simeq 4e^3[s'N_q(\epsilon_q^-\epsilon_q^+)+sN_p(\epsilon_p^-\epsilon_q^+)]\frac{t'}{(ss')^\frac{1}{2}},\nonumber\\
+M(-,+,+,-,-)
+&\simeq 4e^3[s'N_q(\epsilon_q^-\epsilon_q^+)+sN_p(\epsilon_p^-\epsilon_q^+)]\frac{t}{(ss')^\frac{1}{2}},\nonumber\\
+M(-,+,-,+,-)
+&\simeq 4e^3[s'N_q(\epsilon_q^-\epsilon_q^+)+sN_p(\epsilon_p^-\epsilon_q^+)]\frac{u}{(ss')^\frac{1}{2}}.
+\end{align}
+
+From eqs. (3.34), (3.36) and (3.37), we obtain the unpolarized squared matrix element
+\begin{equation}
+|M|^2=8e^6|s'N_q(\epsilon_q^+\epsilon_q^-)+sN_p(\epsilon_p^+\epsilon_q^-)|^2\frac{t^2+t'^2+u^2+u'^2}{ss'}.
+\end{equation}
+Introducing the vectors
+\begin{equation}
+v_q=\frac{q_+}{(q_+k)}-\frac{q_-}{(q_-k)},\quad v_q=\frac{p_+}{(p_+k)}-\frac{p_-}{(p_-k)},
+\end{equation}
+we have 
+\begin{align}
+|s'N_q(\epsilon_q^+\epsilon_q^-)|^2&=-\frac{1}{8}v_q^2,\nonumber\\
+|s'N_p(\epsilon_p^+\epsilon_q^-)|^2&=-\frac{1}{8}v_p^2,\nonumber\\
+\Re[ss'N_qN_p(\epsilon_q^+\epsilon_q^-)(\epsilon_q^+\epsilon_p^-)]&=\frac{1}{8}v_qv_p.
+\end{align}
+Furthermore we obtain the spin averaged matrix element
+\begin{equation}
+|M|^2=-e^6(v_q-v_p)^2\frac{t^2+t'^2+u^2+u'^2}{ss'}.
+\end{equation}
+
+As it is shown, through the introduction of explicit polarization vectors for the radiated gauge boson, it is feasible to compute the various helicity amplitudes for single bremsstrahlung in massless QED in a simple and covariant way. For each amplitude, only a few diagrams contribute, rendering the calculation very easy. Although we discussed only the process $e^+e^-\to\mu^+\mu^-\gamma$, the outline technique could be applied to all bremsstrahlung process. The introduction of the polarization vectors for the radiated photons bring in relatively simple expressions for the various helicity amplitudes in all cases in which the fermions are massless. And the introduction of analogous helicity vectors for the external gauge bosons result in similar simplifications in $SU(N)$ gauge theories.
+
+\section{The "Chinese Magic" Polarization Scheme}
+
+The massless spinors with momentum $p$ and helicty $\lambda$, 
+$u_\pm(p)$, $v_\pm(p)$, $\bar{u}_\pm(p)$, $\bar{v}_\pm(p)$, satify the relations
+\begin{equation}
+\slashed{p}u_\pm(p)=\slashed{p}v_\pm(p)=\slashed{p}\bar{u}_\pm(p)=\slashed p\bar{v}_\pm(p)=0, \quad p^2=0,
+\end{equation}
+\begin{equation}
+(1\mp\gamma_5)u_\pm=(1\pm\gamma_5)v_\pm=\bar{u}_\pm(1\pm\gamma_5)=\bar{v}_\pm(1\mp\gamma_5)=0,
+\end{equation}
+with the normalization
+\begin{equation}
+\bar{u}_\pm(p)\gamma_\mu u_\pm(p)=\bar{v}_\pm(p)\gamma_\mu v_\pm(p)=2p_\mu.
+\end{equation}
+
+We use the Dirac convention
+\begin{eqnarray}
+&&u_\pm(p)=v_\mp=\ket{p_\pm}\nonumber\\
+&&\bar{u}_\pm(p)=\bar{v}_\mp=\bra{p_\pm},
+\end{eqnarray}
+and 
+\begin{equation}
+\ket{p_-}=\ket{p_+}^c,
+\end{equation}
+where $\ket{\psi}^c$ denotes the charge conjugation of the spinor $\ket{\psi}$. The following relations hold for massless momenta $p$ and $q$,
+\begin{eqnarray}
+&&\ket{p_\pm}\bra{p_\pm}=\frac{1}{2}(1\pm\gamma_5)\slashed p,\\
+&&\braket{p_+|q_+}=\braket{p_-|q_-}=0,\\
+&&\braket{p_-|q_+}=-\braket{q_-|p_+},\\
+&&\braket{p_-|p_+}=\braket{p_+|p_1}=0.
+\end{eqnarray}
+For simplicity we let
+\begin{equation}
+\braket{p_-|q_+}=\braket{pq};
+\end{equation}
+then
+\begin{eqnarray}
+&&\braket{q_-|p_+}=-\braket{pq},\nonumber\\
+&&\braket{q_+|p_-}=\braket{pq}^{\ast},\nonumber\\
+&&\braket{p_+|q_-}=-\braket{pq}^\ast.
+\end{eqnarray}
+and 
+\begin{equation}
+|\braket{pq}|^2=2(pq).
+\end{equation}
+The scalar $\braket{pq}$ is called the spinor inner-product \cite{ZZL} which play a vital role in the "Chinese magic" polarization scheme. Next, we introduce properties of the spinor inner-product for the following discussions.
+
+In general, for any massless spinor $\bra{A_\pm}$, we have 
+\begin{eqnarray}
+\braket{A_\mp|B_\pm}&=&-\braket{B_\mp|A_\pm},\nonumber\\
+\braket{A_+|\gamma_\mu|B_+}&=&\braket{B_-|\gamma_\mu|A_-},
+\end{eqnarray}
+where $\bra{A_\pm}=\overline{\ket{A_\pm}}$, and if $\ket{A_\pm}$ has the form
+\begin{equation}
+\ket{A_\pm}=
+\begin{cases}
+\slashed k_1\cdots\slashed k_n\ket{q_\pm}&\quad (n\text{ even})\\
+\slashed k_1\cdots\slashed k_n\ket{q_\mp}&\quad (n\text{ odd}),
+\end{cases}
+\end{equation}
+then
+\begin{equation}
+\ket{A_\pm}^c=
+\begin{cases}
+\slashed k_1\cdots\slashed k_n\ket{q_\mp}&\quad (n\text{ even})\\
+-\slashed k_1\cdots\slashed k_n\ket{q_\pm}&\quad (n\text{ odd}),
+\end{cases}
+\end{equation}
+where $q$ is a momentum with $q^2=0$ and $k_i$ $(i=1,\cdots,n)$ is any momentum with or without $k^2=0$. Thus we have 
+\begin{eqnarray}
+&&\braket{p_-|\slashed k_1\cdots\slashed k_n|q_+}=-\braket{q_-|\slashed k_n\cdots\slashed k_1|p_+} \quad (n\text{ even}), \nonumber\\
+&&\braket{p_+|\slashed k_1\cdots\slashed k_n|q_-}=-\braket{q_+|\slashed k_n\cdots\slashed k_1|p_-} \quad (n\text{ even}), \nonumber\\
+&&\braket{p_+|\slashed k_1\cdots\slashed k_n|q_+}=-\braket{q_-|\slashed k_n\cdots\slashed k_1|p_-} \quad (n\text{ even}).
+\end{eqnarray}
+The matrix $\ket{B_+}\bra{A_+}$ can be expanded into a linear combination of $1$, $\gamma_\mu$, $\gamma_5$, $\gamma_\mu\gamma_5$ and $\gamma_\mu\gamma_\nu(\mu\neq\nu)$:
+\begin{equation}
+2\ket{B_+}\bra{A_+}=\braket{A_+|\gamma_\mu|B_+}\gamma^\mu\frac{1}{2}(1-\gamma_5).
+\end{equation}
+Furthermore, we have
+\begin{eqnarray}
+\braket{A_+|\gamma_\mu|B_+}&=&\braket{B_-|\gamma_\mu|A_-}\nonumber\\
+\braket{A_+|\gamma_\mu|B_+}\braket{C_-|\gamma^\mu|D_-}&=&2\braket{A_+|D_-}\braket{C_-|B_+}.
+\end{eqnarray}
+
+The circular polarization vectors $\epsilon^\pm$ of a gauge boson with momentum $k$, in which the sign $\pm$ represents the helicity, satisfying the relations below,
+\begin{eqnarray}
+&&(\epsilon^+ k)=(\epsilon^- k)=(\epsilon^+)^2=(\epsilon^-)^2=0,\nonumber\\
+&&(\epsilon^+)^\ast=\epsilon^-,\nonumber\\
+&&(\epsilon^+\epsilon^-)=-1.
+\end{eqnarray}
+The polarization vectors are defined by referring to another momentum $(q^2=0)$ so that \cite{ZZL}
+\begin{equation}
+\epsilon^+_\mu(k,q)=\frac{\braket{q_-|\gamma_\mu|k_-}}{\sqrt{2}\braket{qk}},
+\end{equation}
+\begin{equation}
+\epsilon^-_\mu(k,q)=\frac{\braket{q_+|\gamma_\mu|k_+}}{\sqrt{2}\braket{qk}^\ast},
+\end{equation}
+and 
+\begin{equation}
+\slashed \epsilon^+(k,q)=\frac{\sqrt{2}}{\braket{qk}}[\ket{k_-}\bra{q_-}+\ket{q_+}\bra{k_+}],
+\end{equation}
+\begin{equation}
+\slashed \epsilon^-(k,q)=\frac{\sqrt{2}}{\braket{qk}^\ast}[\ket{k_+}\bra{q_+}+\ket{q_-}\bra{k_-}].
+\end{equation}
+Furthermore we have 
+\begin{equation}
+(\epsilon^+q)=(\epsilon^-q)=0,
+\end{equation}
+and when the reference momentum $q$ is transformed into $p$ the polarization vectors change only by an additional term proportional to $k$:
+\begin{equation}
+\epsilon^\pm(k,q)=\epsilon^\pm(k,p)+\beta^\pm(p,q,k)k,
+\end{equation}
+where
+\begin{eqnarray}
+\beta^+(p,q,k)=\frac{\sqrt{2}\braket{pq}}{\braket{pk}\braket{qk}}, \qquad \beta^-(p,q,k)=\beta^+(p,q,k)^\ast.
+\end{eqnarray}
+Due to the gauge-invariance of the theories the amplitudes vanish when the polarization vector of an external gauge boson is set equal to its momentum,
+\begin{equation}
+[M]_{\epsilon=k}=0,
+\end{equation}
+so the reference momentum could be chosen in an arbitrary way without changing the amplitude.
+
+The polarization vector defined above differs from that of the CALKUL collaboration by a term proportional to $k$ and a phase factor. Thus, all the attractive features in the CALKUL approach \cite{calkul1,calkul2} are preserved in the "Chinese magic" polarization scheme. Especially  some of the helicity amplitudes vanish when an external boson line is attached to an external fermion line. This can be achieved in the "Chinese magic" scheme by choosing the reference momentum in the following way: 
+since the helicity signs appearing in the bra and ket must be the same for the same fermion line, and we let it be the helicity of the line. When the boson has the same (opposite) helicity as that of the fermion line attached, the reference momentum is chosen to be the incoming (outgoing) momentum of the line. Moreover, the polarization vector is now expressed in terms of the spinors, therefore it gives the factorization of the amplitude in a natural way. 
+
+As an illustration of the helicity amplitude method in "Chinese magic" scheme we will present the explicit calculation of helicity amplitudes for the single bremsstrahlung process. Consider the process
+\begin{equation}
+e^+(p')+e^-(p)\to \mu^+(q')+\mu^-(q)+\gamma(k),
+\end{equation}
+for which the Feynman diagrams are shown below, 
+
+\begin{axopicture}(520,140)
+	\Photon(50,70)(120,70){2}{6}
+	\Vertex(50,70){1.5}\Vertex(120,70){1.5}
+	\Line[arrow](10,30)(30,50)\Line[arrow](30,50)(50,70)
+	\Photon(30,50)(50,30){2}{3} \Text(60,30){$\gamma(k)$}
+	\Line[arrow](50,70)(10,110)
+	\Line[arrow](120,70)(160,30)
+	\Line[arrow](160,110)(120,70)
+	\Text(25,20){$e^-(p)$}
+	\Text(145,20){$\mu^-(q)$}
+	\Text(85,0){(1)}
+	\Text(25,120){$e^+(p')$}
+	\Text(145,120){$\mu^+(q')$}
+	\Photon(220,70)(290,70){2}{6}
+	\Line[arrow](180,30)(220,70)
+	\Line[arrow](220,70)(200,90)\Line[arrow](200,90)(180,110)
+	\Photon(200,90)(220,110){2}{3}\Text(230,110){$\gamma(k)$}
+	\Line[arrow](290,70)(330,30)
+	\Line[arrow](330,110)(290,70)
+	\Text(195,20){$e^-(p)$}
+	\Text(315,20){$\mu^-(q)$}
+	\Text(255,0){(2)}
+	\Text(195,120){$e^+(p')$}
+	\Text(315,120){$\mu^+(q')$}
+\end{axopicture}
+
+\begin{axopicture}(520,140)
+	\Photon(50,70)(120,70){2}{6}
+	\Line[arrow](10,30)(50,70)
+	\Line[arrow](50,70)(10,110)
+	\Line[arrow](120,70)(140,50)\Line[arrow](140,50)(160,30)
+	\Photon(140,50)(160,70){2}{3}\Text(160,80){$\gamma(k)$}
+	\Line[arrow](160,110)(120,70)
+	\Text(25,20){$e^-(p)$}
+	\Text(145,20){$\mu^-(q)$}
+	\Text(85,0){(3)}
+	\Text(25,120){$e^+(p')$}
+	\Text(145,120){$\mu^+(q')$}
+	\Photon(220,70)(290,70){2}{6}
+	\Line[arrow](180,30)(220,70)
+	\Line[arrow](220,70)(180,110)
+	\Line[arrow](290,70)(330,30)
+	\Line[arrow](330,110)(310,90)\Line[arrow](310,90)(290,70)
+	\Photon(310,90)(330,70){2}{3}\Text(330,60){$\gamma(k)$}
+	\Text(195,20){$e^-(p)$}
+	\Text(315,20){$\mu^-(q)$}
+	\Text(255,0){(4)}
+	\Text(195,120){$e^+(p')$}
+	\Text(315,120){$\mu^+(q')$}
+\end{axopicture}
+and the helicity amplitude is written as $M(\lambda(e^+),\lambda(e^-),\lambda(\mu^+),\lambda(\mu^-),\lambda(\gamma))$. For the helicity amplitude $M(-,+,+,-,+)$, the polarization vector of the photon should be chosen to be
+\begin{equation}
+\slashed \epsilon^+_q=\slashed \epsilon^+(k,q)=\frac{\sqrt{2}}{\braket{qk}}[\ket{k_-}\bra{q_-}+\ket{q_+}\bra{k_+}]
+\end{equation}
+for the diagrams (1) and (2), and 
+\begin{equation}
+\slashed \epsilon^+_p=\slashed \epsilon^+(k,p)=\frac{\sqrt{2}}{\braket{pk}}[\ket{k_-}\bra{p_-}+\ket{p_+}\bra{k_+}]
+\end{equation}
+for the diagrams (3) and (4). Note that \cite{calkul4,ZZL} the diagrams $(1)+(2)$ and $(3)+(4)$ form two independent gauge invariant subsets of the Feynman diagrams, distinguished by the photon attachment to different fermion lines, namely,
+\begin{equation}
+[M_{(1)}+M_{(2)}]_{\epsilon=k}=[M_{(3)}+M_{(4)}]_{\epsilon=k}=0,
+\end{equation}
+Because of eqs. (3.29) and (3.35) we have
+\begin{equation}
+M(e^+e^-\to\mu^-\mu^-\gamma)=[M_{(1)}+M_{(2)}]_{\epsilon=\epsilon_q}=[M_{(3)}+M_{(4)}]_{\epsilon=\epsilon_p}.
+\end{equation}
+
+By eq. (3.22), the calculation is straightforward
+\begin{align}
+M_{(1)}(-,+,+,-,+)&=0,\nonumber\\
+M_{(2)}(-,+,+,-,+)&=2ie^3\frac{\braket{pq}^2}{\braket{p'p}\braket{q'q}}\beta(p',p,k),\nonumber\\
+M_{(3)}(-,+,+,-,+)&=0,\nonumber\\
+M_{(4)}(-,+,+,-,+)&=-2ie^3\frac{\braket{pq}^2}{\braket{p'p}\braket{q'q}}\beta(q',q,k),
+\end{align}
+where 
+\begin{equation}
+\beta(p,q,k)=\frac{\sqrt{2}\braket{pq}}{\braket{pk}\braket{qk}}.
+\end{equation}
+Therefore the calculation arrives at
+\begin{align}
+M(-,+,+,-,+)&=[M_{(1)}+M_{(2)}+M_{(3)}+M_{(4)}](-,+,+,-,+)\nonumber\\
+&=2ie^3\frac{\braket{pq}^2}{\braket{p'p}\braket{q'q}}[\beta(p',p'k)-\beta(q',q,k)].
+\end{align}
+As for the norm we have
+\begin{eqnarray}
+|\beta(p,q,k)|^2&=&-\frac{1}{2}v^2(p,q,k),\nonumber\\
+|\beta(p',p,k)-\beta(q',q,k)|^2&=&-\frac{1}{2}[v(p',p,k)-v(q',q,k)]^2,
+\end{eqnarray}
+where
+\begin{equation}
+v(p,q,k)=\frac{p}{(pk)}-\frac{q}{(qk)},
+\end{equation}
+and
+\begin{equation}
+|M(-,+,+,-,+)|^2=-2e^6\frac{t'^2}{ss'}(v_p-v_q)^2,
+\end{equation}
+where 
+\begin{eqnarray}
+&v_p\equiv v(p',pk), &v_q\equiv v(q',q,k) \nonumber\\
+&s=(p'+p)^2=2(p'p), &s=(q'+q)^2=2(q'q),\nonumber\\
+&t=(p'-q')^2=-2(p'q'), &t'=(p-q)^2=-2(pq),\nonumber\\
+&u=(p'-q)^2=-2(p'q), &u'=(p-q')^2=-2(pq').
+\end{eqnarray}
+
+In a complete analogous way, we obtain
+\begin{eqnarray}
+|M(-,+,-,+,+)|^2=-2e^6\frac{u'^2}{ss'}(v_p-v_q)^2,\nonumber\\
+|M(+,-,-,+,+)|^2=-2e^6\frac{t^2}{ss'}(v_p-v_q)^2,\nonumber\\
+|M(+,-,+,-,+)|^2=-2e^6\frac{u^2}{ss'}(v_p-v_q)^2.
+\end{eqnarray}
+By parity conjugation, we have 
+\begin{eqnarray}
+|M(+,-,-,+,-)|^2=-2e^6\frac{t'^2}{ss'}(v_p-v_q)^2,\nonumber\\
+|M(+,-,+,-,-)|^2=-2e^6\frac{u'^2}{ss'}(v_p-v_q)^2,\nonumber\\
+|M(-,+,+,-,-)|^2=-2e^6\frac{t^2}{ss'}(v_p-v_q)^2,\nonumber\\
+|M(-,+,-,+,-)|^2=-2e^6\frac{u^2}{ss'}(v_p-v_q)^2.
+\end{eqnarray}
+
+Therefore, the averaged norm for polarized scattering is finally
+\begin{equation}
+\overline{|M|^2}=-2e^6\frac{t^2+u^2+t'^2+u'^2}{ss'}(v_p-v_q)^2.
+\end{equation}
+This result is identical with that obtained with CALKUL method \cite{calkul4}, but the calculation is simplified. 
+
+We have shown that we could simplify the calculation of the various helicity amplitudes for the single bremsstrahlung process $e^+e^-\to\mu^+\mu^-\gamma$ in the massless QED by introduction the explicit helicity vectors in the "Chinese magic" polarization scheme. This technique described here could be utilized for all bremsstrahlung process. Furthermore the introduction of polarization vectors for the external gauge boson leads to simplifications in massless gauge theories.
+
+\newpage
+\section{Kleiss and Stirling Spinor Technique}
+Besides the CALKUL approach and "Chinese magic" polarization scheme, let us introduce another spinor product method, Kleiss and Stirling spinor technique\cite{KS}.
+
+First we derive expressions for the spinor products. We begin the discussion by establishing a convention for the overall complex phase of the spinors. Let us choose two four-vectors $k_0^\mu$ and $k_1^\nu$ with the following properties:
+\begin{equation}
+k_0\cdot k_0=0,\quad k_1\cdot k_1=-1,\quad k_0\cdot k_1=0.
+\end{equation}
+Next we define the basic spinor $u_-(k_0)$ as follows:
+\begin{equation}
+u_-(k_0)\bar{u}_-(k_0)=\omega_-\slashed k_0,
+\end{equation}
+where
+\begin{equation}
+\omega_\pm=\frac{1}{2}(1\pm\gamma_5).
+\end{equation}
+The spinor $u_-(k_0)$ is therefore the negative-helicity state of a massless fermion with momentum $k_0$. The corresponding positive-helicity state is chosen to be
+\begin{equation}
+u_+(k_0)=\slashed k_1 u_-(k_0).
+\end{equation}
+From these two spinors we could construct spinors for any other lightlike momentum p as follows:
+\begin{equation}
+u_\lambda(p)=\frac{\slashed p u_{-\lambda}(k_0)}{\sqrt{2p\cdot k_0}}.
+\end{equation}
+
+From eqs. (3.84)-(3.88) we can derive some useful relations for spinor sandwiches for the following discussion. Let $\Gamma$ be an arbitrary string of $\gamma$ matrices, and let $\Gamma^R$ be the same string in the reversed order. Then we find, for arbitrary lightlike momenta and helicities:
+\begin{equation}
+\bar{u}_{\lambda_1}(p_1)\Gamma u_{\lambda_2}(p_2)=\lambda_1\lambda_2\bar{u}_{-\lambda_2}(p_2)\Gamma^R u_{-\lambda_1}(p_1).
+\end{equation}
+The second useful identity (Chisholm identity) is 
+\begin{equation}
+\{\bar{u}_{\lambda_1}(p_1)\gamma^\mu u_{\lambda_2}(p_2)\}\gamma_\mu=2u_\lambda(p_2)\bar{u}_\lambda(p_1)+2u_{-\lambda}(p_1)\bar{u}_{-\lambda}(p_2).
+\end{equation}
+
+Next we discuss the spinor products themselves. For massless fermions with momenta $p_1$ and $p_2$ there are two non-zero products:
+\begin{eqnarray}
+&&s(p_1,p_2)\equiv\bar{u}_+(p_1)u_-(p_2)=-s(p_2,p_1),\nonumber\\
+&&t(p_1,p_2)\equiv\bar{u}_-(p_1)u_+(p_2)=[s(p_2,p_1)]^\ast.
+\end{eqnarray}
+Using eqs. (3.85) and (3.88), we could evaluate $s(p_1,p_2)$:
+\begin{align}
+s(p_1,p_2)&=\frac{\bar{u}_-(k_0)\slashed p_1\slashed p_2 u_+(k_0)}{\sqrt{4(p_1\cdot k_0)(p_2\cdot k_0)}}
+=\frac{tr(\omega_-\slashed k_0\slashed p_1\slashed p_2\slashed k_1)}{\sqrt{4(p_1\cdot k_0)(p_2\cdot k_0)}}\nonumber\\
+&=\frac{[(p_1\cdot k_0)(p_2\cdot k_1)-(p_1\cdot k_1)(p_2\cdot k_0)-i\epsilon_{\mu\nu\rho\sigma}k_0^\mu k_0^\nu p_1^\rho p_2^\sigma]}{\sqrt{4(p_1\cdot k_0)(p_2\cdot k_0)}}.\nonumber\\
+\end{align}
+In a practical calculation we can specify $k_0^\mu$ and $k_1^\mu$ such that the form of $s(p_1,p_2)$ becomes compact. For instance, we take
+\begin{eqnarray}
+p_i^\mu&=&(p_i^0,p_i^x,p_i^y,p_i^z),\nonumber\\
+k_0^\mu&=&(0,0,0,0),\nonumber\\
+k_1^\mu&=&(0,0,1,0).
+\end{eqnarray}
+This leads to 
+\begin{equation}
+s(p_1,p_2)=(p_1^y+ip_1^z)\biggl[\frac{p^0_2-p_2^x}{p_1^0-p_1^x}\biggr]^\frac{1}{2}-(p_2^y+ip_2^z)\biggl[\frac{p^0_2-p_1^x}{p_2^0-p_2^x}\biggr]^\frac{1}{2}
+\end{equation}
+and $t(p_1,p_2)$ is obtained by complex conjugation. Furthermore, if we have calculated the spinor product, we immediately obtain the vector product as well:
+\begin{equation}
+d(p_1,p_2)\equiv 2p_1\cdot p_2=|s(p_1,p_2)|^2.
+\end{equation}
+
+Analogous to the CALKUL and "Chinese magic" scheme, the spinor products play a more fundamental role than vector products in practical calculations.
+
+We now proceed to construct the polarization vectors of the external gauge bosons. Let us consider polarization vectors with states of definite helicities, denoted by $\epsilon_\pm^\mu$ ans satisfying
+\begin{eqnarray}
+&\epsilon_\lambda\cdot k=0,\quad &\epsilon_\lambda\cdot\epsilon_\lambda=0,\nonumber\\
+&\epsilon_{-\lambda}^\mu=(\epsilon_\lambda^\mu)^\ast,\quad
+&\epsilon_\lambda\cdot\epsilon_{-\lambda}=-1,
+\end{eqnarray}
+where $k_\mu$ is the photon momentum, and $\lambda=\pm1$. As long as the polarization vectors $\epsilon_\lambda^\mu$ obey the relations (3.96), it is an acceptable choice. We use the following convention:
+\begin{eqnarray}
+\epsilon_\lambda^\mu=N\bar{u}_\lambda(k)\gamma^\mu u_\lambda(p),\quad N=[4(p\cdot k)]^\frac{1}{2},
+\end{eqnarray} 
+where $p^\mu$ is an arbitrary vector not collinear to $k^\mu$ or $k_0^\mu$. 
+
+Spinors for the massive particle with four momentum $p$ (with $p^2=m^2$) could also be defined in an analogous way in which the spinor for massless particles \cite{GPS}: 
+\begin{eqnarray}
+u(p,\lambda)&=&\frac{1}{\sqrt{2p\cdot k}}(\slashed p+m)u_{-\lambda}(k),\nonumber\\
+v(p,\lambda)&=&\frac{1}{\sqrt{2p\cdot k}}(\slashed p-m)u_\lambda(k).
+\end{eqnarray}
+where $k^\mu$ is an arbitrary lightlike vector.
+
+The definition (3.98) can be rewritten in terms of massless spinor as follows
+\begin{eqnarray}
+u(p,\lambda)&=&u_\lambda(p_k)+\frac{m}{\sqrt{2p\cdot k}}u_{-\lambda}(k),\nonumber\\
+v(p,\lambda)&=&u_{-\lambda}(p_k)-\frac{m}{\sqrt{2p\cdot k}}u_\lambda(k),
+\end{eqnarray}
+where
+\begin{equation}
+p_k=p-k\frac{m^2}{2p\cdot k}, \quad p^2_k=0
+\end{equation}
+is the light-cone projection of $p$ obtained with the help of the auxiliary vector $k$. Therefore we could obtain the explicit expressions of spinor products for the massive spinors by eq. (3.98):
+\begin{equation}
+\begin{cases}
+\bar{u}(p_1,\lambda_1)u(p_2,\lambda_2)=S(p_1,m_1,\lambda_1,p_2,m_2,\lambda_2),\\
+\bar{u}(p_1,\lambda_1)v(p_2,\lambda_2)=S(p_1,m_1,\lambda_1,p_2,-m_2,-\lambda_2),\\
+\bar{v}(p_1,\lambda_1)u(p_2,\lambda_2)=S(p_1,-m_1,-\lambda_1,p_2,m_2,\lambda_2),\\
+\bar{v}(p_1,\lambda_1)v(p_2,\lambda_2)=S(p_1,-m_1,-\lambda_1,p_2,-m_2,-\lambda_2).
+\end{cases}
+\end{equation}
+where
+\begin{equation}
+S(p_1,m_1,\lambda_1,p_2,m_2,\lambda_2)=\delta_{\lambda_1,-\lambda_2}s_{\lambda_1}(p_{1k},p_{2k})+\delta_{\lambda_1,\lambda_2}\left(m_1\sqrt{\frac{2p_2k}{2p_1k}}+m_2\sqrt{\frac{2p_1k}{2p_2k}} \right).
+\end{equation}
+
+Up to now we have introduced a calculational tool for helicity amplitudes, which brings out simplifications in gauge theories. 
+And this approach shares many essential features with CALKUL helicity amplitude  method and "Chinese magic" polarization scheme. This formalism can be directly programmed into a computer due to its symbolic properties, which plays important roles in pertubative calculations in high energy physics.

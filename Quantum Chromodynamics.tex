@@ -1,0 +1,892 @@
+\chapter{Quantum Chromodynaics}
+\section{Introduction to Quantum Chromodynamics}
+
+We now come to the other constituent of the standard model of particle physics, Quantum Chromodynamics (QCD) \cite{Pol,Pol1,GrossWil, GrossWil1, SWQCD, SWQCD1}. Quantum Chromodynamics is a non-Abelian gauge theory of strong interactions. The gauge symmetry of QCD is $SU(3)$ color. The choice of gauge group must rely on three facts: (a) the group must admit complex representations in order to distinguish a quark from antiquark; (b) the group must have completely antisymmtric color singlet to solve the statistical puzzle for the lowest lying baryons of spin $1/2$ and $3/2$; (c) the number of colors for each kind of quarks must agree with the data on the total hadronic $e^+e^-$ annihilation cross section and on the $\pi^0\to2\gamma$. These requirements make the $SU(3)_C$ be the unique choice. The quanta of $SU(3)_C$ is called gluon. Since the $SU(3)_C$ symmetry is unbroken, the gauge boson, gluon, must be massless. Therefore if $A_a^\mu$ denotes the gluon field ($a$ is the color index), $\psi^\alpha_i$ the quark field with flavor index $i$ and color index $\alpha$, the QCD Lagrangian is 
+\begin{equation}
+\mathcal{L}^\text{classical }=-\frac{1}{4}F_{\mu\nu a}F^{\mu\nu}_a+\bar{\psi}^i( i\slashed D_{ij}-m\delta_{ij}){\psi}^j 
+\end{equation}
+where
+\begin{align}
+F^{\mu\nu}_a&=\partial^\mu A^\nu_a-\partial^\nu A^\mu_a+gf_{abc} A^\mu_b A^\nu_c,\\
+D^\mu&=\partial^\mu-igA^\mu_aT_{a}.
+\end{align} 
+Note that last term $gf_{abc}A^\mu_bA^\nu_c$ implies self-interactions of gluons, while there are no such self-interactions in Abelian gauge theory. $T_a$ is the generators of the triplet representation of $SU(3)_C$, following the commutation relations 
+\begin{equation}
+[T_a, T_b]=if_{abc}T_c,
+\end{equation}
+where $f_{abc}$ are completely antisymmetric structure constants.  
+
+In order to quantize the theory one needs a gauge fixing term to be added to eq. (5.1). Usually, the gauge fixing term is chosen as follows:
+\begin{equation}
+\mathcal{L}^\text{gauge fixing}=-\frac{1}{2\alpha}(\partial^\mu A_\mu^a)^2.
+\end{equation}
+The introduction of such a term requires the addition of the Faddeev-Popov ghost interactions in turn,
+\begin{equation}
+\mathcal{L}^\text{FP}=(\partial^\mu\chi^{a\ast})D^{ab}_\mu\chi^b,
+\end{equation}
+where $D^{ab}_\mu$ refer to the adjoint representation of $SU(3)_C$. Here we choose a pair of the ghost fields $\chi^a$ and $\chi^{a\ast}$. It is also possible to choose two real fields $\chi^a_1$ and $\chi^a_2$ instead of $\chi^a$ and $\chi^{a\ast}$. By setting
+\begin{equation}
+\chi^a=\frac{1}{\sqrt{2}}(\chi^a_1+i\chi^a_2)
+\end{equation}
+with the Grassmann property
+\begin{equation}
+(\chi^a_1)^2=(\chi^a_2)^2=0, \quad\text{(no summation on $a$)},
+\end{equation}
+we can rewrite the Faddeev-Popov ghost term as
+\begin{equation}
+\mathcal{L}^\text{FP}=i(\partial^\mu\chi_1^{a})D^{ab}_\mu\chi_2^b,
+\end{equation}
+
+Therefore, we obtain the complete Lagrangian of the theory
+\begin{eqnarray}
+\mathcal{L}&=&-\frac{1}{4}(\partial_\mu A^a_\nu-\partial_\nu A^a_\mu)(\partial^\mu A^{a\nu}-\partial^\nu A^{a\mu})-\frac{1}{2\alpha}(\partial^\mu A^a_\mu)^2\nonumber\\
+&&+i(\partial^\mu\chi^{a}_1)(\partial_\mu\chi^a_2)+\bar{\psi}^i(i\slashed \partial-m)\psi^i-\frac{g}{2}f^{abc}(\partial_\mu A^a_\nu-\partial_\nu A^a_\mu)A^{b\mu}A^{c\nu}  \nonumber\\
+&&-\frac{g^2}{4}f^{abe}{cde}A_\mu^aA_\nu^bA^{c\mu}A^{d\nu}-igf^{abc}(\partial^\mu\chi^{a}_1)\chi^b_2 A_\mu^c+g\bar{\psi}^iT_{ij}^a\gamma^\mu\psi^j A^a_\mu.\nonumber\\
+\end{eqnarray}
+Accordingly we obtain Feynman rules for the Lagrangian of quantum chromodynamics (see Appendix B). This theory is renormalizable \cite{AbersLee}. 
+
+We are here using the couterterm approach to realize renormalization again with similar procedure describle in the Section (2.2). We redefine the fields $A_\mu^a$, $\chi^a_1$, $\chi_2^a$ and $\psi$ by
+\begin{equation}
+A_\mu^a=Z_3^\frac{1}{2} A_{\mu R}^a,\quad \chi^a_{1,2}=\widetilde{Z}^\frac{1}{2}_3\chi^a_{1,2R} ,\quad\psi=Z^\frac{1}{2}_2\psi_R,
+\end{equation}
+and the parameters $g$, $\alpha$ and $m$ by
+\begin{equation}
+g=Z_g g_R,\quad\alpha=Z_3\alpha_R,\quad m=Z_m m_R,
+\end{equation}
+where the constants $Z_3$, $\widetilde{Z}_3$ and $Z_2$ denote the gauge field, ghost field and quark field renormalization constants, respectively, while the constants $Z_g$ and $Z_m$ car called the coupling-constant and mass renormalization constants. 
+
+Inserting eqs. (5.11) and (5.12) into eq. (5.10), we have 
+\begin{equation}
+\mathcal{L}=\mathcal{L}^\text{R}+\mathcal{L}^\text{C}
+\end{equation}
+where the renormalized Lagrangian $\mathcal{L}^\text{R}$ is precisely equal to $\mathcal{L}$ if the quantities $\{A^a_\mu,\chi^a_{1,2},\psi,g,\alpha\}$ are replaced by the renormalized ones, $\{A^a_{\mu R},\chi^a_{1,2R},\psi_R,g_R,\alpha_R\}$. The counterterm Lagrangian $\mathcal{L}^\text{C}$ is given by 
+\begin{eqnarray}
+\mathcal{L}^\text{C}&=&(Z_3-1)\frac{1}{2}A_R^{a\mu}\delta_{ab}(g_{\mu\nu}\partial^2-\partial_\mu\partial_\nu)A_R^{b\nu}+(\widetilde{Z}_3-1)\chi_{1R}^a\delta_{ab}(-i\partial^2)\chi_{2R}^b\nonumber\\
+&&+(Z_2-1)\bar{\psi}^i_R(i\slashed\partial-m_R)\psi_R^i-Z_2(Z_m-1)m_R\bar{\psi}^i_R\psi^i_R\nonumber\\
+&&-(Z_1-1)\frac{1}{2}g_Rf^{abc}(\partial_\mu A^a_{\nu R}-\partial_\nu A^a_{\mu R})A_R^{\mu b}A_R^{\nu c}\nonumber\\
+&&-(Z_4-1)\frac{1}{4}g^2_Rf^{abe}f^{cde}A^a_{\mu R}A^b_{\nu R}A_R^{c\mu}A_R^{d\nu}\nonumber\\
+&&-(\widetilde{Z}_1-1)ig_Rf^{abc}(\partial^\mu\chi_{1R}^a)\chi_{2R}^bA^c_{\mu R}\nonumber\\
+&&+(Z_{1F}-1)g_R\bar{\psi}^iT^a_{ij}\gamma^\mu\psi_R^jA^a_{\mu R},
+\end{eqnarray}
+where $Z_1$, $Z_4$, $\widetilde{Z}_1$ and $Z_{1F}$ are defined as follows:
+\begin{eqnarray}
+&Z_1\equiv Z_gZ_3^\frac{3}{2}, & Z_4\equiv Z^2_gZ^2_3,\nonumber\\
+&\widetilde{Z}_1\equiv Z_g\widetilde{Z}_3Z_3^\frac{1}{2}, & Z_{1F}\equiv Z_gZ_2Z_3^\frac{1}{2}.
+\end{eqnarray}
+From this counterterm term we obtain the corresponding Feynman rules (see Appendix B).
+
+The gauge nature of the theory implies the Slavnov-Taylor identity \cite{Tay71,Sla73}, 
+\begin{equation}
+\frac{Z_1}{Z_3}=\frac{\widetilde{Z}_1}{\widetilde{Z}_3}=\frac{Z_{1F}}{Z_2}=\frac{Z_4}{Z_1}.
+\end{equation} 
+The Slavnov-Taylor identity ensures the universality of the renormalized coupling constant $g_R$.
+
+By the power counting analysis in the case of QCD, we have seven amplitdues which possess overall divergences. The Feynman diagrams with non-negative superficial degree of divergence in QCD are outlined below:
+
+Note that the superficial degrees of divergence $d$ for the self-energy part for the gulion, Faddeev-Popov ghost and quark and three-gluon vertex are 2, 1, 1 and 1, respectively, but the actual degrees of divergences of these amplitudes are all logarithmic due to the gauge invariance. Next, we present one-loop contributions to the seven superficially divergent amplitudes \cite{Muta,Cel79,Pas80}:
+
+
+
+(\romannumeral 1) The gluon self-energy $\Pi^{ab}_{\mu\nu}(k)$ is
+\begin{equation}
+\Pi^{ab}_{\mu\nu}(k)=\delta_{ab}(k_\mu k_\nu-k^2g_\mu\nu)\Pi(k^2),
+\end{equation}
+\begin{equation}
+\Pi(k^2)=\frac{g^2_R}{(4\pi)^2}\biggl[\frac{4}{3}T_RN_f-\frac{1}{2}C_G\left(\frac{13}{3}-\alpha_R \right) \biggr]\frac{1}{\epsilon}+Z_3-1+\text{ finite terms,}
+\end{equation}
+\def\GLSE1{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,60)
+			\Gluon(5,37)(30,37){3}{3}
+			\Gluon(70,37)(95,37){3}{3}
+			\GCirc(50,37){20}{0.67}
+		\end{axopicture}
+		
+	}
+}	
+
+\def\gGLSE{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,60)
+			\Gluon(5,37)(30,37){3}{3}
+			\Gluon(70,37)(95,37){3}{3}
+			\GluonArc(50,37)(20,0,360){3}{10}
+		\end{axopicture}
+		
+	}
+}	
+
+
+\def\ggGLSE{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,60)
+			\Gluon(5,37)(50,37){3}{4}
+			\Gluon(50,37)(95,37){3}{4}
+			\GluonArc(50,60)(20,0,180){3}{5}
+			\GluonArc(50,60)(20,180,360){3}{5}
+		\end{axopicture}
+		
+	}
+}		
+
+
+\def\gggGLSE{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,60)
+			\Gluon(5,37)(30,37){3}{3}
+			\Gluon(70,37)(95,37){3}{3}
+			\Arc[arrow,dash,clockwise](50,37)(20,0,180)
+			\Arc[arrow,dash,clockwise](50,37)(20,180,360)
+		\end{axopicture}
+		
+	}
+}	
+
+\def\ggggGLSE{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,60)
+			\Gluon(5,37)(30,37){3}{3}
+			\Gluon(70,37)(95,37){3}{3}
+			\Arc[arrow,clockwise](50,37)(20,0,180)
+			\Arc[arrow,clockwise](50,37)(20,180,360)
+		\end{axopicture}
+		
+	}
+}		
+
+\def\cGLSE1{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,60)
+			\Gluon(5,37)(95,37){3}{10}
+			\GCirc(50,37){5}{1}
+			\Line(46.464,40.535)(53.535,33.464)
+			\Line(53.535,40.535)(46.464,33.464)
+		\end{axopicture}
+		
+	}
+}	
+
+\begin{eqnarray}
+\GLSE1&=&\gGLSE+ \ggGLSE\nonumber
+\\&&+\gggGLSE+\ggggGLSE\nonumber\\
+&&+\cGLSE1\nonumber
+\end{eqnarray}
+where $\epsilon=(4-D)/2$. In Eq. (5.18) we have taken $N_f$ flavors of quarks into account, and $T_R$ and $C_G$ are the constants defined by
+\begin{align}
+tr[T_aT_b]&=\delta_{ab}T_R,\nonumber\\
+f_{acd}f_{bcd}&=\delta_{ab}C_G.
+\end{align} 
+Here we have $T_R=\frac{1}{2}$ and $C_G=3$ for $SU(3)_C$. Note that the one-loop contribution to the gluon self-energy satisfies the Ward-Takahashi identities,
+\begin{equation}
+k^\mu\Pi_{\mu\nu}^{ab}(k)=0,
+\end{equation}
+which is a natural consequence of gauge invariance. Due to this constraint the amplitude $\Pi_{\mu\nu}^{ab}$ must have the factor
+$k_\mu k_\nu-k^2g_{\mu\nu}$ and the degree of divergence for $\Pi_{\mu\nu}^{ab}(k)$ is lowered by 2 units. This structure of $\Pi_{\mu\nu}^{ab}(k)$ forbids a mass terms and so there is no mass renormalization. Therefore the gluon remains massless under the radiative corrections. In th MS scheme \cite{MS} the gauge field renormalization constant $Z_3$ is given by
+\begin{equation}
+Z_3=1-\frac{g^2_R}{(4\pi)^2}\biggl[\frac{4}{3}T_RN_f-\frac{1}{2}C_G\left(\frac{13}{3}-\alpha_R \right) \biggr]\frac{1}{\epsilon}+O(g^4_R).
+\end{equation}
+
+(\romannumeral 2) The Faddeev-Popov ghost self-energy $\widetilde{\Pi}^{ab}(k)$ is
+\begin{equation}
+\widetilde{\Pi}^{ab}(k)\delta_{ab}\bigg[ -\frac{g^2_R}{(4\pi)^2}C_G\frac{3-\alpha_R}{4}\frac{1}{\epsilon}+\widetilde{Z}_3-1 \bigg]+\text{ finite terms.}
+\end{equation} 
+
+\def\FSE{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,60)
+			\Line[arrow,dash](30,37)(5,37)
+			\Line[arrow,dash](95,37)(70,37)
+			\GCirc(50,37){20}{0.67}
+		\end{axopicture}
+		
+	}
+}	
+
+
+\def\FSEf{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,60)
+			\Line[arrow,dash](95,37)(5,37)
+			\GluonArc(50,37)(20,0,180){3}{8}
+		\end{axopicture}
+		
+	}
+}	
+
+
+\def\cFSE{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,60)
+			\Line[arrow,dash](46.464,37)(5,37)
+			\Line[arrow,dash](95,37)(53.535,37)
+			\GCirc(50,37){5}{1}
+			\Line(46.464,40.535)(53.535,33.464)
+			\Line(53.535,40.535)(46.464,33.464)
+		\end{axopicture}
+		
+	}
+}	
+
+\begin{eqnarray}
+\FSE= \FSEf+\cFSE\nonumber
+\end{eqnarray}
+Note that the divergent part above is proportional to $k^2$ and thus there is no mass renormalization. So the Faddeev-Popov ghost self-energy remain massless after radiative corrections, too. The ghost field renormalization constant $\widetilde{Z}$ in the MS scheme is given by
+\begin{equation}
+\widetilde{Z}_3=1+\frac{g^2_R}{(4\pi)^2}C_G\frac{3-\alpha_R}{4}\frac{1}{\epsilon}+O(g^4_R).
+\end{equation}
+
+(\romannumeral 3) The quark self-energy $\Sigma^{ij}(p)$ is 
+\begin{eqnarray}
+\Sigma^{ij}(p)&=&\delta_{ij}[(Am_R-B\slashed p)-(Z_2Z_m-1)m_R+(Z_2-1)\slashed p]+\text{ finite terms,}\nonumber\\
+A&=&-\frac{g^2_R}{(4\pi)^2}C_F(3+\alpha_R)\frac{1}{\epsilon}+O(g^4_R),\nonumber\\
+B&=&-\frac{g^2_R}{(4\pi)^2}C_F\alpha_R\frac{1}{\epsilon}+O(g^4_R).
+\end{eqnarray}
+\def\QSE{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,60)
+			\Line[arrow](30,37)(5,37)
+			\Line[arrow](95,37)(70,37)
+			\GCirc(50,37){20}{0.67}
+		\end{axopicture}
+		
+	}
+}	
+
+
+\def\QSEf{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,60)
+			\Line[arrow](95,37)(5,37)
+			\GluonArc(50,37)(20,0,180){3}{8}
+		\end{axopicture}
+		
+	}
+}	
+
+
+\def\cQSE{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,60)
+			\Line[arrow](46.464,37)(5,37)
+			\Line[arrow](95,37)(53.535,37)
+			\GCirc(50,37){5}{1}
+			\Line(46.464,40.535)(53.535,33.464)
+			\Line(53.535,40.535)(46.464,33.464)
+		\end{axopicture}
+		
+	}
+}	
+
+
+
+\begin{eqnarray}
+\QSE= \QSEf+\cQSE\nonumber
+\end{eqnarray}	
+As we see, the divergence in the quark self-energy consists of two kinds, the mass type $Am_R$ and the kinetic energy type $-B\slashed p$. Then the mass and quark-field renormalization constants in the MS scheme are determined by
+\begin{eqnarray}
+Z_m&=&1-\frac{g^2_R}{(4\pi)^2}C_F(3+\alpha_R)\frac{1}{\epsilon}+\frac{g^2_R}{(4\pi)^2}C_F\alpha_R\frac{1}{\epsilon}+O(g^4_R),\nonumber\\
+Z_2&=&1-\frac{g^2_R}{(4\pi)^2}C_F\alpha_R\frac{1}{\epsilon}+O(g^4_R).
+\end{eqnarray}
+
+(\romannumeral 4) The three-gluon vertex $\Lambda^{abc}_{\mu\nu\lambda}(K_1,k_2,k_3)$ is given by
+\begin{eqnarray}
+\Lambda^{abc}_{\mu\nu\lambda}(K_1,k_2,k_3)&=&-ig_Rf^{abc}V_{\mu\nu\lambda}(k_1,k_2,k_3)\biggl\{ \frac{g^2_R}{(4\pi)^2}\bigg[ C_G\left( -\frac{17}{12}+\frac{3\alpha_R}{4}\right)\nonumber\\
+&&+\frac{4}{3}T_RN_f \bigg]\frac{1}{\epsilon}+Z_1-1 \biggr\}+\text{ finite terms,}
+\end{eqnarray}
+
+\def\GGG{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,100)
+			\Gluon(5,37)(30,37){3}{3}
+			\Gluon(70,37)(95,37){3}{3}
+			\Gluon(50,57)(50,77){3}{3}
+			\GCirc(50,37){20}{0.67}
+		\end{axopicture}
+		
+	}
+}	
+
+
+\def\gGGG{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,100)
+			\Gluon(5,37)(35,37){3}{3}
+			\Gluon(65,37)(95,37){3}{3}
+			\Gluon(35,37)(65,37){3}{3}
+			\Gluon(50,57)(50,77){3}{3}
+			\Gluon(35,37)(50,57){3}{3}
+			\Gluon(65,37)(50,57){3}{3}
+		\end{axopicture}
+		
+	}
+}	
+
+\def\gGGG{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,100)
+			\Gluon(5,37)(35,37){3}{3}
+			\Gluon(65,37)(95,37){3}{3}
+			\Gluon(35,37)(65,37){3}{3}
+			\Gluon(50,57)(50,77){3}{3}
+			\Gluon(35,37)(50,57){3}{3}
+			\Gluon(65,37)(50,57){3}{3}
+		\end{axopicture}
+		
+	}
+}	
+
+
+\def\ggGGG{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,100)
+			\Gluon(5,37)(50,37){3}{3}
+			\Gluon(50,37)(95,37){3}{3}
+			\Gluon(50,77)(50,97){3}{3}
+			\GluonArc(50,57)(15,0,360){3}{10}
+		\end{axopicture}
+		
+	}
+}	
+
+\def\gggGGG{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,100)
+			\Gluon(5,37)(35,37){3}{3}
+			\Gluon(65,37)(95,37){3}{3}
+			\Gluon(50,57)(50,77){3}{3}
+			\Line[arrow,dash](65,37)(35,37)
+			\Line[arrow,dash](35,37)(50,57)
+			\Line[arrow,dash](50,57)(65,37)
+		\end{axopicture}
+		
+	}
+}	
+
+\def\ggggGGG{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,100)
+			\Gluon(5,37)(35,37){3}{3}
+			\Gluon(65,37)(95,37){3}{3}
+			\Gluon(50,57)(50,77){3}{3}
+			\Line[arrow](65,37)(35,37)
+			\Line[arrow](35,37)(50,57)
+		\Line[arrow](50,57)(65,37)
+	\end{axopicture}
+	
+}
+}	
+
+
+\def\cGGG{
+\raisebox{-38.2pt}{
+	\begin{axopicture}(100,60)
+		\Gluon(5,37)(95,37){3}{10}
+		\Gluon(50,37)(50,77){3}{5}
+		\GCirc(50,37){5}{1}
+		\Line(46.464,40.535)(53.535,33.464)
+		\Line(53.535,40.535)(46.464,33.464)
+	\end{axopicture}
+	
+}
+}
+
+\begin{eqnarray}
+\GGG&=&\gGGG+\ggGGG \nonumber\\
+&&+\gggGGG+\ggggGGG\nonumber\\
+&&+\text{ permutations } +\cGGG\nonumber
+\end{eqnarray}
+where
+\begin{equation}
+V_{\mu\nu\lambda}(k_1,k_2,k_3)=(k_1-k_2)_\lambda g_{\mu\nu}+(k_2-k_3)_\mu g_{\nu\lambda}+(k_3-k_1)_\nu g_{\mu\lambda}.
+\end{equation}
+The three-gluon vertex renormalization constant $Z_1$ in the MS scheme is
+\begin{equation}
+Z_1=1-\frac{g^2_R}{(4\pi)^2}\bigg[ C_G\left( -\frac{17}{12}+\frac{3\alpha_R}{4}\right)+\frac{4}{3}T_RN_f \bigg]\frac{1}{\epsilon}+O(g^4_R).
+\end{equation}
+
+(\romannumeral 5) The ghost-gluon vertex $\widetilde{\Lambda}^{abc}_\mu(k,p,p')$ has the express
+\begin{equation}
+\widetilde{\Lambda}^{abc}_\mu(k,p,p')=-ig_Rf^{abc}p_\mu\biggl[ \frac{g^2_R}{(4\pi)^2}C_G\frac{\alpha_R}{2}\frac{1}{\epsilon}+\widetilde{Z}_1-1 \biggr]+\text{ finite terms,}
+\end{equation}
+
+\def\FGV{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,100)
+			\Line[arrow,dash](30,37)(5,37)
+			\Line[arrow,dash](95,37)(70,37)
+			\Gluon(50,57)(50,77){3}{3}
+			\GCirc(50,37){20}{0.67}
+		\end{axopicture}
+		
+	}
+}	
+
+
+\def\fFGV{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,100)
+			\Line[arrow,dash](95,37)(70,37)
+			\Line[arrow,dash](30,37)(5,37)
+			\Line[dash](30,37)(70,37)
+			\Gluon(50,37)(50,77){3}{3}
+			\GluonArc(50,37)(20,180,360){3}{6}
+		\end{axopicture}
+		
+	}
+}		
+
+\def\ffFGV{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,100)
+			\Line[arrow,dash](35,37)(5,37)
+			\Line[arrow,dash](95,37)(65,37)
+			\Line[dash](65,37)(35,37)
+			\Gluon(50,57)(50,77){3}{3}
+			\Gluon(35,37)(50,57){3}{3}
+			\Gluon(65,37)(50,57){3}{3}
+		\end{axopicture}
+		
+	}
+}	
+
+\def\cFGV{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,90)
+			\Line[arrow,dash](50,37)(5,37)
+			\Line[arrow,dash](95,37)(50,37)
+			\Gluon(50,37)(50,77){3}{5}
+			\GCirc(50,37){5}{1}
+			\Line(46.464,40.535)(53.535,33.464)
+			\Line(53.535,40.535)(46.464,33.464)
+		\end{axopicture}
+		
+	}
+}	
+
+\begin{eqnarray}
+\FGV&=&\fFGV+\ffFGV\nonumber\\
+&&+\cFGV\nonumber
+\end{eqnarray}
+where the momentum $p_\mu$ denotes the ghost-line which carries the ghost number flowing out of the vertex. The ghost-gluon vertex renormalization constant $\widetilde{Z}_1$ reads in the MS scheme
+\begin{equation}
+\widetilde{Z}_1=1-\frac{g^2_R}{(4\pi)^2}C_G\frac{\alpha_R}{2}\frac{1}{\epsilon}+O(g^4_R).
+\end{equation}
+
+(\romannumeral 6) The quark-gluon vertex $\Lambda^{aij}_{F\mu}(k,p,p')$ is 
+\begin{eqnarray}
+\Lambda^{aij}_{F\mu}(k,p,p')&=&g_R\gamma_\mu T^a_{ij}\biggl[ \frac{g^2_R}{(4\pi)^2}\left( \frac{3+\alpha_R}{4}C_G+\alpha_RC_F \right)\frac{1}{\epsilon}+Z_{1F}-1 \biggr]\nonumber\\
+&&+\text{ finite terms.}
+\end{eqnarray}
+
+\def\QGV{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,100)
+			\Line[arrow](30,37)(5,37)
+			\Line[arrow](95,37)(70,37)
+			\Gluon(50,57)(50,77){3}{3}
+			\GCirc(50,37){20}{0.67}
+		\end{axopicture}
+		
+	}
+}	
+
+
+\def\fQGV{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,100)
+			\Line[arrow](95,37)(70,37)
+			\Line[arrow](30,37)(5,37)
+			\Line(30,37)(70,37)
+			\Gluon(50,37)(50,77){3}{3}
+			\GluonArc(50,37)(20,180,360){3}{6}
+		\end{axopicture}
+		
+	}
+}		
+
+\def\ffQGV{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,100)
+			\Line[arrow](35,37)(5,37)
+			\Line[arrow](95,37)(65,37)
+			\Line(65,37)(35,37)
+			\Gluon(50,57)(50,77){3}{3}
+			\Gluon(35,37)(50,57){3}{3}
+			\Gluon(65,37)(50,57){3}{3}
+		\end{axopicture}
+		
+	}
+}	
+
+\def\cQGV{
+	\raisebox{-38.2pt}{
+		\begin{axopicture}(100,90)
+			\Line[arrow](50,37)(5,37)
+			\Line[arrow](95,37)(50,37)
+			\Gluon(50,37)(50,77){3}{5}
+			\GCirc(50,37){5}{1}
+			\Line(46.464,40.535)(53.535,33.464)
+			\Line(53.535,40.535)(46.464,33.464)
+		\end{axopicture}
+		
+	}
+}	
+
+\begin{eqnarray}
+\QGV&=&\fQGV+\ffQGV\nonumber\\
+&&+\cQGV\nonumber
+\end{eqnarray}
+The quark-gluon vertex renormalization constant $Z_{1F}$ is given by
+\begin{equation}
+Z_{1F}=1-\frac{g^2_R}{(4\pi)^2}\left( \frac{3+\alpha_R}{4}C_G+\alpha_RC_F \right)\frac{1}{\epsilon}+O(g^4_R).
+\end{equation}
+
+(\romannumeral 7) The four-gluon vertex $\Lambda^{a_1\cdots a_4}_{\mu_1\cdots \mu_4}(k_1,k_2,k_3,k_4)$ is 
+\begin{eqnarray}
+&&\Lambda^{a_1\cdots a_4}_{\mu_1\cdots \mu_4}(k_1,k_2,k_3,k_4)\nonumber\\
+&&=-g^2_RW^{a_1\cdots a_4}_{\mu_1\cdots\mu_4} \biggl\{ \frac{g^2_R}{(4\pi)^2}\biggl[ \left( -\frac{2}{3}+\alpha_R \right)C_G+\frac{4}{3}T_RN_f \biggr]\frac{1}{\epsilon}+Z_4-1 \biggr\}\nonumber\\
+&&+\text{ finite terms,}
+\end{eqnarray}
+
+\def\Gf{
+	\raisebox{-45.2pt}{
+		\begin{axopicture}(100,100)
+			\Gluon(5,5)(95,95){3}{10}
+			\Gluon(5,95)(95,5){3}{10}
+			\GCirc(50,50){20}{0.65}
+			
+			
+		\end{axopicture}
+		
+	}
+}	
+
+\def\Gfg{
+	\raisebox{-45.2pt}{
+		\begin{axopicture}(100,100)
+			\Gluon(5,5)(35.858,35.858){3}{5}
+			\Gluon(64.142,64.142)(95,95){3}{5}
+			\Gluon(5,95)(35.858,64.142){3}{5}
+			\Gluon(64.142,35.858)(95,5){3}{5}
+			\GluonArc(50,50)(20,0,360){3}{10}
+		\end{axopicture}
+		
+	}
+}	
+
+\def\Gfgg{
+	\raisebox{-45.2pt}{
+		\begin{axopicture}(100,100)
+			\Gluon(5,5)(35.858,35.858){3}{5}
+			\Gluon(5,95)(35.858,64.142){3}{5}
+			\GluonArc(50,50)(20,0,360){3}{11}
+			\Gluon(70,50)(95,85){3}{5}
+			\Gluon(70,50)(95,25){3}{5}
+		\end{axopicture}
+		
+	}
+}	
+
+\def\Gfggg{
+	\raisebox{-45.2pt}{
+		\begin{axopicture}(100,100)
+			\Gluon(30,50)(5,85){3}{5}
+			\Gluon(30,50)(5,25){3}{5}
+			\GluonArc(50,50)(20,0,360){3}{11}
+			\Gluon(70,50)(95,85){3}{5}
+			\Gluon(70,50)(95,25){3}{5}
+		\end{axopicture}
+		
+	}
+}	
+
+
+\def\GfFP{
+	\raisebox{-45.2pt}{
+		\begin{axopicture}(100,100)
+			\Gluon(5,5)(35.858,35.858){3}{5}
+			\Gluon(64.142,64.142)(95,95){3}{5}
+			\Gluon(5,95)(35.858,64.142){3}{5}
+			\Gluon(64.142,35.858)(95,5){3}{5}
+			\DashArc(50,50)(20,0,360){4}
+		\end{axopicture}
+		
+	}
+}	
+
+\def\GfFF{
+	\raisebox{-45.2pt}{
+		\begin{axopicture}(100,100)
+			\Gluon(5,5)(35.858,35.858){3}{5}
+			\Gluon(64.142,64.142)(95,95){3}{5}
+			\Gluon(5,95)(35.858,64.142){3}{5}
+			\Gluon(64.142,35.858)(95,5){3}{5}
+			\Arc(50,50)(20,0,360)
+		\end{axopicture}
+		
+	}
+}	
+
+\def\cGf{
+	\raisebox{-45.2pt}{
+		\begin{axopicture}(100,100)
+			\Gluon(5,5)(95,95){3}{9}
+			\Gluon(5,95)(95,5){3}{9}
+			\GCirc(50,50){5}{1}
+			\Line(46.464,53.535)(53.535,46.464)
+			\Line(53.535,53.535)(46.464,46.464)
+			
+			
+		\end{axopicture}
+		
+	}
+}
+
+
+
+\begin{eqnarray}
+\Gf&=&\Gfg+\Gfgg\nonumber]]\nonumber\\
+&&+\Gfggg+\GfFP\nonumber\\
+&&+\GfFF+\text{ permutations }\nonumber\\
+&&+\cGf\nonumber
+\end{eqnarray}
+where
+\begin{eqnarray}
+W^{a_1\cdots a_4}_{\mu_1\cdots\mu_4}&=&(f^{13,24}-f^{14,32})g_{\mu_1\mu_2}g_{\mu_3\mu_4}+(f^{12,34}-f^{14,23})g_{\mu_1\mu_3}g_{\mu_2\mu_4}\nonumber\\
+&&+(f^{13,42}-f^{12,34})g_{\mu_1\mu_4}g_{\mu_3\mu_2},\nonumber\\
+f^{ij,kl}&\equiv&f^{a_ia_ja}f^{a_ka_la}, \quad i,j,k=1,2,3,4.
+\end{eqnarray}
+The four-gluon vertex renormalization constant $Z_4$ in the MS scheme reads
+\begin{equation}
+Z_4=1-\frac{g^2_R}{(4\pi)^2}\biggl[ \left( -\frac{2}{3}+\alpha_R \right)C_G+\frac{4}{3}T_RN_f \biggr]\frac{1}{\epsilon}+O(g^4_R).
+\end{equation}
+
+Now we find that all the one-loop divergences in the seven superficially divergent amplitudes can be cancelled by the contributions of the counter terms derived from $\mathcal{L}^C$.
+Therefore the renormalizability of QCD at the one-loop order is shown. 
+
+
+
+\section{Renormalization Group Equation and Asymptotic Freedom }
+Among renormalizable theories in four spacetime dimensions, non-Abelian gauge theories are unique because of the exclusive possession of asymptotic freedom. It is the significant property that makes QCD such a prominent candidate for the theory of strong interactions in which it gives a substantial basis for incorporating and extending the successful parton model for describing deep inelastic phenomena. In this section, we are dedicated to introduce the renormalization group equations, the concept of running coupling constant, the definition and the physical significance of asymptotic freedom \cite{Pol,Pol1,GrossWil,GrossWil1,Muta,Pet79,Alt82}. 
+
+\subsection{Renormalization Group Equation}
+According to the renormalization procedure we subtract all the divergences from the Green functions systematically order by order in the perturbative theory. In the subtraction procedure there exists an arbitrariness of defining a divergence part in a Green function, i.e., how much of the finite part will be subtracted together with the infinity. This arbitrariness is equivalent to that in splitting the Lagrangian into a renormalized Lagrangian and the counterterms and leads to various renormalization schemes. 
+
+The arbitrariness remains while defining the renormalized quantities. For example, in QCD, the renormalized coupling constant $g_R$ may be defined in terms either of the three-gluon vertex or of the four-gluon vertex. In general different coupling constants $g_R$ are determined by these different definitions. For QCD, with the help of Slavnov-Taylor identity, these two coupling constants coincide.
+
+In subtracting the singularities we have to introduce an arbitrary mass scale $\mu$ which is called the renormalization scale. For instance, in the on-shell scheme, the renormalization scale $\mu$ is choosen as the physical mass of the relevent particle at which the renormalization condition is established. In the MS scheme, at first glance, the mass scale seems unnecessary bcause only the pole in the spacetime dimension is subtracted. However, in fact, the mass dimension of the coupling constant in arbitrary spacetime dimensions plays a role of the renormalization scale. The renormalization scale $\mu$ is arbitrary and persists in the finite part of the Green functions. Therefore the renormalized Green functions after subtracting divergences remains arbitrary.
+
+In general, the renormalized coupling constant $g_R$ and mass $m_R$ depend on the renormalization scale $\mu$ for which the subtraction procedure is determined, and the explicit dependence can be expressed as
+\begin{align}
+g_R(\mu)&=Z_g(\mu)^{-1}g,\nonumber\\
+m_R(\mu)&=Z_m(\mu)^{-\frac{1}{2}}m.
+\end{align}
+The renormalized coupling constant $g_R(\mu)$ and $g_R(\mu')$ which are defined via two different subtraction procedures characterized by the renormalization scales $\mu$ and $\mu'$ resepectively. They are related to each other by a finite renormalization $z_g(\mu',\mu)$, 
+\begin{equation}
+g_R(\mu')=z_g(\mu',\mu)g_R(\mu),
+\end{equation}
+where $z_g(\mu',\mu)$ is defined by
+\begin{equation}
+z_g(\mu',\mu)=\frac{Z_g(\mu)}{Z_g(\mu')}.
+\end{equation}
+Similarly, we have 
+\begin{equation}
+m_R(\mu')=z_m(\mu',\mu)m_R(\mu),
+\end{equation}
+where $z_m(\mu',\mu)$ is defined by
+\begin{equation}
+z_m(\mu',\mu)=\left(\frac{Z_m(\mu)}{Z_m(\mu')}\right)^\frac{1}{2}.
+\end{equation}
+Note that eq. (5.40) defines a set of finite renormalizations $\{z_g(\mu',\mu)\}$ for varying renormalization scales $\mu'$ and $\mu$. We treat the finite renormalization (5.40) as a transformation. It can be shown that this set of transformations have group properties \cite{Wil71}. In fact we could define a product of two elements $z_g(\mu'',\mu')$ and $z_g(\mu',\mu)$
+\begin{equation}
+z_g(\mu'',\mu')z_g(\mu',\mu),
+\end{equation}
+which stands for the change of $g_R(\mu)$ through the successive changes of the scales $\mu\to\mu'\to\mu''$. Since
+\begin{equation}
+z_g(\mu'',\mu')z_g(\mu',\mu)=\frac{Z_g(\mu)}{Z_g{(\mu'')}}=z_g(\mu'',\mu),
+\end{equation}
+$z_g(\mu'',\mu)$ the finite renormalization of $g_R(\mu)$ caused by the scale change $\mu\to\mu''$. Therefore the product $z_g(\mu'',\mu')z_g(\mu',\mu)$ belongs to the set $\{z_g(\mu',\mu)\}$. Furthermore, the inverse of $z_g(\mu',\mu)$ can be defined by 
+\begin{equation}
+z^{-1}_g(\mu',\mu)=z_g(\mu,\mu'),
+\end{equation}
+and the identity 
+\begin{equation}
+z_g(\mu,\mu)=1
+\end{equation}
+belongs to the set $\{z_g(\mu',\mu)\}$. Therefore the set of finite renormalizations $\{z_g(\mu',\mu)\}$ is a Abelian group, called the renormalization group.
+
+Furthermore, we define the renormalized one-particle irreducible (1PI) amplitudes by
+\begin{equation}
+\Gamma_R(p,g_R(\mu'),m_R(\mu'),\mu')=Z_{\Gamma}\Gamma(p,g_R(\mu),m_R(\mu),\mu)
+\end{equation}
+where $Z_\Gamma$ is the product of the necessary scaling factors for the set of operators, depending the number and types of the external lines. For example, in quantum electrodynamics, $\Gamma$ might be an amputated Green function's with $n_e$ external fermion lines and $n_\gamma$ external photon lines, and then $Z_\Gamma$ is given by
+\begin{equation}
+Z_\Gamma=Z_2^\frac{n_e}{2}Z_3^\frac{n_\gamma}{2}.
+\end{equation}
+The finite renormalization for $\Gamma_R$ is determined by
+\begin{equation}
+\Gamma_R(p,g_R(\mu'),m_R(\mu'),\mu')=z(\mu',\mu)\Gamma_R(p,g_R(\mu),m_R(\mu),\mu)
+\end{equation}
+where the renormalization factor $z(\mu',\mu)$ is defined by
+\begin{equation}
+z(\mu',\mu)=\frac{Z_\Gamma(\mu')}{Z_\Gamma(\mu)}.
+\end{equation}
+
+Due to the arbitrarinesses for choosing the renormalization condition and fixing the renormalization scale $\mu$, we may have many possible expressions for one physical quantity which depends on the choice of the renormalization scheme and scale. These different expressions are connected  by a finite renormalization described above. A natural concern is whether these different expressions for one physical quantity are equivalent or not. Since they represent one physical quantity and are derived from the unique Lagranigan, they describe the same physical phenomenon and therefore must be equivalent. In other words, phyical quantities such as renormalized 1PI amplitudes are invariant under finite renormalization. 
+
+Given that the choice of renormaliazation scale is arbitrary, according to the discussion above, we conclude that any change in the renormalization scale $\mu$ can be compensated by all the renormalized quantities such that the renormalized 1PI amplitudes remain unchanged. This fact is reflected by the renormalization group equation \cite{MS,GelRGE,CallanRGE,SymRGE,WeiRGE}.
+
+We can derive the renormalization group equation for the renormalized Green;s functions by differentiating eq. (5.45) with respect to $\mu$. Considering $g_R$ and $m_R$ depend on $\mu$, while the unrenormalized amplitude $\Gamma$ does not, we have immediately that
+\begin{equation}
+\biggl[ \mu\frac{\partial}{\partial\mu}+\beta(g_R)\frac{\partial}{\partial g_R}-\gamma_m(g_R) m_R\frac{\partial}{\partial m_R}-\gamma_\Gamma(g_R) \biggr]\Gamma_R=0,
+\end{equation}
+where $\beta$, $\gamma_m$ and $\gamma_\Gamma$ are defined by
+\begin{align}
+\beta&=\mu\frac{\partial g_R}{\partial \mu}\bigg|_{g,m},\nonumber\\
+\gamma_m&=-\mu\frac{\partial\log m_R}{\partial\mu}\bigg|_{g,m},\nonumber\\
+\gamma_\Gamma&=\frac{1}{2}\frac{\partial \log Z_\Gamma}{\partial\mu}.
+\end{align}
+
+We wish to use the renormalization group equation to study the momentum dependence of the Green function. Assume that all the momentum components vary together with the fixed ratio, $p=\lambda p_0$, where $p_0$ is a set of fixed momenta and $\lambda$ is a momentum scale variable. If $\Gamma$ has the dimensions of mass to the power $D_\Gamma$, then
+\begin{equation}
+\biggl[ \mu\frac{\partial}{\partial\mu}+m_R\frac{\partial}{\partial m_R}+\lambda\frac{\partial}{\partial\lambda} \biggr]\Gamma_R=D_\Gamma\Gamma_R,
+\end{equation}
+so eq. (5.49) can be rewritten as 
+\begin{equation}
+\biggl\{ \lambda\frac{\partial}{\partial\lambda}-\beta(g_R)\frac{\partial}{\partial g_R}-[1+\gamma_m(g_R)] m_R\frac{\partial}{\partial m_R}-D_\Gamma+\gamma_\Gamma(g_R)\biggr\} \Gamma_R(\lambda p_0,g_R,m_R,\mu)=0.
+\end{equation}
+Let us define a $\lambda$-dependent effective coupling and mass through the differential equations
+\begin{align}
+\lambda\frac{d}{d\lambda}g(\lambda)&=\beta(g(\lambda)),\\
+\lambda\frac{d}{d\lambda}m(\lambda)&=-[1+\gamma_m(g(\lambda))]m(\lambda)
+\end{align}
+and the initial conditions
+\begin{equation}
+g(1)=g_R,\quad m(1)=m_R.
+\end{equation}
+Then the eq. (5.52) has the solution
+\begin{equation}
+\Gamma_R(\lambda p_0,g_R,m_R,\mu)=\lambda^{D_\Gamma}\Gamma_R(p_0,g(\lambda),m(\lambda),\mu)\exp\biggl[ -\int_1^\lambda\gamma_\Gamma(g(\lambda'))\frac{d\lambda'}{\lambda'} \biggr],
+\end{equation}
+where the exponential term is the "anomalous dimension". Thus, solution of the renormalization group equation can be expressed in terms of the running coupling constant $g(\lambda)$ and the running mass $m(\lambda)$. The asymptotic behavior of the Green's functions $\Gamma_R$ is governed the asymptotic behavior of the $g(\lambda)$ and $m(\lambda)$. 
+
+According to eq. (5.53), the running coupling constant $g(\lambda)$ must tend to a "fixed point" as $k\to\infty$, which may be either the point at infinity, or any zeros of the $\beta$-function. Thus we need to distinguish three different cases qualitatively:
+(\romannumeral 1) If $\beta$ at $g_R$ has the same sign as $g_R$
+, and if there are no zeros of $\beta$ between $g_R$ and $\pm\infty$ (for $g_R>0$ or $g_R<0$), then $|g(\lambda)|$ must increase, approaching infinity for $\lambda\to\infty$. (\romannumeral 2) If $\beta$ has zeros, and if the first zero encountered as its argument increases for $\beta(g_R)>0$ or decreases for $\beta(g_R)<0$ from $g_R$ is as a finite point $g_\infty\neq0$, then $g(\lambda)$ will increase or decrease to $g_\infty$ as $k\to\infty$. (\romannumeral 3) If $\beta$ at $g_R$ has the opposite sign to $g_R$, and has no zeros between $g_R$ and the origin, then $|g(\lambda)$ must decrease from $|g_R|$ as $\lambda$ increases, $|g(\lambda)|\to0$ as $\lambda\to\infty$ Such theories are called "asymptotically free". In the usual case, the perturbation theory gives \cite{Pol,Pol1,GrossWil,GrossWil1},
+\begin{equation}
+\beta(g_R)=-\beta_0g_R^3-\beta_1g^5_R-\beta_2g^7_R+O(g^9_R).
+\end{equation}
+
+
+
+Asymptotically free field theories are of great theoretical interests. In such theories, the asymptotic behavior of amplitudes is calculable by the perturbation theory. In the next subsection, we will introduce the renormalization group equation for QCD and asymptotic freedom in QCD.
+
+
+\subsection{Asymptotic Freedom in QCD}
+
+First, let us derive the renormalization group equation for QCD in the MS scheme. Our basic Lagrangian is given by eq. (5.10) and we split it into two parts, the renormalized part and the counter terms (5.14). We refined the gluon field $A^a_\mu$, ghost field $\chi^a$ and quark field $\psi$ through eq. (5.11) and the renormalized parameter $g_R$, $m_R$ and $\alpha_R$ are defined by eq. (5.12) in terms of renormalization constants $Z_g$, $Z_m$ and $Z_3$. Thus the renormalization group equation for QCD is straightforward and reads off
+\begin{align}
+&\biggl[ \mu\frac{\partial}{\partial\mu}+\beta(g_R,\alpha_R)\frac{\partial}{\partial g_R}-\gamma_m(g_R,\alpha_R) m_R\frac{\partial}{\partial m_R}+\delta(g_R,\alpha_R)\frac{\partial}{\partial \alpha_R}\nonumber\\
+&-n_G\gamma_G(g_R,\alpha_R)-n_F\gamma_F(g_R,\alpha_R) \biggr]\Gamma_{n_G,n_F}=0,
+\end{align}
+where $\Gamma_{n_G,n_F}$ is the 1PI renormalized Green's function with $n_G$ external gluon lines and $n_F$ external fermion lines (we do not consider the Green functions with external ghost lines), $g_r$ is the dimensionless renormalized gauge coupling constant defined by
+\begin{equation}
+g_r=\left( \frac{\mu_0}{\mu} \right)^\epsilon Z^{-1}_g
+g_0,
+\end{equation}
+with $g_r=g_R\mu^{-\epsilon}$, $g_0=g\mu_0^{-\epsilon}$,$\epsilon=\frac{4-D}{2}$, $m_r=m_R$ and 
+$\alpha_r=\alpha_R$. Here the mass scale $\mu_0$ for the bare coupling constant $g$ is fixed scale while the mass scale $\mu$ for the renormalized coupling constant $g_R$ is a variable. The renormalization group functions $\beta$, $\gamma_m$, $\delta$, $\gamma_G$ and $\gamma_F$ are defined by
+\begin{align}
+\beta(g_r,\alpha_r)&=\mu\frac{\partial g_r}{\partial \mu}\bigg|_{g,m,\alpha},\\
+\gamma_m(g_r,\alpha_r)&=-\mu\frac{\partial\log m_r}{\partial\mu}\bigg|_{g,m,\alpha},\\
+\delta(g_r,\alpha_r)&=\mu\frac{\partial\alpha_r}{\partial\mu}\bigg|_{g,m,\alpha},\\
+\gamma_G(g_r,\alpha_r)&=\frac{\mu}{2}\frac{\partial\log Z_3}{\partial\mu}\bigg|_{g,m,\alpha},\\
+\gamma_F(g_r,\alpha_r)&=\frac{\mu}{2}\frac{\partial\log Z_2}{\partial\mu}\bigg|_{g,m,\alpha}.
+\end{align}
+Here $\gamma_G$ and $\gamma_F$ are the anomalous dimensions of the gluon and quark fields, respectively. The bare parameters $g$ and $m$ are regarded as fixed constants and are free from the renormalization scale $\mu$. Then we have
+\begin{equation}
+\frac{dg_R}{d\mu}=0,\quad \frac{dm}{d\mu}=0.
+\end{equation}
+According to eqs. (5.58), (5.59), and (5.64), we have 
+\begin{equation}
+\beta=-\epsilon g_R-\frac{\mu}{Z_g}\frac{dZ_g}{d\mu}g_R.
+\end{equation}
+
+Therefore, in order to compute the $\beta$-function to one-loop order, we need to know the renormalized coupling constant $g_R$ in one-loop order with the renormalization scale $\mu$. There are four different ways of doing it because $Z_g$ can be evaluated with four different definitions (5.15). These four approaches are equivalent due to the Slavnov-Taylor identity (5.16). We here introduce an easy way of calculating $Z_g$ by using the definition 
+\begin{equation}
+Z_g=\widetilde{Z}_1/(\widetilde{Z}_3Z_3^\frac{1}{2}).
+\end{equation}
+With the help of eqs. (5.21), (5.23) and (5.30), we obtain
+\begin{equation}
+Z_g=1-\frac{g_R^2}{(4\pi)^2}\frac{1}{6}(11C_G-4T_RN_f)\frac{1}{\epsilon}+O(g_R^4).
+\end{equation} 
+Then, we have, according to eqs. (5.59), (5.66) and (5.68),
+\begin{align}
+\beta(g_R)&=-\epsilon g_R-\frac{\mu}{Z_g}\frac{dZ_g}{d\mu}g_R\nonumber\\
+&=-\epsilon g_R+\frac{11C_G-4T_RN_f}{3}\frac{g^2_R}{(4\pi)^2}\frac{1}{\epsilon}\beta(g_R)+O(g_R^5)\nonumber\\
+&=-\frac{1}{(4\pi)^2}\frac{11C_G-4T_RN_f}{3}g^3_R+O(g^5_R,\epsilon).
+\end{align}
+Therefore we find that the coefficient $\beta_0$ defined in eq. (5.57) is given by
+\begin{equation}
+\beta_0=\frac{1}{(4\pi)^2}\frac{11C_G-4T_RN_f}{3}.
+\end{equation}
+Asymptotic freedom occurs if $\beta_0>0$, i.e., $11C_G-4T_RN_f>0$. For $SU(3)$ $C_G=3$ and $T_R=\frac{1}{2}$, the condition for the asymptotic freedom is
+\begin{equation}
+N_f<\frac{33}{2}.
+\end{equation}
+Thus QCD is asymptotically free as long as the number of quark flavors is less than 16. Note that for $N_f=0$ the coefficient $\beta_0$ is positive definite. It is the presence of quarks that can undermine asymptotic freedom. The fundamental origin of asymptotic freedom may be traced back to the existence of the three-gluon coupling terms in the Lagrangian. Since this term is peculiar to the Yang-Mills theory, we can conclude that the asymptotic freedom is an inherent nature of non-Abelian gauge theory.
+
+So far we discussed the $\beta$-function up to one loop order. The $\beta$-function up to two loops \cite{Cas74,Jon74} is given by
+\begin{equation}
+\beta(g)=-\beta_0g^3-\beta_1g^5+O(g^7),
+\end{equation}
+where $\beta_0$ is given by eq. (5.70) and
+\begin{equation}
+\beta_1=\frac{1}{(4\pi)^4}\biggl[ \frac{34}{3}C_G^2-4\left( \frac{5}{3}C_G+C_F \right)T_RN_f \biggr].
+\end{equation}
+
+Next, let us turn to the running coupling constant. The running coupling constat $\bar{g}(t)$ at the momentum scale $e^t$ is determined by eq. (5.53), where $t=-\log\lambda$. We choose the momentum scale to be 
+\begin{eqnarray}
+e^t=\frac{\sqrt{-q^2}}{\mu},
+\end{eqnarray}
+where $q$ is the space-like momentum and $\mu$ is the fixed momentum scale which is chosen to be the renormalization scale for $\bar{g}(0)=g$. Integrating eq. (5.53), we have
+\begin{equation}
+t=\int_{g}^{\bar{g}(t)}\frac{dg'}{\beta(g)}.
+\end{equation}
+Then,we obtain by inserting eq. (5.72) into eq. (5.75)
+\begin{equation}
+t=-\frac{1}{2}\int_{g}^{\bar{g}(t)}\frac{d\lambda}{\lambda^2}\frac{dg'}{\beta_0+\beta_1\lambda+O(\lambda^2)}.
+\end{equation}
+If we choose $g$ and $\lambda$ sufficient small, then we might safely truncate the perturbative series for the $\beta$-function 
+to this approximation. Keeping only the one loop order we have 
+\begin{equation}
+t=\frac{1}{2\beta_0}\left( \frac{1}{\bar{g}^2}-\frac{1}{g^2} \right).
+\end{equation}
+Therefore the running coupling constant $\bar{g}$ is given by
+\begin{equation}
+\bar{g}^2=\frac{g^2}{1+2\beta_0g^2t}=\frac{1}{\beta_0\log(-q^2/\Lambda^2)},
+\end{equation}
+where the new momentum scale $\Lambda$ is defined by
+\begin{equation}
+\Lambda=\mu\exp\biggl[-\frac{1}{2\beta_0g^2} \biggr].
+\end{equation}
+The momentum scale $\Lambda$ is referred to as the QCD scale parameter and is the only adjustable parameter in QCD besides the quark mass. The expression for the running coupling constant can be improved by taking into account terms with the coefficient $\beta_1$ in eq. (5.76). Performing the integration we have
+\begin{equation}
+t=\frac{1}{2\beta_0}\biggl[ \frac{1}{\bar{g}^2}-\frac{1}{g^2}+\frac{\beta_1}{\beta_0}\log\frac{\bar{g}^2(\beta_0+\beta_1g^2)}{g^2(\beta_0+\beta_1\bar{g}^2)} \biggr].
+\end{equation} 
+Definin the scale parameter $\Lambda$ by
+\begin{equation}
+\Lambda=\mu\exp\biggl[-\frac{1}{2\beta_0g^2} \biggr]\left( \frac{1+\beta_1g^2/\beta_0}{\beta_0g^2} \right)^\frac{\beta_1}{2\beta_0^2}, 
+\end{equation}
+we can rewrite eq. (5.80) as follows:
+\begin{equation}
+\frac{1}{\bar{g}^2}+\frac{\beta_1}{\beta_0}\log\frac{\beta_0\bar{g}^2}{1+\beta_1\bar{g}^2/\beta_0}=\beta_0\log\left( \frac{-q^2}{\Lambda^2}\right).
+\end{equation}
+
+Note that eq. (5.81) reduces to eq. (5.79) for $\beta_1=0$. The eq. (5.82) can be solved for $\bar{g}^2$ iteratively if $-q^2 \gg \Lambda^2$,
+\begin{equation}
+\bar{g}^2=\frac{1}{\beta_0\log(-q^2/\Lambda^2)}\biggl[ 1-\frac{\beta_1}{\beta_0}\frac{\log\log(-q^2/\Lambda^2)}{\log(-q^/\Lambda^2)}+\cdots \biggr].
+\end{equation}
+Note that the second term in the parentheses in the equation above represents the next-to-leading order which corresponds to the two loop correction.
+
+In quantum electrodynamics the coupling constant defined on the mass shell is small enough to ensure the perturbative expansion. However, in quantum chromodynamics, there is no method independent of perturbation theory to determine experimentally the magnitude of the coupling constant. We know nothing about the validity of perturbation theory in QCD untill we perform practical perturbative calculations. Specifically, we first tentatively neglect the question of the validity of perturbation theory and evaluate the $\beta$-function in the lowest order of perturbation theory. Then we find that the renormalized coupling constant tends to be small as the relevant momentum scale grows. According to the property of asymptotic freedom, we realize that the perturbative calculation is legitimate for the large momentum scale. Therefore, the perturbation theory in QCD is valid in the large momentum region. 

@@ -1,0 +1,457 @@
+\chapter{Yennie-Frautschi-Suura Resummation} 
+
+The essential idea for understanding the infrared divergences was first proposed by Block and Nordsieck \cite{Block} before the invention of relativistic pertubration theory. The idea is that the infrared divergence arises from some soft photons which will escape detection. They showed that the probability that only a finite number of photons will escape detection is precisely zero because of the infrared divergence associated with the soft virtual photons. On the other hand a nonvanishing result would be obtained when the cross section is summed over all possible final states compatible with the detection arrangement. In fact, they proved the cancellation between the real and virtual infrared divergences. As an extension of the idea above, Yennie, Frauschi and Suura (YFS) \cite{YFS} developed a modern field theoretical treatment of the infrared divergence phenomena. The main feature of this approach is the seperation of the infrared divergences as multiplicative factors, which are treated to all orders of perturbation theory, and the conversion of the residual perturbation expansion into one which has no infrared divergence, and hence no need for an infrared cutoff. In the infrared factors, which are in exponential form, the infrared divergences arising from the real and virtual photons cancel out. This procedure depends on no specific details. The beauty of this formalism is that it could be systematically improved order by order in the electromagnetic coupling constant $\alpha$. In this Chapter, we will give a brief introduction to Yennie-Frautschi-Suura theory\cite{YFS,BFLW1987,BFLWQFT}
+
+\section{Resummation of Virtual Photon Radiative Corrections}
+
+Consider a process in which a certain number of photons are generated in the fermion scattering from an initial state of momentum $\vec{p}$ to a final state of momentum $\vec{p'}$. Let $M_n(\vec{p},\vec{p'})$ be the contribution to the amplitude corresponding to all n virtual photon loop diagrams. The complete amplitude is then
+\begin{equation}
+M(\vec{p},\vec{p'}) = \sum_{n=0}^{\infty} M_n(\vec{p},\vec{p'}).
+\end{equation}
+Because there are $n$ photons, it is clear that $M_n$ have an infrared divergence of $n$th order and will be a polynomial of degree of n in the logarithm of the infrared cutoff. Thus, we could show that the $M_n$'s have the structure
+\begin{align}
+M_0 &= m_0,\nonumber\\
+M_1 &= m_0\alpha B + m_1, \nonumber\\
+M_2 &= m_0\frac{(\alpha B)^2}{2} +m_1\alpha B +m_2, \nonumber\\
+\cdots&\nonumber\\
+M_n &= \sum_{r=0}^{n}m_{n-r}\frac{(\alpha B)^r}{r!},
+\end{align} 
+where $m_j$'s are infrared divergenceless and of order ${\alpha}^j$ relative to $M_0$. Summing over all numbers of virtual photon $n$, we formally arrive at 
+\begin{equation}
+M(\vec{p},\vec{p'}) = exp(\alpha B)\sum_{n=0}^{\infty}m_n.
+\end{equation}
+This is the YFS exponentiation of virtual infrared divergences.
+
+To construct the YFS exponentiation of virtual infrared divergences, we begin with defining that
+\begin{equation}
+M_n=\frac{1}{n!}\int\cdots\int\prod_{i=1}^{n}\frac{d^4k_i}{k_i^2-m_{\gamma}^2}\rho_n(k_1,\cdots,k_n),
+\end{equation} 
+where $m_{\gamma}$ is the cutoff of the infrared divergence. The factor $\frac{1}{n!}$arises from the symmetrization of the $n$ virtual photons in $\rho_n$. Now consider $\rho_n$ is a function of $k_n$.
+
+	\begin{center}
+	\begin{axopicture}(200,100)
+		\Line[arrow](50,40)(10,40)
+		\Line[arrow](190,40)(150,40)
+		\Line[arrow](50,40)(150,40)
+		\GOval(100,40)(30,50)(0){0.65}
+	\end{axopicture}
+	\\{\sl Figure 6.1. A representation of the set of basic diagrams including all possible interactions and any set of real photons and $(n-1)$ virtual photons}
+\end{center}
+$\rho_{n-1}$ is represented by the set of basic diagrams associated with the first $(n-1)$ photons and an arbitrary number of potential interactions(see Figure 6.1). $\rho_n$ is represented by the possible ways the $n$th photon can be inserted into various basic diagrams. 
+
+	\begin{center}
+	\begin{axopicture}(200,100)
+		\Line[arrow](60,40)(10,40)
+		\Line[arrow](170,40)(120,40)
+		\Line[arrow](60,40)(120,40)
+		\GOval(90,40)(20,30)(0){0.65}
+		\PhotonArc(90,40)(40,0,180){3}{12}
+		\Text(90,0){(a)}
+		\Text(90,90){$k_n$}
+		\Text(15,50){$p'$} 	\Text(165,50){$p$}
+	\end{axopicture}                   
+\end{center}
+
+\begin{center}
+	\begin{axopicture}(400,100)
+		\Line[arrow](30,40)(10,40)
+		\Line[arrow](170,40)(140,40)
+		\Line(60,40)(140,40)
+		\GOval(60,40)(20,30)(0){0.65}
+		\PhotonArc(120,40)(20,0,180){3}{12}
+		\Text(90,0){(b)}
+		\Text(120,70){$k_n$}
+		\Text(15,50){$p'$} 	\Text(165,50){$p$}
+		
+		\Line[arrow](240,40)(210,40)
+		\Line[arrow](370,40)(350,40)
+		\Line(240,40)(340,40)
+		\GOval(320,40)(20,30)(0){0.65}
+		\PhotonArc(260,40)(20,0,180){3}{12}
+		\Text(290,0){(c)}
+		\Text(260,70){$k_n$}
+		\Text(215,50){$p'$} 	\Text(365,50){$p$}
+		
+	\end{axopicture}                   
+\end{center}
+
+\begin{center}
+	\begin{axopicture}(400,100)
+		\Line[arrow](60,40)(10,40)
+		\Line[arrow](170,40)(120,40)
+		\Line[arrow](60,40)(120,40)
+		\GOval(80,40)(20,30)(0){0.65}
+		\PhotonArc(110,40)(25,0,180){3}{12}
+		\Line(50,40)(110,40)
+		\Text(90,0){(d)}
+		\Text(110,75){$k_n$}
+		\Text(15,50){$p'$} 	\Text(165,50){$p$}
+		
+		\Line[arrow](260,40)(210,40)
+		\Line[arrow](370,40)(340,40)
+		\Line[arrow](260,40)(320,40)
+		\GOval(310,40)(20,30)(0){0.65}
+		\PhotonArc(280,40)(25,0,180){3}{12}
+		\Line(255,40)(340,40)
+		\Line(250,40)(320,40)
+		\Text(290,0){(e)}
+		\Text(280,75){$k_n$}
+		\Text(215,50){$p'$} 	\Text(365,50){$p$}
+		
+	\end{axopicture}                   
+\end{center}
+
+
+\begin{center}
+	\begin{axopicture}(400,100)
+		\Line[arrow](60,40)(10,40)
+		\Line[arrow](170,40)(120,40)
+		\GOval(90,40)(20,30)(0){0.65}
+		\PhotonArc(90,40)(25,0,180){3}{10}
+		\Line(60,40)(120,40)
+		\Text(90,0){(f)}
+		\Text(90,75){$k_n$}
+		\Text(15,50){$p'$} 	\Text(165,50){$p$}
+		
+		\Line[arrow](260,40)(210,40)
+		\Line[arrow](370,40)(320,40)
+		\GOval(290,40)(20,30)(0){0.65}
+		\Line(260,40)(320,40)
+		\Text(290,0){(g)}
+		\Text(290,70){$k_n$}
+		\Text(215,50){$p'$} 	\Text(365,50){$p$}
+		\Line(285,35)(295,45)
+		\Line(285,45)(295,35)
+		\Text(290,30){$\delta m$}
+	\end{axopicture}  
+	\\{\sl Figure 6.2. A representation of the possible ways an additional virtual photon can be inserted into the diagrams of Figure 6.1.}                 
+\end{center}
+From the Lamb shift analysis, we know that Figure 6.2.(a),(b) and (c)give IR divergences in $k_n$. The diagrams in Figure 6.2 (d), (e) and (f) are finite as $k_n \rightarrow 0$ if the remaining photon momenta $k_i$'s are nonzero. As $k_n \rightarrow 0$ and $k_i \rightarrow 0$ simultaneously, overlapping divergences arise and they cancel in gauge invariant combination of terms. Thus, the only remaining divergences corresponds to Figure 6.2 (a), (b) and (c) with $k_n = 0$ in the basic diagram. So, we have
+\begin{equation}
+\rho(k_1,\cdots,k_n) = S(k_n)\rho_{n-1}(k_1,\cdots,k_{n-1})+\beta^{(1)}_n(k_1,\cdots,k_{n-1};k_n),
+\end{equation}
+where $S(k_n)$ contains the $k_n$ infrared contribution from Figure (6.2). The integral of $\beta$ is infrared divergenceless in $k_n$.
+
+Iteration of eq.   (6.5) gives us 
+\begin{eqnarray}
+\rho_n(k_1,\cdots,k_n) &=& S(k_n)S(k_{n-1})\rho_{n-2}(k1\cdots k_{n-2})\nonumber\\
+&& + S(k_{n})\beta^{(1)}_{n-1}(k_1\cdots k_{n-2};k_{n-1})\nonumber\\
+&& + S(k_{n-1})\beta^{(1)}_{n-1}(k_1\cdots k_{n-2};k_{n})\\
+&& +\{-S(k_{n-1})\beta^{(1)}_{n-1}(k_1\cdots k_{n-2};k_{n}) +\beta^{1}_{n}(k_1\cdots k_{n-1};k_n)\}.\nonumber
+\end{eqnarray}
+The symmetry of $\rho_n$ in $k_n$ and $k_{n-1}$ indicates the invariance of bracketed quantity at the end of the above equation under the interchange of $k_n$ and $k_{n-1}$. So we denote this property by
+\begin{eqnarray}
+&&\{-S(k_{n-1})\beta^{(1)}_{n-1}(k_1\cdots k_{n-2};  k_n)+\beta^{(1)}_n(k_1\cdots k_{n-1}; k_{n-1}, k_n)\}\nonumber\\
+&&\equiv \beta^{(2)}_n(k_1\cdots k_{n-2};k_{n-1},k_n)
+\end{eqnarray}
+Repeated application of this IR seperation procedure and exploitation of the symmetry of $\rho_n$ yield 
+\begin{eqnarray}
+\rho_n(k_1\cdots k_n) &=& S(k_1)\cdots S(k_n)\beta_0\nonumber\\
+&& +\sum_{i=1}^{n}S(k_1)\cdots S(k_{i-1})S(k_{i+1})\cdots S(k_{n})\beta_1(k_i)\nonumber\\
+&& + \cdots \nonumber\\
+&& + \sum_{i=1}^{n}S(k_i)\beta_{n-1}(k_1,k_{i-1},k_{i+1}\cdots k_n)\nonumber\\
+&& + \beta_n (k_1\cdots k_n).
+\end{eqnarray}
+
+Rewriting eq. (6.8) in terms of all permutations of $k_i$ and $k_j$ yields 
+\begin{equation}
+\rho_n(k_1\cdots k_n) = \sum_{Perm}\sum_{r=0}^{n}\frac{1}{r!(n-r)!}\prod_{i=1}^{r}S(k_i)\beta_{n-r}(k_{r+1}\cdots k_n).
+\end{equation}
+
+Thus, we have 
+\begin{equation}
+M_n = \sum_{r=0}^{n}\frac{1}{r!(n-r)!}\left(\int\frac{d^4 k S(k)}{k^2-m_{\gamma}^2}\right)^r\int\prod_{i=1}^{n-r}\beta_{n-r}(k_1\cdots k_{n-r}).
+\end{equation}
+
+Finally, we define 
+\begin{equation}
+\alpha B(p,p') \equiv \int \frac{d^4 k_i}{k_i^2}\beta_r(k_1\cdots k_r),
+\end{equation}
+which yields the desired result, i.e., eq. (6.2).
+
+\section{Resummation of Real Photon Radiative Corrections}
+From eq (6.3), we see the cross section is proportional to $exp(2\alpha \Re B)$. Except that, we need to compute the contribution from the emission of $n$ undetect real photons with total energy $\epsilon$, symmetrized in real photons. The cross section should have the form 
+\begin{align}
+\frac{d \sigma(m_{\gamma})}{d\epsilon} =& \sum_{\infty}^{n=0}\frac{d \sigma_n(m_{\gamma})}{d\epsilon},\nonumber\\
+\frac{d \sigma_n(m_{\gamma})}{d\epsilon} =& exp(2\alpha ReB)\frac{1}{n!}\int\prod_{m=1}^{n}\frac{d^3 k_m}{\sqrt{k_m^2+m{\gamma}^2}}\nonumber\\&\times \delta\left(\epsilon-\sum_{i=1}^{n}k_i\right)
+\times \tilde{\rho}_n(p,p',k_1\cdots k_n).
+\end{align}
+so that  $\tilde{\rho}_n$ plays a similar role to that of $\rho_n$ for the treatment of virtual photons and  is given by the absolute square of $\sum m_r$, where
+$$
+E' = E - \sum_{i=1}^{n'}k_i^0 = E-\epsilon.
+$$
+Thus, the sum over all possible undected photons provides the complete differential cross section
+\begin{equation}
+\frac{d\sigma}{d\epsilon} = \lim_{m_\gamma\to 0}\sum_{n=0}^{\infty}\frac{d\sigma_n}{d\epsilon}.
+\end{equation}
+	\begin{center}
+	\begin{axopicture}(200,100)
+		\Line[arrow](60,40)(10,40)
+		\Line[arrow](170,40)(120,40)
+		\Line[arrow](60,40)(120,40)
+		\GOval(90,40)(20,30)(0){0.65}
+		\Text(90,0){(a)}
+		\Text(15,90){$k$}
+		\Text(15,50){$p'$} 	\Text(165,50){$p$}
+		\Photon(55,40)(15,80){3}{7}
+	\end{axopicture}                   
+\end{center}
+
+
+\begin{center}
+	\begin{axopicture}(200,100)
+		\Line[arrow](60,40)(10,40)
+		\Line[arrow](170,40)(120,40)
+		\Line[arrow](60,40)(120,40)
+		\GOval(90,40)(20,30)(0){0.65}
+		\Text(90,0){(b)}
+		\Text(95,90){$k$}
+		\Text(15,50){$p'$} 	\Text(165,50){$p$}
+		\Photon(135,40)(95,80){3}{7}
+	\end{axopicture}                   
+\end{center}
+
+
+\begin{center}
+	\begin{axopicture}(200,100)
+		\Line[arrow](60,40)(10,40)
+		\Line[arrow](170,40)(120,40)
+		\Line[arrow](60,40)(120,40)
+		\GOval(90,40)(20,30)(0){0.65}
+		\Text(90,0){(c)}
+		\Text(50,90){$k$}
+		\Text(15,50){$p'$} 	\Text(165,50){$p$}
+		\Photon(90,40)(50,80){3}{7}
+		\Line(60,40)(120,40)
+	\end{axopicture}   
+	\\{\sl Figure 6.3. A representation of the possible ways an additional real photon can be inserted into the diagrams of Figure 6.1.}                  
+\end{center}
+
+Since $\tilde{\rho}_n$ is symmetric in the real photons and overlapping infrared divergences cancel in the same manner for both real and virtual photons, infrared terms could be factored out of $\tilde{\rho}_n$ by the same treatments applied for $\rho_n$. Because of the cancellation of overlapping divergences, only the photons which terminate exclusively on external fermion lines (fig3(a),(b)) contribute infrared divergence. We obtain a similar relation to that obtained for the virtual photon case:
+\begin{eqnarray}
+\tilde{\rho}_n(k_1\cdots k_n) &=& \tilde{S}(k_1)\cdots \tilde{S}(k_n)\tilde{\beta}_0\nonumber\\
+&& +\sum_{i=1}^{n}\tilde{S}(k_1)\cdots \tilde{S}(k_{i-1})\tilde{S}(k_{i+1})\cdots \tilde{S}(k_{n})\tilde{\beta}_1(k_i)\nonumber\\
+&& + \cdots \nonumber\\
+&& + \sum_{i=1}^{n}\tilde{S}(k_i)\tilde{\beta}_{n-1}(k_1,k_{i-1},k_{i+1}\cdots k_n)\nonumber\\
+&& + \tilde{\beta}_n (k_1\cdots k_n).
+\end{eqnarray}
+Similar to the virtual photon case, $\tilde{S}$ contains the infrared divergence and $\tilde{\beta}$ has no none. $\tilde{S}$ must be evaluated at $E' = E - \sum k_n^0$, and $\tilde{\beta}_0$ is defined only at $E' = E$.
+
+The energy-conserving $\delta$ function eq. (6.12) is conveniently represented by  \cite{JMJ,YS}
+\begin{equation}
+\delta\left(\epsilon - \sum_{m=1}^{n}k_m\right) = \frac{1}{2\pi}\int_{-\infty}^{+\infty}exp \left[iy\left(\epsilon-\sum_{m=1}^{n} k_m\right)\right].
+\end{equation}
+After some manipulations, we obtain
+\begin{eqnarray}
+\frac{d\sigma}{d\epsilon} &=& \lim_{m_\gamma\to 0} exp(2\Re B)\frac{1}{2\pi}\int_{-\infty}^{+\infty}dy e^{iy\epsilon}\nonumber\\
+&&\times exp\left[\int^{k\leq\epsilon}\frac{d^3k}{\sqrt{k^2 + m_\gamma^2}}\tilde{S}(k,p,p')e^{-iyk}\right]\nonumber\\
+&&\Bigg\{ \tilde{\beta}_0 + \sum_{n = 1}^{\infty}\frac{1}{n!}\int \prod_{m=1}^n \frac{d^3 k_m}{k_m} e^{-iyk}\tilde{\beta}_n(p,p',k_1\cdots k_n) \Bigg\}.
+\end{eqnarray} 
+
+From the third exponential of eq. (6.16), we see the real infrared photons are still kinematically connected with other real photons by the factor $e^{-iyk}$ which guarantees that $\sum k = \epsilon$. In order to make the infrared photons kinematically independent, we define
+\begin{equation}
+\int^{k\leq\epsilon}\frac{d^3k}{(k^2 + m_\gamma^2)^{\frac{1}{2}}}\tilde{S}(k,p,p')e^{-iyk} \equiv 2\alpha \tilde{B} + D,
+\end{equation}
+where
+\begin{equation}
+2\alpha\tilde{B}(p,p') \equiv \int^{k\leq\epsilon}\frac{d^3k}{(k^2 + m_\gamma^2)^{\frac{1}{2}}}\tilde{S}
+\end{equation}
+and
+\begin{equation}
+D \equiv \int^{k \leq \epsilon}\frac{d^3 k}{k}\tilde{S}(e^{-iyk} - 1).
+\end{equation}
+
+With eq. (6.17) to eq. (6.19), we obtain the noninfrared part of eq. (6.17)
+\begin{equation}
+\frac{d\hat{\sigma}}{d\epsilon} \equiv \frac{1}{2\pi}\int_{-\infty}^{+\infty}dy e^{iy\epsilon + D}\Bigg\{ \tilde{\beta}_0 + \sum_{n = 1}^{\infty}\frac{1}{n!}\int\prod_{m=1}^n \frac{d^3 k_m}{k_m}e^{-iyk_m}\tilde{\beta}_n\Bigg\}.
+\end{equation}
+
+Then, eq (6.17) becomes
+\begin{equation}
+\frac{d\sigma}{d\epsilon} = exp\Biggl\{ \lim_{m_\gamma\to 0} 2\alpha(B + \tilde{B}) \Biggr\}\frac{d\hat{\sigma}}{d\epsilon}.
+\end{equation}
+
+So far, the problem is whether or not $\lim\limits_{m_\gamma \to 0}2\alpha(B + \tilde{B})$ is finite
+or not. Next, we will show the cancellation of infrared terms to all orders of the electromagnetic coupling $\alpha$ by exploiting details of infrared factors. 
+\newpage
+\section{Details of Infrared Factors}
+
+$B$ and $\tilde{B}$ can be represented by the gauge invariant expressions \cite{YS}
+\begin{equation}
+B=\frac{i}{(2\pi)^3}\int\frac{d^4 k}{k^2 - m_\gamma^2}\left( \frac{2p'_\mu - k_\mu}{2p'\cdot k - k^2} - \frac{2p_\mu - k_\mu}{2p\cdot k - k^2}\right)^2
+\end{equation}
+and
+\begin{equation}
+B=\frac{-1}{8\pi^2}\int_0^{\epsilon}\frac{d^4 k}{(k^2 + m_\gamma^2)^{\frac{1}{2}}}\left( \frac{p'_\mu}{p'\cdot k} - \frac{p_\mu}{p\cdot k}\right)^2
+\end{equation}
+
+We can see that the infrared divergent part of $\Re B$ arises from the pole
+\begin{equation}
+\frac{1}{k^2-m_\gamma^2+i\epsilon} = P.V.\frac{1}{k^2-m_\gamma^2} - i\pi\delta(k^2 - m_\gamma^2)
+\end{equation}
+These poles contribute the amount
+\begin{equation}
+B = \frac{1}{8\pi^2}\int\frac{d^4 k}{(k^2 + m_\gamma^2)^{\frac{1}{2}}}\left( \frac{2p'_\mu - k_\mu}{2p'\cdot k - k^2} - \frac{2p_\mu - k_\mu}{2p\cdot k - k^2}\right)^2 + \text{finite terms}.
+\end{equation}
+As $k\to 0$, the diverging integrands of eq. (6.25) and  $\tilde{B}$ cancel.
+
+Thus, $\lim\limits_{m_\gamma \to 0}(2\alpha \Re B(m_\gamma)+2\alpha\tilde{B}(m_\gamma))$ is finite, i.e., we have cancelled the infrared divergence in the theory to all order in $\alpha$. 
+
+After exact calculations, we have \cite{BFLW1987,BFLWQFT} 
+\begin{align}
+\lim\limits_{m_\gamma \to 0}(2\alpha \Re B+2\alpha\tilde{B}) =& \frac{\alpha}{\pi}\Biggl\{ \left( \log{\frac{pp'}{m^2}} - 1\right)\log{\frac{k_m^2}{EE'}}+\frac{1}{2}\log{\frac{2pp'}{m^2}}-\frac{1}{2} \log^2\frac{p_0}{p'_0}\nonumber\\
+&-\frac{1}{4}\log^2{\frac{(\Delta+\delta)^2}{4p^0 p'^0}} -\frac{1}{4}\log^2{\frac{(\Delta-\delta)^2}{4p^0 p'^0}}-\Re Li_2\left(\frac{\Delta+\omega}{\Delta+\delta}\right)\nonumber\\
+&-\Re Li_2\left(\frac{\Delta+\omega}{\Delta-\delta}\right)\nonumber -\Re Li_2\left(\frac{\Delta-\omega}{\Delta+\delta}\right)\nonumber -\Re Li_2\left(\frac{\Delta-\omega}{\Delta-\delta}\right)\nonumber\nonumber\\
+&+\frac{\pi^2}{3} - 1  \Biggr\},
+\end{align}
+where $k_m = \epsilon$,
+
+\begin{align*}
+\Delta &= \sqrt{2pp' + (p^0 - p'^0)},\nonumber\\
+\omega &= p^0 + p'^0,\nonumber\\
+\delta &= p^0 - p'^0,
+\end{align*}
+
+and we have introduced the Spence function
+
+\begin{equation*}
+Li_2(x) = -\int_0^x log(1 - t) dt.
+\end{equation*}
+
+
+At high energies and small $\epsilon$, $B$ and $\tilde{B}$ have the approximate forms
+\begin{equation}
+B = -\frac{1}{2\pi}\left[ \log\frac{2p\cdot p'}{m^2}\left( \log\frac{m^2}{m_\gamma^2} +\frac{1}{2}\log\frac{2p\cdot p'}{m^2} - \frac{1}{2}\right) - \log\frac{m^2}{m_\gamma^2} \right]
+\end{equation}
+and
+\begin{equation}
+\tilde{B} = \frac{1}{2\pi}\left[ \log\frac{2p\cdot p'}{m^2}\left( \log\frac{m^2}{m_\gamma^2} +\frac{1}{2}\log\frac{2p\cdot p'}{m^2} - \log\frac{EE'}{\epsilon^2}\right) - \log\frac{m^2}{m_\gamma^2} + \log\frac{EE'}{\epsilon^2}\right].
+\end{equation}
+If we use a photon momentum $k_{min}$ instead of the photon mass $m_\gamma$, eqs. (6.27) and (6.28) become
+\begin{equation}
+B = -\frac{1}{2\pi}\left[ \log\frac{2p\cdot p'}{m^2}\left( \log\frac{EE'}{k_{min}^2} - \frac{1}{2}\right) - \log\frac{EE'}{k_{min}^2} \right]
+\end{equation}
+and
+\begin{equation}
+\tilde{B} = \frac{1}{2\pi}\left( \log\frac{2p\cdot p'}{m^2} - 1 \right)\log\frac{\epsilon^2}{k_{min}^2}.
+\end{equation}
+
+However, the sum $\Re B(m_\gamma) + \tilde{B}(m_\gamma)$ is the same as $\Re B(k_{min}) + \tilde{B}(k_{min})$:
+\begin{equation}
+2\alpha(\Re B +\tilde{B}) = -\frac{\alpha A}{2}\log\frac{EE'}{\epsilon^2} + \frac{\alpha}{2\pi}\log\frac{2p\cdot p'}{m^2},
+\end{equation}
+where
+\begin{align}
+\alpha A &\equiv -\frac{k^2\alpha}{4\pi^2}\int d\Omega \left( \frac{p'_\mu}{p'\cdot k} - \frac{p_\mu}{p\cdot k}\right)^2\nonumber\\
+&\cong \frac{2\alpha}{\pi}\left( \log\frac{2p\cdot p'}{m^2} - 1 \right).
+\end{align}
+It shows the physical consequence is independent of the selection of regularization schemes.
+\newpage
+\section{Details of Noninfrared Virtual Photon Terms}
+We now discuss the virtual photon remainders (6.2)
+\begin{align}
+m_1 &= M_1 - \alpha B M_0,\nonumber\\
+m_2 &= M_2 - \alpha B M_1 + \frac{(\alpha B)^2}{2!} M_0\nonumber\\
+&\cdots\cdots
+\end{align}
+Note that since $\alpha B$ (and $\alpha\tilde{B}$) are not unique, the separation of $M_1$ into $\alpha B M_0$ and $m_1$ is not unique. Recoil terms such as $k^2$ in $(k^2 - 2kp)^{-1}$ does not affect the infrared singularity, but are preserved in B to make the integral (6.22) converge naturally as $k \to \infty$. Recoil currents such as $k_\mu$ in $(2p_\mu - k_\mu)$ do not contribute to the infrared divergence, but they are remained in the integral (6.22) to make $B$ gauge invariant. Thus, different representations of $B$ with these terms having different coefficients would yield the same infrared singularities. In general, $m_1$ could be very complicated, however, we could still obtain some good results through discussing the lowest order for an fermion. 
+	\begin{center}
+	\begin{axopicture}(200,100)
+		\Line[arrow](60,40)(10,40)
+		\Line[arrow](170,40)(120,40)
+		\Line[arrow](60,40)(120,40)
+		\GOval(90,40)(20,30)(0){0.65}
+		\PhotonArc(90,40)(40,0,180){3}{12}
+		\Text(90,0){(a)}
+		\Text(90,90){$k_n$}
+		\Text(15,50){$p'$} 	\Text(165,50){$p$}
+		\Text(20,30){$e^-$} \Text(160,30){$e^-$}
+	\end{axopicture}                   
+\end{center}
+Applying the Feynman rules for the amplitude above, we could represent the incoming part as 
+\begin{equation}
+\cdots \frac{(p-k_i+m)\epsilon_i}{k_i^2-2p\cdot k_i}u(p) = \cdots \frac{(2p-k_i)\cdot\epsilon_i - \frac{1}{2} [k_i,\epsilon_i]}{k_i^2-2K_i\cdot p}u(p)
+\end{equation}
+where the first term on the right is the current we have used in the factor $B$, and the second term is the magnetic term.
+
+The calculation of the magnetic terms at the high energy limit gives the contribution
+\begin{equation}
+\frac{\alpha M_0}{2\pi}\log\frac{2p\cdot p'}{m^2} + O(\alpha M_0)
+\end{equation}
+And the vacuum polarization contributes
+\begin{equation}
+\frac{\alpha M_0}{3\pi}\log\frac{2p\cdot p'}{m^2} + O(\alpha M_0).
+\end{equation}
+
+\section{Details of Noninfrared Real Photon Terms}
+We have discussed the infrared terms $B$ and $\tilde{B}$ and the virtual corrections in $\tilde{\beta}_n$, we are focusing on the noninfrared real photon corrections in eq. (6.20). The photons have a spectrum of $dk$ rather than $
+dk/k$ for $k \to 0$, and the expansion of the real photon correction in $n$ is an expansion in the number of noninfrared real photons. Thus, the $n$th order correction is from noninfrared photons. We assume the energy loss for emitting one real photon is $\epsilon$. The $n=0$ term contains $dk/k$ contribution from the emitted photon. And the $n=1$ term contains $dk/k$ and $dk$ contributions from one photon. It means the $n = 0$ and $n = 1$ terms both start at the order of $O(\alpha)$.  
+
+We start with the $n = 0$ case in eq. (6.20):
+\begin{align}
+\frac{d\hat{\sigma}_0}{d\epsilon} &= \tilde{\beta}_0 I,\nonumber\\
+\frac{d\sigma_0}{d\epsilon} &= \frac{d\hat{\sigma}_0}{d\epsilon} e^{2\alpha(\Re B + \tilde{B}(\epsilon))},
+\end{align}
+where 
+\begin{align}
+I &\equiv \frac{1}{2\pi} \int_{-\infty}^{+\infty}dy e^{iy\epsilon +D},\nonumber\\
+D &= \int^{k^0 \ge \epsilon}\frac{dk}{k}\tilde{S}(p,p',k)(e^{-iyk^0-1}),\nonumber\\
+\tilde{S}(p,p',k) &= -\frac{\alpha Q_f^2}{4\pi^2}\big(\frac{p_\mu}{k\cdot p} - \frac{p'_\mu}{k\cdot p'}\big).
+\end{align}
+
+$I$ could be computed in terms of tabulated functions \cite{YS}. The result is 
+\begin{equation}
+I = \frac{\alpha A}{\epsilon} F_{YFS}(\alpha A),
+\end{equation}
+where 
+\begin{align}
+F_{YFS}(\alpha A) =& \frac{e^{-\alpha A C}}{\Gamma(1 + \alpha A)}\nonumber\\
+=& 1 - \frac{\pi^2 (\alpha A)^2}{12} + \cdots,
+\end{align}
+
+Therefor we have 
+\begin{equation}
+\frac{d\sigma_0}{d\epsilon} = e^{2\alpha(\Re B + \tilde{B}(\epsilon))}\frac{\alpha A}{\epsilon} F_{YFS}(\alpha A)\tilde{\beta}_0,
+\end{equation}
+where
+\begin{equation}
+2\alpha (\Re B + \tilde{B}(\epsilon)) = \alpha A \log\frac{\epsilon}{E} + \frac{\pi}{\alpha}\Big(\frac{1}{2}\log\frac{pp'}{m^2} - 1 - \frac{\pi^2}{6}\Big).
+\end{equation}
+
+Next, for the $n = 1$ case, we have
+\begin{align}
+\frac{d\sigma_1}{d\epsilon} &= e^{2\alpha(\Re B + \tilde{B}(\epsilon))} \frac{d\hat{\sigma}_1}{d\epsilon},\nonumber\\
+\frac{d\hat{\sigma}_1}{d\epsilon} &= \int^{k_1 \le \epsilon} \frac{d^3 k_1}{k_1}\tilde{\beta}_1(k_1)\frac{1}{\pi}\int_{-\infty}^{+\infty}dy e^{iy(\epsilon - k_1)+D},
+\end{align}
+where the $\tilde{\beta}_1$ contains $dk$ and $kdk$ terms form the emission of one real photon. And $\tilde{\beta}_1(k_1)$ is evaluated at $E' = E - k_1$
+
+After the similar calculation for the $n = 0$ case, we arrive at 
+\begin{equation}
+\frac{d\sigma_1}{d\epsilon} = \frac{\alpha A}{\epsilon} F(\alpha A) \int_{0}^{\epsilon} dk_1 G_1(k_1)\Big(\frac{\epsilon}{\epsilon - k_1}\Big)^{1 - \alpha A}.
+\end{equation}
+We can show that the above integral is convergent for $\alpha A \ge 0$. Because of the peaking behavior at $k_1 = \epsilon$, we could expand $G_1(k_1)$ about $k_1 = \epsilon$:
+\begin{equation}
+G_1(k_1) = G_1(\epsilon) + (k_1 - \epsilon)\frac{dG_1(k_1)}{dk_1}\biggr|_{k_1 = \epsilon} + \cdots,
+\end{equation}
+
+so that we have 
+\begin{equation}
+\frac{d\hat{\sigma}_1}{d\epsilon} = F_{YFS}(\alpha A) \Biggl\{G_1(\epsilon) - \frac{\alpha A \epsilon}{\alpha A +1}\frac{dG_1(k_1=\epsilon)}{dk_1}\Biggr\}.
+\end{equation}
+The $G_1(\epsilon)$ term is of order $\alpha$ from a hard photon. And the other terms in $\{\cdots\}$ is from the infrared photons in addition to the "$dk$" photon in $G_1$
+
+Therefore, we have \cite{BFLWQFT}
+\begin{align}
+\frac{d\sigma_1}{d\epsilon}&=\exp \biggl[\alpha A \log\frac{\epsilon}{E} + \frac{\pi}{\alpha}\Big(\frac{1}{2}\log\frac{pp'}{m^2} - 1 - \frac{\pi^2}{6}\Big)\biggr]\nonumber\\
+& \times F_{YFS}\Biggl\{ G_1(\epsilon) -\frac{\alpha A \epsilon}{1 + \alpha A}G'_1(\epsilon)+\cdots\Biggr\}.
+\end{align}
+
+In some literatures, we set 
+\begin{equation}
+\epsilon = v \frac{\sqrt{s}}{2} = vE
+\end{equation}
+so that
+\begin{equation}
+\frac{d\sigma_1}{dv} = v^{\alpha A} F_{YFS}(\alpha A) e^{\frac{\alpha}{\pi}\big(\frac{1}{2}\log\frac{pp'}{m^2}-1-\frac{\pi^2}{6}\big)} G_1(v) + O(\alpha^2)
+\end{equation}
+which is useful for many applications in precision EW, QCD and quantum gravity \cite{BFLWEWQCDQG}.

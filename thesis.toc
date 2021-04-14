@@ -1,0 +1,401 @@
+\cftsetpnumwidth {\widthof {i}-.2em}
+\cftsetpnumwidth {\widthof {ii}-.2em}
+\cftsetpnumwidth {\widthof {iii}-.2em}
+\cftsetpnumwidth {\widthof {iv}-.2em}
+\cftsetpnumwidth {\widthof {v}-.2em}
+\cftsetpnumwidth {\widthof {vi}-.2em}
+\cftsetpnumwidth {\widthof {vii}-.2em}
+\cftsetpnumwidth {\widthof {viii}-.2em}
+\contentsline {part}{\normalsize \normalfont LIST OF FIGURES}{viii}{section*.1}%
+\cftsetpnumwidth {\widthof {ix}-.2em}
+\cftsetpnumwidth {\widthof {x}-.2em}
+\contentsline {part}{\normalsize \normalfont LIST OF TABLES}{x}{section*.2}%
+\cftsetpnumwidth {\widthof {xi}-.2em}
+\contentsline {part}{\normalsize \normalfont ACKNOWLEDGMENTS}{xi}{section*.3}%
+\cftsetpnumwidth {\widthof {xii}-.2em}
+\contentsline {part}{\normalsize \normalfont DEDICATION}{xii}{section*.4}%
+\cftsetpnumwidth {\widthof {1}-.2em}
+\contentsline {chapter}{\numberline {Chapter ONE }Standard Model of Electroweak Interation}{1}{chapter.1}%
+\cftsetpnumwidth {\widthof {2}-.2em}
+\cftsetpnumwidth {\widthof {3}-.2em}
+\contentsline {section}{\numberline {1.1}Gauge Invariance}{3}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Abelian gauge invariance: Quantum electrodynamics}{3}{subsection.1.1.1}%
+\cftsetpnumwidth {\widthof {4}-.2em}
+\cftsetpnumwidth {\widthof {5}-.2em}
+\contentsline {subsection}{\numberline {1.1.2}Non-Abelian gauge invariance}{5}{subsection.1.1.2}%
+\cftsetpnumwidth {\widthof {6}-.2em}
+\cftsetpnumwidth {\widthof {7}-.2em}
+\contentsline {section}{\numberline {1.2}Spontaneous Symmetry Breaking}{7}{section.1.2}%
+\cftsetpnumwidth {\widthof {8}-.2em}
+\cftsetpnumwidth {\widthof {9}-.2em}
+\cftsetpnumwidth {\widthof {10}-.2em}
+\cftsetpnumwidth {\widthof {11}-.2em}
+\cftsetpnumwidth {\widthof {12}-.2em}
+\contentsline {section}{\numberline {1.3}The Higgs Mechanism}{12}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}The Higgs Mechanism in the Abelian Theory}{12}{subsection.1.3.1}%
+\cftsetpnumwidth {\widthof {13}-.2em}
+\cftsetpnumwidth {\widthof {14}-.2em}
+\cftsetpnumwidth {\widthof {15}-.2em}
+\contentsline {subsection}{\numberline {1.3.2}The Higgs Mechanism in the non-Abelian Theory}{15}{subsection.1.3.2}%
+\cftsetpnumwidth {\widthof {16}-.2em}
+\cftsetpnumwidth {\widthof {17}-.2em}
+\cftsetpnumwidth {\widthof {18}-.2em}
+\contentsline {section}{\numberline {1.4}Standard Model of the electroweak interactions}{18}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}The General Ideas for Building Spontaneous Broken Gauge Theories }{18}{subsection.1.4.1}%
+\cftsetpnumwidth {\widthof {19}-.2em}
+\cftsetpnumwidth {\widthof {20}-.2em}
+\cftsetpnumwidth {\widthof {21}-.2em}
+\contentsline {subsection}{\numberline {1.4.2}The Glashow-Weinberg-Salam Theory of Electroweak Interations}{21}{subsection.1.4.2}%
+\cftsetpnumwidth {\widthof {22}-.2em}
+\cftsetpnumwidth {\widthof {23}-.2em}
+\cftsetpnumwidth {\widthof {24}-.2em}
+\cftsetpnumwidth {\widthof {25}-.2em}
+\cftsetpnumwidth {\widthof {26}-.2em}
+\cftsetpnumwidth {\widthof {27}-.2em}
+\cftsetpnumwidth {\widthof {28}-.2em}
+\cftsetpnumwidth {\widthof {29}-.2em}
+\contentsline {chapter}{\numberline {Chapter TWO }Techniques for the Calculation of Electroweak Radiative Corrections at the One-Loop Level}{29}{chapter.2}%
+\cftsetpnumwidth {\widthof {30}-.2em}
+\contentsline {section}{\numberline {2.1}The Model}{30}{section.2.1}%
+\cftsetpnumwidth {\widthof {31}-.2em}
+\cftsetpnumwidth {\widthof {32}-.2em}
+\cftsetpnumwidth {\widthof {33}-.2em}
+\cftsetpnumwidth {\widthof {34}-.2em}
+\cftsetpnumwidth {\widthof {35}-.2em}
+\cftsetpnumwidth {\widthof {36}-.2em}
+\contentsline {section}{\numberline {2.2}Renormalization in the Electroweak SM}{36}{section.2.2}%
+\cftsetpnumwidth {\widthof {37}-.2em}
+\contentsline {subsection}{\numberline {2.2.1}Renormalization Constants and Counterterms}{37}{subsection.2.2.1}%
+\cftsetpnumwidth {\widthof {38}-.2em}
+\cftsetpnumwidth {\widthof {39}-.2em}
+\contentsline {subsection}{\numberline {2.2.2}Renormalization Conditions}{39}{subsection.2.2.2}%
+\cftsetpnumwidth {\widthof {40}-.2em}
+\cftsetpnumwidth {\widthof {41}-.2em}
+\cftsetpnumwidth {\widthof {42}-.2em}
+\cftsetpnumwidth {\widthof {43}-.2em}
+\contentsline {subsection}{\numberline {2.2.3}Explicit Form of Renormalization Constants}{43}{subsection.2.2.3}%
+\cftsetpnumwidth {\widthof {44}-.2em}
+\cftsetpnumwidth {\widthof {45}-.2em}
+\cftsetpnumwidth {\widthof {46}-.2em}
+\cftsetpnumwidth {\widthof {47}-.2em}
+\contentsline {section}{\numberline {2.3}One-Loop Integrals}{47}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Scalar One-loop Integrals for $N\leq 4$}{47}{subsection.2.3.1}%
+\cftsetpnumwidth {\widthof {48}-.2em}
+\cftsetpnumwidth {\widthof {49}-.2em}
+\cftsetpnumwidth {\widthof {50}-.2em}
+\cftsetpnumwidth {\widthof {51}-.2em}
+\cftsetpnumwidth {\widthof {52}-.2em}
+\cftsetpnumwidth {\widthof {53}-.2em}
+\contentsline {subsection}{\numberline {2.3.2}Tensor Integral Reduction}{53}{subsection.2.3.2}%
+\cftsetpnumwidth {\widthof {54}-.2em}
+\cftsetpnumwidth {\widthof {55}-.2em}
+\cftsetpnumwidth {\widthof {56}-.2em}
+\cftsetpnumwidth {\widthof {57}-.2em}
+\cftsetpnumwidth {\widthof {58}-.2em}
+\cftsetpnumwidth {\widthof {59}-.2em}
+\cftsetpnumwidth {\widthof {60}-.2em}
+\cftsetpnumwidth {\widthof {61}-.2em}
+\cftsetpnumwidth {\widthof {62}-.2em}
+\cftsetpnumwidth {\widthof {63}-.2em}
+\cftsetpnumwidth {\widthof {64}-.2em}
+\contentsline {section}{\numberline {2.4}Example for One-loop Radiative Correction Calculations }{64}{section.2.4}%
+\cftsetpnumwidth {\widthof {65}-.2em}
+\cftsetpnumwidth {\widthof {66}-.2em}
+\cftsetpnumwidth {\widthof {67}-.2em}
+\cftsetpnumwidth {\widthof {68}-.2em}
+\cftsetpnumwidth {\widthof {69}-.2em}
+\contentsline {chapter}{\numberline {Chapter THREE }Spinor Techniques}{69}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Introdution}{69}{section.3.1}%
+\cftsetpnumwidth {\widthof {70}-.2em}
+\cftsetpnumwidth {\widthof {71}-.2em}
+\contentsline {section}{\numberline {3.2}The CALKUL Approach}{71}{section.3.2}%
+\cftsetpnumwidth {\widthof {72}-.2em}
+\cftsetpnumwidth {\widthof {73}-.2em}
+\cftsetpnumwidth {\widthof {74}-.2em}
+\cftsetpnumwidth {\widthof {75}-.2em}
+\cftsetpnumwidth {\widthof {76}-.2em}
+\cftsetpnumwidth {\widthof {77}-.2em}
+\cftsetpnumwidth {\widthof {78}-.2em}
+\cftsetpnumwidth {\widthof {79}-.2em}
+\contentsline {section}{\numberline {3.3}The "Chinese Magic" Polarization Scheme}{79}{section.3.3}%
+\cftsetpnumwidth {\widthof {80}-.2em}
+\cftsetpnumwidth {\widthof {81}-.2em}
+\cftsetpnumwidth {\widthof {82}-.2em}
+\cftsetpnumwidth {\widthof {83}-.2em}
+\cftsetpnumwidth {\widthof {84}-.2em}
+\cftsetpnumwidth {\widthof {85}-.2em}
+\cftsetpnumwidth {\widthof {86}-.2em}
+\cftsetpnumwidth {\widthof {87}-.2em}
+\cftsetpnumwidth {\widthof {88}-.2em}
+\contentsline {section}{\numberline {3.4}Kleiss and Stirling Spinor Technique}{88}{section.3.4}%
+\cftsetpnumwidth {\widthof {89}-.2em}
+\cftsetpnumwidth {\widthof {90}-.2em}
+\cftsetpnumwidth {\widthof {91}-.2em}
+\cftsetpnumwidth {\widthof {92}-.2em}
+\contentsline {chapter}{\numberline {Chapter FOUR }Numerical Computations for the Five Point Function}{92}{chapter.4}%
+\cftsetpnumwidth {\widthof {93}-.2em}
+\contentsline {section}{\numberline {4.1}Magic Spinor Product Approach in Loop Integrals}{93}{section.4.1}%
+\cftsetpnumwidth {\widthof {94}-.2em}
+\cftsetpnumwidth {\widthof {95}-.2em}
+\cftsetpnumwidth {\widthof {96}-.2em}
+\cftsetpnumwidth {\widthof {97}-.2em}
+\cftsetpnumwidth {\widthof {98}-.2em}
+\cftsetpnumwidth {\widthof {99}-.2em}
+\cftsetpnumwidth {\widthof {100}-.2em}
+\cftsetpnumwidth {\widthof {101}-.2em}
+\cftsetpnumwidth {\widthof {102}-.2em}
+\cftsetpnumwidth {\widthof {103}-.2em}
+\cftsetpnumwidth {\widthof {104}-.2em}
+\contentsline {section}{\numberline {4.2}Numerical Results for the Five-Point Function $E_0$}{104}{section.4.2}%
+\cftsetpnumwidth {\widthof {105}-.2em}
+\cftsetpnumwidth {\widthof {106}-.2em}
+\cftsetpnumwidth {\widthof {107}-.2em}
+\cftsetpnumwidth {\widthof {108}-.2em}
+\cftsetpnumwidth {\widthof {109}-.2em}
+\cftsetpnumwidth {\widthof {110}-.2em}
+\contentsline {chapter}{\numberline {Chapter FIVE }Quantum Chromodynaics}{110}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Introduction to Quantum Chromodynamics}{110}{section.5.1}%
+\cftsetpnumwidth {\widthof {111}-.2em}
+\cftsetpnumwidth {\widthof {112}-.2em}
+\cftsetpnumwidth {\widthof {113}-.2em}
+\cftsetpnumwidth {\widthof {114}-.2em}
+\cftsetpnumwidth {\widthof {115}-.2em}
+\cftsetpnumwidth {\widthof {116}-.2em}
+\cftsetpnumwidth {\widthof {117}-.2em}
+\cftsetpnumwidth {\widthof {118}-.2em}
+\cftsetpnumwidth {\widthof {119}-.2em}
+\cftsetpnumwidth {\widthof {120}-.2em}
+\contentsline {section}{\numberline {5.2}Renormalization Group Equation and Asymptotic Freedom }{120}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Renormalization Group Equation}{120}{subsection.5.2.1}%
+\cftsetpnumwidth {\widthof {121}-.2em}
+\cftsetpnumwidth {\widthof {122}-.2em}
+\cftsetpnumwidth {\widthof {123}-.2em}
+\cftsetpnumwidth {\widthof {124}-.2em}
+\cftsetpnumwidth {\widthof {125}-.2em}
+\cftsetpnumwidth {\widthof {126}-.2em}
+\contentsline {subsection}{\numberline {5.2.2}Asymptotic Freedom in QCD}{126}{subsection.5.2.2}%
+\cftsetpnumwidth {\widthof {127}-.2em}
+\cftsetpnumwidth {\widthof {128}-.2em}
+\cftsetpnumwidth {\widthof {129}-.2em}
+\cftsetpnumwidth {\widthof {130}-.2em}
+\cftsetpnumwidth {\widthof {131}-.2em}
+\cftsetpnumwidth {\widthof {132}-.2em}
+\contentsline {chapter}{\numberline {Chapter SIX }Yennie-Frautschi-Suura Resummation}{132}{chapter.6}%
+\cftsetpnumwidth {\widthof {133}-.2em}
+\contentsline {section}{\numberline {6.1}Resummation of Virtual Photon Radiative Corrections}{133}{section.6.1}%
+\cftsetpnumwidth {\widthof {134}-.2em}
+\cftsetpnumwidth {\widthof {135}-.2em}
+\cftsetpnumwidth {\widthof {136}-.2em}
+\contentsline {section}{\numberline {6.2}Resummation of Real Photon Radiative Corrections}{136}{section.6.2}%
+\cftsetpnumwidth {\widthof {137}-.2em}
+\cftsetpnumwidth {\widthof {138}-.2em}
+\cftsetpnumwidth {\widthof {139}-.2em}
+\cftsetpnumwidth {\widthof {140}-.2em}
+\contentsline {section}{\numberline {6.3}Details of Infrared Factors}{140}{section.6.3}%
+\cftsetpnumwidth {\widthof {141}-.2em}
+\cftsetpnumwidth {\widthof {142}-.2em}
+\cftsetpnumwidth {\widthof {143}-.2em}
+\contentsline {section}{\numberline {6.4}Details of Noninfrared Virtual Photon Terms}{143}{section.6.4}%
+\cftsetpnumwidth {\widthof {144}-.2em}
+\contentsline {section}{\numberline {6.5}Details of Noninfrared Real Photon Terms}{144}{section.6.5}%
+\cftsetpnumwidth {\widthof {145}-.2em}
+\cftsetpnumwidth {\widthof {146}-.2em}
+\cftsetpnumwidth {\widthof {147}-.2em}
+\contentsline {chapter}{\numberline {Chapter SEVEN }CEEX and KKMC-hh }{147}{chapter.7}%
+\cftsetpnumwidth {\widthof {148}-.2em}
+\contentsline {section}{\numberline {7.1}Amplitudes for Exclusive Exponentiation}{148}{section.7.1}%
+\cftsetpnumwidth {\widthof {149}-.2em}
+\contentsline {subsection}{\numberline {7.1.1}Master Formula}{149}{subsection.7.1.1}%
+\cftsetpnumwidth {\widthof {150}-.2em}
+\cftsetpnumwidth {\widthof {151}-.2em}
+\cftsetpnumwidth {\widthof {152}-.2em}
+\contentsline {subsection}{\numberline {7.1.2}Pure Virtual Corrections}{152}{subsection.7.1.2}%
+\cftsetpnumwidth {\widthof {153}-.2em}
+\cftsetpnumwidth {\widthof {154}-.2em}
+\contentsline {subsection}{\numberline {7.1.3}One Real Photon with Virtual corrections}{154}{subsection.7.1.3}%
+\cftsetpnumwidth {\widthof {155}-.2em}
+\cftsetpnumwidth {\widthof {156}-.2em}
+\contentsline {subsection}{\numberline {7.1.4}Two Real Photons with Virtul Corrections}{156}{subsection.7.1.4}%
+\cftsetpnumwidth {\widthof {157}-.2em}
+\cftsetpnumwidth {\widthof {158}-.2em}
+\cftsetpnumwidth {\widthof {159}-.2em}
+\cftsetpnumwidth {\widthof {160}-.2em}
+\cftsetpnumwidth {\widthof {161}-.2em}
+\contentsline {subsection}{\numberline {7.1.5}Three Real Photons}{161}{subsection.7.1.5}%
+\cftsetpnumwidth {\widthof {162}-.2em}
+\cftsetpnumwidth {\widthof {163}-.2em}
+\cftsetpnumwidth {\widthof {164}-.2em}
+\contentsline {section}{\numberline {7.2}Amplitudes for Coherent Exclusive Exponentiation}{164}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Master Formula}{164}{subsection.7.2.1}%
+\cftsetpnumwidth {\widthof {165}-.2em}
+\cftsetpnumwidth {\widthof {166}-.2em}
+\cftsetpnumwidth {\widthof {167}-.2em}
+\cftsetpnumwidth {\widthof {168}-.2em}
+\cftsetpnumwidth {\widthof {169}-.2em}
+\cftsetpnumwidth {\widthof {170}-.2em}
+\contentsline {subsection}{\numberline {7.2.2}IR Structure in CEEX}{170}{subsection.7.2.2}%
+\cftsetpnumwidth {\widthof {171}-.2em}
+\cftsetpnumwidth {\widthof {172}-.2em}
+\cftsetpnumwidth {\widthof {173}-.2em}
+\cftsetpnumwidth {\widthof {174}-.2em}
+\cftsetpnumwidth {\widthof {175}-.2em}
+\cftsetpnumwidth {\widthof {176}-.2em}
+\cftsetpnumwidth {\widthof {177}-.2em}
+\cftsetpnumwidth {\widthof {178}-.2em}
+\cftsetpnumwidth {\widthof {179}-.2em}
+\cftsetpnumwidth {\widthof {180}-.2em}
+\contentsline {subsection}{\numberline {7.2.3}Narrow Neutral Resonance in CEEX}{180}{subsection.7.2.3}%
+\cftsetpnumwidth {\widthof {181}-.2em}
+\cftsetpnumwidth {\widthof {182}-.2em}
+\cftsetpnumwidth {\widthof {183}-.2em}
+\cftsetpnumwidth {\widthof {184}-.2em}
+\cftsetpnumwidth {\widthof {185}-.2em}
+\cftsetpnumwidth {\widthof {186}-.2em}
+\cftsetpnumwidth {\widthof {187}-.2em}
+\cftsetpnumwidth {\widthof {188}-.2em}
+\cftsetpnumwidth {\widthof {189}-.2em}
+\cftsetpnumwidth {\widthof {190}-.2em}
+\contentsline {subsection}{\numberline {7.2.4}Virtual Corrections, No Photons}{190}{subsection.7.2.4}%
+\cftsetpnumwidth {\widthof {191}-.2em}
+\cftsetpnumwidth {\widthof {192}-.2em}
+\cftsetpnumwidth {\widthof {193}-.2em}
+\cftsetpnumwidth {\widthof {194}-.2em}
+\contentsline {subsection}{\numberline {7.2.5}One Real Photon}{194}{subsection.7.2.5}%
+\cftsetpnumwidth {\widthof {195}-.2em}
+\cftsetpnumwidth {\widthof {196}-.2em}
+\cftsetpnumwidth {\widthof {197}-.2em}
+\cftsetpnumwidth {\widthof {198}-.2em}
+\cftsetpnumwidth {\widthof {199}-.2em}
+\cftsetpnumwidth {\widthof {200}-.2em}
+\cftsetpnumwidth {\widthof {201}-.2em}
+\cftsetpnumwidth {\widthof {202}-.2em}
+\cftsetpnumwidth {\widthof {203}-.2em}
+\contentsline {subsection}{\numberline {7.2.6}Two Real Photons}{203}{subsection.7.2.6}%
+\cftsetpnumwidth {\widthof {204}-.2em}
+\cftsetpnumwidth {\widthof {205}-.2em}
+\cftsetpnumwidth {\widthof {206}-.2em}
+\cftsetpnumwidth {\widthof {207}-.2em}
+\cftsetpnumwidth {\widthof {208}-.2em}
+\cftsetpnumwidth {\widthof {209}-.2em}
+\cftsetpnumwidth {\widthof {210}-.2em}
+\cftsetpnumwidth {\widthof {211}-.2em}
+\cftsetpnumwidth {\widthof {212}-.2em}
+\cftsetpnumwidth {\widthof {213}-.2em}
+\cftsetpnumwidth {\widthof {214}-.2em}
+\contentsline {section}{\numberline {7.3}Relations between CEEX and EEX}{214}{section.7.3}%
+\cftsetpnumwidth {\widthof {215}-.2em}
+\cftsetpnumwidth {\widthof {216}-.2em}
+\cftsetpnumwidth {\widthof {217}-.2em}
+\contentsline {section}{\numberline {7.4}Monte Carlo Algorithm}{217}{section.7.4}%
+\cftsetpnumwidth {\widthof {218}-.2em}
+\contentsline {subsection}{\numberline {7.4.1}Weights and Distributions}{218}{subsection.7.4.1}%
+\cftsetpnumwidth {\widthof {219}-.2em}
+\cftsetpnumwidth {\widthof {220}-.2em}
+\cftsetpnumwidth {\widthof {221}-.2em}
+\cftsetpnumwidth {\widthof {222}-.2em}
+\cftsetpnumwidth {\widthof {223}-.2em}
+\cftsetpnumwidth {\widthof {224}-.2em}
+\cftsetpnumwidth {\widthof {225}-.2em}
+\contentsline {subsection}{\numberline {7.4.2}Phase-space Reorganization}{225}{subsection.7.4.2}%
+\cftsetpnumwidth {\widthof {226}-.2em}
+\cftsetpnumwidth {\widthof {227}-.2em}
+\contentsline {subsection}{\numberline {7.4.3}MC generation of the FSR photon momenta}{227}{subsection.7.4.3}%
+\cftsetpnumwidth {\widthof {228}-.2em}
+\cftsetpnumwidth {\widthof {229}-.2em}
+\cftsetpnumwidth {\widthof {230}-.2em}
+\cftsetpnumwidth {\widthof {231}-.2em}
+\cftsetpnumwidth {\widthof {232}-.2em}
+\cftsetpnumwidth {\widthof {233}-.2em}
+\cftsetpnumwidth {\widthof {234}-.2em}
+\cftsetpnumwidth {\widthof {235}-.2em}
+\cftsetpnumwidth {\widthof {236}-.2em}
+\contentsline {subsection}{\numberline {7.4.4}Common IR Boundary For ISR and FSR}{236}{subsection.7.4.4}%
+\cftsetpnumwidth {\widthof {237}-.2em}
+\cftsetpnumwidth {\widthof {238}-.2em}
+\cftsetpnumwidth {\widthof {239}-.2em}
+\cftsetpnumwidth {\widthof {240}-.2em}
+\cftsetpnumwidth {\widthof {241}-.2em}
+\cftsetpnumwidth {\widthof {242}-.2em}
+\cftsetpnumwidth {\widthof {243}-.2em}
+\contentsline {subsection}{\numberline {7.4.5}Entire MC Algorithm Top-to-Bottom}{243}{subsection.7.4.5}%
+\cftsetpnumwidth {\widthof {244}-.2em}
+\cftsetpnumwidth {\widthof {245}-.2em}
+\contentsline {chapter}{\numberline {Chapter EIGHT }Interface between KKMC-hh and MG5\textunderscore aMC@NLO}{245}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Overview of Madgraph\textunderscore aMC@NLO}{245}{section.8.1}%
+\cftsetpnumwidth {\widthof {246}-.2em}
+\cftsetpnumwidth {\widthof {247}-.2em}
+\cftsetpnumwidth {\widthof {248}-.2em}
+\contentsline {section}{\numberline {8.2}Interfacing KKMC-hh with MG5\textunderscore aMC@NLO}{248}{section.8.2}%
+\cftsetpnumwidth {\widthof {249}-.2em}
+\cftsetpnumwidth {\widthof {250}-.2em}
+\cftsetpnumwidth {\widthof {251}-.2em}
+\cftsetpnumwidth {\widthof {252}-.2em}
+\cftsetpnumwidth {\widthof {253}-.2em}
+\contentsline {section}{\numberline {8.3}Numerical Results for Interfacing KKMC-hh with MG5\textunderscore aMC@NLO}{253}{section.8.3}%
+\cftsetpnumwidth {\widthof {254}-.2em}
+\cftsetpnumwidth {\widthof {255}-.2em}
+\cftsetpnumwidth {\widthof {256}-.2em}
+\cftsetpnumwidth {\widthof {257}-.2em}
+\cftsetpnumwidth {\widthof {258}-.2em}
+\cftsetpnumwidth {\widthof {259}-.2em}
+\cftsetpnumwidth {\widthof {260}-.2em}
+\contentsline {chapter}{\numberline {Chapter NINE }Overall Summary}{260}{chapter.9}%
+\cftsetpnumwidth {\widthof {261}-.2em}
+\cftsetpnumwidth {\widthof {262}-.2em}
+\contentsline {chapter}{\normalsize \normalfont APPENDICES}{262}{section*.26}%
+\cftsetpnumwidth {\widthof {263}-.2em}
+\contentsline {chapter}{\numberline {\normalsize \normalfont APPENDIX A }Feynman Rules of the Electroweak SM}{263}{appendix.a.A}%
+\cftsetpnumwidth {\widthof {264}-.2em}
+\cftsetpnumwidth {\widthof {265}-.2em}
+\cftsetpnumwidth {\widthof {266}-.2em}
+\cftsetpnumwidth {\widthof {267}-.2em}
+\cftsetpnumwidth {\widthof {268}-.2em}
+\cftsetpnumwidth {\widthof {269}-.2em}
+\cftsetpnumwidth {\widthof {270}-.2em}
+\cftsetpnumwidth {\widthof {271}-.2em}
+\cftsetpnumwidth {\widthof {272}-.2em}
+\cftsetpnumwidth {\widthof {273}-.2em}
+\cftsetpnumwidth {\widthof {274}-.2em}
+\cftsetpnumwidth {\widthof {275}-.2em}
+\cftsetpnumwidth {\widthof {276}-.2em}
+\cftsetpnumwidth {\widthof {277}-.2em}
+\cftsetpnumwidth {\widthof {278}-.2em}
+\contentsline {chapter}{\numberline {\normalsize \normalfont APPENDIX B }Feynman Rules of Quantum Chromodynamics}{278}{appendix.a.B}%
+\cftsetpnumwidth {\widthof {279}-.2em}
+\cftsetpnumwidth {\widthof {280}-.2em}
+\cftsetpnumwidth {\widthof {281}-.2em}
+\cftsetpnumwidth {\widthof {282}-.2em}
+\cftsetpnumwidth {\widthof {283}-.2em}
+\cftsetpnumwidth {\widthof {284}-.2em}
+\contentsline {chapter}{\numberline {\normalsize \normalfont APPENDIX C }The $SU(3)$ Group }{284}{appendix.a.C}%
+\cftsetpnumwidth {\widthof {285}-.2em}
+\cftsetpnumwidth {\widthof {286}-.2em}
+\cftsetpnumwidth {\widthof {287}-.2em}
+\contentsline {chapter}{\numberline {\normalsize \normalfont APPENDIX D }The Global Positioning of Spin GPS scheme}{287}{appendix.a.D}%
+\cftsetpnumwidth {\widthof {288}-.2em}
+\cftsetpnumwidth {\widthof {289}-.2em}
+\cftsetpnumwidth {\widthof {290}-.2em}
+\cftsetpnumwidth {\widthof {291}-.2em}
+\contentsline {chapter}{\numberline {\normalsize \normalfont APPENDIX E }The Drell-Yan Process}{291}{appendix.a.E}%
+\cftsetpnumwidth {\widthof {292}-.2em}
+\cftsetpnumwidth {\widthof {293}-.2em}
+\cftsetpnumwidth {\widthof {294}-.2em}
+\cftsetpnumwidth {\widthof {295}-.2em}
+\cftsetpnumwidth {\widthof {296}-.2em}
+\cftsetpnumwidth {\widthof {297}-.2em}
+\cftsetpnumwidth {\widthof {298}-.2em}
+\cftsetpnumwidth {\widthof {299}-.2em}
+\cftsetpnumwidth {\widthof {300}-.2em}
+\cftsetpnumwidth {\widthof {301}-.2em}
+\cftsetpnumwidth {\widthof {302}-.2em}
+\cftsetpnumwidth {\widthof {303}-.2em}
+\cftsetpnumwidth {\widthof {304}-.2em}
+\contentsline {chapter}{\normalsize \normalfont BIBLIOGRAPHY}{304}{equation.a.E.0.70}%
+\cftsetpnumwidth {\widthof {305}-.2em}
+\cftsetpnumwidth {\widthof {306}-.2em}
+\cftsetpnumwidth {\widthof {307}-.2em}
+\cftsetpnumwidth {\widthof {308}-.2em}
+\cftsetpnumwidth {\widthof {309}-.2em}
+\cftsetpnumwidth {\widthof {310}-.2em}
+\cftsetpnumwidth {\widthof {311}-.2em}
+\cftsetpnumwidth {\widthof {312}-.2em}

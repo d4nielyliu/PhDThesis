@@ -1,0 +1,1094 @@
+
+\chapter{Techniques for the Calculation of Electroweak Radiative Corrections at the One-Loop Level}
+
+In the previous chapter, We have introduced the minimal theory of electroweak interations , i.e. $SU(2)_L\otimes U(1)_Y$ theory of electron, proposed by S. L. Glashow\cite{Glashow1961}, S. Weinberg\cite{Weinberg}, and A. Salam\cite{Salam}, which exhibited the basic motivations and principal features. This theory has been extented to the hardonic degrees of freedom by S. L. Glashow, J. Iliopoulos and L. Maiani \cite{GIM}.
+And the Weinberg-Salam-Glashow-Iliopoulos-Maini model is the most comprehensive formulation of a theory of the unified electroweak interaction at present. It is theoretically consistent and confirmed by all experimentally known phenomena of the electroweak orgin. After that 't Hooft and M. Veltman proved its renormalizability\cite{thooft1,thooft2,tHooftVeltman,tHV}. Therefore, the standard model of the electroweak interaction is a calculable quantum field theory capable for precision calculations in high energy physics. Theoretical predictions should have a precision comparable to or even better than the experimental uncertainties. If the experimental precision of the order of $1\%$ the classical level of the theory is no longer sufficient. We have to take into account quantum corrections: the radiative corrections. 
+
+In this Chapter, we will review the corresponding formulae and techniques for the evaluation of the one loop radiatve corrections for the electroweak theory\cite{Denner,PV,DG,Consoli,MV,GV,BRJ,SovJ}. At first with the help of Faddeev-Popov gauge fixing technique, the complete renormalizable Lagrangian for the electroweak SM is given, Next, its renormalization will be discussed. Then we will introduce the classification and techniques for calculating one loop integrals.
+At last, we will present some explicit calculations of one-loop radiative correction as illustrations of the method described in this chapter.
+
+\section{The Model}
+
+The classical Lagrangian of the electroweak SM consists of a gauge boson (Yang-Mills), a scalar(Higgs) and a fermion part
+\begin{equation}
+L^{classical}=L^{\text{gauge}}+L^\text{scalar}+L^{\text{fermion}}+L^\text{Yukawa}, 
+\end{equation}
+where each of them is seperately gauge invariant. 
+
+The gauge boson fields includes an isotriplet $W^a_\mu$ and an isosinglet $B_\mu$.  The isotriplet $W^a_\mu$, $a=1,2,3$ is associated with the genretor $\sigma_a$ (Pauli matrices) of the group $SU(2)_L$, and the isosinglet $B_\mu$ is associated with the weak hypercharge $Y$ of the group $U(1)_Y$. The gauge field the Lagrangian is as usual,
+
+\begin{equation}
+L^{\text{gauge}}=-\frac{1}{4}F^l_{\mu\nu}F_l^{\mu\nu}-\frac{1}{4}G_{\mu\nu}G^{\mu\nu}
+\end{equation}
+where 
+\begin{equation}
+F^l_{\mu\nu}=\partial_\nu W^l_\mu-\partial_\mu W^l_\nu+g_2\epsilon_{jkl} W^j_{\mu} W^k_{\nu}
+\end{equation}
+for the $SU(2)_L$ gauge fields and
+\begin{equation}
+G_{\mu\nu}=\partial_\nu B_\mu -\partial_\mu B_\nu
+\end{equation}
+for the $U(1)_Y$ gauge field. The covriant derivative here is given by
+\begin{eqnarray}
+D_\mu=\partial_\mu -ig_2\sigma_aW^a_\mu+ig_1\frac{Y}{2}B_\mu.
+\end{eqnarray} where $g_1$ is the $U(1)_Y$ gauge coupling and $g_2$ is the $SU(2)_L$ gauge coupling.
+The electric charge operator $Q$ is composed of the weak isospin projection $I_3$ and the weak hypercharge $Y$ according to the Gell-Mann Nishijima relation.
+\begin{equation}
+Q=I_3+\frac{1}{2}Y.
+\end{equation}
+
+The scalar Lagrangian is as usual:
+\begin{equation}
+L^\text{Scalar} = (D^\mu \Phi)^\dagger(D_\mu \Phi)-V(\Phi),
+\end{equation} 
+where
+\begin{equation}
+\Phi(x)=\binom{\phi^\dagger(x)}{\phi_0(x)} \text{ with } Y_{\Phi}=1.
+\end{equation}
+Here, we express the Higgs potential in another way
+\begin{equation}
+V(\Phi)=\frac{\lambda}{4}(\Phi^\dagger\Phi)^2-\mu^2\Phi^\dagger\Phi
+\end{equation}
+where $\lambda>0$, $\mu>0$ such that it gives rise to spontaneous symmetry breaking.
+
+The fermion part is extended to the lepton families ($\psi^{l}$) and quark families ($\psi^{q}$). The left-handed fermion of each lepton and quark generation are grouped into $SU(2)_L$ doublets:
+\begin{align}
+\psi^l_L=\frac{1}{2}(1-\gamma_5)\psi_l=\binom{\nu_l}{l}_L\nonumber\\
+\psi^q_L=\frac{1}{2}(1-\gamma_5)\psi_q=\binom{u_i}{d_i}_L
+\end{align}
+where $l\equiv e, \mu, \tau$, $u_i\equiv u,c,t$ and $d_i\equiv d,s,b$. And the right-handed fermion are grouped into singlets:
+\begin{align}
+\psi^l_R&=\frac{1}{2}(1+\gamma_5)\psi^l;\nonumber\\ (u_{R})_i&=\frac{1}{2}(1+\gamma_5)u_i, (d_{R})_i=\frac{1}{2}(1+\gamma_5)d_i
+\end{align}
+
+Then the fermion Larangrian reads off
+\begin{align}
+L^\text{fermion}&=\sum_i (\bar{\psi}_L^l i\slashed{D} \psi_L^l+\bar{\psi}_L^q i\slashed{D} \psi_L^q)\nonumber\\
+&+\sum_i (\bar{\psi}_L^l i\slashed{D} \psi_L^l + \bar{u}_{iR} i\slashed{D} u_{iR}+ \bar{d}_{iR} i\slashed{D} d_{iR}).
+\end{align}
+
+And the Yukawa Lagrangian reads 
+\begin{equation}
+L^\text{Yukawa}=-\sum_{ij}[(\bar{\psi}^l_L)_i G^l_{ij} (\psi^l_R)_j\Phi+(\bar{\psi}^q_L)_i G^u_{ij} (u_{R})_j\tilde{\Phi} + (\bar{\psi}^q_L)_i G^d_{ij} (d_{R})_j\Phi+\text{h.c.}]
+\end{equation}
+where $G^l_{ij}, G^u_{ij}$ and $G^d_{ij}$ are the Yukawa coupling matrices, $\tilde{\Phi}=\binom{\phi^{0\ast}}{-\phi^-}$ is the charge conjugated Higgs field and $\phi^-=(\phi^\dagger)^\ast$.
+
+From the construction of Higgs part of Langragian, we have the vacuum expection value
+\begin{equation}
+|\bra{0}\Phi\ket{0}|^2=\frac{2\mu^2}{\lambda}=\frac{v^2}{2}\neq 0
+\end{equation}
+We expand the scalar field around the ground state so that the Higgs field can be expressed as 
+\begin{equation}
+\Phi(x)=\binom{\phi^\dagger(x)}{\frac{1}{\sqrt{2}}(v(x)+H(x)+i\chi(x))},
+\end{equation}
+where the compoenents $\phi^\dagger$, $H$ and $\chi$ have zero vaccum expection values. $\phi^\dagger$, $\phi^-$ and $\chi$ are unphysical states which can be eliminated by the unitary gauge. The field $H$ is the physical Higgs field with the mass 
+\begin{equation}
+M_H=\sqrt{2}\mu.
+\end{equation}
+
+The physical gauge fields $W^\pm_\mu$, $Z^0$ and $A_\mu$ are related to $W_\mu^a$ and $B_\mu$ by
+\begin{align}
+W^\pm_\mu&=\frac{1}{\sqrt{2}}(W^1_\mu\mp iW^2_\mu),\nonumber\\
+\bigg(
+\begin{array}{c}
+Z_\mu\\A_\mu
+\end{array}\bigg)
+&=
+\bigg(
+\begin{array}{cc}
+c_w & s_w\\-s_w &c_w
+\end{array}
+\bigg)
+\bigg(
+\begin{array}{c}
+W^3_\mu\\B_\mu
+\end{array}
+\bigg).
+\end{align}
+where
+\begin{align}
+c_w\equiv\cos\theta_W=\frac{g_2}{\sqrt{g_1^2+g_2^2}},\nonumber\\
+s_w\equiv\sin\theta_W=\frac{g_1}{\sqrt{g_1^2+g_2^2}}.
+\end{align}
+
+The physical fermion fields are obtained by diagonalizing the corresponding mass matrices
+\begin{align}
+(f_L)_i&=(U_{f,L})_{ik}(f'_L)_k\nonumber\\
+(f_R)_i&=(U_{f,R})_{ik}(f'_R)_k
+\end{align}
+where $f\equiv \nu_l,l,u_i$ and $d_i$.
+
+The resulting masses are
+\begin{align}
+&M_Z=\frac{1}{2}\sqrt{g_1^2+g_2^2} v,\nonumber\\
+&M_W=M_Z c_W=\frac{1}{2}g_2 v,\nonumber\\
+&M_\gamma=0,\nonumber\\
+&m_{f,i}=\frac{v}{\sqrt{2}}(U_{f,L})_{ik} G^f_{km} (U_{f,R})_{mi}.
+\end{align}
+
+By identifying the coupling of the photon field $A_\mu$ to the electron with the electrical charge $e=\sqrt{4\pi\alpha}$, we have 
+\begin{equation}
+e=\frac{g_1g_2}{\sqrt{g_1^2+g_2^2}}.
+\end{equation}
+
+The diagonalization of the fermion mass matrices introduces a unitary quark mixing matrix into the quark-W-boson couplings
+\begin{equation}
+V_{ij}=(U_{u,L})_{ik}(U_{d,L})_{kj}^\dagger.
+\end{equation}
+
+Thus, the relations (2.16), (2.20), (2.21) and (2.22) allow us to replace the set of parameters$\{g_1, g_2, \lambda, \mu^2, G^l, G^u, G^d\}$ with the parameter $\{e, M_W, M_Z, M_h, \newline m_{f,i} , V_{ij} \}$ which are physical. Furthermore, we could express the Lagrangian (2.1) in terms of physical parameters and fields. 
+
+Next, we need to apply Faddeev-Popov gauge fixing technique\cite{PF,PF1} to quantize 
+$L^\text{classical}$, which requires the specification of a gauge. We choose a renormalizable 't Hooft gauge with the following linear gauge fixings
+\begin{align}
+F^\pm&=(\xi_1^W)^{-\frac{1}{2}}\partial^\mu W_\mu^\dagger\mp i(\xi_2^W)^{-\frac{1}{2}} \phi^\pm\nonumber\\
+F^Z&=(\xi_1^Z)^{-\frac{1}{2}}\partial^\mu Z_\mu- M_Z(\xi_2^Z)^{\frac{1}{2}}\chi\nonumber\\
+F^\gamma&=(\xi_1^\gamma)^{-\frac{1}{2}}\partial^\mu A_\mu,
+\end{align}
+which lead to the gauge fixing Lagrangian
+\begin{equation}
+L^\text{gauge-fixing}=-\frac{1}{2}[(F^\gamma)^2+(F^Z)^2+2F^+ F^-].
+\end{equation}
+$L^\text{fix}$ includes the unphysical components of the gauge fields. To cancel the unphysical effects, We need to introduce Faddeev Popov ghosts (scalar anti-commuting fields) $\bar{u}^\alpha(x)$, $u^\alpha(x)$ $(\alpha=\pm, \gamma, Z)$ with the Lagrangian 
+\begin{equation}
+L^\text{FP} = \bar{u}^\alpha(x)\frac{\delta F^\alpha}{\delta \theta^\beta(x)}u^\beta(x),
+\end{equation}
+where $\frac{\delta F^\alpha}{\delta \theta^\beta(x)}$ is the variation of the gauge fixing operators $F^\alpha$ under infinitesimal gauge transformations characterized by $\theta^\beta(x)$.
+
+The 't Hooft Feynman gauge $\xi^\alpha=1$ will simplify the problem. At lowest order the poles of the ghost fields, unphysical Higgs fields and longitudinal gauge fields coincide with the poles of the corresponding transverse gauge fields. Moreover, thers is no mixing between gauge Higgs and gauge fields.
+
+With the help of $L^\text{gauge-fixing}$ and $L^\text{FP}$, we obtain the complete renormalizable Lagrangian for the electroweak SM:
+\begin{equation}
+L^{\text{SM}}=L^\text{classical}+L^\text{gauge-fixing}+L^\text{FP}.
+\end{equation} 
+
+The corresponding Feynman rules are given in Appendix.A.
+\newpage
+\section{Renormalization in the Electroweak SM}
+The Lagrangian (2.1) of the miminal $SU(2)_L\otimes U(1)_Y$ model includes a certain number of free parameters $\{e, M_W, M_Z, M_h, m_{f,i}, V_{ij} \}$, which have to be determined experimentally. These parameters could be directly related to experimental quantities (at the tree-level), but this direct relation is no more valid when it comes to higher order corrections. We usually called the paramters of the original Lagrangian bare parameters, which differ from corresponding physical quantities by ultra-violet (UV)-divergent contributions. 
+These divergences would cancel in relations between physical quantities in renormalizable theories. The renormalizability of non-Abelian gauge theories with spontaneous symmetry breaking as proven by 't Hooft \cite{thooft1,thooft2}, which allows meaningful predictions in the electroweak SM.
+
+We are using the counterterm approach to realize the renormalization. Here the UV-divergent bare parameters are expressed by finite renormalized parameters and divergent renormalization constants (counterterms). The bare fields may be replaced by renormalized fields. The counterterms are fixed through renormalization condition. These determine the relation between renormalized and physical parameters and can be chosen arbitrarily. The renormalization procedure could be summarized as follows:
+\newline$\bullet$ \quad\quad Choose a set of independent parameters.
+\newline$\bullet$ \quad\quad Separate the bare parameters and fields into renormalized parameters, fields and renormalization constants.
+\newline$\bullet$ \quad\quad  Choose renormalization conditions to fix the counterterms.
+\newline$\bullet$ \quad\quad Express physical quantities in terms of the renormalized parameters.
+\newline$\bullet$ \quad\quad Choose input data in order to fix the values of the renormalized parameters.
+\newline$\bullet$ \quad\quad Compute predictions for physical quantities as functions of the input data.
+The first three steps in the list specify a renormalization scheme. 
+
+In this chapter, we are using on-shell renormalization scheme, in which one chooses counterterms so that the finite renormalized parameters are equal to physical parameters in all orders of perturbation thoery. The beauty of on shell renormalization scheme is  that all paramters (of the electroweak SM) have clear physical significances and can be measured directly in experiments. In the electroweak SM, we choose the masses of the physical particles $M_W$, $M_Z$, $M_H$, $m_f$, electric charge $e$, and the quarking mixing matrix $V_{ij}$ as renormalizaed parameters.  
+
+
+\subsection{Renormalization Constants and Counterterms}
+
+We choose the physical paratmeters $\{e, M_W, M_Z, M_h, m_{f,i},\newline , V_{ij} \}$ as independent parameters. The renormalized quantities and the renormalization constants are defined as follows (bare quantities are denoted by an subscipt $0$):
+\begin{align}
+e_0&=Z_e e=(1+\delta Z_e)e,\nonumber\\
+M^2_{W,0}&=M^2_W+\delta M^2_W,\nonumber\\
+M^2_{Z,0}&=M^2_Z+\delta M^2_Z,\nonumber\\
+M^2_{H,0}&=M^2_H+\delta M^2_H,\nonumber\\
+m_{f,i,0}&=m_{f,i}+\delta m_{f,i}\nonumber\\
+V_{ij,0}&=(U_1 V U_2^\dagger)_{ij}=V_{ij}+\delta V_{ij}.
+\end{align}
+where $U_1$ and $U_2$ are unitary since $V_{ij,0}$ and $V_{ij}$ are unitary.
+
+The counterterms defined above are sufficient to guarantee all $S$-matrix elements finite, but it leaves Green function divergent. This is because of the fact that radiative corrections change the normalization of the fields by an infinite amount. In order to get finite Green functions we must renormalize the fields as well. Furthermore, radiative corrections yield nondiagonal corrections to the mass matrices such that the bare fields are no more mass eigenstates. In order to re-diagonalized the mass matrices one has to introduce matrix valued field renormalization constants, allowing to define the renormalized fields in such a way that they are the correct physical mass eigenstates in all orders of the perturbation theory. Therefore, we define renormalized fields as follows:
+\begin{align}
+W_0^\pm&=Z^{\frac{1}{2}}_W W^\pm = (1+\frac{1}{2}\delta Z_W)W^\pm
+,\nonumber\\
+\binom{Z_0}{A_0}&=\bigg(
+\begin{array}{cc}
+Z^\frac{1}{2}_{ZZ} & Z^\frac{1}{2}_{ZA}\\
+Z^\frac{1}{2}_{AZ} & Z^\frac{1}{2}_{AA}   
+\end{array}
+\bigg
+)\binom{Z}{A}
+=\bigg(
+\begin{array}{cc}
+1+\frac{1}{2} Z_{ZZ} & \frac{1}{2} Z_{ZA}\\
+\frac{1}{2}Z_{AZ} & 1+\frac{1}{2}Z_{AA}   
+\end{array}
+\bigg
+)\binom{Z}{A},\nonumber\\
+H_0&=Z^\frac{1}{2}_H=(1+\frac{1}{2}\delta Z_H)H,\nonumber\\
+f^L_{i,0}&=Z^{,f,L}_{ij}f^L_j=(\delta_{ij}+\frac{1}{2}\delta Z^{f,L}_{ij})f^L_j,\nonumber\\
+f^R_{i,0}&=Z^{\frac{1}{2},f,L}_{ij}f^R_j=(\delta_{ij}+\frac{1}{2}\delta Z^{f,R}_{ij})f^R_j.
+\end{align}
+
+Here we do not discuss the renormalization constants of the unphysical ghost and Higgs fields since they do not affect Green functions of physical particles and the calculation of physical one-loop amplitudes.
+
+In writing $Z=1+\delta Z$ we could split the bare Lagrangian $L_0$ into the basic Lagrangian and the counterterm Lagrangian $\delta L$
+\begin{equation}
+L_0=L+\delta L.
+\end{equation} 
+$L$ shares the same form as $L_0$ but depends on renormalized parameters and fields. $\delta L$ stands for counterterms, which aborbs the divergernces and unobservable shifts. The corresponding Feynman rules are list in Appendix.A.
+
+\subsection{Renormalization Conditions}
+The renormalization constants described above need to be fixed by imposing renormalization conditions. These consist of two sets: the conditions defining the renormalized parameters and the ones defining the renormalized fields.
+
+In the on-shell scheme all renormalization conditions are formulated for on-mass-shell external fields. The field renormalization constants, the mass renormalization constants and the renormalization constant of the quark mixing matrix are fixed by the one particle irreducible (1PI) two-point functions. For charge renormalization we use the three-point function ($ee\gamma$-vertex function). 
+
+The renormalized one-particle irreducible two-point functions are defined as follows (in the 't Hooft-Feynman gauge)
+
+\begin{axopicture}(260,60) %vector boson
+	\Photon(10,30)(55,30){3}{5.5}
+	\Photon(75,30)(120,30){3}{5.5}
+	\Vertex(10,30){1}
+	\Vertex(120,30){1}
+	\GCirc(65,30){20}{0.67}
+	\Text(10,40){$W_\mu$}\Text(120,40){$W_\nu$}\Text(35,40){$k$}
+	\Text(170,30){$=\hat{\Gamma}^W_{\mu\nu}(k)$}	
+\end{axopicture}	
+\newline$=-g_{\mu\nu}(k^2-M_W^2)-i\bigl(g_{\mu\nu}-\frac{k_\mu k\_nu}{k^2}\bigr)\hat{\Sigma}^W_T(k^2)-i\frac{k_\mu k_\nu}{k^2}\hat{\Sigma}^W_L(k^2)$,
+\newline
+\newline
+
+\begin{axopicture}(260,60) %vector boson
+	\Photon(10,30)(55,30){3}{5.5}
+	\Photon(75,30)(120,30){3}{5.5}
+	\Vertex(10,30){1}
+	\Vertex(120,30){1}
+	\GCirc(65,30){20}{0.67}
+	\Text(10,40){$a,\mu$}\Text(120,40){$b,\nu$}\Text(35,40){$k$}
+	\Text(170,30){$=\hat{\Gamma}^{ab}_{\mu\nu}(k)$}	
+\end{axopicture}	
+\newline$=-g_{\mu\nu}(k^2-M_a^2)\delta_{ab}-i\bigl(g_{\mu\nu}-\frac{k_\mu k\_nu}{k^2}\bigr)\hat{\Sigma}^{ab}_T(k^2)-i\frac{k_\mu k_\nu}{k^2}\hat{\Sigma}^{ab}_L(k^2)$, 
+\newline\newline where $a,b=A,Z,\quad, M_A^2=0$.
+\newline
+\newline
+\begin{axopicture}(260,60) %vector boson
+	\DashLine(10,30)(55,30){3}
+	\DashLine(75,30)(120,30){3}
+	\Vertex(10,30){1}
+	\Vertex(120,30){1}
+	\GCirc(65,30){20}{0.67}
+	\Text(10,40){$H$}\Text(120,40){$H$}\Text(35,40){$k$}
+	\Text(170,30){$=\hat{\Gamma}^{H}(k)$}	
+\end{axopicture}
+\newline $=i(k^2-M_H^2)+i\hat{\Sigma}^H(k^2)$,
+\newline
+\newline
+\begin{axopicture}(260,60) %vector boson
+	\Line[arrow](10,30)(55,30)
+	\Line[arrow](75,30)(120,30)
+	\Vertex(10,30){1}
+	\Vertex(120,30){1}
+	\GCirc(65,30){20}{0.67}
+	\Text(10,40){$f_j$}\Text(120,40){$f_i$}\Text(35,40){$p$}
+	\Text(170,30){$=\hat{\Gamma}^{ij}(p)$}	
+\end{axopicture}
+\newline$=i\delta_{ij}(\slashed{p}-m_{f,i})+i[\slashed{p}\omega_-\hat{\Sigma}^{f,L}_{ij}(p^2)+\slashed{p}\omega_+\hat{\Sigma}^{f,R}_{ij}(p^2)+(m_{f,i}\omega_-+m_{f,j}\omega_+)\hat{\Sigma}^{f,S}_{i,j}(p^2) ]. $
+The propagators are obtained as the inverse of the corresponding two-point functions.
+
+The renormalized mass parameters of the physical particles are fixed in such a way that they are equal to the physical masses. For mass matrices, these conditions must be realized by the corresponding eigenvalues, which might result in complicated expressions. These expressions could be simplified by requiring simultaneously the on-shell conditions for the field renormalization matrices. If the external lines are on their mass shell, the renormalized 1PI two-point functions are diagonal. This determines the nondiagonal elements of field renormalization matrices. The renormalized diagonal elements are fixed so that the residues of the renormalized propagators are equal to one. By this choice of field renormalization, the renormalization conditions for the mass parameter require only the corresponding self-energies. Therefore the renormalization conditions for the two-point functions for on-shell external physical fields are defined as follows:
+\begin{eqnarray}
+&&\widetilde{\Re}\hat{\Gamma}^W_{\mu\nu}\epsilon^\nu(k)|_{k^2=M^2_W}=0,\quad \widetilde{\Re}\hat{\Gamma}^{ZZ}_{\mu\nu}\epsilon^\nu(k)|_{k^2=M^2_Z}=0,\quad \widetilde{\Re}\hat{\Gamma}^{AZ}_{\mu\nu}\epsilon^\nu(k)|_{k^2=M^2_Z}=0\nonumber\\
+&&\hat{\Gamma}^{AZ}_{\mu\nu}\epsilon^\nu(k)|_{k^2=0}=0, \quad\qquad \hat{\Gamma}^{AA}_{\mu\nu}\epsilon^\nu(k)|_{k^2=0}=0,\nonumber\\
+&&\lim_{k^2\to M_W^2}\frac{1}{k^2-M_W^2}\widetilde{\Re}\hat{\Gamma}^W_{\mu\nu}\epsilon^\nu(k)=-i\epsilon_\mu(k),\nonumber\\
+&&\lim_{k^2\to M_Z^2}\frac{1}{k^2-M_Z^2}\Re\hat{\Gamma}^{ZZ}_{\mu\nu}\epsilon^\nu(k)=-i\epsilon_\mu(k), \quad \lim_{k^2\to 0}\frac{1}{k^2}\Re\hat{\Gamma}^{AA}_{\mu\nu}\epsilon^\nu(k)=-i\epsilon_\mu(k),\nonumber\\
+&&\Re\hat{\Gamma}^H(k)|_{k^2=M_h^2}=0,\quad\qquad \lim_{k^2\to M_H^2}\frac{1}{k^2-M_H^2}\Re\hat{\Gamma}^H(k)=-i,\nonumber\\
+&&\widetilde{\Re}\hat{\Gamma}^f_{ij}(p)u_j(p)|_{p^2=m^2_{f,j}}=0,\quad \widetilde{\Re}\bar{u}_j(p')\hat{\Gamma}^f_{ij}(p')|_{p'^2=m^2_{f,i}}=0,\nonumber\\
+&&\lim_{p^2\to m^2_{f,i}}\frac{\slashed{p}+m_{f,i}}{p^2-m^2_{f,i}}\widetilde{\Re}\hat{\Gamma}^f_{ii}(p)u_i(p)=iu_i(p),\nonumber\\
+&&\lim_{p^2\to m^2_{f,i}}\bar{u}_i(p')\widetilde{\Re}\hat{\Gamma}^f_{ii}(p')\frac{\slashed{p'}+m_{f,i}}{p'^2-m^2_{f,i}}=iu_i(p),
+\end{eqnarray}
+where $\epsilon(k)$, $u(p)$ and $\bar{u}(p')$ are the polarization vectors and spinors of the external fields. $\widetilde{\Re}$ only takes the real part of the loop integrals appearing in the self-energies. 
+
+From the equations above we get the conditions for the self-energy functions.
+\begin{eqnarray}
+&&\widetilde{\Re}\hat{\Sigma}^W_{T}(M^2_W)=0,\quad \Re\hat{\Sigma}^{ZZ}_{T}(M^2_Z)=0,\quad \Re\hat{\Sigma}^{AZ}_{T}(M^2_Z)=0,\nonumber\\
+&&\hat{\Sigma}^{AZ}_T=0, \qquad\qquad \hat{\Sigma}^{AA}_T=0,\nonumber\\ 
+&&\widetilde{\Re}\frac{\partial \hat{\Sigma}^W_T(k^2)}{\partial k^2}|_{k^2=M^2_W}=0,
+\Re\frac{\partial \hat{\Sigma}^{ZZ}_T(k^2)}{\partial k^2}|_{k^2=M^2_Z}=0,
+\Re\frac{\partial \hat{\Sigma}^{AA}_T(k^2)}{\partial k^2}|_{k^2=0}=0,\nonumber\\
+\end{eqnarray}
+\begin{eqnarray}
+\Re\hat{\Sigma}^H(M^2_H)=0, \quad\qquad \Re\frac{\partial \hat{\Sigma}^{H}_T(k^2)}{\partial k^2}|_{k^2=M^2_H}=0,
+\end{eqnarray}
+\begin{eqnarray}
+&& m_{f,j}\widetilde{\Re}\hat{\Sigma}^{f,L}_{ij}(m^2_{f,j})+m_{f,j}\widetilde{\Re}\hat{\Sigma}^{f,L}_{ij}(m^2_{f,j})=0,\nonumber\\
+&& m_{f,j}\widetilde{\Re}\hat{\Sigma}^{f,R}_{ij}(m^2_{f,i})+m_{f,i}\widetilde{\Re}\hat{\Sigma}^{f,S}_{ij}(m^2_{f,j})=0,\nonumber\\
+&&\widetilde{\Re}\hat{\Sigma}^{f,R}_{ii}(m^2_{f,i})+\widetilde{\Re}\hat{\Sigma}^{f,R}_{ii}(m^2_{f,i})\nonumber\\
+&&+2m^2_{f,i}\frac{\partial}{\partial p^2}[\widetilde{\Re}\hat{\Sigma}^{f,R}_{ii}(p^2)+\widetilde{\Re}\hat{\Sigma}^{f,L}_{ii}(p^2)+2\widetilde{\Re}\hat{\Sigma}^{f,S}_{ii}(p^2)]|_{p^2=m_{f,i}^2=0}.
+\end{eqnarray}
+Note that the longitudinal (unphysical) components of the gauge boson self-energies drops out for on-shell external gauge bosons.
+
+For the quark mixing matrix $V_{ij}$, to the lowest order we have
+\begin{equation}
+V_{0,ij}=U^{u,L}_{ik}U^{d,L,\dagger}_{i,0},
+\end{equation}
+where the matrices $U^{f,L}$ transform the weak interation eigenstates $f'_0$ to the lowest order mass eigenstates $f_0$
+\begin{equation}
+U^{f,L,\dagger}_{ij}f^L_{j,0}=f'^L_{i,0}.
+\end{equation}
+In the on-shell scheme, the higher order mass eigenstates are related to the bare mass eigenstates in the following way
+\begin{equation}
+f_i^L=Z^{\frac{1}{2},f,L}_{ij}f^L_{j,0}.
+\end{equation}
+The renormalized quark mixing matrix is defined through the rotation from the weak interaction eigenstates to the renormalized mass eigenstates. In the one-loop level, the rotation in the fermion wave function renormalization $1+\frac{1}{2}\delta Z^L$ is given by the anti-Hermitian part $\delta Z^{AH}$ of $\delta Z^L$
+\begin{equation}
+\delta Z^{f,AH}_{ij}=\frac{1}{2}(\delta Z^{f,L}_{ij}-\delta Z^{f,L,\dagger}_{ij})
+\end{equation} 
+Therefore the renormalized quark mixing matrix is defined as
+\begin{equation}
+V_{ij}=\biggl(\delta_{ik}+\frac{1}{2}\delta Z^{u,AH,\dagger}_{ik}\biggr)V_{0,kn}\biggl(\delta_{nj}+\frac{1}{2}\delta Z^{d,AH,\dagger}_{nj}\biggr).
+\end{equation}
+
+At last, the electric charge is defined as the full $ee\gamma$-coupling for on-shell external particles in the Thomson limit in which all vertex corrctions vanish on shell and for zero momentum transfer.
+
+\begin{axopicture}(320,140)
+	\GCirc(50,60){15}{0.67}
+	\Photon(10,60)(35,60){3}{4}
+	\Photon(65,60)(90,60){3}{4}
+	\Line[arrow](105,60)(152.63,87.5)
+	\Line[arrow](152.63,33.5)(105,60)
+	\Line[arrow](152.63,87.5)(200.26,115)
+	\Line[arrow](200.26,4.5)(152.63,33.5)
+	\GCirc(105,60){15}{0.67}
+	\GCirc(152.63,87.5){15}{0.67}
+	\GCirc(152.63,33.5){15}{0.67}
+	\Text(15,70){$A_\mu$}
+	\Text(200,95){$e^+,p'$}
+	\Text(200,25){$e^-,p$}
+	\Line(215,115)(215,2)
+	\Text(230,15){$p=p',$}
+	\Text(248,5){$p^2=p'^2=m_e^2$}
+	\Text(300,60){$=ie\bar{u}\gamma_\mu u(p)$}
+\end{axopicture}
+
+Because of our choice the field renormalization, the correction in the external legs vanish and we have the condition
+\begin{equation}
+\bar{u}(p)\hat{\Gamma}^{ee\gamma}_\mu u(p)|_{p^2=m_e^2}=ie\bar{u}(p)\gamma u(p),
+\end{equation}
+for the amputated vertex function
+
+\begin{axopicture}(260,100)
+	\Photon(20,40)(85,40){3}{5}
+	\Line[arrow](160,0)(85,40)
+	\Line[arrow](85,40)(160,80)
+	\GCirc(85,40){25}{0.67}
+	\Text(25,50){$A_\mu$}
+	\Text(175,80){$e^+,p'$}
+	\Text(175,0){$e^-,p'$}
+	\Text(0,40){$\Gamma^{ee\gamma}_\mu=$}
+\end{axopicture}
+
+
+
+\subsection{Explicit Form of Renormalization Constants}
+Next, we will give the explicit expressions of renormalization constants.
+
+From eqs. (2.31) and (2.32), we get for the gauge boson sector
+\begin{eqnarray}
+&&\delta M^2_W=\widetilde{\Re}\Sigma^W_T(M^2_W),\quad\qquad \delta Z_W=\widetilde{\Re}\frac{\partial \Sigma^W_T(k^2)}{\partial k^2}|_{k^2=M^2_W},\nonumber\\
+&&\delta M^2_Z=\Re\Sigma^{ZZ}_T(M^2_Z),\quad\qquad \delta Z_{ZZ}=\widetilde{\Re}\frac{\partial \Sigma^{ZZ}_T(k^2)}{\partial k^2}|_{k^2=M^2_Z},\nonumber\\
+&&\delta Z_{AZ}=-2\Re\frac{\Sigma_T^{AZ}(M_Z^2)}{M_Z^2},\quad
+\delta Z_{ZA}=-2\Re\frac{\Sigma_T^{AZ}(0)}{M_Z^2},
+\quad \delta Z_{AA}=-\frac{\Sigma_T^{AZ}(k^2)}{k^2}\nonumber\\
+&&\delta M^2_H=\Re\Sigma^H(M^2_H), \quad\quad \delta Z_H=-\Re\frac{\partial \Sigma^H(k^2)}{\partial k^2}|_{k^2=M_H^2}.
+\end{eqnarray}
+
+From eq. (2.33) we obtain for the fermion sector
+\begin{align}
+\delta m_{f,i}&=\frac{m_{f,i}}{2}\widetilde{\Re}[\Sigma^{f,L}_{ii}(m_{f,i}^2)+\Sigma^{f,R}_{ii}(m_{f,i}^2)+\Sigma^{f,S}_{ii}(m_{f,i}^2)],\nonumber\\
+\delta Z_{ij}^{f,L}&=\frac{2}{m^2_{f,i}-m^2_{f,j}}\widetilde{\Re}[m^2_{f,j}\Sigma^{f,L}_{ij}(m_{f,j}^2)+m_{f,i}m_{f,j}\Sigma^{f,R}_{ij}(m_{f,j}^2)\nonumber\\
+&+(m^2_{f,i}+m^2){f,j}\Sigma^{f,S}_{ij}(m_{f,j}^2)], \qquad i\neq j\nonumber\\
+\delta Z_{ij}^{f,R}&=\frac{2}{m^2_{f,i}-m^2_{f,j}}\widetilde{\Re}[m^2_{f,j}\Sigma^{f,R}_{ij}(m_{f,j}^2)+m_{f,i}m_{f,j}\Sigma^{f,L}_{ij}(m_{f,j}^2)\nonumber\\
+&+2m_{f,i}m_{f,j}\Sigma^{f,S}_{ij}(m_{f,j}^2)], \qquad i\neq j\nonumber\\
+\delta Z^{f,L}_{ii}&=-\widetilde{\Re}\Sigma^{f,L}_{ii}(m^2_{f,i})-m^2_{f,i}\frac{\partial}{\partial p^2}\widetilde{\Re}[\Sigma^{f,L}_{ii}(p^2)+\Sigma^{f,R}_{ii}(p^2)+\Sigma^{f,S}_{ii}(p^2)]|_{p^2=m^2_{f,i}}\nonumber\\
+\delta Z^{f,R}_{ii}&=-\widetilde{\Re}\Sigma^{f,R}_{ii}(m^2_{f,i})-m^2_{f,i}\frac{\partial}{\partial p^2}\widetilde{\Re}[\Sigma^{f,L}_{ii}(p^2)+\Sigma^{f,R}_{ii}(p^2)+\Sigma^{f,S}_{ii}(p^2)]|_{p^2=m^2_{f,i}}.
+\end{align}
+
+The use of $\widetilde{\Re}$ guarantees that the renormalized Lagrangian is real. Moreover we have
+\begin{equation}
+\delta Z^\dagger_{ij}=\delta Z_{ij}(m^2_i \leftrightarrow m^2_j).
+\end{equation}
+
+The renormalization constant for the quark mixing matrix $V_{ij}$ can be derived from eq. (2.38)
+\begin{equation}
+\delta V_{ij}=\frac{1}{4}[(\delta Z^{u,L}_{ik}-\delta Z^{u,L,\dagger}_{ik})-V_{ik}(\delta Z^{d,L}_{kj}-\delta Z^{d,L,\dagger}_{kj})].
+\end{equation}
+Inserting eq. (2.41) we obtain
+\begin{align}
+\delta V_{ij}&=\frac{1}{2}\widetilde{\Re}\biggl\{\frac{1}{m^2_{u,i}-m^2_{u,k}}[m^2_{u,k}\Sigma^{u,L}_{ik}(m^2_{u,k})+m^2_{u,i}\Sigma^{u,L}_{ik}(m^2_{u,i})\nonumber\\ &+m_{u,i}m_{u,k}(\Sigma^{u,R}_{ik}(m^2_{u,k})+\Sigma^{u,R}_{ik}(m^2_{u,i}))\nonumber\\
+&+(m^2_{u,k}+m^2_{u,i})(\Sigma^{u,S}_{ik}(m^2_{u,k})+\Sigma^{u,S}_{ik}(m^2_{u,i}))]V_{kj}\nonumber\\
+&-V_{ik}\frac{1}{m^2_{d,k}-m^2_{d,j}}[ m^2_{d,j}\Sigma^{d,L}_{kj}(m^2_{d,j})+m^2_{d,k}\Sigma^{d,L}_{kj}(m^2_{d,k})\nonumber\\ &+m_{d,k}m_{d,j}(\Sigma^{d,R}_{kj}(m^2_{d,j})+\Sigma^{d,R}_{kj}(m^2_{d,k}))\nonumber\\
+&+(m^2_{d,k}+m^2_{d,j})(\Sigma^{d,S}_{kj}(m^2_{d,k})+\Sigma^{d,S}_{kj}(m^2_{d,j}))  ]
+\biggr\}.
+\end{align}
+
+Next, we will determine the charge renormalization $\delta Z_e$ from the $ee\gamma$-vertex. For generalization, we explore the $ff\gamma$-vertex for arbitrary fermions $f$. The renormalized vertex function is 
+\begin{equation}
+\hat{\Gamma}^{\gamma ff}_{ij,\mu}(p,p')=-ie\delta_{ij}Q_f\gamma_\mu+ie\hat{\Lambda}^{\gamma ff}_{ij,\mu}(p,p')
+\end{equation}
+
+For on-shell external fermions it can be decomposed as ($k=p'-p$)
+\begin{equation}
+\hat{\Lambda}^{\gamma ff}_{ij,\mu}(p,p')=\delta_{ij}\biggl(\gamma_\mu \hat{\Lambda}^f_V(k^2)-\gamma_\mu\gamma_5\hat{\Lambda}^f_A(k^2)+ \frac{(p+p')_\mu}{2m_f}\hat{\Lambda}^f_S(k^2)+\frac{(p'-p)_\mu}{2m_f}\gamma_5\hat{\Lambda}^f_S(k^2)\biggr)
+\end{equation}
+
+According to eq. (2.39), we obtain
+\begin{align}
+0&=\bar{u}(p)\hat{\Lambda}^{\gamma ff}_{ii,\mu}(p,p)U(p)\nonumber\\
+&=\bar{u}(p)\gamma_\mu u(p) [-Q_f(\delta Z_e+\delta Z^{f,V}_{ii}+\frac{1}{2}\delta Z_AA)\nonumber\\
+&+\Lambda^f_V(0)+\Lambda^f_S(0)+v_f\frac{1}{2}\delta Z_{ZA}]\nonumber\\
+&-\bar{u}(p)\gamma_\mu\gamma_5 u(p)[-Q_f\delta Z^{f,A}_{ii}+\Lambda^f_A(0)+a_f\frac{1}{2}\delta Z_{ZA}],
+\end{align}
+where
+\begin{equation}
+\delta Z^{f,V}_{ii}=\frac{1}{2}(\delta Z^{f,L}_{ii}+\delta Z^{f,R}_{ii}),\quad\quad \delta Z^{f,A}_{ii}=\frac{1}{2}(\delta Z^{f,L}_{ii}-\delta Z^{f,R}_{ii}),
+\end{equation}
+and $v_f$, $a_f$ are the vector and axialvector couplings of the $Z$-boson to the fermion $f$. From eq. (2.47), we have two conditions
+\begin{equation}
+0=-Q_f\biggl( \delta Z_e+\delta Z^{f,V}_ii+\frac{1}{2}\delta Z_{AA}  \biggr)+\Lambda^f_V(0)+\Lambda^f_S(0)+v_f\frac{1}{2}\delta Z_{ZA},
+\end{equation}
+\begin{equation}
+0=-Q_f\delta Z^{f,A}_{ii}+\Lambda^f_A(0)+a_f\frac{1}{2}\delta Z_{ZA}.
+\end{equation}
+The eq. (2.49) for $f=e$ fixes the charge renormalization constant. The eq. (2.50) is fulfilled because of a Ward identity (derived from gauge invariance). Furthermore the same Ward identity yields
+\begin{equation}
+\Lambda^f_V(0)+\Lambda^f_S(0)-Q_f\delta Z^{f,V}_{ii}+a_f\frac{1}{2}\delta Z_{ZA}=0.
+\end{equation}
+Inserting this equation we finally obtain (using $v_f-a_f=-Q_f\frac{s_W}{c_W}$)
+\begin{eqnarray}
+\delta Z_e&=&\frac{1}{2}\delta Z_{AA}-\frac{1}{2}\frac{s_W}{c_W}\delta Z_{ZA}\nonumber\\
+&=&\frac{1}{2}\frac{\partial\Lambda^{AA}_T(k^2)}{\partial k^2}|_{k^2=0}-\frac{s_w}{c_W}\frac{\Sigma^{AZ}_T(0)}{M^2_Z}.
+\end{eqnarray}
+This result is independent of the fermion species, reflecting electric charge universality.
+
+In the on-shell scheme the weak mixing angle is a derived quantity. It is defined as \cite{Sirlin,Marcianosirlin,SirlinMaciano}
+\begin{equation}
+\sin^2\theta_W=s^2_W=1-\frac{M^2_W}{M^2_Z},
+\end{equation}
+using the renormalized gauge boson masses. This definition is process-independent and valid to all orders of perturbation theory. It is convenient to introduce the corresponding counterterms
+\begin{equation}
+c_{W,0}=c_W+\delta c_W,\quad\quad s_{W,0}=s_W+\delta s_W,
+\end{equation}
+which are directly related to the counterterms to the gauge boson mass due to eq. (2.53). To one-loop order we have
+\begin{align}
+\frac{\delta c_W}{c_W}&=\frac{1}{2}\biggl(\frac{\delta M^2_W}{M_W^2}-\frac{\delta M^2_Z}{M_Z^2}\biggr)=\frac{1}{2}\widetilde{\Re}\biggl(\frac{\Sigma^W_T(M_W^2)}{M_W^2}-\frac{\Sigma^{ZZ}_T(M_Z^2)}{M_Z^2}\biggr)\nonumber\\
+\frac{\delta s_W}{s_W}&=-\frac{c^2_W}{s^2_W}\frac{\delta c_W}{c_W}
+=-\frac{1}{2}\frac{c^2_W}{s^2_W}\widetilde{\Re}\biggl(\frac{\Sigma^W_T(M_W^2)}{M_W^2}-\frac{\Sigma^{ZZ}_T(M_Z^2)}{M_Z^2}\biggr).
+\end{align}
+
+We have now got all renormalization constants in terms of unrenormalized self-energies. In the next section, we will introduce the methods to calculate to one-loop radiative corrections. 
+
+\section{One-Loop Integrals}
+Perturbative calculations at one-loop level involve complicated integrals over the loop momentum (scalar, vetor and tersor integrals). In this section, we will introduce the basic modern tools for the calculation of loop diagrams\cite{Denner,PV,DG,tHscarlar}, in which all one-loop intergals can be reduced to the scalar ones.  
+
+\subsection{Scalar One-loop Integrals for $N\leq 4$}
+We first introduce the basic scalar one-loop integrals $A_0$, $B_0$, $C_0$ and $D_0$, which were derived in \cite{tHscarlar}. 
+
+We begin by introducing the scalar one-point function
+\begin{align}
+A_0(m)&=\frac{{(2\pi\mu)}^{4-n}}{i\pi^2}\int d^d q\frac{1}{q^2-m^2+i\epsilon}\nonumber\\
+&=-m^2\biggl(\frac{m^2}{4\pi\mu^2}\biggr)^\frac{d-4}{2}\Gamma\bigg(1-\frac{D}{2}\bigg)\nonumber\\
+&= m^2\bigg( \Delta-\log\frac{m^2}{\mu^2}+1\bigg),
+\end{align} 
+where the UV-divergence is contained in
+\begin{equation}
+\Delta=\frac{2}{4-d}-\gamma_E+\log 4\pi
+\end{equation}
+and $\gamma_E$ is the Euler's constant. 
+
+The scalar two-point function is given by 
+\begin{align}
+B_0(p_{10},m_0,m_1)&=\frac{{(2\pi\mu)}^{4-n}}{i\pi^2}\int d^d q\frac{1}{[q^2-m_0^2+i\epsilon][(q+p_{10})^2-m_1^2+i\epsilon]}\nonumber\\
+&=\Delta+2-\log\frac{m_0m_1}{\mu}+\frac{m^2_0-m^2_1}{p^2_{10}}\log\frac{m_1}{m_0}-\frac{m_0m_1}{p^2_{10}}\biggl(\frac{1}{r}-r\biggr)\log r\nonumber\\
+\end{align}
+where $r$ and $\frac{1}{r}$ are determined from 
+\begin{equation}
+x^2+\frac{m_0^2+m_1^2-p^2_{10}-i\epsilon}{m_0m_1}x+1=(x+r)\bigg(x+\frac{1}{r}\bigg).
+\end{equation}
+
+For the field renormalization constants, the derivative of $B_0$ with respect to $p_{10}^2$ is required. It is given by
+\begin{align}
+\frac{\partial}{\partial p_{10}^2}B_0(p_{10},m_0,m_1)&=-\frac{m_0^2-m_1^2}{p^4_{10}}\log\frac{m_1}{m_0}+\frac{m_0m_1}{p^4_{10}}\biggl(\frac{1}{r}-r\biggr)\log r\nonumber\\
+&-\frac{1}{p^2_{10}}\biggl(1+\frac{r^2+1}{r^2-1}\log r \biggr).
+\end{align} 
+
+The scalar three-point reads
+\begin{eqnarray}
+C_0(p_{10},p_{20},m_0,m_1,m_2)&=&\frac{{(2\pi\mu)}^{4-n}}{i\pi^2}\int d^d q\frac{1}{D_0 D_1 D_2},
+\end{eqnarray}
+where
+\begin{equation}
+D_0=q^2-m_0^2+i\epsilon;\quad D_1=(q+p_1)^2-m_1^2+i\epsilon;\quad D_2(q+p_2)^2-m_2^2+i\epsilon
+\end{equation}
+In order to compute three-point function, we need to introduce two Feynman parameters. The general result for scalar three-point funciton valid for all real momenta and physical masses was calculated by \cite{tHscarlar}. It can be also expressed into symmetric form
+\begin{align}
+&C_0(p_{10},p_{20},m_0,m_1,m_2)=-\int_0^1 dx\int_0^xdy[p^2_{21}x^2+p^2_{10}y^2+(p^2_{20}-p^2_{10}-p^2_{21})xy\nonumber\\
+&+(m_1^2-m^2_2-p^2_{21})x+(m_0^2+m_1^2+p^2_{21}-p^2_{20})y+m_2^2-i\epsilon]^{-1}\nonumber\\
+&=\frac{1}{\alpha}\sum_{i=0}^{2}\biggl\{ \sum_{\sigma=\pm}\biggl[ Li_2\biggl(\frac{y_{0i}-1}{y_{i\sigma}}\biggr)-Li_2\biggl(\frac{y_{0i}}{y_{i\sigma}}\biggr)+\eta\biggl(1-x_{i\sigma},\frac{1}{y_{i\sigma}}\biggr)\log\frac{y_{0i}-1}{y_{i\sigma}}\nonumber\\
+&-\eta\biggl(-x_{i\sigma},\frac{1}{y_{i\sigma}}\biggr)\log\frac{y_{0i}}{y_{i\sigma}} \biggr] -[\eta(-x_{i+},-x_{i-})-\eta(y_{i+},y_{i-})-2\pi i\theta(-p^2_{jk})\nonumber\\
+&\theta(-\Im(y_{i+}y_{i-}))]\log\frac{1-y_{i0}}{y_{i\sigma}}  \biggr\},
+\end{align}
+where 
+\begin{align}
+p_{ij}&=p_i-p_j, \quad p_{i0}=p_i,\nonumber\\
+y_{0i}&=\frac{1}{2\alpha p^2_{jk}}[p^2_{jk}(p^2_{jk}-p^2_{ki}-p^2_{ij}+2m_i^2-m_j^2-m_k^2),\nonumber\\
+&-(p^2_{ki}-p^2_{ij})(m^2_k-m^2_k)+\alpha(p^2_{jk}-m^2_j+m^2_k)],\nonumber\\
+x_{i\pm}&=\frac{1}{2p_{jk}^2}[p^2_{jk}-m^2_j+m^2_k\pm\alpha_i],\nonumber\\
+y_{i\pm}&=y_{0i}-x_{i\pm},\nonumber\\
+\alpha&=\kappa(p^2_{10},p^2_{21},p^2_{20}),\nonumber\\
+\alpha_i&=\kappa(p^2_{ij},m^2_j,m^2_k)(1+i\epsilon p^2_{jk}),
+\end{align}
+and $\kappa$ is the Kallen function
+\begin{equation}
+\kappa(x,y,z)=\sqrt{x^2+y^2+z^2-2(xy+yz+zx)}.
+\end{equation}
+
+The Spence function $Li_2(x)$ is defined as
+\begin{equation}
+Li_2(x)=-\int_{0}^{1}\frac{dt}{t}\log(1-xt),\quad |arg(1-x)|<\pi.
+\end{equation}
+The $\eta$-function is defined as
+\begin{equation}
+\eta(a,b)=2i\pi[\theta(-\Im a)\theta(-\Im b)\theta(-\Im ab)-\theta(\Im a)\theta(-\Im b)\theta(-\Im ab)]
+\end{equation}
+All $\eta$-functions in eq. (2.63) vanish if $\alpha$ and all the masses $m_i$ are real.
+
+Next, let us investigate the scalar four-point function $D_0(p_{10},p_{20},p_{30},m_0,m_1\\,m_2,m_3)$, which can be expressed in terms of 16 dilogarithms \cite{s4pt} instead of 24 dilogarithms of the result calculated by \cite{tHscarlar}.
+
+The scalar four-point integral can be expressed in the symmetric form
+\begin{eqnarray}
+D_0(p_{10},p_{20},p_{30},m_0,m_1,m_2,m_3)&=&\frac{{(2\pi\mu)}^{4-n}}{i\pi^2}\int d^d q\frac{1}{D_0 D_1 D_2 D_3},
+\end{eqnarray}
+where
+\begin{eqnarray}
+&&D_0=q^2-m_0^2+i\epsilon,\quad D_1=(q+p_1)^2-m_1^2+i\epsilon,\nonumber\\ &&D_2=(q+p_2)^2-m_2^2+i\epsilon,\quad D_3=(q+p_3)^2-m_3^2+i\epsilon
+\end{eqnarray}
+
+We first give some variables and functions before we exhibit the result. We define
+\begin{equation}
+k_{ij}=\frac{m^2_i+m^2_j-p_{ij}^2}{m_i m_j}, \quad 1\leq i<j\leq 4.
+\end{equation}
+The quantities $r_{ij}$ and $\widetilde{r}_{ij}$ are defined by 
+\begin{equation}
+\begin{cases}
+x^2+k_{ij}x+1=(x+r_{ij})(x+1/r_{ij}),\\
+x^2+(k_{ij}-i\epsilon)x+1=(x+\widetilde{r}_{ij})(x+1/\widetilde{r}_{ij}).
+\end{cases}
+\end{equation} 
+Note that for real $k_{ij}$ the $r_{ij}$'s lie either on the real axis or on the complex unit circle. In addition,
+\begin{eqnarray}
+P(y_0,y_1,y_2,y_3)&=&\sum_{0\leq i<j\leq 3}k_{ij}y_i y_j+\sum_{j=0}^{3}y^2_j,\nonumber\\
+Q(y_0,y_1,0,y_3)&=&(1/r_{02}-r_{02})y_0+(k_{12}-r_{02}k_{01})y_1+(k_{23}-r_{02}k_{03})y_3,\nonumber\\
+Q(y_0,0,y_2,y_3)&=&(1/r_{13}-r_{13})y_3+(k_{12}-r_{13}k_{23})y_2+(k_{01}-r_{13}k_{03})y_0.\nonumber\\
+\end{eqnarray}
+and $x_{1,2}$ is determined by
+\begin{eqnarray}
+ax^2+bx+c+i\epsilon d=\frac{r_{02}r_{13}}{x}\biggl\{ \biggl[ P   \biggl(1,\frac{x}{r_{13}},0,0 \biggr)-i\epsilon\biggr]\biggl[ P   \biggl(0,0,\frac{x}{r_{02}},x \biggr)-i\epsilon\biggr]\nonumber\\
+-\biggl[ P   \biggl(0,\frac{x}{r_{13}},\frac{1}{r){02}},0 \biggr)-i\epsilon\biggr]\biggl[ P   \biggl(1,0,0,x \biggr)-i\epsilon\biggr] \biggr\},\nonumber\\
+\end{eqnarray}
+where
+\begin{equation}
+\begin{cases}
+a=k_{23}/r_{13}+r_{02}k_{01}-k_{03}r_{02}/r_{13}-k_{12},\\
+b=(r_{13}-1/r_{13})(r_{02}-1/r_{02})+k_{01}k_{23}-k_{03}k_{12},\\
+c=k_{01}/r_{02}+r_{13}k_{23}-k_{03}r_{13}/r_{02}-k_{12},\\
+d=k_{12}-r_{02}k_{01}-r_{13}k_{23}+r_{02}r_{13}k_{03}.
+\end{cases}
+\end{equation}
+Furthermore, we introduce
+\begin{equation}
+\gamma_{kl}=sgn\Re[a(x_k-x_l)], \quad k,l=1,2,
+\end{equation}
+\begin{equation}
+\begin{cases}
+x_{k0}=x_k,  &s_0=\tilde{r}_{03}\\
+x_{k1}=x_k/r_{13},  &s_1=\tilde{r}_{01}\\
+x_{k2}=x_kr_{02}/r_{13},  &s_2=\tilde{r}_{12}\\
+x_{k3}=x_kr_{02},   &s_3=\tilde{r}_{23}
+\end{cases}
+\end{equation}
+and
+\begin{equation}
+x^{(0)}_{kj}=\lim_{\epsilon\to 0}x_{kj}\quad\text{as}\quad r_{ij}=\lim_{\epsilon\to 0}\widetilde{r}_{ij}
+\end{equation}
+
+At last, we introduce
+\begin{equation}
+\widetilde{\eta}(a,\widetilde{b})
+=\begin{cases}
+\eta(a,b) & \text{for $b$ not real},\\
+2\pi i[\theta(-Ima)\theta(-Im\widetilde{b})-\theta(Ima)\theta(Im\widetilde{b})]& \text{for $b<0$},\\
+0 &\text{for $b>0$},
+\end{cases}
+\end{equation}
+with $b=\lim_{\epsilon\to 0}\widetilde{b}$.
+
+Then we have the result for real $r_{02}$
+\begin{eqnarray}
+&&D_0(p_{10},p_{20},p_{30},m_0,m_1,m_2,m_3)=\frac{1}{m_1m_2m_3m_4a(x_1-x_2)}\nonumber\\
+&&\times\biggl\{ \sum_{j=0}^{3}\sum_{k=1}^{2}(-1)^{j+k}\biggl[ Li_2(1+s_jx_{kj})+\eta(-x_{kj},s_j)\log(1+s_jx_{kj}) \nonumber\\
+&&+Li_2\biggl(1+\frac{x_{kj}}{s_j}\biggr)+\eta\biggl(-x_{xj},\frac{1}{s_j}\biggr)\log\bigg(1+\frac{x_{kj}}{s_j}\bigg)\biggr]\nonumber\\
+&&+\sum_{k=1}^{2}(-1)^{k+1}\biggl[\widetilde{\eta}(-x_{kj},\frac{1}{s_j}) \biggl[ \log(r_{02}x_k)+\log\biggl(Q\biggl(\frac{1}{x_k^{(0)}},0,0,1\biggr)-i\epsilon \biggr)\nonumber\\
+&& +\log\biggl( \frac{\bar{Q}(0,0,1,r_{02}x_k^{(0)})}{d}+i\epsilon\gamma_{k,3-k}sgn(r_{02}Im\widetilde{r}_{13})\biggr) \biggr]\nonumber\\
+&& -\widetilde{\eta}\biggl(-x_k,\frac{1}{\widetilde{r}_{13}}\biggr) \biggl[ \log\biggl(\frac{x_k}{r_{13}}\biggr)+\log\biggl( Q\biggl(\frac{r_{13}}{x_k^{(0)}},1,0,0\biggr)-i\epsilon \biggr)\nonumber\\
+&&+\log\biggl( \frac{\bar{Q}(1,0,0,x_k^{(0)})}{d}+i\epsilon\gamma_{k,3-k}sgn(Im\widetilde{r}_{13})\biggr) \biggr]\nonumber\\
+&&-\biggl[ \widetilde{\eta}\biggl(-x_k,\frac{\widetilde{r}_{02}}{\widetilde{r}_{13}} \biggr)+\widetilde{\eta}\biggl(\widetilde{r}_{02},\frac{1}{\widetilde{r}_{13}}\biggr) \biggr]\biggl[ \log\biggl(\frac{r_{02}x_k}{r_{13}}\biggr)+\log\biggl(Q\biggl(\frac{r_{13}}{x^{(0)}_k},1,0,0\biggr)-i\epsilon\biggr)\nonumber\\
+&& +\log\biggl(\frac{\bar{Q}(1,0,0,r_{02}x_k^{(0)})}{d}+i\epsilon\gamma_{k,3-k}sgn(r_{02}Im\widetilde{r}_{13})\biggr)  \biggl]\nonumber\\
+&&+\eta\biggl(\widetilde{r}_{02},\frac{1}{\widetilde{r}_{13}}\biggr)\widetilde{\eta}\bigg(-x_k,-\frac{\widetilde{r}_{02}}{\widetilde{r}_{13}}\bigg)
+\biggr]\biggr\}.
+\end{eqnarray}
+In the case that $|r_{ij}|=1$ for all $r_{ij}$, the result can be written as
+\begin{eqnarray}
+&&D_0(p_{10},p_{20},p_{30},m_0,m_1,m_2,m_3)=\frac{1}{m_1m_2m_3m_4a(x_1-x_2)}\nonumber\\
+&&\biggl\{  \sum_{j=0}^{3}\sum_{k=1}^{2}(-1)^{j+k}\biggl[ Li_2(1+s_jx_{kj})+\eta(-x_{kj},s_j)\log(1+s_jx_{kj}) \nonumber\\
+&&+Li_2\biggl(1+\frac{x_{kj}}{s_j}\biggr)+\eta\biggl(-x_{xj},\frac{1}{s_j}\biggr)\log\bigg(1+\frac{x_{kj}}{s_j}\bigg)\biggr]\nonumber\\
+&&+\sum_{k=1}^{2}(-1)^{k+1} \biggl[ \eta\biggl(-x_k,\frac{1}{r_{13}}\biggr)\biggl[
+log\biggl(\frac{r_{13}}{x_k^{(0)}}P\biggl(1,\frac{x_k^{(0)}}{r_[13]},0,0\biggr)-\frac{x_k^{(0)}}{r_{13}}\epsilon b\gamma_{k,3-k}\biggr)\biggr] \nonumber\\
+&& +\eta(-x_k,r_{02})\biggl[ \log\biggl( \frac{1}{r_{02}x_k^{(0)}}P\bigl(0,0,1,r_{02}x_k^{(0)}\bigr)-r_{02}x_k^{(0)}\epsilon b\gamma_{k,3-k}\biggr)+\log\bigl(r_{02}x_k^{(0)}\bigr) \biggr]  \nonumber\\
+&&-\biggl[\eta\biggl(-x_k,\frac{r_{02}}{r_{13}}\biggr)+\eta\biggl(r_{02},\frac{1}{r_{13}}\biggr)\biggr]\biggl[ \log\biggl( \frac{r_[13]}{r_{02}x_k^{(0)}} P\biggl(0,1,\frac{r_{02}x_k^{(0)}}{r_{13}},0\biggr)-\frac{r_{02}x_k^{(0)}}{r_{13}}\epsilon b\gamma_{k,3-k} \biggr)
+\nonumber\\
+&&+\log\biggl(\frac{r_{02}x_k^{(0)}}{r_{13}}\biggr)\biggr]+(1-\gamma_{k,3-k}sgn(b))\eta\biggl( -x_k.-\frac{r_{02}}{r_{13}} \biggr)\eta\biggl(r_{02},\frac{1}{r_{13}}\biggr) \biggr]\biggr\}.
+\end{eqnarray}
+
+\subsection{Tensor Integral Reduction}
+We have introduced the four basic scalar integrals $A_0$, $B_0$, $C_0$ and $D_0$ for calculations of the perturbative quantum field theory. Besides the scalar integrals we also need tensor integrals in the perturbative calculations, of which the evaluations could be very complicated in practice. In order to deal with these complications, we follow one particular procedure \cite{Denner,PV} in which these tensor structures could be reduced to linear combinations of scalar integrals. 
+
+In general, the one-loop integrals in $d$-dimensions are classfied with the the number $N$ of propagators in the denominator and the number $P$ of integration momenta in the numerators. According to power counting, the integrals with $P+D-2N\geq 0$ are UV-divergent. The divergencies can be regulated by evaluating the integrals in general dimensions $d\ne 4$ (dimensional regularization \cite{tHooftVeltman}). The UV-divergences would be cancelled in the procedure of the renormalization. For renormalizable theories we have $P\leq N$ and therefore a finite number of divergent integrals.    
+
+We define the general one-loop tensor integral as
+\begin{equation}
+T^N_{\mu_1\cdots\mu_P}(p_1,\cdots,p_{N_1},m_0,\cdots,m_{N_1})=\frac{{(2\pi\mu)}^{4-d}}{i\pi^2}\int d^d q\frac{q_{\mu 1}\cdots q_{\mu P}}{D_0 D_1\cdots D_{N-1}}
+\end{equation}
+where the denominator factors
+\begin{equation}
+D_0=q^2-m_0^2+i\epsilon,\quad D_i=(q+p_i)^2-m_i^2+i\epsilon,\quad i=1,\dots,N-1,
+\end{equation}
+arising from the propagators in the Feynman diagram. Moreover we introduce
+\begin{equation}
+p_{i0}=p_i\quad \text{and} \quad p_{ij}=p_i-p_j.
+\end{equation}
+
+\begin{axopicture}(260,200)
+	\Line[arrow](95.36,80)(95.36,120)
+	\Line[arrow](95.36,120)(130,140)
+	\Line[arrow](130,140)(164.64,120)
+	\DashLine(164.64,120)(164.64,80){3}	
+	\Line[arrow](164.64,80)(130,60)
+	\Line[arrow](130,60)(95.36,80)
+	\Line[arrow](130,180)(130,140)
+	\Line[arrow](130,20)(130,60)
+	\Line[arrow](60.72,60)(95.36,80)
+	\Line[arrow](60.72,140)(95.36,120)
+	\Text(130,10){$p_{N-1 N-2}$}
+	\Text(50.72,50){$p_{NN-1}$}
+	\Text(50.72,140){$p_1$}
+	\Text(130,190){$p_{21}$}
+	\Text(85,100){$q$}
+	\Text(126,80){$q+p_{N-1}$}
+	\Text(122,120){$q+p_{1}$}
+	\Text(178,70){$q+p_{N-2}$}
+	\Text(165,135){$q+p_2$}
+\end{axopicture}
+
+Apparently the tensor integrals are invariant under permutations of the propagators $D_i$, $i\neq 0$ and totally symmetric in the Lorentz indices $\mu_k$. $i\epsilon$ is an infinitesimal imaginary part which regulates singularities of the integrand. Its specific choice guarantees causality. The parameter $\mu$ has mass dimension and play a role to keep the dimension of the integrals fixed for varying $d$. Conventionally $T^N$ is denoted by the $Nth$ character of alphabet, i.e. $T^1\equiv A$, $T^2\equiv B$,$\cdots$, and the scalar integrals carry a subscript $0$.
+
+Lorentz covariance of the integrals allows to decompose tensor integrals into tensors constructed from the external momenta $p_i$, and the metric tensor $g_{\mu\nu}$ with totally symmetric coefficient functions $T^N_{i_1\cdots i_P}$. Formally we introduce an artificial momentum $p_0$ to write terms containg $g_{\mu\nu}$ in a compact way 
+\begin{equation}
+T^N_{\mu_1\cdots\mu_P}(p_1,\cdots,p_{N_1},m_0,\cdots,m_{N_1})=\sum_{i_1,\cdots,i_P=0}^{N-1}T^N_{i_1\cdots i_p}p_{i1}p_{i_1\mu_1}\cdots p_{i_P\mu_P},
+\end{equation}
+the $g_{\mu\nu}$ terms are recovered by omitting terms containing an odd number of $p_0$'s and replacing the products of even numbers of $p_0$'s by the corresponding totally symmetric tensor constructed from the $g_{\mu\nu}$, for example,
+\begin{align}
+p_{0\mu 1}p_{0\mu 2} &\to g_{\mu 1\mu 2}\nonumber\\
+p_{0\mu 1}p_{0\mu 2}p_{0\mu 3}p_{0\mu 4} &\to g_{\mu 1\nu 1}g_{\mu 3\nu 4}+g_{\mu 1\nu 3}g_{\mu 2\nu 4}=g_{\mu 1\nu 4}g_{\mu 2\nu 3}.
+\end{align}
+
+The explicit Lorentz decompositions for the lowest order integral are listed as follows:
+\begin{align}
+B_\mu &= p_{1\mu}B_1,\nonumber\\
+B_{\mu\nu}&=g_{\mu\nu}B_{00}+p_{1\mu}p_{1\nu}B_{11},
+\end{align}
+\begin{align}
+C_\mu &= p_{1\mu}C_1+p_{2\mu}C_2=\sum_{i=1}^{2}p_{i\mu}C_i,\nonumber\\
+C_{\mu\nu}&=g_{\mu\nu}C_{00}+p_{1\mu}p_{1\nu}C_{11}+p_{2\mu}p_{2\nu}C_{2}+(p_{1\mu}p_{2\nu}+p_{2\mu}p_{1\nu})C_{12}\nonumber\\
+&=g_{\mu\nu}C_{00}+\sum_{i,j=1}^2 p_{i\mu}p_{j\nu}C_{ij},\nonumber\\
+C_{\mu\nu\rho}&=(g_{\mu\nu}p_{1\rho}+g_{\nu\rho}p_{1\mu}+g_{\mu\rho}p_{1\nu})C_{001}+(g_{\mu\nu}p_{2\rho}+g_{\nu\rho}p_{2\mu}+g_{\mu\rho}p_{2\nu})C_{002}\nonumber\\
+&+p_{1\mu}p_{1\nu}p_{1\rho}C_{111}+p_{2\mu}p_{2\nu}p_{2\rho}C_{222}\nonumber\\
+&+(p_{1\mu}p_{1\nu}p_{2\rho}+p_{1\mu}p_{2\nu}p_{1\rho}+p_{2\mu}p_{1\nu}p_{1\rho})C_{112}\nonumber\\
+&+(p_{2\mu}p_{2\nu}p_{1\rho}+p_{2\mu}p_{1\nu}p_{2\rho}+p_{1\mu}p_{2\nu}p_{2\rho})C_{122}\nonumber\\
+&=\sum_{i=1}^2(g_{\mu\nu}p_{i\rho}+g_{\nu\rho}p_{i\mu}+g_{\mu\rho}p_{i\nu})C_{00i}+\sum_{i,j,k=1}^2 p_{i\mu}p_{j\nu}p_{k\rho}C_{ijk},
+\end{align}
+\begin{align}
+D_\mu&=\sum_{i=1}^{3}p_{i\mu}D_i,\nonumber\\
+D_{\mu\nu}&=g_{\mu\nu}D_{00}+\sum_{i,j=1}^3 p_{i\mu}p_{j\nu}D_{ij},\nonumber\\
+D_{\mu\nu\rho}&=\sum_{i=1}^3(g_{\mu\nu}p_{i\rho}+g_{\nu\rho}p_{i\mu}+g_{\mu\rho}p_{i\nu})D_{00i}+\sum_{i,j,k=1}^3p_{i\mu}p_{j\nu}p_{k\rho}D_{ijk}\nonumber\\
+D_{\mu\nu\rho\sigma}&=(g_{\mu\nu}g_{\rho\sigma}+g_{\mu\rho}g_{\nu\sigma}+g_{\mu\sigma}g_{\nu\rho})D_{0000}\nonumber\\
+&+\sum_{i,j=1}^3( g_{\mu\nu}p_{i\rho}p_{j\sigma}+g_{\nu\rho}p_{i\mu}p_{j\sigma}+g_{\mu\rho}p_{i\nu}p_{j\sigma}\nonumber\\
+&+g_{\mu\sigma}p_{i\nu}p_{j\rho}+g_{\nu\sigma}p_{i\mu}p_{j\rho}+g_{\rho\sigma}p_{i\mu}p_{j\nu} )D_{00ij}\nonumber\\
+&+\sum_{i,j,k=1}^3 p_{i\mu}p_{j\nu}p_{k\rho}p_{l\sigma}D_{ijkl}
+\end{align}
+
+For a general tensor integral with $N\geq 5$, the terms involving $g_{\mu\nu}$ should be omitted since the four dimensional space is spanned by four Lorentz vectors. Furthermore, the decomposition (2.84) should contain at most four Lorentz vectors. Therefore, the decomposition (2.84) arrives at
+\begin{equation}
+T^N_{\mu_1\cdots\mu_P}(p_1,\cdots,p_{N_1},m_0,\cdots,m_{N_1})=\sum_{i_1,\cdots,i_P=0}^{4}T^N_{i_1\cdots i_p}p_{i_1\mu_1}\cdots p_{\mu P},
+\end{equation} 
+where $\{p_1,\cdots,p_4\}$ is any set of four linear independent Lorentz vectors out of $\{p_1,\cdots,p_{N-1}\}$. The symmetry of the tensor integrals under exchange of the propagators gives rise to relations between the scalar coefficient functions. Exchanging the arguments $(p_i,m_i)\leftrightarrow(p_j,m_j)$ together with the corresponding indices $i\leftrightarrow j$ leaves the scalar coefficient functions invariant, for example,
+\begin{align}
+C_1(p_1,p_2,m_0,m_1,m_2)&=C_1(p_2,p_1,m_0,m_2,m_1),\nonumber\\
+C_{00}(p_1,p_2,m_0,m_1,m_2)&=C_{00}(p_2,p_1,m_0,m_2,m_1),\nonumber\\
+C_{12}(p_1,p_2,m_0,m_1,m_2)&=C_{12}(p_2,p_1,m_0,m_2,m_1).
+\end{align}
+
+All one-loop tensor integrals could be expressed itereatively in terms of the scalar ones $T^N_0$($A_0$, $B_0$, $C_0$, $D_0$$\dots$), using the Lorentz decomposition of the tensor integrals. We will derive the general procedure for the tensor integral.
+
+The product of the integration momentum $q_\mu$ with an external momentum could be written in terms of the denominators
+\begin{equation}
+qp_k=\frac{1}{2}[D_k-D_0-f_k],\quad f_k=p^2_k-m^2_k+m^2_0.
+\end{equation}
+
+Multiplying eq. (2.81) with $p_k$ and substituting eq. (2.91) yields
+\begin{align}
+R^{N,k}_{\mu_1\cdots \mu_{P-1}}&=T^N_{\mu_1\cdots\mu_P}p^{\mu_P}_k\nonumber\\
+&=\frac{1}{2}\frac{(2\pi\mu)^{4-d}}{i\pi^2}\int d^dq\biggl[  \frac{q_{\mu_1}\cdots q_{\mu_{P-1}}}{D_0\cdots D_{k-1}D_{k+1}\cdots D_{N-1}}\nonumber\\
+&-\frac{q_{\mu_1}\cdots q_{\mu_{P-1}}}{D_1\cdots D_{N-1}}-f_k \frac{q_{\mu_1}\cdots q_{\mu_{P-1}}}{D_1\cdots D_{N-1}}\biggr]\nonumber\\
+&=\frac{1}{2}[T^{N-1}_{\mu_1\cdots \mu_{P-1}}(k)-T^{N-1}_{\mu_1\cdots \mu_{P-1}}(0)-f_k T^{N}_{\mu_1\cdots \mu_{P-1}}],
+\end{align}
+where the argument $k$ in $T^{N-1}_{\mu_1\cdots \mu_{P-1}}(k)$ implies that the propagator $D_k$ was eliminated. Note that $T^{N-1}_{\mu_1\cdots \mu_{P-1}}(0)$ has an external momentum in its first propagator. So we need to perform a shift of the integration momentum to recover it to the form (2.81). All tensor integrals on the right-hand side of eq. (2.92) have one Lorentz index less than the original tensor integral. In two of them one propagator is cancelled.
+
+For $P\geq2$, contracting eq. (2.81) with $g_{\mu\nu}$ and using
+\begin{equation}
+g^{\mu\nu}q_\mu q_\nu=q^2=D_0+m_0^2,
+\end{equation}
+yields
+\begin{align}
+R^{N,00}_{\mu_1\cdots\mu_{P-2}}&=T^N_{\mu_1\cdots\mu_P}g^{\mu_{P-1}\mu_P}\nonumber\\
+&=\frac{(2\pi\mu)^{4_d}}{i\pi^2}\int d^dq\biggl[ \frac{q_{\mu_1}\cdots q_{\mu_{P-2}}}{D_1\cdots D_N}+m^2_0\frac{q_{\mu_1}\cdots q_{\mu_{P-2}}}{D_0\cdots D_N} \biggr]\nonumber\\
+&=[T^{N-1}_{\mu_1\cdots\mu_{P-2}}(0)+m_0^2T^N_{\mu_1\cdots\mu_{P-2}}].
+\end{align}
+Plugging the Lorentz decomposition (2.84) for the tensor integrals in eqs. (2.92) and (2.94) we obtain a set of linear equations for the corresponding coefficient functions. This set decomposes into disjoint set of $N-1$ equations for each tensor integral. If the inverse of the matrix
+\begin{equation}
+X_{N-1}=
+\left(
+\begin{array}{cccc}
+p_1^2 & p_1p_2 & \cdots & p_1p_{N-1}\\
+p_2p_1 & p^2_2 & \cdots & p_2p_{N-1}\\
+\vdots & \vdots & \ddots & \vdots \\
+p_{N-1} & p_{N-1}p_2 & \cdots & p^2_{N-1}
+\end{array}
+\right)
+\end{equation}
+exists, these can be solved for the invariant functions $T^N_{i_1\cdots i_P}$. In this way all tensor integrals are reduced iteratively to scalar integrals $T^L_0$ with $L\leq N$.
+
+If the matrix $X_{N-1}$ becomes singular, the reduction algorithm fails. If this is due to the linear dependence of the momenta we can leave out the linear dependent vectors of the set $\{p_1,\cdots,p_{N-1} \}$ in the Lorentz decomposition bringing in a smaller matrix $X_M$. If $X_M$ is nonsingular the reduction 
+algorithm works again. This occurs at the edge of phase space where some of the momenta $p_i$ become collinear.
+
+Now we exhibit the results for reduction of arbitrary $N$-point integrals depending on $M\leq N-1$ linear independent Lorentz vectors in $d$ dimensions for nonsingular matrix $X_M$. Inserting the Lorentz decomposition of $T_N$, $R^{N,K}$ and $R^{N,00}$ 
+\begin{align}
+R^{N,K}_{\mu_1\cdots\mu_{P-1}}&=T^N_{\mu_1\cdots\mu_P}p^{\mu_P}_k=\sum_{i_1,\cdots,i_{P-1}=0}^{M} R^{N,K}_{i_1\cdots i_{P-1}}p_{i_1\mu_1}\cdots p_{i_{P-1}\mu_{P-1}},\nonumber\\
+R^{0,0}_{\mu_1\cdots\mu_{P-1}}&=T^N_{\mu_1\cdots\mu_P}g^{\mu_{P-1}\mu_P}=\sum_{i_1,\cdots,i_{P-2}=0}^{M} R^{N,00}_{i_1\cdots i_{P-2}}p_{i_1\mu_1}\cdots p_{i_{P-2}\mu_{P-2}},\nonumber\\
+\end{align} 
+into eqs. (2.92) and (2.94), these equations could be solved for $T^N_{i_1\cdots i_P}$:
+\begin{align}
+T^N_{00i_1\cdots i_{P-2}}&=\frac{1}{D+P-2-M}\biggl[R^{N,00}_{i_1\cdots i_{P-2}}-\sum_{k=1}^{M}R^{N,k}_{ki_1\cdots i_{P-2}}\biggr],\nonumber\\
+T^N_{ki_1\cdots i_{P-1}}&=(X^{-1}_M)_{kk'}\biggl[ R^{N,k'}_{i_1\cdots i_{P-1}}-\sum_{r=1}^{P-1}\delta^{l'}_{i_r}T^N_{00i_1\cdots i_{r-1}i_{r+1}\cdots i_{P-1}} \biggr].
+\end{align}
+Using the eq. (2.92) and (2.94), the $R$'s can be expressed in terms of $T^N_{i_1\cdots i_{P-1}}$, and $T^{N-1}_{i_1\cdots i_q}$, with $q<P$:
+\begin{align}
+R^{N,00}_{i_1\cdots i_q \underbrace{M\cdots M}_{P-2-q}}&=m^2_0 T^N_{i_1\cdots i_q \underbrace{M\cdots M}_{P-2-q}}\nonumber\\
+&+(-1)^{P-q}\biggl[\widetilde{T}^{N-1}_{i_1\cdots i_q}(0)+\binom{P-2-q}{1}\sum_{k_1=1}^{M-1}\widetilde{T}^{N-1}_{i_1\cdots i_qk_1}(0) \nonumber\\
+&+\binom{P-2-q}{2}\sum_{k_1,k_2=1}^{M-1}\widetilde{T}^{N-1}_{i_1\cdots i_qk_1k_2}(0)+\cdots \nonumber\\
+&+\binom{P-2-q}{P-2-q}\sum_{k_1,\cdots,k_{P-2-q}=1}^{M-1}\widetilde{T}^{N-1}_{i_1\cdots i_qk_1\cdots k_{P-2-q}}(0)
+\biggr],
+\end{align} 
+\begin{align}
+R^{N,k}_{i_1\cdots i_q \underbrace{M\cdots M}_{P-1-q}}&=\frac{1}{2}\biggl\{  T^N_{\tilde{i_1}\cdots \tilde{i_q} \underbrace{M\cdots M}_{P-1-q}}(k)\theta(k|i_1,\cdots,i_q,M,\cdots,M)\nonumber\\
+&-f_kT^N_{i1\cdots i_q\underbrace{M\cdots M}_{P-1-q}}-(-1)^{P-1-q}\biggl[\widetilde{T}^{N-1}_{i_1\cdots i_q}(0)\nonumber\\
+&+\binom{P-1-q}{1}\sum_{k_1=1}^{M-1}\widetilde{T}^{N-1}_{i_1\cdots i_qk_1}(0) \nonumber\\
+&+\binom{P-1-q}{2}\sum_{k_1,k_2=1}^{M-1}\widetilde{T}^{N-1}_{i_1\cdots i_qk_1k_2}(0)+\cdots \nonumber\\
+&+\binom{P-1-q}{P-1-q}\sum_{k_1,\cdots,k_{P-1-q}=1}^{M-1}\widetilde{T}^{N-1}_{i_1\cdots i_qk_1\cdots k_{P-1-q}}(0)
+\biggr]
+\biggr\}
+\end{align}
+where $i_1,\cdots,i_q\neq M$ and
+\begin{equation}
+\theta(k|i_1,\cdots,i_{P-1})=
+\begin{cases}
+1 & i_r\neq k, \quad r=1,\cdots,P-1,\\
+0 & \text{else}.
+\end{cases}
+\end{equation}
+The indices $\tilde{i}$ denotes the $i$-th momentum of the corresponding $N$-point function $T^N$ but to the $(i-1)$-th momentum of the $(N-1)$-point function $T^{N-1}(K)$ if $i>k$. In sum, with the reduction algorithm above all one-loop integrals can be reduced to the scalar ones as long as  the matrices $X_M$ are nonsingular.
+
+Next we take the reduction of tensor two-point integrals as an example to illustrate the reduction algorithm describe above.
+
+We start with 
+\begin{equation}
+B_0(p_{10},m_0,m_1)=\frac{{(2\pi\mu)}^{4-n}}{i\pi^2}\int d^d q\frac{1}{D_0 D_1}=p_{10\mu}B_1(P^2_{10},m^2_0,m_1^2).
+\end{equation}
+Using the relation $q^2=D_0-m_0^2$ with (for convenience, $p_{10}\to p$)
+\begin{equation}
+qp=\frac{1}{2}(D_1-D_0-f), \quad f=p^2-m_1^2+m_2^2,
+\end{equation}
+we derive the following relations:
+\begin{equation}
+p^2B_1(p^2,m_0^2,m_1^2)=\frac{1}{2}[A_0(m_0)-A_0(m_1)-fB_0(p,m_0^2,m_1^2)].
+\end{equation}
+Therefore we have
+\begin{equation}
+B_1(p^2,m_1,m_0)=\frac{1}{2p^2}[A_0(m_0)-A_0(m_1)-(m_0^2-m_1^2-p^2)B_0(p,m_0^2,m_1^2)].
+\end{equation}
+
+
+The rank two tensor integral can be reduced as follows:
+\begin{equation}
+B_{\mu\nu}(p^2,m_0^2,m_1^2)=g_{\mu\nu}B_{00}(p^2,m_0^2,m_1^2)+p_{\mu}p_\nu B_{11}(p^2,m_0^2,m_1^2)
+\end{equation}
+Multiplying eq.(2.105) by $g_{\mu\nu}$ and $p_\nu$ yields
+\begin{equation}
+\begin{cases}
+&p^2B_{11}(p^2,m_0^2,m_0^2)+dB_{00}(p^2,m_0,m_1)=A_0(m_1)-m_0^2B_0(p^2,m_0^2,m_1^2)\\
+&p^2B_{11}(p^2,m_0^2,m_0^2)+B_{00}(p^2,m_0,m_1)=\frac{1}{2}[A_0(m_1)-fB_0(p^2,m_0^2,m_1^2)]
+\end{cases}
+\end{equation}
+After a simple calculation, we have
+\begin{align}
+B_0(p^2,m_0^2,m_1^2)&=\frac{1}{\Delta}-\int_{0}^{1}dx\log\left(\frac{\chi}{\mu^2}\right)\to \frac{1}{\Delta},\nonumber\\
+B_1(p^2,m_0^2,m_1^2)&=-\frac{1}{2}\frac{1}{\Delta}-\int_{0}^{1}xdx\log\left(\frac{\chi}{\mu^2}\right)\to -\frac{1}{2}\frac{1}{\Delta},\nonumber\\
+B_{11}(p^2,m_0^2,m_1^2)&=\frac{1}{3}\frac{1}{\Delta}-\int_{0}^{1}dxx^2\log\left(\frac{\chi}{\mu^2}\right)\to \frac{1}{3}\frac{1}{\Delta},\nonumber\\
+B_{22}(p^2,m_0^2,m_1^2)&=-\frac{1}{2}\left(\frac{1}{\Delta}+1\right)\int_{0}^{1}dx\chi+\frac{1}{2}\int_{0}^{1}dx\chi\log\left(\frac{\chi}{\mu^2}\right)\nonumber\\
+&\to -\frac{1}{4}\left(\frac{1}{3}p^2-m_0^2-m_1^2\right)\frac{1}{\Delta},
+\end{align}
+where
+\begin{eqnarray}
+&&\chi(x)=-p^2x^2+(p^2-m_1^2+m_0^2)x-m_0^2,\nonumber\\
+&&\Delta=\frac{2}{4-d}-\gamma_E+\log(4\pi).
+\end{eqnarray}
+Using these relations, we get 
+\begin{equation}
+dB_{22}(p^2,m_0,m_1)=4B_{22}(p^2,m_0^2,m_1^2)+\frac{K^2}{6},\quad K^2=p^2-3(m_0^2+m_1^2).
+\end{equation}
+Furthermore we have
+\begin{equation}
+\begin{cases}
+&p^2B_{11}(p^2,m_0^2,m_0^2)+4B_{00}(p^2,m_0,m_1)=A_0(m_1)-m_0^2B_0(p^2,m_0^2,m_1^2)-\frac{K^2}{6}\\
+&p^2B_{11}(p^2,m_0^2,m_0^2)+B_{00}(p^2,m_0,m_1)=\frac{1}{2}[A_0(m_1)-fB_0(p^2,m_0^2,m_1^2)].
+\end{cases}
+\end{equation}
+At this moment we introduce a $X_1$-matrix (nonsingular)
+\begin{equation}
+\left(
+\begin{array}{cc}
+p^2 & 4\\
+p^2 & 1
+\end{array}
+\right)
+\end{equation}
+and the vector $b$
+\begin{equation}
+b=\left(
+\begin{array}{c}
+b_1\\b_2
+\end{array}\right)
+=
+\left(
+\begin{array}{c}
+A_0(m_1^2)-m_0^2B_0(p^2,m_0^2,m_1^2)-\frac{K^2}{6}\\
+\frac{1}{2}\left[A_0(m_1)+fB_1(p^2,m_0,m_1)\right]
+\end{array}
+\right)
+\end{equation}
+Therefore, $B_{00}(p^2,m_0^2,m_1^2)$ and $B_{11}(p^2,m_0^2,m_1^2)$ can be obtained by using the inverse of matrix $X_1$
+\begin{equation}
+\left(
+\begin{array}{c}
+B_{11}(p^2,m_0^2,m_1^2)\\B_{00}(p^2,m_0^2,m_1^2)
+\end{array}
+\right)
+=X_1^{-1}\left(
+\begin{array}{c}
+b_1\\b_2
+\end{array}\right).
+\end{equation}
+Now the tensor two-point integrals have been reduced to the scalar integrals $A_0$ and $B_0$ and their explicit expressions are listed as follows:
+\begin{align}
+B_1(p^2,m_0^2,m_1^2)&=\frac{1}{2p^2}[A_0(m_0)-A_0(m_2)+(m_1^2-m_0^2-p^2)B_0(p^2,m_0^2,m_1^2)],\nonumber\\
+B_{11}(p^2,m_0^2,m_1^2)&=\frac{p^2-3(m_0^2+m_1^2)}{18p^2}\nonumber\\
+&+\frac{\Delta m^2-p^2}{3p^4}A_0(m_0)-\frac{\Delta m^2-2p^2}{3p^4}A_0(m_1)
+\nonumber\\
+&+\frac{\kappa(-p^2,-m_0^2,-m_1^2)+3p^2m_0^2}{3p^4}B_0(p^2,m_0,m_1),\nonumber\\
+B_{22}(p^2,m_0^2,m_1^2)&=-\frac{p^2-3(m_0^2+m_1^2)}{18}\nonumber\\
+&-\frac{\Delta m^2-p^2}{12p^2}A_0(m_0)+\frac{\Delta m^2+p^2}{12p^2}A_0(m_2)\nonumber\\
+&-\frac{\kappa(-p^2,-m_0^2,-m_1^2)}{12p^2}B_0(p^2,m_0^2,m_1^2),
+\end{align}
+with $\Delta m^2=m_1^2-m_0^2$. 
+\newpage
+\section{Example for One-loop Radiative Correction Calculations }
+The discussion above gave us a reduction method to compute one-loop tensor integrals, which is a powerful tool for perturbative calculations for the Standard Model. 
+
+As illustrations of the reduction method we will present the detailed calculation of the one-loop amplitude for the decay of the $W$-boson into massless fermions.
+
+\begin{equation}
+W^+(k)\to f_i(p_i)\bar{f}_j(p_j).
+\end{equation}
+
+\begin{center}
+	\begin{axopicture}(260,100)
+		\Photon(10,50)(70,50){3}{4}
+		\Line[arrow](139.28,10)(70,50)
+		\Line[arrow](70,50)(139.28,90)
+		\Vertex(70,50){1.5}
+		\Vertex(104.64,30){1.5}\Vertex(104.64,70){1.5}	
+		\Text(10,60){$W^+$}
+		\Text(120,50){$\gamma$,$Z$}
+		\Text(147,10){$\bar{f}_j$}
+		\Text(147,90){$f_i$}
+		\Text(100,0){Born Diagram to $W\to f_i\bar{f}_j$}
+	\end{axopicture}
+\end{center}
+
+At the tree level only one Feynman diagram contributes to the amplitude
+\begin{equation}
+\mathcal{M}_0=-\frac{eV_{ij}}{\sqrt{2}s_w}\bar{u}(p_1)\epsilon(k)\frac{1}{2}(1-\gamma_5)v(p_2)=\frac{eV_{ij}}{\sqrt{2}s_w}\mathcal{M}^-_1,
+\end{equation}
+with $\mathcal{M}_1^-=\bar{u}(p_1)\epsilon(k)\frac{1}{2}(1-\gamma_5)v(p_2)$, which leads to the lowest order decay width
+\begin{equation}
+\Gamma_0=\frac{\alpha}{6}\frac{M_W}{2s_W^2}|V_{ij|^2}.
+\end{equation}
+There are six loop digrams and one counterterm diagram at one-loop order (see figures below)
+
+\begin{center}
+	\begin{axopicture}(260,100)
+		\Photon(10,50)(70,50){3}{4}
+		\Line[arrow](104.64,30)(70,50)\Line[arrow](139.28,10)(104.64,30)
+		\Line[arrow](70,50)(104.64,70)\Line[arrow](104.64,70)(139.28,90)
+		\Photon(104.64,30)(104.64,70){3}{3}
+		\Vertex(70,50){1.5}
+		\Vertex(104.64,30){1.5}\Vertex(104.64,70){1.5}	
+		\Text(10,60){$W^+$}
+		\Text(120,50){$\gamma$,$Z$}
+		\Text(147,10){$\bar{f}_j$}
+		\Text(147,90){$f_i$}
+	\end{axopicture}
+\end{center}
+
+\begin{axopicture}(360,100)
+	\Photon(10,50)(70,50){3}{4}
+	\Photon(104.64,30)(70,50){3}{3.5}\Line[arrow](139.28,10)(104.64,30)
+	\Photon(70,50)(104.64,70){3}{3.5}\Line[arrow](104.64,70)(139.28,90)
+	\Vertex(70,50){1.5}
+	\Vertex(104.64,30){1.5}\Vertex(104.64,70){1.5}
+	\Line[arrow](104.64,30)(104.64,70)	
+	\Text(10,60){$W^+$}
+	\Text(87,75){$\gamma$,$Z$}\Text(87,25){$W$}
+	\Text(120,50){$f_i$}
+	\Text(147,10){$\bar{f}_j$}
+	\Text(147,90){$f_i$}
+	\Photon(180,50)(240,50){3}{4}
+	\Photon(274.64,30)(240,50){3}{3.5}\Line[arrow](309.28,10)(274.64,30)
+	\Photon(240,50)(274.64,70){3}{3.5}\Line[arrow](274.64,70)(309.28,90)
+	\Line[arrow](274.64,30)(274.64,70)	
+	\Vertex(240,50){1.5}
+	\Vertex(274.64,30){1.5}
+	\Vertex(274.64,70){1.5}
+	\Text(180,60){$W^+$}
+	\Text(290,50){$f_j$}
+	\Text(317,15){$\bar{f}_j$}
+	\Text(317,90){$f_i$}
+	\Text(257,75){$W$}
+	\Text(257,25){$\gamma$,$Z$}
+	\Text(160,0){One-loop diagrams to $W\to f_i\bar{f}_j$}
+\end{axopicture}
+
+
+\begin{center}
+	\begin{axopicture}(260,100)
+		\Photon(10,50)(70,50){3}{4}
+		\Line[arrow](139.28,10)(70,50)
+		\Line[arrow](70,50)(139.28,90)
+		\Vertex(70,50){1.5}
+		\Vertex(104.64,30){1.5}\Vertex(104.64,70){1.5}	
+		\Text(10,60){$W^+$}
+		\Text(120,50){$\gamma$,$Z$}
+		\Text(147,10){$\bar{f}_j$}
+		\Text(147,90){$f_i$}
+		\GCirc(70,50){5.65}{1}
+		\Line(73.99,53.99)(66,46)
+		\Line(66,53.99)(73.99,46)
+	\end{axopicture}
+	\\ {\sl Counterterm diagram to $W\to f_i\bar{f}_j$}
+\end{center}
+
+
+These six diagrams could be grouped into two generics, the first two loop diagrams correpsonding one generic diagram and the rest four corresponding to another generic diagram. So we first compute the two generic diagrams. The amplitude for the first one is written as follows
+\begin{align}
+\delta\mathcal{M}_1&=i\mu^{4-D}\int\frac{d^dq}{{2\pi}^d}\frac{1}{(q^2-M^2)(q+p_1)^2(q-p^2)^2}\nonumber\\
+&\bar{u}(p_1)\gamma^\nu(g^-_1\omega_-+g^+_1\omega_+)(\slashed{q}+\slashed{p_1})\slashed{\epsilon}(g^-_3\omega_-+g^+_3\omega_+)\nonumber\\
+&(\slashed{q}-\slashed{p_2})\gamma_\mu(g^-_2\omega_-+g^+_2\omega_+)v(p_2),
+\end{align} 
+where $g^\pm$ represent the generic left- and right-handed fermion-fermion-vector couplings
+\begin{equation}
+g^+_f=-\frac{s_w}{c_w}Q_f, g^-=\frac{I^3-Q_f^2s_w^2}{s_Wc_w},
+\end{equation}
+and
+\begin{equation}
+\omega_\pm=\frac{1}{2}(1\pm\gamma_5).
+\end{equation}
+
+Algebraic simplification and decomposition into tensor integral gives
+\begin{align}
+\delta\mathcal{M}_1&=i\mu^{4-D}\int\frac{d^dq}{{2\pi}^d}\frac{1}{(q^2-M^2)(q+p_1)^2(q-p^2)^2}\nonumber\\
+&\bar{u}(p_1)[-2(\slashed{q}-\slashed{p_2})\slashed{\epsilon}(\slashed{q}+\slashed{p_1})+(4-d)\slashed{q}\slashed{e}\slashed{q}](
+g_1^-g_3^-g_2^-\omega_-g_1^+g_2^+g_3^+\omega_+)v(p_2)\nonumber\\
+&=-\frac{1}{16\pi^2}\bar{u}(p_1)[(2-d)C_{\mu\nu}\gamma^\mu\slashed{\epsilon}\gamma^\nu+2C_\mu(\slashed{p}_2\slashed{\epsilon}\gamma^\mu-\gamma^\mu\slashed{\epsilon}\slashed{p}_1)+2C_0\slashed{p}_2\slashed{\epsilon}\slashed{p}_1]\nonumber\\
+&(g^-_1g^-_2g^-_3\omega_-+g^+_1g^+_2g^+_3\omega_+)v(p_2).
+\end{align}
+
+Inserting the Lorentz decomposition (2.87) yields 
+\begin{align}
+\delta\mathcal{M}_1&=-\frac{1}{16\pi^2}(g_1^-g_3^-
+g_2^-\mathcal{M}^-_1+g_1^+g_3^+
+g_2^+\mathcal{M}^+_1)\nonumber\\
+&[(2-d)^2C_{00}-2k^2(C_{12}+C_1+C_2+C_0)].
+\end{align}
+Finally the amplitude for the first generic diagram arrives at 
+\begin{align}
+\delta\mathcal{M}_1&=-\frac{1}{16\pi^2}(g_1^-g_3^-
+g_2^-\mathcal{M}^-_1+g_1^+g_3^+
+g_2^+\mathcal{M}^+_1)\nonumber\\
+&\biggl[-2k^2C_0(0,k^2,0,M,0,0)(1+\frac{M^2}{k^2})^2-B_0(k^2,0,0)(3+2\frac{M^2}{k^2})\nonumber\\
+&+2B_0(0,M,0)(2+\frac{M^2}{k^2})-2\biggr].
+\end{align}
+
+Similarly the amplitude for the second generic diagram is obtained
+
+\begin{align}
+\delta\mathcal{M}_2&=-i\mu^{4-d}\int\frac{d^dq}{(2\pi)^d}\frac{\bar{u}(p_1)\gamma^\nu(g_1^-\omega_-+g_1^+\omega_+)(-\slashed{q})\gamma_\rho(g_2^-\omega_-+g_2^+\omega_+)v(p_2)}{q^2[(q+p_1)^2-M_1^2][(q-p_2)^2-M_2^2]}\nonumber\\
+&g_3[g_{\rho\mu}(p_1+2p_2-q)_\nu-g_{\mu\nu}(2p_1+p_2+q)_\rho+g_{\nu\rho}(2q+p_1-p_2)_\mu]\epsilon^\mu\nonumber\\
+&=\frac{1}{16\pi^2}g_3(g_1^-g_2^-\mathcal{M}_1^-+g_1^+g_2^+\mathcal{M}_1^+)[4(d-1)C_{00}-2k^2(C_{12}+C_1+C_2)]\nonumber\\
+&=\frac{1}{16\pi^2}g_3(g_1^-g_2^-\mathcal{M}_1^-+g_1^+g_2^+\mathcal{M}_1^+)\nonumber\\
+&\biggl[2\left(M_1^2+M_2^2+\frac{M_1^2M_2^2}{k^2}\right)C_0(0,k^2,0,0,M_1,M_2)-\left(1+\frac{M_1^2+M_2^2}{k^2}\right)\nonumber\\
+&B_0(K^2,M_1,M_2)+\left( 2+\frac{M_1^2}{k^2}\right)B_0(0,0,M_1)+\left( 2+\frac{M_2^2}{k^2}\right)B_0(0,0,M_2) 
+\biggr]\nonumber\\
+\end{align}
+
+For convenience we define the generic vertex function as follows:
+\begin{align}
+\mathcal{V}_a(m_1^2,m_0^2,m_2^2,M_0,M_1,M_2)&=B_0(m_0^2,M_1,M_2)-2\nonumber\\
+&-(M_0^2-m_1^2-M_1^2)C_1-(M_0^2-m_2^2-M_2^2)C_2\nonumber\\
+&-2(m_0^2-m_1^2-m_2^2)(C_1+C_2+C_0),\nonumber\\
+\mathcal{V}_b^-(m_1^2,m_0^2,m_2^2,M_0,M_1,M_2)&=3B_0(m_0^2,M_1,M_2)+4M_0^2C_0\nonumber\\
+&+(4m_1^2+2m_2^2-2m_0^2+M_0^2-M_1^2)C_1\nonumber\\
+&+(4m_2^2+2m_1^2-2m_0^2+M_0^2-M_2^2)C_2.\nonumber\\
+\end{align}
+so that amplitudes for two generic diagrams can be expressed as
+\begin{align}
+\delta\mathcal{M}_1&=-\frac{1}{16\pi^2}(g_1^-g_3^-
+g_2^-\mathcal{M}^-_1+g_1^+g_3^+
+g_2^+\mathcal{M}^+_1)\mathcal{V}_a(0,k^2,0,M,0,0)\nonumber\\
+\delta\mathcal{M}_2&=\frac{1}{16\pi^2}g_3(g_1^-g_2^-\mathcal{M}_1^-+g_1^+g_2^+\mathcal{M}_1^+)\mathcal{V}_b^-(0,k^2,0,0,M_1,M_2).\nonumber\\
+\end{align}
+
+Next, we only need to insert the actual couplings and masses of the six actual diagrams into these two generic diagrams and add the counterterm diagram. Finally we obtain the virtual one loop corrections to the invariant amplitude for $W\to f_i\bar{f}_j$
+\begin{align}
+\delta\mathcal{M}=&-\frac{e}{\sqrt{2}s_W}\frac{\alpha}{4\pi}V_{ij}\mathcal{M}^-_1\nonumber\\
+&\biggl\{Q_{f_i}Q_{f_j}\mathcal{V}_a(0,M^2_W,0,\lambda,0,0)+g^-_{f_i}g^-_{f_j}\mathcal{V}_a(0,M^2_W,0,M_Z,0,0)\nonumber\\
+&+Q_{f_i}\mathcal{V}_b(0,M_W^2,0,0,\lambda,M_W)-Q_{f_j}\mathcal{V}_b(0,M_W^2,0,0,M_W,\lambda)\nonumber\\
+&+\frac{c_W}{s_W}g^-_{f_i}\mathcal{V}_b(0,M_W^2,0,0,M_Z,M_W)-\frac{c_W}{s_W}g^-_{f_j}\mathcal{V}_b(0,M_W^2,0,0,M_W,M_Z)\nonumber\\
+&+\frac{1}{2}\delta Z_{ii}^{f_i,L\dagger}+\frac{1}{2}\delta Z_{jj}^{f_j,L\dagger}+\frac{1}{2}\delta Z_W+\delta Z_e-\frac{\delta s_W}{s_W}
+\biggr\}.
+\end{align}
+$\delta\mathcal{M}$ contains infrared divergences and they are regulated with a photon mass $\lambda$. 

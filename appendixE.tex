@@ -1,0 +1,393 @@
+\chapter{The Drell-Yan Process}
+The Drell-Yan process is a model for the production of massive lepton pair in hadron-hadron collision developed by Drell and Yan in 1970 \cite{DY}. In the model a quark from one incident hardon annihilates with an antiquark from the other hadron incident hadron producing a virtual gauge boson which in turn decays into a massive lepton pair. It provides many interesting tests of perturbative QCD. We will make a brief introduction of Drell-Yan process here \cite{FieldQCD}.
+
+First, let us begin with the parton model, in which large mass muon pairs are created in the proton-proton collison via the subprocess $q+\bar{q}\to\gamma^\ast\to\mu^++\mu^-$. The experimental cross section reads as follows
+\begin{equation}
+d\sigma=G_{p\to q}(x_a)dx_a G_{p\to \bar{q}}(x_b)dx_b\hat{\sigma}(q+\bar{q}\to\gamma^\ast\to\mu^++\mu^-),
+\end{equation}
+where $G_{p\to q}(x_a)dx_a$ is the probability of finding a quark with momentum
+\begin{equation}
+p_q=x_aP_A,
+\end{equation}
+and $G_{p\to \bar{q}}(x_b)dx_b$ is the probability of finding a quark with momentum
+\begin{equation}
+p_{\bar{q}} =x_bP_B,
+\end{equation}
+where $P_A$ and $P_B$ are the momentum of the intial two protons. It is convenient to define the dimensionless variables
+\begin{equation}
+\tau=\frac{M^2}{s}, \quad \hat{\tau}=\frac{M^2}{\hat{s}},
+\end{equation}
+where $M$ is the mass of the muon pair and where $s$ is the external proton-proton CMS energy squared
+\begin{equation}
+s=(P_A+P_B)^2=2P^2_\text{CM},
+\end{equation}
+and $\hat{s}$ is the internal parton parton CMS energy squared
+\begin{equation}
+\hat{s}=(p_q+p_{\hat{q}})^2=2p_q\cdot p_{\hat{q}}.
+\end{equation}
+\begin{axopicture}(360,220) 
+	\Line[arrow,double](40,110)(90,110)\Text(30,110){$P_A$}		
+	\Line[arrow](90,110)(180,110)\Text(135,120){$q$}		
+	\Line[arrow](270,110)(180,110)\Text(225,120){$\bar{q}$}
+	\Line[arrow,double](320,110)(270,110)\Text(330,110){$P_B$}	
+	\Vertex(180,110){9}	
+	\Line[arrow](90,110)(130,130)
+	\Line[arrow](90,110)(130,90)
+	\Line[arrow](270,110)(230,130)	
+	\Line[arrow](270,110)(230,90)
+	\Line[arrow](180,110)(200,180)\Text(210,180){$\mu^+$}	
+	\Line[arrow](180,110)(160,40)\Text(170,40){$\mu^-$}
+	\GCirc(90,110){10}{1}
+	\GCirc(270,110){10}{1}
+	\Text(170,20){$p+p\to\mu^+\mu^-+X$}
+\end{axopicture}
+\\{\sl Illustration of the collision of hadron $A$ (momentum $P_A$) with hadron $B$ (momentum $P_B$) producing a $\mu^+\mu^-$ pair via quark-antiquark annihilation.}
+\\
+\newline\newline
+\begin{axopicture}(320,220) 	
+	\Line[arrow,double](20,10)(110,10)\Text(10,10){$P_B$}
+	\Line[arrow,double](20,150)(110,150)\Text(10,150){$P_A$}
+	\Line[arrow](110,150)(160,80)\Text(125,105){$x_aP_A$}
+	\Line[arrow](110,10)(160,80)\Text(120,45){$x_bP_B$}
+	\Line[arrow](160,80)(220,50)
+	\Photon(160,80)(220,110){3}{7}\Text(220,120){$\gamma^\ast$}
+	\Line[arrow](120,150)(160,150)
+	\Line[arrow](110,150)(160,160)
+	\Line[arrow](110,150)(160,130)
+	\Line[arrow](120,10)(160,10)
+	\Line[arrow](110,10)(160,30)
+	\Line[arrow](110,10)(160,0)
+	\GCirc(110,10){15}{1}
+	\GCirc(110,150){15}{1}
+	\GCirc(160,80){15}{1}
+\end{axopicture}
+\\ \\ \\{\sl The production of a virtual photon in proton-proton collisions, $p+p\to\gamma^\ast+X$ is described in terms of a 2-to-2 parton subprocess in which one incoming parton has momentum $x_aP_A$ and the other has momentum $x_bP_B$}
+
+Then we have 
+\begin{equation}
+\hat{s}=x_ax_bs, \quad \tau=x_ax_b\hat{\tau}.
+\end{equation}
+The Longitudinal momentum of the muon pair are 
+\begin{equation}
+P_L=p_q-p_{\bar{q}},
+\end{equation}
+and if we assume that the incoming partons are parallel to the incident protons then the total energy is 
+\begin{equation}
+E^2=P^2_L+M^2.
+\end{equation}
+eq. (E.8) leads to 
+\begin{equation}
+x_L=x_a-x_b
+\end{equation}
+where 
+\begin{equation}
+x_L\equiv \frac{2P_L}{\sqrt{s}},
+\end{equation}
+and eq. (E.9) implies
+\begin{equation}
+x^2_E=x^2_L+4\tau
+\end{equation}
+where
+\begin{equation}
+x_E\equiv\frac{2E}{\sqrt{s}}.
+\end{equation}
+The total cross section for a quark and anti-quark to annihilate into a muon pair, $q\bar{q}\to\mu^+\mu^-$ reads
+\begin{equation}
+\hat{\sigma}(q\bar{q}\to\mu^+\mu^-)\equiv\sigma_0=\frac{1}{3}\frac{4\pi\alpha e^2_q}{3M^2},
+\end{equation}
+where $M$ is the virtual photon invariant mass with 
+\begin{equation}
+\hat{s}=M^2.
+\end{equation}
+According to eq. (E.7) and (E.10) we find that $x_a$ and $x_b$ can be specified in terms of $\tau$ and $x_L$,
+\begin{align}
+x_ax_b&=\tau,\\
+x_a-x_b&=x_L,
+\end{align}
+and the experimental cross section can be rewritten as
+\begin{equation}
+\frac{d\sigma_\text{DY}}{d\tau dx_L}(s,M^2,x_L)=\frac{4\pi\alpha^2}{9M^2}\frac{1}{(x_a+x_b)}P_{q\bar{q}}(x_a,x_b),
+\end{equation}
+with the joint $q\bar{q}$ probability function
+\begin{equation}
+P_{q\bar{q}}(x_a,x_b)=\sum_{i=1}^{n_f}e^2_{q_i}[G_{p\to q_i}(x_a)G_{p\to \bar{q}_i}(x_b)+G_{p\to \bar{q}_i}(x_a)G_{p\to q_i}(x_b)],
+\end{equation}
+where the subscript DY denotes the "Drell-Yan" process $pp\to \mu^+\mu^-+X$. And eqs. (E.16) and (E.17) lead to 
+\begin{align}
+&x_a=\frac{1}{2}(x_E+x_L)=\sqrt{\tau}e^y,\\
+&x_b=\frac{1}{2}(x_E-x_L)=\sqrt{\tau}e^{-y},
+\end{align}
+where $y$ is the rapidity of the muon pair defined by
+\begin{equation}
+y\equiv\frac{1}{2}\log\left(\frac{E+p_L}{E-P_L}\right).
+\end{equation}
+
+Next, we consider the possibility that the initial quark or antiquark can radiate a gluon before annihilating into a virtual photon. The differential cross section for the subprocess $q+\bar{q}\to\gamma^\ast+g$ is 
+\begin{align}
+\frac{d\hat{\sigma}^q_\text{DY}}{d\hat{t}}(\hat{s},\hat{t})=&\frac{1}{64\pi\hat{s}\hat{p}^2_\text{CM}}\left| \bar{\mathcal{M}}(q+\bar{q}\to\gamma^\ast+g) \right|^2\nonumber\\
+=&\frac{1}{16\pi\hat{s}^2}\left| \bar{\mathcal{M}}(q+\bar{q}\to\gamma^\ast+g) \right|^2.
+\end{align}
+\begin{axopicture}(360,150) 
+	\Line[arrow](50,70)(130,70)
+	\Line[arrow](10,20)(50,70)\Text(20,10){$q,p_q$}
+	\Photon(50,70)(10,120){3}{6}\Text(20,130){$\gamma^\ast,q_\gamma$}
+	\Vertex(50,70){2.5}
+	\Gluon(130,70)(170,120){3}{6}\Text(160,130){$\text{gluon},q_g$}
+	\Line[arrow](130,70)(170,20)\Text(160,10){$\bar{q},p_{\bar{q}}$}
+	\Vertex(130,70){2.5}
+	
+	\Line[arrow](230,70)(310,70)
+	\Line[arrow](190,20)(230,70)\Text(200,10){$q,p_q$}
+	\Gluon(230,70)(310,110){5}{6}\Text(310,125){$\text{gluon},q_g$}
+	\Vertex(230,70){2.5}
+	\Photon(310,70)(230,110){3}{8}\Text(230,125){$\gamma^\ast,q_\gamma$}
+	\Line[arrow](310,70)(350,20)\Text(340,10){$\bar{q},p_{\bar{q}}$}
+	\Vertex(310,70){2.5}	
+\end{axopicture}
+\\ {\sl Leading order diagrams for the quark-antiquark ``annihilation" subprocess $q+\bar{q}\to\gamma^\ast+g$.}
+\newline\newline\newline	
+and the amplitude squared is
+\begin{equation}
+\left| \bar{\mathcal{M}}(q+\bar{q}\to\gamma^\ast+g) \right|^2=e^2e_q^2g^2\frac{4}{9}\frac{1}{4}8\left[ \frac{\hat{u}}{\hat{t}}+\frac{\hat{t}}{\hat{u}}+\frac{2M^2(M^2-\hat{t}-\hat{u})}{\hat{t}\hat{u}} \right],
+\end{equation}
+where the subperscript $q$ denotes the process $q+\bar{q}\to\gamma^\ast+g$ the invariant mass of the virtual is timelike,
+\begin{equation}
+M^2=q^2_\gamma,
+\end{equation}
+The invariants are given by
+\begin{align}
+\hat{s}&=(p_q+p_{\hat{q}})^2,\nonumber\\
+\hat{t}&=(q_\gamma-p_{q})^2,\nonumber\\
+\hat{u}&=(q_g+p_{q})^2,
+\end{align}
+with 
+\begin{equation}
+\hat{s}+\hat{t}+\hat{u}=M^2.
+\end{equation}
+Therefore we have 
+\begin{equation}
+\frac{d\hat{\sigma}^q_\text{DY}}{d\hat{t}}(\hat{s},\hat{t})=\frac{\pi\alpha\alpha_s e^2_q}{\hat{s}^2}\left[ \frac{\hat{u}}{\hat{t}}+\frac{\hat{t}}{\hat{u}}+\frac{2M^2(M^2-\hat{t}-\hat{u})}{\hat{t}\hat{u}} \right].
+\end{equation}
+The integral over $\hat{t}$ is given by
+\begin{equation}
+\hat{\sigma}^q_\text{DY}(\hat{s})=\int_{\hat{t}_\text{min}}^{\hat{t}_\text{max}}\frac{d\hat{\sigma}^q_\text{DY}}{d\hat{t}}(\hat{s},\hat{t})d\hat{t},
+\end{equation}
+where 
+\begin{equation}
+\hat{t}_\text{min}=0,\quad \hat{t}_\text{max}=M^2-\hat{s}=-(1-\hat{\tau})\hat{s}.
+\end{equation}
+\newline\newline
+\begin{axopicture}(360,150) 
+	\Line[arrow](50,70)(130,70)
+	\Line[arrow](10,20)(50,70)\Text(20,10){$q,p_q$}
+	\Photon(50,70)(10,120){3}{6}\Text(20,130){$\gamma^\ast,q_\gamma$}
+	\Vertex(50,70){2.5}
+	\Line[arrow](130,70)(170,120)\Text(160,130){$q,p'_q$}
+	\Gluon(130,70)(170,20){3}{6}\Text(160,10){$\text{gluon},q_g$}
+	\Vertex(130,70){2.5}
+	
+	\Line[arrow](270,50)(270,100)
+	\Line[arrow](210,20)(270,50)\Text(210,10){$q,p_q$}
+	\Gluon(270,50)(330,20){3}{6}\Text(330,10){$\text{gluon},q_g$}
+	\Photon(270,100)(210,130){3}{6}\Text(210,120){$\gamma^\ast,q_\gamma$}
+	\Line[arrow](270,100)(330,130)\Text(330,120){$q,p'_g$}
+	\Vertex(270,50){2.5}
+	\Vertex(270,100){2.5}
+\end{axopicture}
+\\ {\sl Leading order diagrams for the quark-antiquark ``Compton" subprocess $q+g\to\gamma^\ast+g$.}
+\newline\newline\newline	
+Besides we have to include the "Compton" subprocess $q+g\to\gamma^\ast+q$ for correcting the parton model. The corresponding  differential cross section 
+\begin{align}
+\frac{d\hat{\sigma}^g_\text{DY}}{d\hat{t}}(\hat{s},\hat{t})=\frac{1}{16\pi\hat{s}^2}\left| \bar{\mathcal{M}}(q+g\to\gamma^\ast+q) \right|^2,
+\end{align}
+where 
+\begin{equation}
+\left| \bar{\mathcal{M}}(q+g\to\gamma^\ast+q) \right|^2=e^2e^2_qg^2_s\frac{4}{24}\frac{1}{4}8\left[ -\frac{\hat{t}}{\hat{s}}-\frac{\hat{s}}{\hat{t}}+\frac{2M^2(M^2+\hat{s}+\hat{t})}{\hat{s}\hat{t}} \right].
+\end{equation}
+The invariants here are defined by
+\begin{align}
+\hat{s}&=(p_q+q_{g})^2,\nonumber\\
+\hat{t}&=(q_\gamma-p_{q})^2,\nonumber\\
+\hat{u}&=(q_\gamma-q_{g})^2.
+\end{align}
+Inserting eq. (E.32) into eq. (E.31) yields
+\begin{equation}
+\frac{d\hat{\sigma}^g_\text{DY}}{d\hat{t}}(\hat{s},\hat{t})=\frac{\pi\alpha\alpha_s e^2_q}{\hat{s}^2}\frac{1}{3}\left[ -\frac{\hat{t}}{\hat{s}}-\frac{\hat{s}}{\hat{t}}+\frac{2M^2(M^2+\hat{s}+\hat{t})}{\hat{s}\hat{t}} \right],
+\end{equation} 
+and the integral over $\hat{t}$ is 
+\begin{equation}
+\hat{\sigma}^g_\text{DY}(\hat{s})=\int_{\hat{t}_\text{min}}^{\hat{t}_\text{max}}\frac{d\hat{\sigma}^g_\text{DY}}{d\hat{t}}(\hat{s},\hat{t})d\hat{t}.
+\end{equation}
+Note that eqs. (E.29) and (E.35) are divergent with $\hat{t}_\text{min}=0$ and we must regulate the divergences. The divergences can be regulated either by giving the gluon a fictitious mass $q^2_g=m^2_g$ or by using the dimensional regularization. In the following we apply the dimensional regularization. 
+
+Let us consider the 2-to-2 scattering subprocesses $\gamma^\ast+q\to q+g$ and $\gamma^\ast+g\to q+\bar{q}$ occur in the $N$ rather than 4 spacetime dimension. In the $N$ spacetime dimensions the 2-to-2 cross section is given by
+\begin{equation}
+d\hat{\sigma}=\frac{1}{4(p_1\cdot p_2)}\left|\bar{\mathcal{M}}\right|^2 d^{2N-2}R_2,
+\end{equation} 
+where
+\begin{equation}
+d^{2N-2}R_2=\frac{d^{N-1}p_3}{(2\pi)^{N-1}(2E_3)}\frac{d^{N-1}p_4}{(2\pi)^{N-1}(2E_4)}(2\pi)^N\delta^N(p3+p_4-p_1-p_2).
+\end{equation}
+Integrating over $p_4$ gives
+\begin{equation}
+\int d^{N-1}p_4\delta^N(p3+p_4-p_1-p_2)=\delta(E_3+E_4-E_1-E_2).
+\end{equation}
+Now let $y\equiv \cos\theta_{13}$, where $\theta_{13}$ is the scattering angle between particles 1 and 3 then
+\begin{equation}
+d^{N-1}p_3=\frac{2\pi^\frac{N-2}{2}}{\Gamma\left(\frac{N}{2}-1\right)}p^{N-2}_3dp_3(1-y^2)^\frac{N-4}{2}dy.
+\end{equation}
+Integrating over $p_3$ yields
+\begin{equation}
+\int dp_3\frac{1}{4E_3E_4}p^{N-2}_3\delta(E_3+E_4-E_\text{CM})=\frac{(p'_\text{CM})^{N-3}}{4\sqrt{\hat{s}}},
+\end{equation}
+where
+\begin{equation}
+(\hat{p}'_\text{CM})^2=\frac{1}{4\hat{s}}[\hat{s}-(m_3+m_4)^2][\hat{s}-(m_3-m_4)^2],
+\end{equation}
+and 
+\begin{equation}
+p_1\cdot p_2=\sqrt{s}\hat{p}_\text{CM},
+\end{equation}
+with
+\begin{equation}
+(\hat{p}_\text{CM})^2=\frac{1}{4\hat{s}}[\hat{s}-(m_1+m_2)^2][\hat{s}-(m_1-m_2)^2],
+\end{equation}
+Thus we have 
+\begin{equation}
+\frac{d\hat{\sigma}}{dy}(\hat{s},\hat{t})=\frac{1}{32\pi\hat{s}}\frac{(\hat{p}'_\text{CM})^{N-3}}{\hat{p}_\text{CM}}\left|\bar{\mathcal{M}}\right|^2\frac{(1-y^2)^\frac{N-4}{2}}{2^{N-4}\pi^\frac{N-4}{2}\Gamma\left(\frac{N}{2}-1\right)}.
+\end{equation}
+For the case,
+\begin{align}
+\hat{p}_\text{CM}&=\frac{1}{2}\sqrt{\hat{s}},\\
+\hat{p}'_\text{CM}&=\frac{1}{2}(1-\hat{\tau})\sqrt{\hat{s}},
+\end{align}
+we have
+\begin{equation}
+\hat{\sigma}_\text{DY}(\hat{\tau})=\frac{1-\hat{\tau}}{32\pi\hat{s}}\left( \frac{M^2(1-\hat{\tau}^2)^2}{4\pi\hat{\tau}} \right)^\frac{\epsilon}{2}\frac{I}{2^\epsilon\Gamma\left(1+\frac{\epsilon}{2}\right)},
+\end{equation}
+where
+\begin{equation}
+I=\int_{-1}^{1}dy(1-y^2)^\frac{\epsilon}{2}\left|\bar{\mathcal{M}}\right|^2,
+\end{equation}
+with $N=4+\epsilon$ and
+\begin{align}
+\hat{t}&=-\frac{1}{2}(\hat{s}-M^2)(1-y)=-\frac{\hat{s}}{2}(1-\hat{\tau})(1-y),\\
+\hat{u}&=-\frac{1}{2}(\hat{s}-M^2)(1+y)=-\frac{\hat{s}}{2}(1-\hat{\tau})(1+y),
+\end{align}
+
+In $N=4+\epsilon$ dimensions the matrix element squared for the subprocesses $q+\bar{q}\to\gamma^\ast+g$ reads 
+\begin{align}
+\left| \bar{\mathcal{M}}(q+\bar{q}\to\gamma^\ast+g) \right|^2&=16\pi^2\alpha_N^\text{QED}\alpha_N^\text{QCD}e^2_q\frac{8}{9}\left(1+\frac{\epsilon}{2}\right)\nonumber\\
+&\times\biggl\{ \frac{2(\hat{\tau}^2y^2-2\hat{\tau}y^2+y^2+\hat{\tau}^2+2\hat{\tau}+1)}{(1-\hat{\tau})^2(1-y^2)}+\frac{2}{1-y^2}\epsilon \biggr\},
+\end{align}
+where
+\begin{equation}
+\alpha^\text{QED}_N=\frac{\alpha}{(m^2_D)^{\epsilon/2}}, \quad \alpha^\text{QCD}_N=\frac{\alpha_s}{(m^2_D)^{\epsilon/2}},
+\end{equation}
+and $m_D$ is the "dimensional regularization mass". Thus we arrive at
+\begin{align}
+\sigma^q_\text{DY}(\hat{\tau})&=\frac{\pi\alpha_N^{QED}\alpha_s e^2_q}{\hat{s}}\frac{16}{9}\left(\frac{M^2(1-\hat{\tau})^2}{\hat{\tau}4\pi m^2_D}\right)^\frac{\epsilon}{2}\frac{\Gamma\left(1+\frac{\epsilon}{2}\right)}{\Gamma(1+\epsilon)}\left(1+\frac{\epsilon}{2}\right)\nonumber\\
+&\times\biggl\{\frac{1+\hat{\tau}^2}{1-\hat{\tau}}\frac{2}{\epsilon}+\frac{\epsilon(1-\hat{\tau})}{1+\epsilon}\biggr\}
+\end{align}
+Since 
+\begin{equation}
+\left(\frac{1}{\sigma_0}\frac{d\hat{\sigma}^q}{d\hat{\tau}}\right)=\frac{3}{4\pi^2\alpha e^2_q(1+\frac{\epsilon}{2})}\hat{s}\hat{\sigma}^q_\text{DY},
+\end{equation}
+then we have 
+\begin{equation}
+\left(\frac{1}{\sigma_0}\frac{d\hat{\sigma}^q}{d\hat{\tau}}\right)_\text{DY}=2\frac{2\alpha_s}{3\pi}\left(\frac{(1-\hat{\tau})^2M^2}{\hat{\tau}4\pi m_D^2}\right)^\frac{\epsilon}{2}\frac{\Gamma(1+\frac{\epsilon}{2})}{\Gamma(1+\epsilon)}\biggl\{\frac{1+\hat{\tau}^2}{1-\hat{\tau}}\frac{2}{\epsilon}+\frac{\epsilon(1-\hat{\tau})}{1+\epsilon}\biggr\},
+\end{equation}
+where $\sigma_0$ is $N$-dimensional Born cross section. Integrating over $\hat{\tau}$ yields
+\begin{equation}
+(\hat{\sigma}(\text{real}))_\text{DY}=\frac{2\alpha_s}{3\pi}\sigma_0\left(\frac{M^2}{4\pi m^2_D}\right)^\frac{\epsilon}{2}\Gamma\left(1-\frac{\epsilon}{2}\right)\biggl\{\frac{8}{\epsilon^2}-\frac{6}{\epsilon}+\frac{9}{2}+\ldots\biggr\}.
+\end{equation}
+
+\begin{axopicture}(360,150) 
+	\Photon(60,50)(60,110){3}{6}\Text(60,120){$\gamma^\ast,q_\gamma$}
+	\Line[arrow](10,10)(60,50)\Text(20,0){$q,p_q$}
+	\Line[arrow](60,50)(110,10)\Text(100,0){$\bar{q},q_{\bar{q}}$}
+	\Vertex(60,50){2.5}
+	\GluonArc(60,50)(26,221,320){4}{6}\Text(60,10){$g$}
+	
+	\Photon(180,50)(180,110){3}{6}\Text(180,120){$\gamma^\ast,q_\gamma$}
+	\Line[arrow](130,10)(180,50)\Text(140,0){$q,p_q$}
+	\Line[arrow](180,50)(230,10)\Text(220,0){$\bar{q},q_{\bar{q}}$}
+	\GluonArc(205,30)(15,-43,138){4}{5}\Text(220,55){$g$}
+	\Vertex(180,50){2.5}
+	
+	\Photon(300,50)(300,110){3}{6}\Text(300,120){$\gamma^\ast,q_\gamma$}
+	\Line[arrow](250,10)(300,50)\Text(260,0){$q,p_q$}
+	\GluonArc(275,30)(15,41,221){4}{5}\Text(260,55){$g$}
+	\Line[arrow](300,50)(350,10)\Text(340,0){$\bar{q},q_{\bar{q}}$}
+	\Vertex(300,50){2.5}
+\end{axopicture}
+\\ \\ {\sl Virtual gluon corrections to the quark-antiquark ahhihilation Borm term $q+\bar{q}\to\gamma^\ast$.}
+\newline\newline\newline
+The virtual corrections are given by
+\begin{align}
+(\hat{\sigma}(\text{virtual}))_\text{DY}&=\frac{2\alpha_s}{3\pi}\sigma_0\left(\frac{M^2}{4\pi m^2_D}\right)^\frac{\epsilon}{2}\frac{\Gamma(1-\frac{\epsilon}{2})\Gamma^2(1+\frac{\epsilon}{2})}{\Gamma(1+\epsilon)}\nonumber\\
+&\times\biggl\{-\frac{8}{\epsilon^2}+\frac{6}{\epsilon}-8+\pi^2+\ldots\biggr\}.
+\end{align}
+From the expansions
+\begin{align}
+\frac{\Gamma(1-\frac{\epsilon}{2})\Gamma^2(1+\frac{\epsilon}{2})}{\Gamma(1+\epsilon)}&=1+\frac{1}{2}\gamma_E\epsilon+\frac{1}{48}(6\gamma^2_E-\pi^2)\epsilon^2+\ldots,\nonumber\\
+\Gamma\left(1-\frac{\epsilon}{2}\right)&=1+\frac{1}{2}\gamma_E\epsilon+\frac{1}{8}\left(\frac{\pi^2}{6}+\gamma^2_E\right)\epsilon^2+\ldots,
+\end{align}
+where $\gamma_E$ is the Euler constant, we find that
+\begin{equation}
+\left(\hat{\sigma}(\text{real})+\hat{\sigma}(\text{virtual})\right)=\sigma_0\alpha_s\left(\frac{8\pi}{9}-\frac{7}{3\pi}\right).
+\end{equation}
+For the Drell-Yan case, the perturbation series behaves like
+\begin{equation}
+\sigma^\text{DY}_\text{tot}=\sigma_0(1+\alpha_s I_q^\text{DY}+\ldots)
+\end{equation}
+with
+\begin{equation}
+\alpha_s I^\text{DY}_q=\alpha_s\left(\frac{8\pi}{9}-\frac{7}{3\pi}\right).
+\end{equation}
+We now define "+ functions" and have
+\begin{equation}
+\frac{1}{\sigma_0}\left(\frac{d\hat{\sigma}^q_\text{DY}}{d\hat{\tau}}\right)_+=2\frac{\alpha_s}{2\pi}P_{q\to qg}(\hat{\tau})\log\left(\frac{M^2}{m^2_D}\right)+2\alpha_s f^{q,\text{DY}}(\hat{\tau}),
+\end{equation}
+where the splitting function 
+\begin{equation}
+P_{q\to qg}(\hat{\tau})=\frac{4}{3}\left(\frac{1+\hat{\tau}^2}{1-\hat{\tau}}\right),
+\end{equation}
+and 
+\begin{align}
+\alpha_sf^{q,\text{DY}}(\hat{\tau})=\frac{2\alpha_s}{3\pi}\biggl\{ 2(1+\hat{\tau}^2)\left(\frac{\log(1-\hat{\tau})}{1-\hat{\tau}}\right)_+-\frac{1+\hat{\tau}^2}{1-\hat{\tau}}\log(\hat{\tau})\nonumber\\
+-\left(\frac{\pi^2}{3}+\frac{9}{4}\right)\delta(1-\hat{\tau}) \biggr\}+\frac{\alpha_s}{2\pi}P_{q\to qg}(\hat{\tau})\left(\frac{2}{\epsilon}+\gamma_E-\log(4\pi)\right).
+\end{align}
+Note that the "little $f$" functions is regularization scheme dependent and the integral of $f^{q,\text{DY}}$ over $\hat{\tau}$ vanishes,
+\begin{equation}
+\int_{0}^{1}\alpha_s f^{q,\text{DY}}(\hat{\tau})d\hat{\tau}=0
+\end{equation}
+
+For the "Compton" subprocess $q+g\to\gamma^\ast+q$, we take the similar treatment and then have
+\begin{equation}
+\frac{1}{\sigma_0}\left(\frac{d\hat{\sigma}^g_\text{DY}}{d\hat{\tau}}\right)_+=2\frac{\alpha_s}{2\pi}P_{g\to q\bar{q}}(\hat{\tau})\log\left(\frac{M^2}{m^2_D}\right)+2\alpha_s f^{g,\text{DY}}(\hat{\tau}),
+\end{equation}
+where the splitting function 
+\begin{equation}
+P_{q\to qg}(\hat{\tau})=\frac{1}{2}[\hat{\tau}^2+(1-\hat{\tau})^2],
+\end{equation}
+and 
+\begin{align}
+\alpha_s f^{g,\text{DY}}(\hat{\tau})&=\frac{\alpha_s}{2\pi}\frac{1}{2}\biggl\{ [\hat{\tau}^2+(1-\hat{\tau})^2]\log\left(\frac{(1-\hat{\tau})^2}{\hat{\tau}}\right)-\frac{3}{2}\hat{\tau}^2+\hat{\tau}+\frac{3}{2} \biggr\}\nonumber\\
+&+\frac{\alpha_s}{2\pi}P_{g\to q\bar{q}}(\hat{\tau})\left(\frac{2}{\epsilon}+\gamma_E-\log(4\pi)\right).
+\end{align}
+
+Combining the "annihilation" term with the "Compton" term and including terms with the initial two partons interchanged, then the "Drell-Yan" cross section becomes (for one quark flavor)
+\begin{align}
+&s\frac{d\sigma_\text{DY}}{dM^2}(s,M^2)=\frac{4\pi}{9}\frac{\alpha^2e^2_q}{M^2}\int_{\tau}^{1}\frac{dx_a}{x_a}\int_{\tau/x_a}^{1}\frac{dx_b}{x_b}\biggl\{ \biggl( \bar{G}^{(0)}_{p\to q}(x_a)\bar{G}^{(0)}_{p\to \bar{q}}(x_b)\nonumber\\
+&+ \bar{G}^{(0)}_{p\to \bar{q}}(x_a)\bar{G}^{(0)}_{p\to q}(x_b) \biggr)\biggl[ \frac{\sigma^\text{DY}_\text{tot}}{\sigma_0}\delta(1-\hat{\tau}) +\frac{\alpha_s}{2\pi}2P_{q\to qg}(\hat{\tau})\log\left(\frac{M^2}{\Lambda^2}\right)+2\alpha_sf^{q,\text{DY}}(\hat{\tau})\biggr]\nonumber\\
+&+\biggl( \bar{G}^{(0)}_{p\to q}(x_a)\bar{G}^{(0)}_{p\to g}(x_b)+\bar{G}^{(0)}_{p\to g}(x_a)\bar{G}^{(0)}_{p\to q}(x_b) \biggr)\biggl[ \frac{\alpha_s}{2\pi}P_{g\to
+ q\bar{q}}\log\left(\frac{M^2}{\Lambda^2}\right)\nonumber\\
+&+2\alpha_sf^{g,\text{DY}}(\hat{\tau})\biggr]+\biggl( \bar{G}^{(0)}_{p\to q}(x_a)\bar{G}^{(0)}_{p\to g}(x_b)+\bar{G}^{(0)}_{p\to g}(x_a)\bar{G}^{(0)}_{p\to q}(x_b) \biggr)\nonumber\\
+&\times\biggl[ \frac{\alpha_s}{2\pi}P_{g\to q\bar{q}}(\hat{\tau})\log\left(\frac{M^2}{\Lambda^2}\right)+2\alpha_sf^{g,\text{DY}}(\hat{\tau})\biggr] \biggr\},
+\end{align}
+where $\hat{\tau}=\tau/(x_ax_b)$ and 
+\begin{equation}
+\frac{\sigma^\text{DY}_\text{tot}}{\sigma_0}=1+\alpha_s I_q^\text{DY}+\ldots,
+\end{equation}
+with $I^\text{DY}_q$ is given by eq. (E.61). The "little $f$" functions in the dimensional regularization scheme is given by eq. (E.64). The $\log(m^2_D)$ divergence has been absorbed into the $G^{(0)}_{p\to q}$ and $G^{(0)}_{p\to g}$ structure functios.  
